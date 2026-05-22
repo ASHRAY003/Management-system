@@ -14,8 +14,11 @@ const { useState: useStateGD } = React;
 function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
   const [showAddKR, setShowAddKR] = useStateGD(false);
   const [newKR, setNewKR] = useStateGD({ name: '', start: 0, target: 100, unit: '%', assignTo: '' });
+  const [updateModal, setUpdateModal] = useStateGD(false);
+  const [dotMenu, setDotMenu] = useStateGD(null);
+
   // Default sample goal if none provided
-  const g = goal || {
+  const baseGoal = goal || {
     title: 'Build a Scalable Operations Engine to Support 2× Growth with Lower Opex',
     description: 'Drive operational leverage by automating manual workflows and lifting employees-per-Ops-FTE.',
     type: 'Development',
@@ -43,11 +46,53 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
     attachments: 2,
   };
 
+  const [krs, setKrsGD] = useStateGD(baseGoal.krs || []);
+  const g = { ...baseGoal, krs };
+
   const isWorker = role === 'worker';
-  const canEdit  = !isWorker || g.ownedByMe; // worker can edit if they own it
+  const canEdit  = !isWorker || g.ownedByMe;
+
+  function saveNewKR() {
+    if (!newKR.name.trim()) return;
+    const nextId = krs.length ? Math.max(...krs.map(k => k.id || 0)) + 1 : 1;
+    setKrsGD([...krs, {
+      id: nextId,
+      text: newKR.name,
+      current: newKR.start,
+      target: newKR.target,
+      unit: newKR.unit,
+      pct: 0,
+      owner: newKR.assignTo || baseGoal.owner?.name || 'Unassigned',
+    }]);
+    setShowAddKR(false);
+    setNewKR({ name: '', start: 0, target: 100, unit: '%', assignTo: '' });
+  }
+
+  const modalGoal = {
+    ...g,
+    kr: krs.map(k => ({
+      t: k.text,
+      current: String(k.current ?? 0),
+      target: String(k.target ?? 0),
+      unit: k.unit,
+      pct: k.pct || 0,
+    })),
+  };
 
   return (
     <div className="goal-detail">
+      {updateModal && (
+        <UpdateProgressModal
+          goal={modalGoal}
+          onCancel={() => setUpdateModal(false)}
+          onSave={({ kr: updatedKr, pct }) => {
+            setKrsGD(krs.map((k, i) => updatedKr[i]
+              ? { ...k, current: updatedKr[i].current, pct: updatedKr[i].pct }
+              : k));
+            setUpdateModal(false);
+          }}
+        />
+      )}
       {/* Local crumb bar */}
       <div className="gd-crumbbar">
         <div className="left">
@@ -137,7 +182,7 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
 
             <div className="gd-kr-block">
               <div className="gd-kr-head">Key Results</div>
-              {g.krs.map(kr => (
+              {krs.map(kr => (
                 <div key={kr.id}>
                   <div className="gd-kr-row">
                     <button className="gd-drag"><span className="ms">drag_indicator</span></button>
@@ -150,8 +195,32 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
                     </div>
                     <div className="gd-kr-text">{kr.text}</div>
                     <button className="btn btn-outlined btn-sm" style={{ padding: '4px 14px', borderRadius: 6 }}
-                      onClick={() => onUpdateGoal && onUpdateGoal(g, kr)}>Update</button>
-                    <button className="gd-kr-more"><span className="ms">more_vert</span></button>
+                      onClick={() => setUpdateModal(true)}>Update</button>
+                    <div style={{ position: 'relative' }}>
+                      <button className="gd-kr-more"
+                        onClick={() => setDotMenu(dotMenu === kr.id ? null : kr.id)}>
+                        <span className="ms">more_vert</span>
+                      </button>
+                      {dotMenu === kr.id && (
+                        <div style={{
+                          position: 'absolute', right: 0, top: '100%', zIndex: 200,
+                          background: '#fff', border: '1px solid var(--grey-200)',
+                          borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+                          minWidth: 140, padding: '4px 0',
+                        }}>
+                          <button
+                            onClick={() => { setDotMenu(null); onUpdateGoal && onUpdateGoal(g, kr); }}
+                            style={{ width: '100%', padding: '9px 16px', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13.5, fontFamily: 'inherit', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--grey-700)', fontWeight: 600 }}>
+                            <span className="ms" style={{ fontSize: 17 }}>edit</span>Edit
+                          </button>
+                          <button
+                            onClick={() => { setDotMenu(null); setKrsGD(krs.filter(k => k.id !== kr.id)); }}
+                            style={{ width: '100%', padding: '9px 16px', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13.5, fontFamily: 'inherit', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--error-main)', fontWeight: 600 }}>
+                            <span className="ms" style={{ fontSize: 17 }}>delete</span>Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                   {kr.linkedProject && (
                     <div style={{ paddingLeft: 80, paddingBottom: 10, marginTop: -4 }}>
@@ -246,7 +315,7 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
 
                   <div className="row gap-2">
                     <button
-                      onClick={() => { setShowAddKR(false); setNewKR({ name: '', start: 0, target: 100, unit: '%', assignTo: '' }); }}
+                      onClick={saveNewKR}
                       style={{ border: 'none', borderRadius: 8, background: 'var(--brand-blue-500)', padding: '8px 20px', fontSize: 13.5, fontWeight: 700, cursor: 'pointer', color: '#fff', fontFamily: 'inherit' }}>
                       Save
                     </button>

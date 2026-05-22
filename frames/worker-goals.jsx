@@ -481,3 +481,4 @@ function WorkerGoals() {
 }
 
 window.WorkerGoals = WorkerGoals;
+window.UpdateProgressModal = UpdateProgressModal;
