@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Payo WFM — Performance Management</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="tokens.css">
+<style>
+html, body { margin: 0; padding: 0; background: #F1EFEC; min-height: 100vh; }
+
+/* ── Nav home page ── */
+.nav-home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 56px 24px 80px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+.nav-home h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+}
+.nav-home p {
+  color: #6b6b6b;
+  font-size: 15px;
+  margin: 0 0 40px;
+}
+.nav-sections {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 960px;
+  width: 100%;
+}
+.nav-section {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 24px;
+  flex: 1 1 260px;
+  min-width: 240px;
+}
+.nav-section h2 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #999;
+  margin: 0 0 16px;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.12s;
+  margin-bottom: 4px;
+}
+.nav-link:hover { background: #f5f4f1; }
+.nav-link-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.client-num { background: #e8f1ff; color: #1e5bcc; }
+.admin-num  { background: #f0e8ff; color: #7230c8; }
+.worker-num { background: #e8f9f0; color: #1a8a50; }
+
+/* ── Back bar ── */
+.back-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 44px;
+  background: rgba(241,239,236,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+.back-bar a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 7px;
+  transition: background 0.12s, color 0.12s;
+}
+.back-bar a:hover { background: rgba(0,0,0,0.06); color: #111; }
+.back-bar .sep { color: #bbb; font-size: 13px; }
+.back-bar .route-label { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+.view-wrap { padding-top: 44px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<!-- React + Babel -->
+<script src="vendor/react.js"></script>
+<script src="vendor/react-dom.js"></script>
+<script src="vendor/babel.js"></script>
+
+<!-- Shared shell + components -->
+<script type="text/babel" src="shared.jsx"></script>
+
+<!-- Shared sub-screens -->
+<script type="text/babel" src="frames/goal-detail.jsx"></script>
+<script type="text/babel" src="frames/goal-stepper.jsx"></script>
+<script type="text/babel" src="frames/meeting-notes.jsx"></script>
+
+<!-- Client screens -->
+<script type="text/babel" src="frames/client-dashboard.jsx"></script>
+<script type="text/babel" src="frames/client-okrs.jsx"></script>
+<script type="text/babel" src="frames/client-meetings.jsx"></script>
+<script type="text/babel" src="frames/client-reviews.jsx"></script>
+
+<!-- Worker screens -->
+<script type="text/babel" src="frames/worker-dashboard.jsx"></script>
+<script type="text/babel" src="frames/worker-goals.jsx"></script>
+<script type="text/babel" src="frames/worker-meetings.jsx"></script>
+<script type="text/babel" src="frames/worker-reviews.jsx"></script>
+
+<!-- Admin -->
+<script type="text/babel" src="frames/admin-dashboard.jsx"></script>
+
+<script type="text/babel">
+const { useState, useEffect } = React;
+
+/* ── Route map ── */
+const ROUTES = [
+  {
+    section: 'Client / Manager',
+    colorClass: 'client-num',
+    items: [
+      { hash: '/client/dashboard',   num: '01', label: 'Performance Dashboard' },
+      { hash: '/client/okrs',        num: '02', label: 'Goals & OKRs' },
+      { hash: '/client/create-goal', num: '02b', label: 'Create Goal (Stepper)' },
+      { hash: '/client/goal-detail', num: '02c', label: 'Goal Detail' },
+      { hash: '/client/reviews',     num: '03', label: 'Reviews' },
+      { hash: '/client/meetings',    num: '04', label: '1:1 Meetings' },
+      { hash: '/client/notes',       num: '04b', label: '1:1 Notes Editor' },
+    ],
+  },
+  {
+    section: 'Internal Admin',
+    colorClass: 'admin-num',
+    items: [
+      { hash: '/admin/dashboard', num: '05', label: 'Clients Overview' },
+    ],
+  },
+  {
+    section: 'Worker',
+    colorClass: 'worker-num',
+    items: [
+      { hash: '/worker/dashboard', num: '06', label: 'My Dashboard' },
+      { hash: '/worker/goals',     num: '07', label: 'My Goals' },
+      { hash: '/worker/meetings',  num: '08', label: 'My 1:1 Sessions' },
+      { hash: '/worker/reviews',   num: '09', label: 'Reviews' },
+    ],
+  },
+];
+
+/* ── Hash reader ── */
+function useHash() {
+  const [hash, setHash] = useState(() => window.location.hash.replace(/^#/, '') || '/');
+  useEffect(() => {
+    const handler = () => setHash(window.location.hash.replace(/^#/, '') || '/');
+    window.addEventListener('hashchange', handler);
+    return () => window.removeEventListener('hashchange', handler);
+  }, []);
+  return hash;
+}
+
+/* ── Render a route ── */
+function renderView(hash) {
+  switch (hash) {
+    case '/client/dashboard':
+      return <ClientDashboard />;
+    case '/client/okrs':
+      return <ClientOKRs />;
+    case '/client/create-goal':
+      return (
+        <Shell persona="client" active="performance"
+          crumb={['Acme Holdings', 'Performance', 'Goals & OKRs', 'New Goal']}>
+          <GoalStepper kind="goal" onCancel={() => { window.location.hash = '/client/okrs'; }}
+            onCreate={() => { window.location.hash = '/client/okrs'; }} />
+        </Shell>
+      );
+    case '/client/goal-detail':
+      return (
+        <Shell persona="client" active="performance"
+          crumb={['Acme Holdings', 'Performance', 'Goals & OKRs', 'Build a Scalable Operations Engine…']}>
+          <GoalDetail role="manager" onBack={() => { window.location.hash = '/client/okrs'; }} />
+        </Shell>
+      );
+    case '/client/reviews':
+      return <ClientReviews />;
+    case '/client/meetings':
+      return <ClientMeetings />;
+    case '/client/notes':
+      return (
+        <Shell persona="client" active="performance"
+          crumb={['Acme Holdings', 'Performance', '1:1 Meetings', 'Notes — Aditi Sharma']}>
+          <MeetingNotesEditor
+            worker="Aditi Sharma"
+            role="Senior Ops · weekly"
+            linked={[
+              { icon: 'flag',          label: 'Complete 6 migrations' },
+              { icon: 'rocket_launch', label: 'Payroll Migration EU' },
+            ]}
+            onBack={() => { window.location.hash = '/client/meetings'; }}
+          />
+        </Shell>
+      );
+    case '/admin/dashboard':
+      return <AdminDashboard />;
+    case '/worker/dashboard':
+      return <WorkerDashboard />;
+    case '/worker/goals':
+      return <WorkerGoals />;
+    case '/worker/meetings':
+      return <WorkerMeetings />;
+    case '/worker/reviews':
+      return <WorkerReviews />;
+    default:
+      return null;
+  }
+}
+
+/* ── Label for back bar ── */
+function labelFor(hash) {
+  for (const section of ROUTES) {
+    for (const item of section.items) {
+      if (item.hash === hash) return `${item.num} · ${item.label}`;
+    }
+  }
+  return null;
+}
+
+/* ── Home nav ── */
+function HomeNav() {
+  return (
+    <div className="nav-home">
+      <h1>Payo WFM — Performance Management</h1>
+      <p>Select a view to open it full-screen</p>
+      <div className="nav-sections">
+        {ROUTES.map(s => (
+          <div key={s.section} className="nav-section">
+            <h2>{s.section}</h2>
+            {s.items.map(item => (
+              <a key={item.hash} className="nav-link" href={`#${item.hash}`}>
+                <span className={`nav-link-num ${s.colorClass}`}>{item.num}</span>
+                {item.label}
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Root app ── */
+function App() {
+  const hash = useHash();
+  const isHome = hash === '/' || hash === '';
+  const label = labelFor(hash);
+
+  if (isHome) return <HomeNav />;
+
+  const view = renderView(hash);
+  if (!view) return (
+    <div className="nav-home">
+      <h1>404 — View not found</h1>
+      <p><a href="#">← Back to all views</a></p>
+    </div>
+  );
+
+  return (
+    <>
+      <div className="back-bar">
+        <a href="#">← All views</a>
+        {label && <><span className="sep">/</span><span className="route-label">{label}</span></>}
+      </div>
+      <div className="view-wrap">{view}</div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
