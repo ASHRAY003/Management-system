@@ -129,7 +129,7 @@ const CLIENT_NAV = [
     { id: 'contracts',  icon: 'description',   label: 'Contracts' },
     { id: 'projects',   icon: 'work',          label: 'Projects' },
     { id: 'payroll',    icon: 'sync',          label: 'Payroll' },
-    { id: 'performance',icon: 'insights',      label: 'Performance' },
+    { id: 'performance',icon: 'insights',      label: 'Performance', route: '/client/dashboard' },
   ]},
   { group: 'Workspace', items: [
     { id: 'time',      icon: 'schedule',     label: 'Time & leave' },
@@ -142,8 +142,8 @@ const CLIENT_NAV = [
 
 const ADMIN_NAV = [
   { group: 'Internal Ops', items: [
-    { id: 'admin-overview', icon: 'dashboard',   label: 'Overview' },
-    { id: 'clients',        icon: 'apartment',   label: 'Clients',          badge: '47' },
+    { id: 'admin-overview', icon: 'dashboard',   label: 'Overview',     route: '/admin/dashboard' },
+    { id: 'clients',        icon: 'apartment',   label: 'Clients',      badge: '47', route: '/admin/dashboard' },
     { id: 'workers',        icon: 'groups',      label: 'All Workers' },
     { id: 'compliance',     icon: 'gavel',       label: 'Compliance' },
   ]},
@@ -155,11 +155,11 @@ const ADMIN_NAV = [
 
 const WORKER_NAV = [
   { group: 'My workspace', items: [
-    { id: 'home',     icon: 'home',     label: 'Home' },
-    { id: 'profile',  icon: 'person',   label: 'My profile' },
-    { id: 'pay',      icon: 'payments', label: 'Pay' },
-    { id: 'time',     icon: 'schedule', label: 'Time off' },
-    { id: 'performance', icon: 'insights', label: 'Performance' },
+    { id: 'home',        icon: 'home',     label: 'Home' },
+    { id: 'profile',     icon: 'person',   label: 'My profile' },
+    { id: 'pay',         icon: 'payments', label: 'Pay' },
+    { id: 'time',        icon: 'schedule', label: 'Time off' },
+    { id: 'performance', icon: 'insights', label: 'Performance', route: '/worker/dashboard' },
   ]},
   { group: 'Restricted', items: [
     { id: 'comp-others',   icon: 'paid',         label: 'Compensation insights', disabled: true },
@@ -209,6 +209,8 @@ function Sidebar({ persona = 'client', active }) {
               <div
                 key={it.id}
                 className={`item ${active === it.id ? 'active' : ''} ${it.disabled ? 'disabled' : ''}`}
+                style={{ cursor: it.route && !it.disabled ? 'pointer' : undefined }}
+                onClick={() => { if (it.route && !it.disabled) window.location.hash = it.route; }}
               >
                 <span className="ms">{it.icon}</span>
                 <span style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{it.label}</span>
@@ -415,20 +417,20 @@ function AIFlag({ title = 'AI suggestion', children, actions }) {
    ============================================================ */
 const PERF_TABS = {
   client: [
-    { id: 'dashboard',   label: 'Dashboard' },
-    { id: 'okrs',        label: 'Goals & OKRs' },
-    { id: 'reviews',     label: 'Reviews' },
-    { id: 'meetings',    label: '1:1 Meetings' },
-    { id: 'feedback',    label: 'Continuous Feedback' },
-    { id: 'ai-review',   label: 'AI Review Assistant' },
-    { id: 'compensation',label: 'Compensation Insights' },
-    { id: 'settings',    label: 'Settings & Templates' },
+    { id: 'dashboard',    label: 'Dashboard',              route: '/client/dashboard' },
+    { id: 'okrs',         label: 'Goals & OKRs',           route: '/client/okrs' },
+    { id: 'reviews',      label: 'Reviews',                route: '/client/reviews' },
+    { id: 'meetings',     label: '1:1 Meetings',           route: '/client/meetings' },
+    { id: 'feedback',     label: 'Continuous Feedback',    route: null },
+    { id: 'ai-review',    label: 'AI Review Assistant',    route: null },
+    { id: 'compensation', label: 'Compensation Insights',  route: null },
+    { id: 'settings',     label: 'Settings & Templates',   route: null },
   ],
   worker: [
-    { id: 'dashboard',    label: 'Dashboard' },
-    { id: 'my-goals',     label: 'My Goals' },
-    { id: 'my-meetings',  label: 'My 1:1 sessions' },
-    { id: 'my-reviews',   label: 'Feedback received' },
+    { id: 'dashboard',   label: 'Dashboard',        route: '/worker/dashboard' },
+    { id: 'my-goals',    label: 'My Goals',         route: '/worker/goals' },
+    { id: 'my-meetings', label: 'My 1:1 sessions',  route: '/worker/meetings' },
+    { id: 'my-reviews',  label: 'Feedback received',route: '/worker/reviews' },
   ],
 };
 
@@ -437,7 +439,12 @@ function PerfTabs({ variant = 'client', active = 'dashboard' }) {
   return (
     <div className="perf-tabs">
       {tabs.map(t => (
-        <div key={t.id} className={`perf-tab ${t.id === active ? 'active' : ''}`}>
+        <div
+          key={t.id}
+          className={`perf-tab ${t.id === active ? 'active' : ''}`}
+          style={{ cursor: t.route ? 'pointer' : 'default' }}
+          onClick={() => { if (t.route) window.location.hash = t.route; }}
+        >
           {t.label}
         </div>
       ))}
