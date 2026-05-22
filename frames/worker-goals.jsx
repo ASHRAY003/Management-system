@@ -8,6 +8,7 @@ const { useState: useStateWG } = React;
 function WorkerGoals() {
   const [stepper, setStepper] = useStateWG(null);
   const [detailGoal, setDetailGoal] = useStateWG(null);
+  const [stepperFromDetail, setStepperFromDetail] = useStateWG(false);
 
   const goals = [
     {
@@ -56,15 +57,36 @@ function WorkerGoals() {
     },
   ];
 
+  function openStepperFromDetail(goal) {
+    const initial = {
+      name: goal.title,
+      isPerf: true,
+      privacy: 'restricted',
+      krs: (goal.krs || []).map(k => ({
+        name: k.text,
+        start: parseFloat(k.current) || 0,
+        target: parseFloat(k.target) || 100,
+        unit: k.unit === 'count' ? 'count' : k.unit === 'rating' ? '%' : k.unit || '%',
+      })),
+      owner: goal.owner ? goal.owner.name : 'Aditi Sharma',
+      contributors: (goal.contributors || []).map(c => c.name),
+    };
+    setStepperFromDetail(true);
+    setStepper({ kind: 'goal', mode: 'edit', initial });
+  }
+
   return (
     <Shell persona="worker" active="performance"
       crumb={['Payo WFM', 'Performance', 'My Goals']}>
 
       {stepper ? (
         <GoalStepper kind={stepper.kind} mode={stepper.mode} initial={stepper.initial}
-          onCancel={() => setStepper(null)} onCreate={() => setStepper(null)} />
+          onCancel={() => { setStepper(null); if (stepperFromDetail) setStepperFromDetail(false); }}
+          onCreate={() => { setStepper(null); setStepperFromDetail(false); setDetailGoal(null); }} />
       ) : detailGoal ? (
-        <GoalDetail goal={detailGoal} role="worker" onBack={() => setDetailGoal(null)} />
+        <GoalDetail goal={detailGoal} role="worker"
+          onBack={() => setDetailGoal(null)}
+          onUpdateGoal={() => openStepperFromDetail(detailGoal)} />
       ) : (<>
 
       <PerfTabs variant="worker" active="my-goals" />
@@ -155,9 +177,7 @@ function WorkerGoals() {
                     <div className="text">{k.t}</div>
                     <div className="target">{k.current}{k.unit === '%' ? '%' : ''} / {k.target}{k.unit === '%' ? '%' : ''}</div>
                     <ProgressBar pct={k.pct} color={k.pct >= 70 ? 'green' : k.pct >= 40 ? '' : 'amber'} />
-                    {o.role === 'owner'
-                      ? <Btn variant="ghost" size="sm" style={{ padding: '4px 8px' }} icon="edit">Edit</Btn>
-                      : <span />}
+                    <span />
                   </div>
                 ))}
               </div>

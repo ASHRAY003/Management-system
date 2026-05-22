@@ -9,7 +9,7 @@
      - LEFT (2/3): Goal Progress card + Key Results rows
      - RIGHT (1/3): Tracking chart, Days until due, Attachments, Owner, Contributors */
 
-function GoalDetail({ goal, role = 'manager', onBack }) {
+function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
   // Default sample goal if none provided
   const g = goal || {
     title: 'Build a Scalable Operations Engine to Support 2× Growth with Lower Opex',
@@ -144,7 +144,8 @@ function GoalDetail({ goal, role = 'manager', onBack }) {
                     <span className="ms refresh">refresh</span>
                   </div>
                   <div className="gd-kr-text">{kr.text}</div>
-                  <button className="btn btn-outlined btn-sm" style={{ padding: '4px 14px', borderRadius: 6 }}>Update</button>
+                  <button className="btn btn-outlined btn-sm" style={{ padding: '4px 14px', borderRadius: 6 }}
+                    onClick={() => onUpdateGoal && onUpdateGoal(g, kr)}>Update</button>
                   <button className="gd-kr-more"><span className="ms">more_vert</span></button>
                 </div>
               ))}
