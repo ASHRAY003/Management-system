@@ -9,7 +9,11 @@
      - LEFT (2/3): Goal Progress card + Key Results rows
      - RIGHT (1/3): Tracking chart, Days until due, Attachments, Owner, Contributors */
 
+const { useState: useStateGD } = React;
+
 function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
+  const [showAddKR, setShowAddKR] = useStateGD(false);
+  const [newKR, setNewKR] = useStateGD({ name: '', start: 0, target: 100, unit: '%', assignTo: '' });
   // Default sample goal if none provided
   const g = goal || {
     title: 'Build a Scalable Operations Engine to Support 2× Growth with Lower Opex',
@@ -150,10 +154,100 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
                 </div>
               ))}
 
-              <div className="gd-kr-add">
-                <span>Need to track something else?</span>
-                <a>Add Key Result</a>
-              </div>
+              {showAddKR ? (
+                <div style={{
+                  margin: '12px 0 4px', padding: '20px 20px 16px',
+                  border: '1.5px solid var(--brand-blue-300)', borderRadius: 10,
+                  background: '#F8FBFF',
+                }}>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--grey-800)', marginBottom: 12 }}>New Key Result</div>
+
+                  <textarea
+                    value={newKR.name}
+                    onChange={e => setNewKR({ ...newKR, name: e.target.value })}
+                    placeholder="What are you measuring?"
+                    rows={2}
+                    style={{
+                      width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8,
+                      padding: '10px 12px', fontSize: 13.5, fontFamily: 'inherit',
+                      resize: 'vertical', outline: 'none', boxSizing: 'border-box',
+                      background: '#fff',
+                    }}
+                    onFocus={e => e.target.style.borderColor = 'var(--brand-blue-400)'}
+                    onBlur={e => e.target.style.borderColor = 'var(--grey-200)'}
+                  />
+                  <div style={{ fontSize: 12, color: 'var(--fg-disabled)', marginBottom: 14, marginTop: 4 }}>
+                    {newKR.name.length} / 512 Characters
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1.2fr', gap: 12, marginBottom: 14 }}>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--grey-700)', marginBottom: 5 }}>Start</div>
+                      <input type="number" value={newKR.start}
+                        onChange={e => setNewKR({ ...newKR, start: parseFloat(e.target.value) || 0 })}
+                        style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '8px 12px', fontSize: 13.5, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', background: '#fff' }}
+                        onFocus={e => e.target.style.borderColor = 'var(--brand-blue-400)'}
+                        onBlur={e => e.target.style.borderColor = 'var(--grey-200)'}
+                      />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--grey-700)', marginBottom: 5 }}>Target</div>
+                      <input type="number" value={newKR.target}
+                        onChange={e => setNewKR({ ...newKR, target: parseFloat(e.target.value) || 0 })}
+                        style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '8px 12px', fontSize: 13.5, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', background: '#fff' }}
+                        onFocus={e => e.target.style.borderColor = 'var(--brand-blue-400)'}
+                        onBlur={e => e.target.style.borderColor = 'var(--grey-200)'}
+                      />
+                    </div>
+                    <div>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--grey-700)', marginBottom: 5 }}>Unit</div>
+                      <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                        <span style={{ position: 'absolute', left: 10, pointerEvents: 'none', fontSize: 15, color: 'var(--fg-secondary)' }} className="ms">
+                          {newKR.unit === '%' ? 'percent' : newKR.unit === 'days' ? 'event' : newKR.unit === 'USD' ? 'attach_money' : 'tag'}
+                        </span>
+                        <select value={newKR.unit} onChange={e => setNewKR({ ...newKR, unit: e.target.value })}
+                          style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '8px 12px 8px 32px', fontSize: 13.5, fontFamily: 'inherit', outline: 'none', background: '#fff', cursor: 'pointer', appearance: 'none' }}>
+                          <option value="%">Percentage</option>
+                          <option value="days">Days</option>
+                          <option value="count">Count</option>
+                          <option value="USD">USD</option>
+                        </select>
+                        <span style={{ position: 'absolute', right: 8, pointerEvents: 'none', fontSize: 18, color: 'var(--fg-disabled)' }} className="ms">arrow_drop_down</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--grey-700)', marginBottom: 5 }}>Assign To</div>
+                    <input
+                      value={newKR.assignTo}
+                      onChange={e => setNewKR({ ...newKR, assignTo: e.target.value })}
+                      placeholder="Type names here to find users"
+                      style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '9px 12px', fontSize: 13.5, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', background: '#fff' }}
+                      onFocus={e => e.target.style.borderColor = 'var(--brand-blue-400)'}
+                      onBlur={e => e.target.style.borderColor = 'var(--grey-200)'}
+                    />
+                  </div>
+
+                  <div className="row gap-2">
+                    <button
+                      onClick={() => { setShowAddKR(false); setNewKR({ name: '', start: 0, target: 100, unit: '%', assignTo: '' }); }}
+                      style={{ border: 'none', borderRadius: 8, background: 'var(--brand-blue-500)', padding: '8px 20px', fontSize: 13.5, fontWeight: 700, cursor: 'pointer', color: '#fff', fontFamily: 'inherit' }}>
+                      Save
+                    </button>
+                    <button
+                      onClick={() => { setShowAddKR(false); setNewKR({ name: '', start: 0, target: 100, unit: '%', assignTo: '' }); }}
+                      style={{ border: 'none', borderRadius: 8, background: 'transparent', padding: '8px 14px', fontSize: 13.5, fontWeight: 600, cursor: 'pointer', color: 'var(--brand-blue-600)', fontFamily: 'inherit' }}>
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="gd-kr-add">
+                  <span>Need to track something else?</span>
+                  <a style={{ cursor: 'pointer' }} onClick={() => setShowAddKR(true)}>Add Key Result</a>
+                </div>
+              )}
             </div>
           </div>
 

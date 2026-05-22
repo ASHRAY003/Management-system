@@ -77,7 +77,7 @@ function WorkerDashboard() {
           title="My next 1:1"
           sub="Today · 10:00 AM"
           icon="event"
-          action={<Btn variant="primary" size="sm" icon="edit_note">Take notes</Btn>}
+          action={<Btn variant="primary" size="sm" icon="edit_note" onClick={() => window.location.hash = '#/worker/meetings'}>Take notes</Btn>}
         >
           <div className="row items-center gap-3 mb-3">
             <Avatar name="Priya Nair" size="lg" />
