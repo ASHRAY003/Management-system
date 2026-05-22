@@ -6,6 +6,8 @@
 const { useState: useStateNE } = React;
 
 function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · weekly', linked = [], onBack }) {
+  const [sharedDirty,  setSharedDirty]  = useStateNE(false);
+  const [privateDirty, setPrivateDirty] = useStateNE(false);
   const [actions, setActions] = useStateNE([
     { id: 'a1', text: 'Share v2 migration runbook with Aditi',         done: true,  owner: 'P' },
     { id: 'a2', text: 'Confirm Aditi shadows Lina on Spain kickoff',   done: true,  owner: 'P' },
@@ -71,13 +73,22 @@ function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · wee
                     <span className="ms">groups</span>Shared Notes
                   </div>
                   <div className="saved">
-                    Saved at 10:23 AM
-                    <span className="ind" />
+                    {sharedDirty
+                      ? <><span style={{ color: 'var(--warning-dark)', fontWeight: 600 }}>Editing…</span><span className="ind unsaved" /></>
+                      : <>Saved at 10:23 AM<span className="ind" /></>}
                     <button className="help-i" title="Formatting help"><span className="ms">help</span></button>
                   </div>
                 </div>
                 <EditorToolbar />
-                <div className="editor-body" data-placeholder="Start writing shared notes…">
+                <div
+                  className="editor-body"
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  data-placeholder="Start writing shared notes…"
+                  style={{ outline: 'none' }}
+                  onInput={() => setSharedDirty(true)}
+                  onBlur={() => setSharedDirty(false)}
+                >
                   <div>Migration wrapped clean — Aditi led the Spain cutover with zero P0s. Customer signed a 3-year renewal the same week.</div>
                   <div style={{ marginTop: 8 }}>Q4 priorities discussed: pick up Brazil + take Lina as a shadow. Aditi wants to formalize her Lead Ops path.</div>
                   <div className="ai-prompt">
@@ -112,12 +123,21 @@ function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · wee
                     <span className="meta"><span className="ms">visibility</span>Only visible to you</span>
                   </div>
                   <div className="saved">
-                    <span style={{ color: 'var(--warning-dark)', fontWeight: 600 }}>Editing…</span>
-                    <span className="ind unsaved" />
+                    {privateDirty
+                      ? <><span style={{ color: 'var(--warning-dark)', fontWeight: 600 }}>Editing…</span><span className="ind unsaved" /></>
+                      : <>Saved<span className="ind" /></>}
                   </div>
                 </div>
                 <EditorToolbar />
-                <div className="editor-body" data-placeholder="Private thoughts — only you can see these…">
+                <div
+                  className="editor-body"
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  data-placeholder="Private thoughts — only you can see these…"
+                  style={{ outline: 'none' }}
+                  onInput={() => setPrivateDirty(true)}
+                  onBlur={() => setPrivateDirty(false)}
+                >
                   Consider Aditi for a promotion case in Q4 — she's outpacing the Lead Ops ladder. Sync with Hannah before raising it.
                 </div>
               </div>

@@ -204,6 +204,8 @@ function WorkerMeetings() {
 /* Worker-only notes view: read-only shared notes + action items.
    Mirrors the manager's MeetingNotesEditor layout but hides the private panel. */
 function WorkerNotesView({ meeting, onBack }) {
+  const [privateDirty, setPrivateDirtyWN] = React.useState(false);
+
   return (
     <div className="notes-takeover">
       <div className="topbar">
@@ -270,10 +272,22 @@ function WorkerNotesView({ meeting, onBack }) {
                     <span className="ms">person</span>My private notes
                     <span className="meta"><span className="ms">visibility_off</span>Only visible to me</span>
                   </div>
-                  <div className="saved">Saved<span className="ind" /></div>
+                  <div className="saved">
+                    {privateDirty
+                      ? <><span style={{ color: 'var(--warning-dark)', fontWeight: 600 }}>Editing…</span><span className="ind unsaved" /></>
+                      : <>Saved<span className="ind" /></>}
+                  </div>
                 </div>
                 <EditorToolbar />
-                <div className="editor-body" data-placeholder="Your private notes — only you can see these…" style={{ minHeight: 100 }}>
+                <div
+                  className="editor-body"
+                  contentEditable={true}
+                  suppressContentEditableWarning={true}
+                  data-placeholder="Your private notes — only you can see these…"
+                  style={{ minHeight: 100, outline: 'none' }}
+                  onInput={() => setPrivateDirtyWN(true)}
+                  onBlur={() => setPrivateDirtyWN(false)}
+                >
                   Want to ask Priya about the Lead Ops promotion track and whether I can shadow her on the next QBR.
                 </div>
               </div>
