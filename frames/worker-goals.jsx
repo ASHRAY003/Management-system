@@ -417,16 +417,6 @@ function WorkerGoals() {
                 </div>
                 <div className="o-title" style={{ fontSize: 15 }}>{o.title}</div>
                 <div className="o-meta">
-                  {o.linkedProject ? (
-                    <span className="item">
-                      <span className="ms">link</span>
-                      <span className="v" style={{ color: 'var(--brand-blue-600)' }}>{o.linkedProject}</span>
-                    </span>
-                  ) : (
-                    <span className="item" style={{ color: 'var(--fg-disabled)' }}>
-                      <span className="ms">link_off</span>No project linked
-                    </span>
-                  )}
                   <span className="item"><span className="ms">event</span>Due <span className="v">{o.due}</span></span>
                   <span className="item"><span className="ms">flag</span><span className="v">{o.kr.length}</span> key results</span>
                   {o.status === 'on-track' && <Pill variant="on-track" dot>On track</Pill>}
@@ -475,7 +465,7 @@ function WorkerGoals() {
               display: 'grid', gridTemplateColumns: '1fr 240px', gap: 20, alignItems: 'center' }}>
               <div style={{ fontSize: 12, color: 'var(--fg-secondary)' }}>
                 {o.role === 'owner'
-                  ? <>You drive this goal{o.linkedProject ? <> · auto-syncing progress from <strong style={{ color: 'var(--grey-700)' }}>{o.linkedProject}</strong></> : null}.</>
+                  ? <>You drive this goal.</>
                   : o.role === 'contrib'
                     ? <>Contributing toward this goal — owned by <strong style={{ color: 'var(--grey-700)' }}>{o.ownerName}</strong>.</>
                     : <>Stakeholder · you receive updates but don't own progress.</>}

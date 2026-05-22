@@ -181,30 +181,6 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
           {/* ============== STEP 2 · Key Results ============== */}
           {step === 'kr' && (
             <>
-              {/* Link Project field */}
-              <div className="field" style={{ marginBottom: 20 }}>
-                <div className="lh">
-                  <div className="lbl">Link Project <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--fg-secondary)' }}>· optional</span></div>
-                </div>
-                <div className="sel-wrap">
-                  <span className="lead-icon">
-                    <span className="ms" style={{ color: linkedProject ? 'var(--brand-blue-500)' : undefined }}>
-                      {linkedProject ? 'link' : 'link_off'}
-                    </span>
-                  </span>
-                  <select className="sel with-lead" value={linkedProject} onChange={e => setLinkedProject(e.target.value)}>
-                    <option value="">No linked project</option>
-                    {LINKED_PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
-                  </select>
-                </div>
-                {linkedProject && (
-                  <div className="help" style={{ color: 'var(--brand-blue-600)' }}>
-                    <span className="ms" style={{ fontSize: 14, verticalAlign: 'middle', marginRight: 4 }}>info</span>
-                    Progress will auto-sync from <strong>{linkedProject}</strong> when connected.
-                  </div>
-                )}
-              </div>
-
               {krs.map((kr, i) => (
                 <div className="kr-block" key={i}>
                   <div className="drag"><span className="ms">drag_indicator</span></div>
@@ -218,6 +194,25 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                     onChange={e => setKrs(krs.map((k, j) => j === i ? { ...k, name: e.target.value } : k))}
                   />
                   <div className="kr-help">Trackable metric that will indicate goal progress.</div>
+                  <div className="field" style={{ marginBottom: 12 }}>
+                    <div className="sel-wrap">
+                      <span className="lead-icon">
+                        <span className="ms" style={{ color: kr.linkedProject ? 'var(--brand-blue-500)' : undefined }}>
+                          {kr.linkedProject ? 'link' : 'link_off'}
+                        </span>
+                      </span>
+                      <select className="sel with-lead" value={kr.linkedProject || ''} onChange={e => setKrs(krs.map((k, j) => j === i ? { ...k, linkedProject: e.target.value } : k))}>
+                        <option value="">No linked project</option>
+                        {LINKED_PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
+                      </select>
+                    </div>
+                    {kr.linkedProject && (
+                      <div className="help" style={{ color: 'var(--brand-blue-600)', marginTop: 4 }}>
+                        <span className="ms" style={{ fontSize: 14, verticalAlign: 'middle', marginRight: 4 }}>info</span>
+                        Progress will auto-sync from <strong>{kr.linkedProject}</strong>.
+                      </div>
+                    )}
+                  </div>
                   <div className="grid-3">
                     <div>
                       <div className="sub">Start</div>

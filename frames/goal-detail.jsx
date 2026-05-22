@@ -138,19 +138,34 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
             <div className="gd-kr-block">
               <div className="gd-kr-head">Key Results</div>
               {g.krs.map(kr => (
-                <div className="gd-kr-row" key={kr.id}>
-                  <button className="gd-drag"><span className="ms">drag_indicator</span></button>
-                  <Avatar name={kr.owner || '??'} size="sm" />
-                  <div className="gd-kr-val">
-                    {kr.unit === 'incomplete'
-                      ? <span style={{ color: 'var(--fg-disabled)', fontStyle: 'italic' }}>Incomplete</span>
-                      : <>{kr.current}{kr.unit === '%' ? '%' : ''} / {kr.target}{kr.unit === '%' ? '%' : ''}</>}
-                    <span className="ms refresh">refresh</span>
+                <div key={kr.id}>
+                  <div className="gd-kr-row">
+                    <button className="gd-drag"><span className="ms">drag_indicator</span></button>
+                    <Avatar name={kr.owner || '??'} size="sm" />
+                    <div className="gd-kr-val">
+                      {kr.unit === 'incomplete'
+                        ? <span style={{ color: 'var(--fg-disabled)', fontStyle: 'italic' }}>Incomplete</span>
+                        : <>{kr.current}{kr.unit === '%' ? '%' : ''} / {kr.target}{kr.unit === '%' ? '%' : ''}</>}
+                      <span className="ms refresh">refresh</span>
+                    </div>
+                    <div className="gd-kr-text">{kr.text}</div>
+                    <button className="btn btn-outlined btn-sm" style={{ padding: '4px 14px', borderRadius: 6 }}
+                      onClick={() => onUpdateGoal && onUpdateGoal(g, kr)}>Update</button>
+                    <button className="gd-kr-more"><span className="ms">more_vert</span></button>
                   </div>
-                  <div className="gd-kr-text">{kr.text}</div>
-                  <button className="btn btn-outlined btn-sm" style={{ padding: '4px 14px', borderRadius: 6 }}
-                    onClick={() => onUpdateGoal && onUpdateGoal(g, kr)}>Update</button>
-                  <button className="gd-kr-more"><span className="ms">more_vert</span></button>
+                  {kr.linkedProject && (
+                    <div style={{ paddingLeft: 80, paddingBottom: 10, marginTop: -4 }}>
+                      <span style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 5,
+                        fontSize: 11.5, fontWeight: 600, color: 'var(--brand-blue-600)',
+                        background: 'var(--brand-blue-50)', border: '1px solid var(--brand-blue-200)',
+                        borderRadius: 20, padding: '3px 10px',
+                      }}>
+                        <span className="ms" style={{ fontSize: 13 }}>link</span>
+                        {kr.linkedProject}
+                      </span>
+                    </div>
+                  )}
                 </div>
               ))}
 
