@@ -4,6 +4,15 @@
 
 const { useState: useStateStep } = React;
 
+const LINKED_PROJECTS = [
+  'Payroll Migration EU',
+  'KYB Automation v2',
+  'Contractor Onboarding Revamp',
+  'CSAT Recovery Program',
+  'Ops Tooling Modernisation',
+  'Q3 Payroll Quality Initiative',
+];
+
 const STEPS = [
   { id: 'name',  label: 'Name & Type' },
   { id: 'kr',    label: 'Key Results' },
@@ -27,6 +36,7 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
   const [owner, setOwner] = useStateStep(initial.owner ?? 'Omar Khan');
   const [contributors, setContributors] = useStateStep(initial.contributors ?? ['Aditi Sharma', 'Priya Nair']);
   const [opts, setOpts] = useStateStep(initial.opts ?? { alignment: true, description: false, tags: true });
+  const [linkedProject, setLinkedProject] = useStateStep(initial.linkedProject ?? '');
 
   const step = STEPS[stepIdx].id;
   const isLast = stepIdx === STEPS.length - 1;
@@ -171,6 +181,30 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
           {/* ============== STEP 2 · Key Results ============== */}
           {step === 'kr' && (
             <>
+              {/* Link Project field */}
+              <div className="field" style={{ marginBottom: 20 }}>
+                <div className="lh">
+                  <div className="lbl">Link Project <span style={{ fontSize: 12, fontWeight: 500, color: 'var(--fg-secondary)' }}>· optional</span></div>
+                </div>
+                <div className="sel-wrap">
+                  <span className="lead-icon">
+                    <span className="ms" style={{ color: linkedProject ? 'var(--brand-blue-500)' : undefined }}>
+                      {linkedProject ? 'link' : 'link_off'}
+                    </span>
+                  </span>
+                  <select className="sel with-lead" value={linkedProject} onChange={e => setLinkedProject(e.target.value)}>
+                    <option value="">No linked project</option>
+                    {LINKED_PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
+                  </select>
+                </div>
+                {linkedProject && (
+                  <div className="help" style={{ color: 'var(--brand-blue-600)' }}>
+                    <span className="ms" style={{ fontSize: 14, verticalAlign: 'middle', marginRight: 4 }}>info</span>
+                    Progress will auto-sync from <strong>{linkedProject}</strong> when connected.
+                  </div>
+                )}
+              </div>
+
               {krs.map((kr, i) => (
                 <div className="kr-block" key={i}>
                   <div className="drag"><span className="ms">drag_indicator</span></div>

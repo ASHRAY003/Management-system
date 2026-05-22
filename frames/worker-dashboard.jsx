@@ -96,53 +96,6 @@ function WorkerDashboard() {
         </SectionCard>
       </div>
 
-      {/* Recent feedback received */}
-      <SectionCard
-        title="Feedback I've received"
-        sub="Latest from managers, peers and clients"
-        icon="inbox"
-        action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">View all</Btn>}
-      >
-        <div className="col gap-3">
-          {feedback.map((f, i) => (
-            <div key={i} style={{ display: 'flex', gap: 14, padding: '12px 14px',
-              background: f.type === 'recognition' ? 'var(--success-bg)' : '#F4FAFE',
-              borderRadius: 10, border: '1px solid ' + (f.type === 'recognition' ? 'var(--brand-green-200)' : 'var(--brand-blue-200)') }}>
-              <Avatar name={f.from} size="md" />
-              <div className="flex-1" style={{ minWidth: 0 }}>
-                <div className="row items-center gap-2 mb-2" style={{ flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--grey-700)' }}>{f.from}</span>
-                  <span style={{ fontSize: 11, color: 'var(--fg-secondary)' }}>· {f.role}</span>
-                  <Pill variant={f.type === 'project' ? 'contractor' : f.type === 'recognition' ? 'eligible' : 'employee'}
-                    icon={f.type === 'project' ? 'rocket_launch' : f.type === 'recognition' ? 'celebration' : 'forum'}>
-                    {f.type === 'project' ? 'Project feedback' : f.type === 'recognition' ? 'Recognition' : 'Goal feedback'}
-                  </Pill>
-                  <span style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--fg-secondary)', fontWeight: 600 }}>{f.when}</span>
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55 }}>{f.text}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </SectionCard>
-
-      {/* Transparency strip */}
-      <div className="card mt-4" style={{ background: 'var(--grey-50)', borderStyle: 'dashed' }}>
-        <div style={{ padding: '14px 20px' }}>
-          <div className="row items-center gap-3 mb-2">
-            <span className="ms" style={{ fontSize: 22, color: 'var(--fg-disabled)' }}>visibility_off</span>
-            <div>
-              <div style={{ fontSize: 13, fontWeight: 800, color: 'var(--grey-700)' }}>Things I can't see in this view</div>
-              <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)' }}>Designed to keep things fair and private.</div>
-            </div>
-          </div>
-          <div className="row gap-2" style={{ flexWrap: 'wrap', paddingLeft: 34 }}>
-            <Pill variant="draft" icon="lock">Other workers' OKRs</Pill>
-            <Pill variant="draft" icon="lock">Manager private notes</Pill>
-            <Pill variant="draft" icon="lock">Compensation insights for others</Pill>
-          </div>
-        </div>
-      </div>
     </Shell>
   );
 }
