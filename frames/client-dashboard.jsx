@@ -1,16 +1,13 @@
 /* Frame 1 — Client / Manager Performance Dashboard
    Persona: HR admin / people manager at the client (Acme Holdings)
-   Per the brief: 6 KPI cards, Goal Progress, Review Cycle Status, Project Performance
-   Signals, Compensation Signals, AI Review Assistant panel, Recent Feedback. */
+   KPI cards, Goal Progress, Review Cycle Status, Project Performance
+   Signals, Recent Feedback. */
 
 function ClientDashboard() {
   const kpis = [
     { tone: 'blue',    icon: 'flag',           label: 'Active OKRs',          value: '42', trend: { dir: 'up',   text: '+6' }, sub: '11 company · 14 team · 17 individual' },
-    { tone: 'green',   icon: 'task_alt',       label: 'OKRs on track',        value: '76%', trend: { dir: 'up', text: '+4%' }, sub: '32 of 42 · target 80%' },
-    { tone: 'amber',   icon: 'pending_actions',label: 'Pending reviews',      value: '18', trend: { dir: 'down', text: '−3' },  sub: '4 overdue · 14 in progress' },
     { tone: 'purple',  icon: 'rocket_launch',  label: 'Linked projects',      value: '31', trend: { dir: 'up',   text: '+8' },  sub: '18 active · 9 done · 4 at-risk' },
     { tone: 'teal',    icon: 'event_available',label: '1:1s this month',      value: '64', trend: { dir: 'flat', text: '0' },   sub: '8 today · 12 this week' },
-    { tone: 'pink',    icon: 'paid',           label: 'Compensation signals', value: '7',  trend: { dir: 'up',   text: '+2' },   sub: '4 eligible · 3 monitor' },
   ];
 
   const goals = [
@@ -60,35 +57,23 @@ function ClientDashboard() {
         title="Performance overview"
         sub="Track goals, project outcomes, reviews, feedback, and compensation signals — all in one place."
         actions={<>
-          <Btn variant="ghost" icon="download">Export</Btn>
-          <Btn variant="ghost" icon="forum">Give feedback</Btn>
+          <Btn variant="ghost" icon="forum" onClick={() => window.location.hash = '/client/feedback'}>Give feedback</Btn>
           <Btn variant="outlined" icon="play_circle">Start review cycle</Btn>
           <Btn variant="primary" icon="add">Create goal</Btn>
         </>}
       />
 
-      <FilterBar right={<button className="filter"><span className="ms">tune</span>More filters</button>}>
-        <Filter icon="event"     k="Period"      v="Q3 2026" />
-        <Filter icon="groups"    k="Team"        v="All teams" />
-        <Filter icon="badge"     k="Worker type" v="Employees & Contractors" />
-        <Filter icon="rocket_launch" k="Project" v="All projects" />
-        <span className="sep" />
-        <Filter icon="bookmark"  k="View"        v="My dashboard" />
-      </FilterBar>
-
-      {/* 6 KPI cards */}
-      <div className="stats-row c-6 mb-4">
+      {/* KPI cards */}
+      <div className="stats-row c-3 mb-4">
         {kpis.map((k, i) => <StatCard key={i} {...k} />)}
       </div>
 
-      {/* Row: Goal Progress (2/3) + AI Review Assistant (1/3) */}
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 16, marginBottom: 16 }}>
         <SectionCard
           title="Goal progress overview"
           sub="Active OKRs across the company · top movers this week"
           icon="flag"
           action={<div className="row gap-2">
-            <Btn variant="ghost" size="sm" icon="filter_list">Filter</Btn>
             <Btn variant="text"  size="sm" iconTrailing="arrow_forward">All goals</Btn>
           </div>}
           padBody={false}
@@ -131,42 +116,6 @@ function ClientDashboard() {
           </table>
         </SectionCard>
 
-        {/* AI Review Assistant compact panel */}
-        <SectionCard
-          title="AI Review Assistant"
-          sub="Bias, evidence & quality signals"
-          icon="auto_awesome"
-          action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">Open</Btn>}
-        >
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
-            <div className="row items-center gap-3" style={{ padding: '10px 12px', background: 'var(--error-bg)', borderRadius: 9 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--error-dark)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>5</div>
-              <div style={{ fontSize: 11.5, color: 'var(--error-dark)', fontWeight: 600, lineHeight: 1.2 }}>Open bias<br />flags</div>
-            </div>
-            <div className="row items-center gap-3" style={{ padding: '10px 12px', background: 'var(--warning-bg)', borderRadius: 9 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--warning-dark)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>8</div>
-              <div style={{ fontSize: 11.5, color: 'var(--warning-dark)', fontWeight: 600, lineHeight: 1.2 }}>Missing<br />evidence</div>
-            </div>
-            <div className="row items-center gap-3" style={{ padding: '10px 12px', background: 'var(--success-bg)', borderRadius: 9 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--success-dark)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>21</div>
-              <div style={{ fontSize: 11.5, color: 'var(--success-dark)', fontWeight: 600, lineHeight: 1.2 }}>Resolved<br />suggestions</div>
-            </div>
-            <div className="row items-center gap-3" style={{ padding: '10px 12px', background: 'var(--brand-purple-100)', borderRadius: 9 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--brand-purple-600)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>3</div>
-              <div style={{ fontSize: 11.5, color: 'var(--brand-purple-700)', fontWeight: 600, lineHeight: 1.2 }}>Contractor<br />risk checks</div>
-            </div>
-          </div>
-
-          <AIFlag
-            title="Suggestion · Omar Khan's review"
-            actions={<>
-              <Btn variant="purple" size="sm" icon="edit">Suggest rewrite</Btn>
-              <Btn variant="ghost"  size="sm">Dismiss</Btn>
-            </>}
-          >
-            Feedback for <strong>Omar Khan</strong> may be too vague. Add project evidence or a measurable outcome before submitting.
-          </AIFlag>
-        </SectionCard>
       </div>
 
       {/* Row: Review Cycle Status (full width) */}
@@ -234,7 +183,7 @@ function ClientDashboard() {
         >
           <table className="tbl">
             <thead><tr>
-              <th>Project</th><th>Worker</th><th>Linked OKR</th><th>Status</th><th>Review trigger</th>
+              <th>Project</th><th>Worker</th><th>Linked OKR</th><th>Status</th>
             </tr></thead>
             <tbody>
               {projectSignals.map((p, i) => (
@@ -252,11 +201,6 @@ function ClientDashboard() {
                   <td>
                     {p.status === 'Completed'  && <Pill variant="completed" dot>Completed</Pill>}
                     {p.status === 'In Progress'&& <Pill variant="progress" dot>In progress</Pill>}
-                  </td>
-                  <td>
-                    <Pill variant={p.triggerVariant} icon={p.trigger.includes('No review') ? 'remove' : 'arrow_right_alt'}>
-                      {p.trigger}
-                    </Pill>
                   </td>
                 </tr>
               ))}
@@ -287,63 +231,6 @@ function ClientDashboard() {
           </div>
         </SectionCard>
       </div>
-
-      {/* Compensation Signals (full width) */}
-      <SectionCard
-        title="Compensation revision signals"
-        sub="Performance evidence for compensation review — final decisions remain with authorized admins"
-        icon="paid"
-        action={<div className="row gap-2">
-          <Btn variant="ghost" size="sm" icon="file_download">Export to Comp Revision</Btn>
-          <Btn variant="text"  size="sm" iconTrailing="arrow_forward">All eligible workers</Btn>
-        </div>}
-        padBody={false}
-      >
-        <div style={{ padding: '12px 18px 0' }}>
-          <Callout tone="gradient" icon="info">
-            <span style={{ fontWeight: 700, color: 'var(--grey-700)' }}>Decision support — not automatic approval.</span>{' '}
-            <span style={{ color: 'var(--fg-secondary)' }}>These signals combine OKR achievement, review outcomes, and project completion to surface workers for compensation review. Raises are not approved automatically.</span>
-          </Callout>
-        </div>
-        <table className="tbl">
-          <thead><tr>
-            <th>Worker</th>
-            <th style={{ width: 200 }}>OKR Achievement</th>
-            <th>Review Outcome</th>
-            <th>Projects Completed</th>
-            <th>Signal</th>
-            <th className="actions-cell">Action</th>
-          </tr></thead>
-          <tbody>
-            {comp.map((c, i) => (
-              <tr key={i}>
-                <td>
-                  <div className="worker-cell">
-                    <Avatar name={c.worker} size="md" />
-                    <div>
-                      <div className="name">{c.worker}</div>
-                      <div className="role">{c.role}</div>
-                    </div>
-                  </div>
-                </td>
-                <td><ProgressBar pct={c.okrPct} color={c.okrPct >= 80 ? 'green' : c.okrPct >= 60 ? '' : 'amber'} /></td>
-                <td>
-                  <span style={{ fontSize: 12.5, fontWeight: 700, color:
-                    c.outcome === 'Exceeds expectations' ? 'var(--success-dark)' :
-                    c.outcome === 'Needs support' ? 'var(--error-dark)' : 'var(--grey-700)' }}>
-                    {c.outcome}
-                  </span>
-                </td>
-                <td><span style={{ fontSize: 12.5, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{c.projects}</span></td>
-                <td><Pill variant={c.signal} dot>{c.signalLabel}</Pill></td>
-                <td className="actions-cell">
-                  <Btn variant="ghost" size="sm">Open profile</Btn>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </SectionCard>
 
     </Shell>
   );

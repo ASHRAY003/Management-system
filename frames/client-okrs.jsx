@@ -64,7 +64,7 @@ function ClientOKRs() {
       kr: [
         { t: 'Misclassification risk score below 1.5', pct: 92, target: '1.3 / 1.5' },
         { t: 'Contractor onboarding under 24h',        pct: 84, target: '26h / 24h' },
-        { t: 'AI flag false-positives below 8%',       pct: 80, target: '9.2% / 8%' },
+        { t: 'Compliance false-positives below 8%',       pct: 80, target: '9.2% / 8%' },
       ],
     },
   ];
@@ -83,10 +83,10 @@ function ClientOKRs() {
     {
       id: 'MG-02',
       role: 'owner',
-      title: 'Cut average review feedback length under AI quality bar',
-      desc: 'Use AI Review Assistant to bring vague/bias flags below 5 per cycle.',
+      title: 'Cut average review feedback length under quality bar',
+      desc: 'Bring vague/bias flags below 5 per cycle.',
       pct: 78, status: 'on-track', due: 'Sep 30, 2026', period: 'Q3 2026',
-      linkedProject: 'AI Review Assistant rollout', kr: 4, krDone: 3,
+      linkedProject: 'Review Quality rollout', kr: 4, krDone: 3,
       contribs: ['Mel Johansson'],
     },
     {
@@ -199,7 +199,7 @@ function ClientOKRs() {
       <PageHead
         eyebrow="Performance Management"
         title="Goals & OKRs"
-        sub="Create and track company, team, individual and project-linked OKRs. Progress can auto-update from project completion."
+        sub="Create and track company, team, individual and project-linked OKRs."
         actions={<>
           <Btn variant="ghost" icon="filter_list">Filters</Btn>
           <Btn variant="ghost" icon="link">Link project</Btn>
@@ -304,8 +304,7 @@ function ClientOKRs() {
       {tab === 'my' && (
         <>
           <Callout tone="purple" icon="person"
-            title="My Goals — fully editable"
-            action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">Bulk align</Btn>}>
+            title="My Goals — fully editable">
             Goals where you're an owner, contributor or stakeholder. Edit progress, link projects, or align to company OKRs.
           </Callout>
 
@@ -340,7 +339,27 @@ function ClientOKRs() {
                   <div className="o-actions">
                     {o.role === 'owner' && <>
                       <Btn variant="ghost" size="sm" icon="edit">Edit</Btn>
-                      <Btn variant="primary" size="sm" icon="trending_up">Update progress</Btn>
+                      <Btn variant="primary" size="sm" icon="trending_up" onClick={() => setDetailGoal({
+                        title: o.title,
+                        description: o.desc,
+                        type: 'Performance',
+                        typeIcon: 'workspace_premium',
+                        privacy: 'Restricted',
+                        when: o.due ? '7/1/2026 — ' + o.due : '7/1/2026 — 9/30/2026',
+                        daysLeft: 188,
+                        perfGoal: true,
+                        aligned: o.linkedProject || null,
+                        progress: o.pct,
+                        owner: { name: 'Priya Nair', role: 'Manager' },
+                        contributors: o.contribs.map(n => ({ name: n, role: 'Contributor' })),
+                        krs: Array.from({length: o.kr || 3}, (_, i) => ({
+                          id: i+1, owner: o.contribs[0] || 'Priya Nair',
+                          text: 'KR ' + (i+1) + ' for ' + o.title,
+                          current: Math.round(o.pct * (i+1) / (o.kr || 3)),
+                          target: 100, unit: '%', pct: Math.round(o.pct * (i+1) / (o.kr || 3)),
+                        })),
+                        attachments: 1,
+                      })}>Update progress</Btn>
                     </>}
                     {o.role === 'contrib' && <Btn variant="outlined" size="sm" icon="trending_up">Update my contribution</Btn>}
                     {o.role === 'stakeholder' && <Btn variant="ghost" size="sm" icon="visibility">View</Btn>}
@@ -350,7 +369,7 @@ function ClientOKRs() {
                   display: 'grid', gridTemplateColumns: '1fr 220px', gap: 20, alignItems: 'center' }}>
                   <div style={{ fontSize: 12, color: 'var(--fg-secondary)' }}>
                     {o.role === 'owner'
-                      ? <>You drive this goal · automatic progress sync from {o.linkedProject ? <strong>{o.linkedProject}</strong> : 'linked work'} is {o.linkedProject ? 'enabled' : 'not configured'}.</>
+                      ? <>You drive this goal {o.linkedProject ? <> · linked to <strong>{o.linkedProject}</strong></> : ''}.</>
                       : o.role === 'contrib'
                         ? <>You're contributing toward this goal — owned by <strong>{o.contribs[0]}</strong>.</>
                         : <>Stakeholder · you receive updates but don't own progress.</>}
@@ -376,9 +395,8 @@ function ClientOKRs() {
             </Callout>
           ) : (
             <Callout tone="success" icon="groups"
-              title="People OKRs — your direct reports & dotted-line workers"
-              action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">Bulk actions</Btn>}>
-              5 workers. Create, edit, link projects to OKRs, and trigger reviews when projects complete.
+              title="People OKRs — your direct reports & dotted-line workers">
+              5 workers. Create, edit, link projects to OKRs.
             </Callout>
           )}
 
@@ -423,7 +441,7 @@ function ClientOKRs() {
                   <div className="o-actions">
                     <Btn variant="ghost" size="sm" icon="visibility" onClick={() => setDetailGoal({
                       title: o.title,
-                      description: 'Auto-syncing progress from ' + (o.linkedProject || 'linked work') + '.',
+                      description: o.linkedProject ? 'Linked to ' + o.linkedProject + '.' : 'No linked project.',
                       type: 'Performance',
                       typeIcon: 'workspace_premium',
                       privacy: 'Restricted',
@@ -442,9 +460,8 @@ function ClientOKRs() {
                       })),
                       attachments: 1,
                     })}>View</Btn>
-                    <Btn variant="ghost" size="sm" icon="forum">Give feedback</Btn>
-                    <Btn variant="ghost" size="sm" icon="event">Schedule 1:1</Btn>
-                    <Btn variant="outlined" size="sm" icon="play_circle">Trigger review</Btn>
+                    <Btn variant="ghost" size="sm" icon="forum" onClick={() => window.location.hash = '/client/feedback'}>Give feedback</Btn>
+                    <Btn variant="ghost" size="sm" icon="event" onClick={() => window.location.hash = '/client/meetings'}>Schedule 1:1</Btn>
                   </div>
                 </div>
 
@@ -464,13 +481,13 @@ function ClientOKRs() {
                   display: 'grid', gridTemplateColumns: '1fr 240px', gap: 20, alignItems: 'center' }}>
                   {o.linkedProject ? (
                     <div className="row items-center gap-3" style={{ fontSize: 12, color: 'var(--fg-secondary)' }}>
-                      <span className="ms" style={{ fontSize: 16, color: 'var(--brand-purple-500)' }}>auto_awesome</span>
-                      <span>Auto-syncing progress from <strong style={{ color: 'var(--grey-700)' }}>{o.linkedProject}</strong> · last update 2h ago</span>
+                      <span className="ms" style={{ fontSize: 16, color: 'var(--brand-blue-500)' }}>link</span>
+                      <span>Linked to <strong style={{ color: 'var(--grey-700)' }}>{o.linkedProject}</strong></span>
                     </div>
                   ) : (
                     <div className="row items-center gap-2" style={{ fontSize: 12, color: 'var(--warning-dark)' }}>
                       <span className="ms" style={{ fontSize: 16 }}>warning_amber</span>
-                      <span>No project linked — link a project to auto-sync KR progress.</span>
+                      <span>No project linked — link a project to track progress.</span>
                     </div>
                   )}
                   <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
@@ -491,7 +508,7 @@ function ClientOKRs() {
                 </h3>
                 <div className="body">
                   <strong style={{ color: 'var(--grey-700)' }}>Payroll Migration EU</strong> just completed. It's linked to 2 OKRs.
-                  Update OKR progress and trigger project reviews?
+                  Update OKR progress?
                   <div className="pill-row">
                     <Pill variant="completed" dot>Project complete</Pill>
                     <Pill variant="contractor" icon="flag">Aditi's OKR · 6 migrations</Pill>

@@ -39,7 +39,7 @@ function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · wee
           </h2>
         </div>
         <div className="actions">
-          <Btn variant="ghost" icon="auto_awesome">AI summary</Btn>
+          <Btn variant="ghost" icon="summarize">Summary</Btn>
           <Btn variant="ghost" icon="rate_review">Send to review</Btn>
           <Btn variant="ghost" icon="forum">Convert to feedback</Btn>
           <Btn variant="primary" icon="check">Done</Btn>
@@ -92,8 +92,8 @@ function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · wee
                   <div>Migration wrapped clean — Aditi led the Spain cutover with zero P0s. Customer signed a 3-year renewal the same week.</div>
                   <div style={{ marginTop: 8 }}>Q4 priorities discussed: pick up Brazil + take Lina as a shadow. Aditi wants to formalize her Lead Ops path.</div>
                   <div className="ai-prompt">
-                    <span className="ms" style={{ fontSize: 14, verticalAlign: '-2px', marginRight: 4, color: 'var(--brand-purple-500)' }}>auto_awesome</span>
-                    AI suggests linking this note to her OKR <strong>"Complete 6 migrations"</strong> — it's 90% done.
+                    <span className="ms" style={{ fontSize: 14, verticalAlign: '-2px', marginRight: 4, color: 'var(--brand-blue-500)' }}>lightbulb</span>
+                    Suggestion: link this note to her OKR <strong>"Complete 6 migrations"</strong> — it's 90% done.
                   </div>
                 </div>
 
@@ -207,8 +207,8 @@ function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · wee
               <Btn variant="text" size="sm" icon="add" style={{ marginTop: 8, padding: '4px 8px' }}>Link goal / project</Btn>
 
               <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--grey-100)', fontSize: 11.5, color: 'var(--fg-secondary)', fontWeight: 600, lineHeight: 1.5 }}>
-                <span className="ms" style={{ fontSize: 14, color: 'var(--brand-purple-500)', verticalAlign: '-2px', marginRight: 4 }}>auto_awesome</span>
-                AI will summarize action items into your follow-up list when you mark the meeting done.
+                <span className="ms" style={{ fontSize: 14, color: 'var(--brand-blue-500)', verticalAlign: '-2px', marginRight: 4 }}>summarize</span>
+                Action items will be summarized into your follow-up list when you mark the meeting done.
               </div>
             </div>
           </div>
@@ -238,7 +238,7 @@ function EditorToolbar() {
       <button className="tb-btn" title="Link"><span className="ms">link</span></button>
       <button className="tb-btn" title="Mention"><span className="ms">alternate_email</span></button>
       <span className="tb-right">
-        <button className="tb-btn" title="AI assist" style={{ color: 'var(--brand-purple-500)' }}><span className="ms">auto_awesome</span></button>
+        <button className="tb-btn" title="Smart assist" style={{ color: 'var(--brand-blue-500)' }}><span className="ms">lightbulb</span></button>
       </span>
     </div>
   );

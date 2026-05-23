@@ -270,8 +270,8 @@ function ReviewEditor({ worker, onBack }) {
                 <button className="tb-btn"><span className="ms">link</span></button>
                 <button className="tb-btn"><span className="ms">alternate_email</span></button>
                 <span className="tb-right">
-                  <button className="tb-btn" style={{ color: 'var(--brand-purple-500)' }}>
-                    <span className="ms">auto_awesome</span>
+                  <button className="tb-btn" style={{ color: 'var(--brand-blue-500)' }}>
+                    <span className="ms">spellcheck</span>
                   </button>
                 </span>
               </div>
@@ -360,8 +360,8 @@ function ReviewEditor({ worker, onBack }) {
             <Btn variant="text" size="sm" icon="open_in_new" style={{ marginTop: 10, padding: '4px 0' }}>Open full profile</Btn>
           </SectionCard>
 
-          <Callout tone="info" icon="auto_awesome">
-            <strong>AI Review Assistant</strong> will scan your draft for vague language and bias before submission.
+          <Callout tone="info" icon="spellcheck">
+            <strong>Review Assistant</strong> will scan your draft for vague language and bias before submission.
           </Callout>
         </div>
       </div>

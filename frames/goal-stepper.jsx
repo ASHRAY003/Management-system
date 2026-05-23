@@ -209,7 +209,7 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                     {kr.linkedProject && (
                       <div className="help" style={{ color: 'var(--brand-blue-600)', marginTop: 4 }}>
                         <span className="ms" style={{ fontSize: 14, verticalAlign: 'middle', marginRight: 4 }}>info</span>
-                        Progress will auto-sync from <strong>{kr.linkedProject}</strong>.
+                        Progress tracked from <strong>{kr.linkedProject}</strong>.
                       </div>
                     )}
                   </div>

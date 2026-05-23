@@ -105,15 +105,14 @@ function ClientMeetings() {
         actions={<>
           <Btn variant="ghost" icon="bookmark">Templates</Btn>
           <Btn variant="ghost" icon="event_repeat">Recurring</Btn>
-          <Btn variant="primary" icon="add">Schedule 1:1</Btn>
+          <Btn variant="primary" icon="add" onClick={() => window.location.hash = '/client/meetings'}>Schedule 1:1</Btn>
         </>}
       />
 
       {/* Top mini stats */}
-      <div className="stats-row c-4 mb-4">
+      <div className="stats-row c-3 mb-4">
         <StatCard tone="blue"   icon="event_available" label="1:1s today"          value="3"  sub="2 upcoming · 1 live now" />
         <StatCard tone="purple" icon="calendar_month"  label="This week"            value="11" sub="Across 5 direct reports" />
-        <StatCard tone="amber"  icon="schedule"        label="Notes pending sync"   value="4"  sub="Draft → goal / project" />
         <StatCard tone="green"  icon="task_alt"        label="Action items closed"  value="18" sub="this month · 87% on-time" />
       </div>
 
@@ -266,8 +265,8 @@ function MeetingDetail({ meeting, onOpenNotes }) {
       </div>
 
       <div style={{ padding: '14px 18px 4px' }}>
-        <Callout tone="purple" icon="auto_awesome">
-          <strong>AI prep summary</strong> · Aditi's OKR is 90% complete — strong project quarter. Last 1:1 you owed her a runbook link. Consider acknowledging the migration win and aligning Q4 priorities.
+        <Callout tone="info" icon="info">
+          <strong>Prep summary</strong> · Aditi's OKR is 90% complete — strong project quarter. Last 1:1 you owed her a runbook link. Consider acknowledging the migration win and aligning Q4 priorities.
         </Callout>
       </div>
 

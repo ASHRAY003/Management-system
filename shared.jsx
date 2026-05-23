@@ -421,10 +421,6 @@ const PERF_TABS = {
     { id: 'okrs',         label: 'Goals & OKRs',           route: '/client/okrs' },
     { id: 'reviews',      label: 'Reviews',                route: '/client/reviews' },
     { id: 'meetings',     label: '1:1 Meetings',           route: '/client/meetings' },
-    { id: 'feedback',     label: 'Continuous Feedback',    route: null },
-    { id: 'ai-review',    label: 'AI Review Assistant',    route: null },
-    { id: 'compensation', label: 'Compensation Insights',  route: null },
-    { id: 'settings',     label: 'Settings & Templates',   route: null },
   ],
   worker: [
     { id: 'dashboard',   label: 'Dashboard',        route: '/worker/dashboard' },

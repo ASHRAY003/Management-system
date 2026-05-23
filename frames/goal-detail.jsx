@@ -37,10 +37,10 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
       { name: 'Priya Nair',   role: 'Manager' },
     ],
     krs: [
-      { id: 1, current: 92,  target: 300, unit: 'count',     pct: 31, owner: 'Aditi Sharma', text: 'Increase employees managed per Ops FTE from ~133 → 300+ per Ops resource' },
-      { id: 2, current: 18,  target: 80,  unit: '%',         pct: 23, owner: 'Lina Chen',    text: 'Automate 80% of payroll workflows (Input → Validation → Processing → Payout)' },
+      { id: 1, current: 92,  target: 300, unit: 'count',     pct: 31, owner: 'Aditi Sharma', text: 'Increase employees managed per Ops FTE from ~133 → 300+ per Ops resource', linkedProject: 'Payroll Migration EU' },
+      { id: 2, current: 18,  target: 80,  unit: '%',         pct: 23, owner: 'Lina Chen',    text: 'Automate 80% of payroll workflows (Input → Validation → Processing → Payout)', linkedProject: 'Vendor Setup Automation' },
       { id: 3, current: 14,  target: 90,  unit: '%',         pct: 16, owner: 'Aditi Sharma', text: 'Reduce payroll processing errors by 90%' },
-      { id: 4, current: 28,  target: 90,  unit: '%',         pct: 31, owner: 'Priya Nair',   text: 'Enable 90% of customer queries via self-serve + AI channels' },
+      { id: 4, current: 28,  target: 90,  unit: '%',         pct: 31, owner: 'Priya Nair',   text: 'Enable 90% of customer queries via self-serve + smart channels', linkedProject: 'Client Onboarding Q3' },
       { id: 5, current: null,target: null,unit: 'incomplete',pct: 0,  owner: 'Lina Chen',    text: 'Achieve zero manual intervention across top 5 payroll corridors' },
     ],
     attachments: 2,

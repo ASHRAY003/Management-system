@@ -242,7 +242,7 @@ function WorkerNotesView({ meeting, onBack }) {
                     <span className="ms">groups</span>Shared Notes
                     <span className="meta"><span className="ms">visibility</span>You & your manager</span>
                   </div>
-                  <div className="saved">Live · auto-sync<span className="ind" /></div>
+                  <div className="saved">Live · synced<span className="ind" /></div>
                 </div>
                 <div className="editor-body" style={{ minHeight: 90 }}>
                   {meeting.summary || (
