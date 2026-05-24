@@ -221,8 +221,6 @@ function ClientReviews() {
         </table>
       </SectionCard>
 
-      <CompensationConfigPanel />
-
     </Shell>
   );
 }
