@@ -2,10 +2,31 @@
    Personal list of 1:1s. Worker can prep agenda, view shared notes after the
    meeting, and check action items. Private notes from the manager are hidden. */
 
-const { useState: useStateWM } = React;
+const { useState: useStateWM, useRef: useRefWM } = React;
 
 function WorkerMeetings() {
   const [openNotes, setOpenNotes] = useStateWM(null);
+  const [showRequest, setShowRequest] = useStateWM(false);
+  const [reqMessage, setReqMessage] = useStateWM('');
+  const [reqTime, setReqTime] = useStateWM('');
+  const [reqSending, setReqSending] = useStateWM(false);
+  const [reqSent, setReqSent] = useStateWM(false);
+
+  async function sendRequest() {
+    if (!reqMessage.trim()) return;
+    setReqSending(true);
+    try {
+      await window.PerformanceStore.request1on1({ message: reqMessage.trim(), proposedTime: reqTime.trim() || undefined });
+      setReqSent(true);
+      setReqMessage('');
+      setReqTime('');
+      setTimeout(() => { setReqSent(false); setShowRequest(false); }, 2500);
+    } catch (e) {
+      alert('Could not send request: ' + e.message);
+    } finally {
+      setReqSending(false);
+    }
+  }
 
   const today = {
     when: 'Today · Wed Mar 26', time: '10:00 AM', dur: '30 min',
@@ -70,9 +91,69 @@ function WorkerMeetings() {
         title="My 1:1 sessions"
         sub="Your check-ins with managers, peers and mentors. Prep agenda items before, read shared notes and action items after."
         actions={<>
-          <Btn variant="ghost" icon="add">Request a 1:1</Btn>
+          <Btn variant="ghost" icon="add" onClick={() => { setShowRequest(r => !r); setReqSent(false); }}>Request a 1:1</Btn>
         </>}
       />
+
+      {showRequest && (
+        <div className="card mb-4" style={{ borderColor: 'var(--brand-blue-200)', background: 'var(--brand-blue-50, #f0f6ff)' }}>
+          <div style={{ padding: '18px 22px' }}>
+            {reqSent ? (
+              <div className="row items-center gap-3" style={{ fontSize: 14, fontWeight: 600, color: 'var(--success-dark)' }}>
+                <span className="ms" style={{ fontSize: 22 }}>check_circle</span>
+                Request sent! Your manager will be notified.
+              </div>
+            ) : (
+              <>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--grey-800)', marginBottom: 12 }}>
+                  Request a 1:1 with your manager
+                </div>
+                <div className="col gap-3">
+                  <div>
+                    <label style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', display: 'block', marginBottom: 4 }}>
+                      What do you want to discuss? <span style={{ color: 'var(--error-main)' }}>*</span>
+                    </label>
+                    <textarea
+                      value={reqMessage}
+                      onChange={e => setReqMessage(e.target.value)}
+                      placeholder="e.g. I'd like to discuss my Q4 goals and get some guidance on the Lead Ops path…"
+                      rows={3}
+                      style={{
+                        width: '100%', boxSizing: 'border-box',
+                        border: '1.5px solid var(--grey-200)', borderRadius: 8,
+                        padding: '8px 12px', fontSize: 13, fontFamily: 'inherit',
+                        resize: 'vertical', outline: 'none',
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', display: 'block', marginBottom: 4 }}>
+                      Proposed time (optional)
+                    </label>
+                    <input
+                      type="text"
+                      value={reqTime}
+                      onChange={e => setReqTime(e.target.value)}
+                      placeholder="e.g. This week, Friday afternoon"
+                      style={{
+                        width: '100%', boxSizing: 'border-box',
+                        border: '1.5px solid var(--grey-200)', borderRadius: 8,
+                        padding: '8px 12px', fontSize: 13, fontFamily: 'inherit', outline: 'none',
+                      }}
+                    />
+                  </div>
+                  <div className="row gap-2">
+                    <Btn variant="primary" icon="send" onClick={sendRequest} disabled={reqSending || !reqMessage.trim()}>
+                      {reqSending ? 'Sending…' : 'Send request'}
+                    </Btn>
+                    <Btn variant="ghost" onClick={() => setShowRequest(false)}>Cancel</Btn>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="stats-row c-3 mb-4">
         <StatCard tone="blue"  icon="event_available" label="Upcoming"            value="4" sub="Next: today at 10:00 AM" />
