@@ -164,8 +164,6 @@ function ClientReviews() {
         onStartCycle={() => setView('cycle-stepper')}
       />
 
-      <CompensationConfigPanel />
-
       <SectionCard
         title="My direct reports"
         sub="Click a worker to view their review history or write a new review"
