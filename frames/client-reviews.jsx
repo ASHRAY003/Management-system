@@ -55,10 +55,19 @@ function ClientReviews() {
     const latest = sorted[0];
     const lastRating = latest ? (Number(latest.rating) || 0) : 0;
     const lastOutcome = lastRating >= 4 ? 'Exceeds' : lastRating >= 2.5 ? 'Meets' : lastRating > 0 ? 'Below' : '—';
-    const pendingCount = allParticipants.filter(p =>
-      p.workerId === w.id &&
-      (p.managerReviewStatus === 'not-started' || p.managerReviewStatus === 'not_started' || p.managerReviewStatus === 'draft')
-    ).length;
+
+    // Find the most relevant active cycle participant for this worker:
+    // priority: needs writing > needs sharing > all done
+    const workerParts = allParticipants.filter(p => p.workerId === w.id);
+    const needsWrite = workerParts.find(p =>
+      p.managerReviewStatus === 'not-started' || p.managerReviewStatus === 'not_started' || p.managerReviewStatus === 'draft'
+    );
+    const needsShare = workerParts.find(p =>
+      (p.managerReviewStatus === 'submitted') &&
+      p.finalReviewStatus !== 'shared' && p.finalReviewStatus !== 'acknowledged'
+    );
+    const activePart = needsWrite || needsShare || null;
+
     return {
       id: w.id,
       name: w.name,
@@ -67,7 +76,9 @@ function ClientReviews() {
       lastReview: latest?.createdAt || '—',
       lastRating,
       lastOutcome,
-      pendingFor: pendingCount > 0 ? `${pendingCount} cycle${pendingCount > 1 ? 's' : ''}` : null,
+      pendingFor: needsWrite ? `review` : null,
+      needsShare: !!needsShare,
+      activeCycleId: activePart?.reviewCycleId || null,
       currentComp: WORKER_COMP[w.name] || null,
     };
   });
@@ -242,14 +253,22 @@ function ClientReviews() {
                 </td>
                 <td>
                   {t.pendingFor
-                    ? <Pill variant="warning" icon="pending_actions">{t.pendingFor} pending</Pill>
-                    : <Pill variant="completed" dot>Up to date</Pill>}
+                    ? <Pill variant="warning" icon="pending_actions">Review pending</Pill>
+                    : t.needsShare
+                      ? <Pill variant="active" icon="send">Submitted · not shared</Pill>
+                      : <Pill variant="completed" dot>Up to date</Pill>}
                 </td>
                 <td className="actions-cell">
                   <Btn variant="ghost" size="sm" icon="history" onClick={() => { setWorker(t); setView('worker'); }}>History</Btn>
                   {t.pendingFor && (
                     <Btn variant="primary" size="sm" icon="edit"
                       onClick={() => { setWorker(t); setView('write'); }}>Write a review</Btn>
+                  )}
+                  {t.needsShare && t.activeCycleId && (
+                    <Btn variant="outlined" size="sm" icon="open_in_new"
+                      onClick={() => { setActiveCycleId(t.activeCycleId); setView('cycle-detail'); }}>
+                      Open cycle
+                    </Btn>
                   )}
                 </td>
               </tr>
