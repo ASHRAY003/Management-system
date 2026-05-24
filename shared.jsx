@@ -180,11 +180,14 @@ function Sidebar({ persona = 'client', active }) {
     admin:  { ms: 'shield_person', txt: 'Payoneer Internal · Performance' },
     worker: { ms: 'verified_user', txt: 'Worker · Self-service' },
   }[persona];
-  const user = {
-    client: { name: 'Priya Nair', email: 'priya@acme-holdings.com' },
-    admin:  { name: 'Mel Johansson', email: 'm.johansson@payoneer.com' },
-    worker: { name: 'Aditi Sharma', email: 'aditi.s@acme-holdings.com' },
-  }[persona];
+  const currentUser = window.PerformanceStore?.getCurrentUser?.();
+  const user = currentUser
+    ? { name: currentUser.name, email: currentUser.email }
+    : ({
+        client: { name: 'Manager', email: '' },
+        admin:  { name: 'Admin', email: '' },
+        worker: { name: 'Worker', email: '' },
+      }[persona]);
 
   return (
     <aside className={`sb ${persona}`}>
@@ -277,9 +280,196 @@ function TopBar({ persona = 'client', crumb = [], clientSelector }) {
         <span style={{ fontSize: 10.5, color: 'var(--fg-disabled)', border: '1px solid currentColor', borderRadius: 4, padding: '1px 5px', opacity: 0.6, fontWeight: 700 }}>⌘K</span>
       </div>
       <div className="ib"><span className="ms">help</span></div>
-      <div className="ib"><span className="ms">notifications</span><span className="dot" /></div>
+      <NotificationBell persona={persona} />
     </div>
   );
+}
+
+/* ============================================================
+   Notification bell + dropdown
+   ============================================================ */
+function NotificationBell({ persona = 'client' }) {
+  const Store = window.PerformanceStore;
+  const [open, setOpen] = useStateP(false);
+  const [storeVersion, setStoreVersion] = useStateP(0);
+
+  React.useEffect(() => {
+    if (!Store) return;
+    // Run generators once on mount so today's notifications appear.
+    try { Store.runAllNotificationGenerators(); } catch (e) {}
+    const off = Store.subscribe(() => setStoreVersion(v => v + 1));
+
+    // Background sync: re-fetch notifications every 30s and whenever the tab
+    // regains focus so a user in another session (e.g. a worker requesting
+    // a 1:1) sees the notification land without a hard refresh.
+    const refresh = () => { try { Store.runAllNotificationGenerators(); } catch (e) {} };
+    const onFocus = () => refresh();
+    window.addEventListener('focus', onFocus);
+    const intervalId = window.setInterval(refresh, 30000);
+    return () => { off(); window.removeEventListener('focus', onFocus); window.clearInterval(intervalId); };
+  }, []);
+
+  // Close on outside click
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    function onClick(e) {
+      if (!ref.current) return;
+      if (!ref.current.contains(e.target)) setOpen(false);
+    }
+    if (open) document.addEventListener('mousedown', onClick);
+    return () => document.removeEventListener('mousedown', onClick);
+  }, [open]);
+
+  if (!Store) {
+    return <div className="ib"><span className="ms">notifications</span></div>;
+  }
+
+  const recipientRole = persona === 'worker' ? 'worker' : 'client';
+  const recipientId = persona === 'worker' ? Store.getCurrentWorkerId() : Store.MANAGER_ID;
+  const items = Store.getNotificationsForUser(recipientRole, recipientId).slice(0, 8);
+  const unread = Store.getUnreadNotificationCount(recipientRole, recipientId);
+
+  function open_() {
+    if (!open) try { Store.runAllNotificationGenerators(); } catch (e) {}
+    setOpen(o => !o);
+  }
+
+  function handleClick(n) {
+    Store.markNotificationRead(n.id);
+    if (n.actionContext && n.actionContext.kind === 'manager-review' && n.actionContext.participantId) {
+      try { window.sessionStorage.setItem('payo.reviews.openManagerReview', n.actionContext.participantId); } catch (e) {}
+    }
+    if (n.actionRoute) window.location.hash = n.actionRoute;
+    setOpen(false);
+  }
+
+  function markAll() {
+    Store.markAllNotificationsRead(recipientRole, recipientId);
+  }
+
+  function viewAll() {
+    window.location.hash = persona === 'worker' ? '/worker/notifications' : '/client/notifications';
+    setOpen(false);
+  }
+
+  return (
+    <div ref={ref} style={{ position: 'relative' }}>
+      <div className="ib" onClick={open_} style={{ cursor: 'pointer', position: 'relative' }}>
+        <span className="ms">notifications</span>
+        {unread > 0 && (
+          <span style={{
+            position: 'absolute', top: 4, right: 4,
+            minWidth: 16, height: 16, borderRadius: 999,
+            background: 'var(--error-main)', color: '#fff',
+            fontSize: 10, fontWeight: 800,
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            padding: '0 4px', border: '2px solid #fff', boxSizing: 'content-box',
+          }}>{unread > 99 ? '99+' : unread}</span>
+        )}
+      </div>
+      {open && (
+        <div style={{
+          position: 'absolute', right: 0, top: 'calc(100% + 8px)',
+          width: 380, maxHeight: 520, overflow: 'auto',
+          background: '#fff', border: '1px solid var(--grey-100)', borderRadius: 12,
+          boxShadow: '0 16px 40px rgba(0,0,0,0.18)', zIndex: 1200,
+        }}>
+          <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--grey-100)' }} className="row items-center between">
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--grey-800)' }}>Notifications</div>
+              <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)' }}>{unread} unread · {items.length} recent</div>
+            </div>
+            <button onClick={markAll} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 12, fontWeight: 700, color: 'var(--brand-blue-600)' }}>
+              Mark all as read
+            </button>
+          </div>
+          {items.length === 0 && (
+            <div style={{ padding: 20, fontSize: 13, color: 'var(--fg-secondary)', textAlign: 'center' }}>
+              You're all caught up.
+            </div>
+          )}
+          {items.map(n => <NotificationDropdownItem key={n.id} n={n} onClick={handleClick} />)}
+          <div style={{ padding: '10px 16px', borderTop: '1px solid var(--grey-100)', textAlign: 'center' }}>
+            <button onClick={viewAll} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 12.5, fontWeight: 700, color: 'var(--brand-blue-600)' }}>
+              View all notifications
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+const NOTIF_TYPE_ICONS = {
+  okr_completed:        'verified',
+  okr_due_soon:         'schedule',
+  okr_due_today:        'priority_high',
+  review_due_today:     'rate_review',
+  one_on_one_today:     'event',
+  goal_completed:       'flag',
+  feedback_received:    'forum',
+  self_review_submitted:'assignment_turned_in',
+};
+
+function priorityTone(priority) {
+  if (priority === 'high')   return { bg: 'var(--error-bg)',   fg: 'var(--error-dark)',   label: 'High' };
+  if (priority === 'medium') return { bg: 'var(--warning-bg)', fg: 'var(--warning-dark)', label: 'Med' };
+  return { bg: 'var(--grey-50)', fg: 'var(--fg-secondary)', label: 'Low' };
+}
+
+function NotificationDropdownItem({ n, onClick }) {
+  const tone = priorityTone(n.priority);
+  const icon = NOTIF_TYPE_ICONS[n.type] || 'notifications';
+  const isUnread = !n.readAt;
+  return (
+    <div onClick={() => onClick(n)} style={{
+      padding: '12px 16px',
+      borderBottom: '1px solid var(--grey-50)',
+      cursor: 'pointer',
+      background: isUnread ? 'var(--brand-blue-100)' : '#fff',
+      display: 'grid', gridTemplateColumns: '32px 1fr', gap: 12, alignItems: 'flex-start',
+    }}>
+      <div style={{
+        width: 32, height: 32, borderRadius: 8,
+        background: tone.bg, color: tone.fg,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flexShrink: 0,
+      }}>
+        <span className="ms" style={{ fontSize: 18 }}>{icon}</span>
+      </div>
+      <div style={{ minWidth: 0 }}>
+        <div className="row items-center gap-2" style={{ marginBottom: 2 }}>
+          <span style={{ fontSize: 12.5, fontWeight: 800, color: 'var(--grey-800)', flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.title}</span>
+          <span style={{ fontSize: 9.5, fontWeight: 800, color: tone.fg, background: tone.bg, padding: '1px 6px', borderRadius: 999, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{tone.label}</span>
+        </div>
+        <div style={{ fontSize: 12, color: 'var(--grey-700)', lineHeight: 1.45 }}>{n.message}</div>
+        <div className="row items-center between" style={{ marginTop: 6 }}>
+          <span style={{ fontSize: 10.5, fontWeight: 700, color: 'var(--fg-secondary)' }}>
+            {formatNotifDate(n.createdAt)}
+          </span>
+          {n.actionLabel && (
+            <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--brand-blue-600)' }}>
+              {n.actionLabel} →
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function formatNotifDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return iso;
+  const now = new Date();
+  const diffMs = now - d;
+  const diffMin = Math.round(diffMs / 60000);
+  if (diffMin < 1) return 'just now';
+  if (diffMin < 60) return `${diffMin}m ago`;
+  const diffH = Math.round(diffMin / 60);
+  if (diffH < 24) return `${diffH}h ago`;
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 }
 
 /* ============================================================
@@ -319,9 +509,17 @@ function PageHead({ eyebrow, title, sub, actions, badge }) {
 /* ============================================================
    Stat card (KPI)
    ============================================================ */
-function StatCard({ tone = 'blue', icon, label, value, sub, trend }) {
+function StatCard({ tone = 'blue', icon, label, value, sub, trend, onClick }) {
+  const clickable = typeof onClick === 'function';
   return (
-    <div className={`stat ${tone}`}>
+    <div
+      className={`stat ${tone}${clickable ? ' clickable' : ''}`}
+      onClick={clickable ? onClick : undefined}
+      role={clickable ? 'button' : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      onKeyDown={clickable ? (e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } }) : undefined}
+      style={clickable ? { cursor: 'pointer' } : undefined}
+    >
       <div className="label">{label}</div>
       <div className="value-row">
         <div className="value">{value}</div>
@@ -331,6 +529,7 @@ function StatCard({ tone = 'blue', icon, label, value, sub, trend }) {
       </div>
       {sub && <div className="sub">{sub}</div>}
       {icon && <div className="ico"><span className="ms">{icon}</span></div>}
+      {clickable && <div className="stat-chev"><span className="ms">arrow_forward</span></div>}
     </div>
   );
 }
@@ -417,16 +616,16 @@ function AIFlag({ title = 'AI suggestion', children, actions }) {
    ============================================================ */
 const PERF_TABS = {
   client: [
-    { id: 'dashboard',    label: 'Dashboard',              route: '/client/dashboard' },
-    { id: 'okrs',         label: 'Goals & OKRs',           route: '/client/okrs' },
-    { id: 'reviews',      label: 'Reviews',                route: '/client/reviews' },
-    { id: 'meetings',     label: '1:1 Meetings',           route: '/client/meetings' },
+    { id: 'dashboard',    label: 'Dashboard',    route: '/client/dashboard' },
+    { id: 'okrs',         label: 'Goals & OKRs', route: '/client/okrs' },
+    { id: 'reviews',      label: 'Reviews',      route: '/client/reviews' },
+    { id: 'meetings',     label: '1:1 Meetings', route: '/client/meetings' },
   ],
   worker: [
     { id: 'dashboard',   label: 'Dashboard',        route: '/worker/dashboard' },
     { id: 'my-goals',    label: 'My Goals',         route: '/worker/goals' },
     { id: 'my-meetings', label: 'My 1:1 sessions',  route: '/worker/meetings' },
-    { id: 'my-reviews',  label: 'Feedback received',route: '/worker/reviews' },
+    { id: 'my-reviews',  label: 'Feedback & Reviews',route: '/worker/reviews' },
   ],
 };
 
@@ -468,10 +667,117 @@ function ImpersonationBanner({ clientName, onExit }) {
   );
 }
 
+/* ============================================================
+   Goals Due Soon — high-attention strip for dashboards
+   Highlights OKRs that fall due within ~10 days, with their
+   key results inline. Used by client + worker dashboards.
+   ============================================================ */
+function GoalsDueSoon({ goals = [], variant = 'client' }) {
+  if (!goals.length) return null;
+
+  const headerCopy = variant === 'worker'
+    ? { title: 'Goals due in the next 10 days', sub: 'These OKRs are landing soon — review progress and unblock the key results.' }
+    : { title: 'Team goals due in the next 10 days', sub: 'These OKRs are landing soon across your reports — review progress and unblock the key results.' };
+
+  function urgencyTone(daysLeft) {
+    if (daysLeft <= 3) return { bg: 'var(--error-bg)', fg: 'var(--error-dark)', label: daysLeft <= 0 ? 'Due today' : `${daysLeft}d left` };
+    if (daysLeft <= 7) return { bg: '#FFE3D9', fg: 'var(--brand-red-600)', label: `${daysLeft}d left` };
+    return { bg: 'var(--warning-bg)', fg: 'var(--warning-dark)', label: `${daysLeft}d left` };
+  }
+
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #FFF4EC 0%, #FFFFFF 55%, #FDEDEC 100%)',
+      border: '1px solid #F8C7C3',
+      borderRadius: 14,
+      padding: '16px 18px 18px',
+      marginBottom: 16,
+      boxShadow: '0 1px 0 rgba(225, 27, 12, 0.04)',
+    }}>
+      <div className="row items-center gap-3" style={{ marginBottom: 12 }}>
+        <div style={{
+          width: 38, height: 38, borderRadius: 10,
+          background: 'var(--error-bg)', color: 'var(--error-dark)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <span className="ms" style={{ fontSize: 22 }}>local_fire_department</span>
+        </div>
+        <div className="flex-1">
+          <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--error-dark)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 2 }}>Needs attention</div>
+          <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--grey-800)', letterSpacing: '-0.01em' }}>{headerCopy.title}</div>
+          <div style={{ fontSize: 12, color: 'var(--fg-secondary)', marginTop: 2 }}>{headerCopy.sub}</div>
+        </div>
+        <Pill variant="overdue" dot>{goals.length} due soon</Pill>
+      </div>
+
+      <div className="col" style={{ gap: 10 }}>
+        {goals.map(g => {
+          const u = urgencyTone(g.daysLeft);
+          return (
+            <div key={g.id} style={{
+              background: '#fff',
+              border: '1px solid var(--grey-100)',
+              borderRadius: 10,
+              padding: '12px 14px',
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1.6fr) minmax(0, 1fr) auto',
+              gap: 14,
+              alignItems: 'center',
+            }}>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--grey-800)', marginBottom: 4 }}>{g.title}</div>
+                <div className="row items-center gap-2" style={{ flexWrap: 'wrap' }}>
+                  <Avatar name={g.owner} size="xs" />
+                  <span style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--grey-700)' }}>{g.owner}</span>
+                  <span style={{ fontSize: 11, color: 'var(--fg-secondary)' }}>· {g.ownerRole}</span>
+                  <span style={{
+                    fontSize: 11, fontWeight: 700,
+                    background: u.bg, color: u.fg,
+                    padding: '2px 8px', borderRadius: 999,
+                    display: 'inline-flex', alignItems: 'center', gap: 4,
+                  }}>
+                    <span className="ms" style={{ fontSize: 13 }}>event</span>
+                    Due {g.due} · {u.label}
+                  </span>
+                  {g.status === 'at-risk'
+                    ? <Pill variant="at-risk" dot size="sm">At risk</Pill>
+                    : <Pill variant="on-track" dot size="sm">On track</Pill>}
+                </div>
+              </div>
+
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>Key results</div>
+                <div className="col" style={{ gap: 4 }}>
+                  {g.okrs.map((kr, i) => (
+                    <div key={i} className="row items-center gap-2" style={{ fontSize: 11.5 }}>
+                      <span style={{
+                        width: 30, textAlign: 'right',
+                        fontWeight: 700, color: kr.tone === 'green' ? 'var(--success-main)' : kr.tone === 'amber' ? 'var(--warning-dark)' : 'var(--error-dark)',
+                      }}>{kr.pct}%</span>
+                      <div style={{ flex: 1, minWidth: 0, color: 'var(--grey-700)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{kr.title}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ width: 140 }}>
+                <ProgressBar pct={g.pct} color={g.status === 'at-risk' ? 'amber' : ''} />
+                <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--grey-700)', marginTop: 4, textAlign: 'right' }}>{g.pct}% overall</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 /* Export to window so all screen scripts can use these */
 Object.assign(window, {
   Avatar, AvatarStack, Btn, IconBtn, Pill, ProgressBar, TrendChip, Spark, Stars,
   Sidebar, TopBar, Shell, PageHead, StatCard, FilterBar, Filter,
   Callout, SectionCard, AIFlag, PerfTabs, ImpersonationBanner,
+  GoalsDueSoon,
+  NotificationBell, NotificationDropdownItem, priorityTone, NOTIF_TYPE_ICONS, formatNotifDate,
   avatarColorFor,
 });
