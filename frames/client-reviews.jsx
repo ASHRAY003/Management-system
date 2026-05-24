@@ -32,6 +32,12 @@ function ClientReviews() {
     }
   }, []);
 
+  const WORKER_COMP = {
+    'Aditi Sharma':  { amount: 72000,  currency: 'USD' },
+    'Rahul Mehta':   { amount: 85000,  currency: 'USD' },
+    'Priya Mehta':   { amount: 110000, currency: 'USD' },
+  };
+
   const team = window.PerformanceStore.getWorkers().map(w => ({
     id: w.id,
     name: w.name,
@@ -41,6 +47,7 @@ function ClientReviews() {
     lastRating: 0,
     lastOutcome: '—',
     pendingFor: null,
+    currentComp: WORKER_COMP[w.name] || null,
   }));
 
   // -- Start review cycle stepper
@@ -176,6 +183,7 @@ function ClientReviews() {
             <th className="num">Reviews</th>
             <th>Last review</th>
             <th>Last rating</th>
+            <th>Current comp</th>
             <th>Cycle status</th>
             <th />
           </tr></thead>
@@ -202,6 +210,13 @@ function ClientReviews() {
                     <span style={{ fontSize: 12.5, fontWeight: 800, color: 'var(--grey-700)', fontVariantNumeric: 'tabular-nums' }}>{t.lastRating.toFixed(1)}</span>
                     <Pill variant={t.lastOutcome === 'Exceeds' ? 'eligible' : t.lastOutcome === 'Below' ? 'needs-support' : 'on-track'}>{t.lastOutcome}</Pill>
                   </div>
+                </td>
+                <td>
+                  {t.currentComp
+                    ? <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--grey-800)', fontVariantNumeric: 'tabular-nums' }}>
+                        {t.currentComp.currency} {t.currentComp.amount.toLocaleString()}
+                      </span>
+                    : <span style={{ fontSize: 12, color: 'var(--fg-disabled)' }}>—</span>}
                 </td>
                 <td>
                   {t.pendingFor
@@ -263,7 +278,7 @@ function CompensationConfigPanel() {
     if (editingId === id) { setEditingId(null); setDraft(null); }
   }
   function addRow() {
-    const newRow = { id: Date.now(), minScore: 0, maxScore: 1, revisionType: 'fixed_amount', revisionValue: 0, currency: 'USD', label: '' };
+    const newRow = { id: Date.now(), minScore: 0, maxScore: 1, revisionType: 'percentage', revisionValue: 0, currency: 'USD', label: '' };
     setRows(prev => [...prev, newRow]);
     setEditingId(newRow.id);
     setDraft({ ...newRow });
@@ -1091,13 +1106,13 @@ function ClientSelfReviewViewer({ participantId, onBack, onWriteManagerReview })
 }
 
 /* ── Review Compensation Config ─────────────────────────────────────────── */
-const COMP_CONFIG_KEY = 'payo.compensationRules.v1';
+const COMP_CONFIG_KEY = 'payo.compensationRules.v2';
 
 const COMP_DEFAULTS = [
-  { id: 1, minScore: 0, maxScore: 1,    revisionType: 'no_change',    revisionValue: 0,    currency: 'USD', label: 'No compensation revision' },
-  { id: 2, minScore: 1, maxScore: 2,    revisionType: 'fixed_amount', revisionValue: 200,  currency: 'USD', label: '+200 USD' },
-  { id: 3, minScore: 2, maxScore: 4,    revisionType: 'fixed_amount', revisionValue: 500,  currency: 'USD', label: '+500 USD' },
-  { id: 4, minScore: 4, maxScore: null, revisionType: 'fixed_amount', revisionValue: 1000, currency: 'USD', label: '+1000 USD' },
+  { id: 1, minScore: 0, maxScore: 1,    revisionType: 'no_change',  revisionValue: 0,  currency: 'USD', label: 'No hike' },
+  { id: 2, minScore: 1, maxScore: 2,    revisionType: 'percentage', revisionValue: 5,  currency: 'USD', label: '+5% hike' },
+  { id: 3, minScore: 2, maxScore: 4,    revisionType: 'percentage', revisionValue: 10, currency: 'USD', label: '+10% hike' },
+  { id: 4, minScore: 4, maxScore: null, revisionType: 'percentage', revisionValue: 15, currency: 'USD', label: '+15% hike' },
 ];
 
 function loadCompConfig() {
@@ -1172,7 +1187,7 @@ function ReviewCompensationConfig() {
   }
 
   function addRow() {
-    const newRow = { id: Date.now(), minScore: 0, maxScore: 1, revisionType: 'fixed_amount', revisionValue: 0, currency: 'USD', label: '' };
+    const newRow = { id: Date.now(), minScore: 0, maxScore: 1, revisionType: 'percentage', revisionValue: 0, currency: 'USD', label: '' };
     setRows(prev => [...prev, newRow]);
     setEditId(newRow.id);
     setDraft({ ...newRow });
@@ -1216,7 +1231,7 @@ function ReviewCompensationConfig() {
             <span className="ms">payments</span>
             Review Compensation Config
           </div>
-          <div className="sub">Map review star ratings to suggested compensation or rate revision amounts.</div>
+          <div className="sub">Map review star ratings to a % hike on existing compensation. Percentage is applied to each worker's current base salary.</div>
         </div>
         <div className="row gap-2">
           <Btn variant="ghost" size="sm" icon="restart_alt" onClick={resetToDefault}>Reset</Btn>
@@ -1234,7 +1249,7 @@ function ReviewCompensationConfig() {
             <tr>
               <th>Star range</th>
               <th>Revision type</th>
-              <th>Amount</th>
+              <th>% Hike / Amount</th>
               <th>Currency</th>
               <th>Label</th>
               <th />
@@ -1306,7 +1321,8 @@ function ReviewCompensationConfig() {
                         <span style={{ fontSize: 13, color: 'var(--grey-700)' }}>
                           {d.revisionType === 'no_change' ? '—'
                             : d.revisionType === 'manual_review' ? 'Manual'
-                            : d.revisionType === 'percentage' ? `${d.revisionValue}%`
+                            : d.revisionType === 'percentage'
+                              ? <span style={{ fontWeight: 700, color: 'var(--success-dark, #1a8a50)' }}>+{d.revisionValue}%</span>
                             : `+${d.revisionValue}`}
                         </span>
                       )}
@@ -1370,6 +1386,49 @@ function ReviewCompensationConfig() {
           </tbody>
         </table>
       </div>
+
+      {/* Example hike preview using dummy worker data */}
+      {rows.some(r => r.revisionType === 'percentage' && r.revisionValue > 0) && (() => {
+        const WORKER_COMP = [
+          { name: 'Aditi Sharma', amount: 72000 },
+          { name: 'Rahul Mehta',  amount: 85000 },
+        ];
+        const percentageRows = rows.filter(r => r.revisionType === 'percentage' && r.revisionValue > 0);
+        return (
+          <div style={{
+            margin: '0 18px 16px',
+            padding: '12px 16px',
+            background: 'var(--grey-50)',
+            borderRadius: 10,
+            border: '1px solid var(--grey-100)',
+          }}>
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: 10 }}>
+              Example hike preview · based on current team compensation
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+              {WORKER_COMP.map(w =>
+                percentageRows.map(r => {
+                  const hikeAmount = Math.round(w.amount * r.revisionValue / 100);
+                  return (
+                    <div key={`${w.name}-${r.id}`} style={{
+                      background: '#fff', border: '1px solid var(--grey-200)',
+                      borderRadius: 8, padding: '8px 12px', fontSize: 12.5,
+                    }}>
+                      <span style={{ fontWeight: 600, color: 'var(--grey-800)' }}>{w.name}</span>
+                      <span style={{ color: 'var(--fg-secondary)', margin: '0 6px' }}>·</span>
+                      <span style={{ color: 'var(--fg-secondary)' }}>{r.label || `+${r.revisionValue}%`}</span>
+                      <span style={{ color: 'var(--fg-secondary)', margin: '0 6px' }}>→</span>
+                      <span style={{ fontWeight: 700, color: 'var(--success-dark, #1a8a50)' }}>
+                        +USD {hikeAmount.toLocaleString()}
+                      </span>
+                    </div>
+                  );
+                })
+              )}
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 }
