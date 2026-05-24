@@ -2,6 +2,15 @@
 
 const { useState: useStateWG, useEffect: useEffectWG } = React;
 
+const UPDATE_LINKED_PROJECTS = [
+  'Payroll Migration EU',
+  'KYB Automation v2',
+  'Contractor Onboarding Revamp',
+  'CSAT Recovery Program',
+  'Ops Tooling Modernisation',
+  'Q3 Payroll Quality Initiative',
+];
+
 /* ── Update Progress Modal ── */
 function UpdateProgressModal({ goal, onCancel, onSave }) {
   const [description, setDescription] = useStateWG('');
@@ -10,13 +19,15 @@ function UpdateProgressModal({ goal, onCancel, onSave }) {
 
   const initKrState = () => goal.kr.map(k => {
     const cur = parseFloat(k.current) || 0;
-    const tgt = parseFloat(k.target) || 1;
+    const rawTarget = parseFloat(k.target);
+    const tgt = Number.isFinite(rawTarget) ? rawTarget : 1;
     return {
       newTotal: cur,
       change: 0,
       krStatus: 'no-status',
+      linkedProject: k.linkedProject || '',
       state: k.unit === 'incomplete' ? 'incomplete' : null,
-      preview: k.unit === 'incomplete' ? 0 : Math.round((cur / (tgt || 1)) * 100),
+      preview: k.unit === 'incomplete' ? 0 : (tgt === 0 ? (Number(k.pct) || 0) : Math.round((cur / (tgt || 1)) * 100)),
     };
   });
 
@@ -26,15 +37,18 @@ function UpdateProgressModal({ goal, onCancel, onSave }) {
     setKrState(prev => {
       const next = prev.map((s, j) => j === i ? { ...s, ...patch } : s);
       const s = next[i];
-      const tgt = parseFloat(goal.kr[i].target) || 1;
+      const rawTarget = parseFloat(goal.kr[i].target);
+      const tgt = Number.isFinite(rawTarget) ? rawTarget : 1;
       if (patch.newTotal !== undefined) {
         const cur = parseFloat(goal.kr[i].current) || 0;
-        next[i] = { ...next[i], change: +(s.newTotal - cur).toFixed(2), preview: Math.min(100, Math.max(0, Math.round((s.newTotal / tgt) * 100))) };
+        const preview = tgt === 0 ? Number(goal.kr[i].pct) || 0 : Math.min(100, Math.max(0, Math.round((s.newTotal / tgt) * 100)));
+        next[i] = { ...next[i], change: +(s.newTotal - cur).toFixed(2), preview };
       }
       if (patch.change !== undefined) {
         const cur = parseFloat(goal.kr[i].current) || 0;
         const nt = cur + (parseFloat(patch.change) || 0);
-        next[i] = { ...next[i], newTotal: +nt.toFixed(2), preview: Math.min(100, Math.max(0, Math.round((nt / tgt) * 100))) };
+        const preview = tgt === 0 ? Number(goal.kr[i].pct) || 0 : Math.min(100, Math.max(0, Math.round((nt / tgt) * 100)));
+        next[i] = { ...next[i], newTotal: +nt.toFixed(2), preview };
       }
       if (patch.state !== undefined) {
         next[i] = { ...next[i], preview: patch.state === 'completed' ? 100 : 0 };
@@ -47,9 +61,12 @@ function UpdateProgressModal({ goal, onCancel, onSave }) {
     const updatedKr = goal.kr.map((k, i) => {
       const s = krState[i];
       if (k.unit === 'incomplete') {
-        return { ...k, current: s.state === 'completed' ? k.target : '0', pct: s.state === 'completed' ? 100 : 0 };
+        return { ...k, linkedProject: s.linkedProject, current: s.state === 'completed' ? k.target : '0', pct: s.state === 'completed' ? 100 : 0 };
       }
-      return { ...k, current: String(s.newTotal), pct: s.preview };
+      if (Number(parseFloat(k.target)) === 0) {
+        return { ...k, linkedProject: s.linkedProject, current: String(s.newTotal), pct: Number(k.pct) || s.preview };
+      }
+      return { ...k, linkedProject: s.linkedProject, current: String(s.newTotal), pct: s.preview };
     });
     const avgPct = Math.round(updatedKr.reduce((sum, k) => sum + k.pct, 0) / (updatedKr.length || 1));
     onSave({ kr: updatedKr, pct: avgPct });
@@ -139,6 +156,20 @@ function UpdateProgressModal({ goal, onCancel, onSave }) {
                 {/* KR title */}
                 <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--grey-900)', marginBottom: 14 }}>
                   {k.t}
+                </div>
+
+                <div style={{ marginBottom: 14 }}>
+                  <div style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--fg-secondary)', marginBottom: 6 }}>Linked project</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '7px 10px', background: '#fff' }}>
+                    <span className="ms" style={{ fontSize: 16, color: s.linkedProject ? 'var(--brand-blue-500)' : 'var(--fg-disabled)' }}>
+                      {s.linkedProject ? 'link' : 'link_off'}
+                    </span>
+                    <select value={s.linkedProject} onChange={e => updateKr(i, { linkedProject: e.target.value })}
+                      style={{ flex: 1, border: 'none', outline: 'none', background: 'transparent', fontSize: 13, fontFamily: 'inherit', cursor: 'pointer', color: 'var(--grey-700)' }}>
+                      <option value="">No linked project</option>
+                      {UPDATE_LINKED_PROJECTS.map(project => <option key={project} value={project}>{project}</option>)}
+                    </select>
+                  </div>
                 </div>
 
                 {isIncomplete ? (
@@ -233,20 +264,6 @@ function UpdateProgressModal({ goal, onCancel, onSave }) {
             );
           })}
 
-          {/* Add image / GIF */}
-          <div style={{ padding: '18px 0 8px' }}>
-            <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--fg-secondary)', marginBottom: 10 }}>
-              Add image or GIF <span style={{ fontWeight: 400 }}>(Optional)</span>
-            </div>
-            <div style={{ display: 'flex', gap: 10 }}>
-              <button style={{ border: '1.5px solid var(--grey-200)', borderRadius: 8, background: '#fff', padding: '8px 12px', cursor: 'pointer', color: 'var(--fg-secondary)', display: 'flex', alignItems: 'center' }}>
-                <span className="ms" style={{ fontSize: 22 }}>image</span>
-              </button>
-              <button style={{ border: '1.5px solid var(--grey-200)', borderRadius: 8, background: '#fff', padding: '8px 12px', cursor: 'pointer', color: 'var(--fg-secondary)', display: 'flex', alignItems: 'center' }}>
-                <span className="ms" style={{ fontSize: 22 }}>upload</span>
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Footer */}
@@ -271,65 +288,73 @@ function UpdateProgressModal({ goal, onCancel, onSave }) {
 
 /* ── Main WorkerGoals component ── */
 function WorkerGoals() {
+  const currentWorkerId = window.PerformanceStore.CURRENT_WORKER_ID;
+
+  function workerGoalRows() {
+    // Worker My Goals reads from the same goal assignment data.
+    const me = window.PerformanceStore.getCurrentUser?.();
+    return window.PerformanceStore.getGoalsForWorker(currentWorkerId).map(goal => {
+      const assignedKr = (goal.keyResults || []).filter(kr => (kr.assignedToIds || []).includes(currentWorkerId));
+      // "Owner" on the worker view = is the current user the goal's owner?
+      const isOwner = me && goal.ownerUserId === me.id;
+      const isContributor = !isOwner && ((goal.collaboratorIds || []).includes(currentWorkerId) || assignedKr.length > 0);
+      return {
+        id: goal.id,
+        role: isOwner ? 'owner' : isContributor ? 'contrib' : 'stakeholder',
+        source: goal.source,
+        title: goal.title,
+        pct: goal.progress,
+        status: goal.status,
+        due: goal.dueDate,
+        linkedProject: goal.linkedProject,
+        ownerName: goal.ownerName || '—',
+        ownerRole: goal.ownerRole || '',
+        ownerHint: goal.source === 'worker_created' ? 'Created by me'
+                 : goal.ownerType === 'manager' ? `Assigned by ${goal.ownerName}`
+                 : undefined,
+        kr: (goal.keyResults || []).map(kr => ({
+          id: kr.id,
+          t: kr.title,
+          pct: kr.progress,
+          current: String(kr.current),
+          target: String(kr.target),
+          unit: kr.unit,
+          linkedProject: kr.linkedProject || '',
+        })),
+      };
+    });
+  }
+
   const [stepper, setStepper] = useStateWG(null);
   const [detailGoal, setDetailGoal] = useStateWG(null);
   const [stepperFromDetail, setStepperFromDetail] = useStateWG(false);
   const [updateModal, setUpdateModal] = useStateWG(null); // { goalId }
 
-  const [goals, setGoals] = useStateWG([
-    {
-      id: 'PO-01', role: 'owner',
-      title: 'Complete 6 customer payroll migrations to v2 platform',
-      pct: 90, status: 'on-track', due: 'Sep 30, 2026',
-      linkedProject: 'Payroll Migration EU',
-      ownerName: 'Aditi Sharma', ownerRole: 'Senior Ops',
-      kr: [
-        { t: 'Migrate 6 anchor customers',         pct: 100, current: '6',   target: '6',   unit: 'count' },
-        { t: 'Zero P0 incidents during migration', pct: 100, current: '0',   target: '0',   unit: 'count' },
-        { t: 'CSAT > 4.5 post-migration',          pct: 70,  current: '4.4', target: '4.5', unit: 'rating' },
-      ],
-    },
-    {
-      id: 'PO-09', role: 'owner',
-      title: 'Mentor 2 junior teammates through their first migration',
-      pct: 55, status: 'on-track', due: 'Dec 15, 2026',
-      linkedProject: null,
-      ownerName: 'Aditi Sharma', ownerRole: 'Senior Ops',
-      kr: [
-        { t: 'Pair on at least 4 client kickoffs',        pct: 75, current: '3', target: '4', unit: 'count' },
-        { t: 'Document one knowledge transfer per month', pct: 50, current: '3', target: '6', unit: 'count' },
-      ],
-    },
-    {
-      id: 'TG-02', role: 'contrib',
-      title: 'Improve overall payroll quality across EU runs',
-      pct: 91, status: 'on-track', due: 'Sep 30, 2026',
-      linkedProject: 'Payroll Migration EU',
-      ownerName: 'Ops Team', ownerRole: 'Team owner',
-      ownerHint: 'Owned by Ops Team',
-      kr: [
-        { t: 'Payroll runs without P0 below 1%', pct: 95, current: '0.4',  target: '1',    unit: '%' },
-        { t: 'Run accuracy ≥ 99.5%',             pct: 92, current: '99.4', target: '99.5', unit: '%' },
-      ],
-    },
-    {
-      id: 'CG-03', role: 'stakeholder',
-      title: 'Build a global, compliant contractor experience',
-      pct: 85, status: 'on-track', due: 'Sep 30, 2026',
-      linkedProject: null,
-      ownerName: 'Hannah Mueller', ownerRole: 'Head of Compliance',
-      ownerHint: 'Company OKR · Hannah Mueller',
-      kr: [],
-    },
-  ]);
+  const [goals, setGoals] = useStateWG([]);
+
+  useEffectWG(() => {
+    const refresh = () => setGoals(workerGoalRows());
+    refresh();
+    return window.PerformanceStore.subscribe(refresh);
+  }, []);
 
   const activeUpdateGoal = updateModal ? goals.find(g => g.id === updateModal.goalId) : null;
 
-  function handleProgressSave({ kr, pct }) {
-    setGoals(prev => prev.map(g =>
-      g.id === updateModal.goalId ? { ...g, kr, pct, status: pct >= 70 ? 'on-track' : 'at-risk' } : g
-    ));
-    setUpdateModal(null);
+  async function handleProgressSave({ kr, pct }) {
+    try {
+      await Promise.all(kr.map(nextKr =>
+        window.PerformanceStore.updateKeyResult(updateModal.goalId, nextKr.id, {
+          current: Number(nextKr.current),
+          progress: nextKr.pct,
+        })
+      ));
+      // Cache was already refreshed inside updateKeyResult; re-derive view rows.
+      setGoals(workerGoalRows());
+      setUpdateModal(null);
+    } catch (e) {
+      console.error('handleProgressSave failed', e);
+      alert(`Could not save progress: ${e.message}`);
+    }
   }
 
   function openStepperFromDetail(goal) {
@@ -366,10 +391,35 @@ function WorkerGoals() {
       {stepper ? (
         <GoalStepper kind={stepper.kind} mode={stepper.mode} initial={stepper.initial}
           onCancel={() => { setStepper(null); if (stepperFromDetail) setStepperFromDetail(false); }}
-          onCreate={() => { setStepper(null); setStepperFromDetail(false); setDetailGoal(null); }} />
+          onCreate={async (payload) => {
+            try {
+              await window.PerformanceStore.createGoal(payload);
+              setGoals(workerGoalRows());
+              setStepper(null);
+              setStepperFromDetail(false);
+              setDetailGoal(null);
+            } catch (e) {
+              console.error('createGoal failed', e);
+              alert(`Could not create goal: ${e.message}`);
+            }
+          }} />
       ) : detailGoal ? (
         <GoalDetail goal={detailGoal} role="worker"
           onBack={() => setDetailGoal(null)}
+          onProgressSave={async (updatedKr) => {
+            try {
+              await Promise.all(updatedKr.map(nextKr =>
+                window.PerformanceStore.updateKeyResult(detailGoal.storeGoalId, nextKr.id, {
+                  current: Number(nextKr.current),
+                  progress: nextKr.pct,
+                })
+              ));
+              setGoals(workerGoalRows());
+            } catch (e) {
+              console.error('onProgressSave failed', e);
+              alert(`Could not save progress: ${e.message}`);
+            }
+          }}
           onUpdateGoal={() => openStepperFromDetail(detailGoal)} />
       ) : (<>
 
@@ -385,12 +435,23 @@ function WorkerGoals() {
         </>}
       />
 
-      <div className="stats-row c-4 mb-4">
-        <StatCard tone="green"   icon="flag"          label="Active goals"     value="4"    sub="2 owner · 1 contrib · 1 stake" />
-        <StatCard tone="blue"    icon="trending_up"   label="Average progress" value="80%"  trend={{ dir: 'up', text: '+12%' }} sub="Last 30 days" />
-        <StatCard tone="purple"  icon="check_circle"  label="Key results done" value="7/10" sub="across all my goals" />
-        <StatCard tone="amber"   icon="schedule"      label="Need attention"   value="1"    sub="No project link · KR drifting" />
-      </div>
+      {(() => {
+        const allKrs = goals.flatMap(g => g.kr || []);
+        const krDone = allKrs.filter(kr => kr.pct >= 100).length;
+        const avg = allKrs.length ? Math.round(allKrs.reduce((s, kr) => s + (kr.pct || 0), 0) / allKrs.length) : 0;
+        const atRisk = goals.filter(g => g.status === 'at-risk' || g.status === 'at_risk' || g.status === 'blocked').length;
+        const owner = goals.filter(g => g.role === 'owner').length;
+        const contrib = goals.filter(g => g.role === 'contrib').length;
+        const stake = goals.filter(g => g.role === 'stakeholder').length;
+        return (
+          <div className="stats-row c-4 mb-4">
+            <StatCard tone="green"   icon="flag"          label="Active goals"     value={String(goals.length)}     sub={goals.length ? `${owner} owner · ${contrib} contrib · ${stake} stake` : 'No goals assigned'} />
+            <StatCard tone="blue"    icon="trending_up"   label="Average progress" value={allKrs.length ? `${avg}%` : '—'} sub={allKrs.length ? `Across ${allKrs.length} key result${allKrs.length === 1 ? '' : 's'}` : 'No KRs yet'} />
+            <StatCard tone="purple"  icon="check_circle"  label="Key results done" value={allKrs.length ? `${krDone}/${allKrs.length}` : '0'} sub={allKrs.length ? 'across all my goals' : 'Nothing to track yet'} />
+            <StatCard tone="amber"   icon="schedule"      label="Need attention"   value={String(atRisk)} sub={atRisk ? 'At-risk or blocked' : 'Everything on track'} />
+          </div>
+        );
+      })()}
 
       <div className="row gap-2 mb-4 items-center" style={{ flexWrap: 'wrap' }}>
         <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: 4 }}>View:</span>
@@ -413,6 +474,7 @@ function WorkerGoals() {
                   </Pill>
                   <span style={{ color: 'var(--fg-disabled)' }}>·</span>
                   <span>{o.id}</span>
+                  {o.source === 'self-created' && <><span style={{ color: 'var(--fg-disabled)' }}>·</span><Pill variant="contrib" icon="person">Created by Me</Pill></>}
                   {o.ownerHint && <><span style={{ color: 'var(--fg-disabled)' }}>·</span><span>{o.ownerHint}</span></>}
                 </div>
                 <div className="o-title" style={{ fontSize: 15 }}>{o.title}</div>
@@ -436,14 +498,15 @@ function WorkerGoals() {
                   progress: o.pct,
                   owner: { name: o.ownerName, role: o.ownerRole },
                   contributors: o.role === 'owner' ? [{ name: 'Lina Chen', role: 'Onboarding Mgr' }] : [{ name: 'Aditi Sharma', role: 'Senior Ops' }],
-                  krs: o.kr.map((k, i) => ({ id: i+1, owner: o.ownerName, text: k.t, pct: k.pct,
-                    current: k.current, target: k.target, unit: k.unit })),
+                  storeGoalId: o.id,
+                  krs: o.kr.map((k) => ({ id: k.id, owner: o.ownerName, text: k.t, pct: k.pct,
+                    current: k.current, target: k.target, unit: k.unit, linkedProject: k.linkedProject })),
                   attachments: 0,
                 })}>View</Btn>
-                {o.role === 'owner' && (
+                {(o.role === 'owner' || o.role === 'contrib') && (
                   <Btn variant="outlined" size="sm" icon="trending_up"
                     onClick={() => setUpdateModal({ goalId: o.id })}>
-                    Update progress
+                    {o.role === 'owner' ? 'Update progress' : 'Update my contribution'}
                   </Btn>
                 )}
               </div>
@@ -470,7 +533,7 @@ function WorkerGoals() {
                     ? <>Contributing toward this goal — owned by <strong style={{ color: 'var(--grey-700)' }}>{o.ownerName}</strong>.</>
                     : <>Stakeholder · you receive updates but don't own progress.</>}
               </div>
-              <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
+              <ProgressBar pct={o.pct} big color={o.status === 'at-risk' || o.pct < 40 ? 'amber' : o.pct >= 70 ? 'green' : ''} />
             </div>
           </div>
         ))}

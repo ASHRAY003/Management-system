@@ -2,83 +2,56 @@
    Day-wise layout: Today, Tomorrow, This Week, Past Sessions.
    Each meeting card: worker, time, linked OKR/project, agenda, notes, action items. */
 
-const { useState: useState11 } = React;
+const { useState: useState11, useEffect: useEffect11 } = React;
+
+// Resolved at runtime — defined in client-reviews.jsx which loads first
+const CompensationConfigPanel = () => {
+  const Panel = window.CompensationConfigPanel;
+  return Panel ? React.createElement(Panel) : null;
+};
 
 function ClientMeetings() {
   const [openCard, setOpenCard] = useState11('m-now'); // which card has full notes expanded
   const [notesOpen, setNotesOpen] = useState11(null); // a meeting object when editor is open
+  const [scheduleModal, setScheduleModal] = useState11(null); // null | { mode, meeting }
+  const [storeVersion, setStoreVersion] = useState11(0);
 
-  const today = [
-    {
-      id: 'm-now', status: 'now', time: '10:00', dur: '30 min', ap: 'AM',
-      worker: 'Aditi Sharma', role: 'Senior Ops',
-      links: [
-        { kind: 'okr', label: 'Complete 6 migrations' },
-        { kind: 'project', label: 'Payroll Migration EU' },
-      ],
-      agenda: [
-        'Wrap-up of Payroll Migration EU and what went well',
-        'Q4 priorities — which migrations to take on next',
-        'Career growth conversation: path to Lead Ops',
-      ],
-      prevNotes: 'Discussed onboarding the Spain client. Aditi wants more visibility into the migration playbook gaps. Owe her: link to the new runbook.',
-      actionItems: [
-        { done: true,  text: 'Share v2 migration runbook',        owner: 'Priya' },
-        { done: true,  text: 'Confirm Aditi shadows Lina on a kickoff', owner: 'Priya' },
-        { done: false, text: 'Draft career-ladder doc for Lead Ops',    owner: 'Priya' },
-      ],
-    },
-    {
-      id: 'm-2', status: 'upcoming', time: '2:00', dur: '30 min', ap: 'PM',
-      worker: 'Omar Khan', role: 'Vendor Lead',
-      links: [{ kind: 'okr', label: 'Reduce vendor setup time' }],
-      agenda: [
-        'Vendor automation KR — why we slipped to 45%',
-        'Unblock the KYB review API integration',
-      ],
-      flag: { kind: 'at-risk', text: 'OKR at risk · 45%' },
-    },
-    {
-      id: 'm-3', status: 'upcoming', time: '4:30', dur: '20 min', ap: 'PM',
-      worker: 'Diego Alvarez', role: 'Senior Engineer',
-      links: [
-        { kind: 'project', label: 'Comms Unification' },
-        { kind: 'review', label: 'Q3 self-review draft' },
-      ],
-      agenda: ['Review of Q3 self-review draft', 'Calibration for Q3 cycle'],
-    },
-  ];
+  useEffect11(() => window.PerformanceStore.subscribe(() => setStoreVersion(v => v + 1)), []);
 
-  const tomorrow = [
-    {
-      id: 'm-4', status: 'upcoming', time: '9:30', dur: '30 min', ap: 'AM',
-      worker: 'Lina Chen', role: 'Onboarding Mgr',
-      links: [
-        { kind: 'project', label: 'Client Onboarding Q3' },
-        { kind: 'okr', label: 'Onboarding quality 4.6' },
-      ],
-      agenda: ['Self-review submission unblockers', 'Q3 onboarding NPS dip'],
-    },
-    {
-      id: 'm-5', status: 'upcoming', time: '3:00', dur: '45 min', ap: 'PM',
-      worker: 'Karim Idris', role: 'Customer Success',
-      links: [{ kind: 'okr', label: 'CS self-serve playbooks' }],
-      agenda: ['Self-serve playbook progress', 'PIP touchpoint — month 1 check-in'],
-      flag: { kind: 'warning', text: 'PIP check-in' },
-    },
-  ];
+  const today = [];
 
-  const thisWeek = [
-    { id: 'tw-1', day: 'Thu', date: 'Mar 27',  time: '11:00', ap: 'AM', worker: 'Hannah Mueller', role: 'Compliance', agenda: 'Career goal alignment', links: [{ kind: 'okr', label: 'Compliance OKR alignment' }] },
-    { id: 'tw-2', day: 'Thu', date: 'Mar 27',  time: '3:30',  ap: 'PM', worker: 'Diego Alvarez',  role: 'Senior Engineer', agenda: 'Mid-cycle calibration', links: [{ kind: 'review', label: 'Mid-cycle review' }] },
-    { id: 'tw-3', day: 'Fri', date: 'Mar 28',  time: '10:30', ap: 'AM', worker: 'Aditi Sharma',   role: 'Senior Ops', agenda: 'Project handoff retro', links: [{ kind: 'project', label: 'Payroll Migration EU retro' }] },
-  ];
+  function meetingTimeParts(scheduledAt = '') {
+    const match = String(scheduledAt).match(/(\d{1,2}:\d{2})\s*(AM|PM)?/i);
+    return {
+      time: match?.[1] || '9:30',
+      ap: (match?.[2] || 'AM').toUpperCase(),
+    };
+  }
 
-  const past = [
-    { id: 'p-1', when: 'Mar 17, 2026', worker: 'Aditi Sharma',  topic: 'Q3 goals kickoff',     notesLine: 'Set goals: 6 migrations, mentor Lina. Action items: 2 / 2 complete.' },
-    { id: 'p-2', when: 'Mar 15, 2026', worker: 'Omar Khan',     topic: 'Vendor OKR check-in',  notesLine: 'Vendor automation blocked on KYB API. Escalation to platform team logged.', flag: 'follow-up' },
-    { id: 'p-3', when: 'Mar 12, 2026', worker: 'Lina Chen',     topic: 'Onboarding feedback',  notesLine: 'Onboarding doc gaps surfaced. Next: pair with content lead.' },
-  ];
+  const storeMeetings = window.PerformanceStore.getData().meetings.map(m => {
+    const worker = window.PerformanceStore.workerById(m.workerId);
+    const linkedGoals = (m.linkedGoalIds || []).map(id => window.PerformanceStore.getGoals().find(g => g.id === id)).filter(Boolean);
+    const timeParts = meetingTimeParts(m.scheduledAt);
+    return {
+      id: m.id,
+      storeMeeting: m,
+      status: m.status === 'live' ? 'now' : m.status,
+      time: timeParts.time,
+      dur: '30 min',
+      ap: timeParts.ap,
+      worker: worker?.name || 'Worker',
+      role: worker?.role || '',
+      links: linkedGoals.map(goal => ({ kind: 'okr', label: goal.title })),
+      agenda: m.agenda,
+      prevNotes: m.sharedNotes,
+      actionItems: (m.actionItems || []).filter(a => a.shared !== false),
+    };
+  });
+  const visibleToday = storeMeetings.length ? storeMeetings : today;
+
+  const tomorrow = [];
+  const thisWeek = [];
+  const past = [];
 
   return (
     <Shell persona="client" active="performance"
@@ -86,8 +59,12 @@ function ClientMeetings() {
 
       {notesOpen ? (
         <MeetingNotesEditor
+          meetingId={notesOpen.storeMeeting?.id || notesOpen.id}
           worker={notesOpen.worker}
           role={notesOpen.role}
+          initialSharedNotes={notesOpen.storeMeeting?.sharedNotes || notesOpen.prevNotes || ''}
+          initialPrivateNotes={notesOpen.storeMeeting?.managerPrivateNotes || ''}
+          initialActions={notesOpen.storeMeeting?.actionItems || notesOpen.actionItems}
           linked={notesOpen.links?.map(l => ({
             icon: l.kind === 'okr' ? 'flag' : l.kind === 'project' ? 'rocket_launch' : 'reviews',
             label: l.label,
@@ -96,6 +73,27 @@ function ClientMeetings() {
         />
       ) : (<>
 
+      {scheduleModal && (
+        <ScheduleMeetingModal
+          mode={scheduleModal.mode}
+          meeting={scheduleModal.meeting}
+          onCancel={() => setScheduleModal(null)}
+          onSave={async (payload) => {
+            try {
+              if (scheduleModal.mode === 'edit' && scheduleModal.meeting?.storeMeeting) {
+                await window.PerformanceStore.updateMeetingNotes(scheduleModal.meeting.storeMeeting.id, payload);
+              } else {
+                await window.PerformanceStore.createMeeting(payload);
+              }
+              setScheduleModal(null);
+            } catch (e) {
+              console.error('schedule meeting failed', e);
+              alert(`Could not save meeting: ${e.message}`);
+            }
+          }}
+        />
+      )}
+
       <PerfTabs active="meetings" />
 
       <PageHead
@@ -103,18 +101,24 @@ function ClientMeetings() {
         title="1:1 Meetings"
         sub="Run check-ins with your direct reports. Link notes to goals, projects, feedback, or reviews — convert action items into real follow-ups."
         actions={<>
-          <Btn variant="ghost" icon="bookmark">Templates</Btn>
-          <Btn variant="ghost" icon="event_repeat">Recurring</Btn>
-          <Btn variant="primary" icon="add" onClick={() => window.location.hash = '/client/meetings'}>Schedule 1:1</Btn>
+          <Btn variant="primary" icon="add" onClick={() => setScheduleModal({ mode: 'create' })}>Schedule 1:1</Btn>
         </>}
       />
 
-      {/* Top mini stats */}
-      <div className="stats-row c-3 mb-4">
-        <StatCard tone="blue"   icon="event_available" label="1:1s today"          value="3"  sub="2 upcoming · 1 live now" />
-        <StatCard tone="purple" icon="calendar_month"  label="This week"            value="11" sub="Across 5 direct reports" />
-        <StatCard tone="green"  icon="task_alt"        label="Action items closed"  value="18" sub="this month · 87% on-time" />
-      </div>
+      {/* Top mini stats — derived from the store, not hardcoded */}
+      {(() => {
+        const allMeetings = window.PerformanceStore.getData().meetings || [];
+        const allActions = allMeetings.flatMap(m => m.actionItems || []);
+        const closed = allActions.filter(a => a.done).length;
+        const total = allActions.length;
+        return (
+          <div className="stats-row c-3 mb-4">
+            <StatCard tone="blue"   icon="event_available" label="1:1s today"           value={String(visibleToday.length)} sub={visibleToday.length ? 'Scheduled or live' : 'No 1:1s today'} />
+            <StatCard tone="purple" icon="calendar_month"  label="This week"            value={String(allMeetings.length)}  sub={allMeetings.length ? 'Total scheduled' : 'Nothing scheduled'} />
+            <StatCard tone="green"  icon="task_alt"        label="Action items closed"  value={total ? `${closed} / ${total}` : '0'} sub={total ? 'Across all meetings' : 'No items yet'} />
+          </div>
+        );
+      })()}
 
       {/* Two-column: day-wise meeting list (left) + meeting detail (right) */}
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.55fr) minmax(0, 1fr)', gap: 16 }}>
@@ -124,10 +128,10 @@ function ClientMeetings() {
           <div className="day-row" style={{ marginTop: 0 }}>
             <span className="label">Today</span>
             <span className="date">Wed, Mar 26 · 2026</span>
-            <span className="count">{today.length} meetings</span>
+            <span className="count">{visibleToday.length} meetings</span>
             <span className="line" />
           </div>
-          {today.map(m => <MeetingCard key={m.id} m={m} selected={openCard === m.id} onSelect={() => setOpenCard(m.id)} onAddNotes={() => setNotesOpen(m)} />)}
+          {visibleToday.map(m => <MeetingCard key={m.id} m={m} selected={openCard === m.id} onSelect={() => setOpenCard(m.id)} onAddNotes={() => setNotesOpen(m)} onEdit={() => setScheduleModal({ mode: 'edit', meeting: m })} />)}
 
           {/* Day · Tomorrow */}
           <div className="day-row">
@@ -136,7 +140,7 @@ function ClientMeetings() {
             <span className="count">{tomorrow.length} meetings</span>
             <span className="line" />
           </div>
-          {tomorrow.map(m => <MeetingCard key={m.id} m={m} selected={openCard === m.id} onSelect={() => setOpenCard(m.id)} onAddNotes={() => setNotesOpen(m)} />)}
+          {tomorrow.map(m => <MeetingCard key={m.id} m={m} selected={openCard === m.id} onSelect={() => setOpenCard(m.id)} onAddNotes={() => setNotesOpen(m)} onEdit={() => setScheduleModal({ mode: 'create' })} />)}
 
           {/* Day · This week */}
           <div className="day-row">
@@ -165,7 +169,10 @@ function ClientMeetings() {
                       </div>
                     </td>
                     <td><span style={{ fontSize: 12.5, color: 'var(--grey-700)' }}>{m.agenda}</span></td>
-                    <td className="actions-cell"><Btn variant="ghost" size="sm" icon="edit_note" onClick={() => setNotesOpen(m)}>Add notes</Btn></td>
+                    <td className="actions-cell">
+                      <Btn variant="ghost" size="sm" icon="edit" onClick={() => setScheduleModal({ mode: 'create' })}>Edit</Btn>
+                      <Btn variant="ghost" size="sm" icon="edit_note" onClick={() => setNotesOpen(m)}>Add notes</Btn>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -202,16 +209,132 @@ function ClientMeetings() {
           </div>
         </div>
 
-        {/* Right — detail panel for selected meeting */}
-        <MeetingDetail meeting={today[0]} onOpenNotes={() => setNotesOpen(today[0])} />
+        {/* Right — upcoming meets */}
+        <UpcomingMeetings todayList={visibleToday} tomorrowList={tomorrow} weekList={thisWeek} onOpenNotes={setNotesOpen} />
       </div>
       </>)}
     </Shell>
   );
 }
 
+/* ----- Schedule / edit meeting modal ----- */
+function ScheduleMeetingModal({ mode = 'create', meeting, onCancel, onSave }) {
+  const workers = window.PerformanceStore.getWorkers();
+  // Default to the first real worker in the org (cuid), not a hardcoded legacy id.
+  const initialWorkerId = meeting?.storeMeeting?.workerId || workers[0]?.id || '';
+  const today = new Date().toISOString().slice(0, 10);
+  const [workerId, setWorkerId] = useState11(initialWorkerId);
+  const [date, setDate] = useState11(meeting?.storeMeeting?.scheduledDate || today);
+  const [time, setTime] = useState11(meeting?.time || '10:00');
+  const [ampm, setAmpm] = useState11(meeting?.ap || 'AM');
+  const [agendaText, setAgendaText] = useState11((meeting?.storeMeeting?.agenda || meeting?.agenda || ['Goal check-in']).join('\n'));
+  const [linkedGoalId, setLinkedGoalId] = useState11(meeting?.storeMeeting?.linkedGoalIds?.[0] || '');
+  const selectedWorker = workers.find(w => w.id === workerId) || workers[0];
+  const workerGoals = workerId ? window.PerformanceStore.getGoalsForWorker(workerId) : [];
+
+  function toIsoDateTime(d, t, ap) {
+    // Convert "10:00 AM" / "2:30 PM" → 24h then build an ISO string.
+    const m = String(t || '').match(/^(\d{1,2}):(\d{2})/);
+    if (!m) return new Date(`${d}T09:00:00`).toISOString();
+    let hh = Number(m[1]);
+    const mm = m[2];
+    if (ap === 'PM' && hh < 12) hh += 12;
+    if (ap === 'AM' && hh === 12) hh = 0;
+    return new Date(`${d}T${String(hh).padStart(2,'0')}:${mm}:00`).toISOString();
+  }
+
+  function save() {
+    if (!workerId) { alert('Pick a worker'); return; }
+    const agenda = agendaText.split('\n').map(item => item.trim()).filter(Boolean);
+    onSave({
+      workerId,
+      title: `1:1 with ${selectedWorker?.name || 'Worker'}`,
+      scheduledDate: date,
+      scheduledAt: toIsoDateTime(date, time, ampm),
+      status: meeting?.storeMeeting?.status || 'scheduled',
+      agenda,
+      linkedGoalIds: linkedGoalId ? [linkedGoalId] : [],
+      linkedKeyResultIds: [],
+    });
+  }
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 1000,
+      background: 'rgba(0,0,0,0.35)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: 24,
+    }}>
+      <div style={{
+        background: '#fff', borderRadius: 14, width: '100%', maxWidth: 620,
+        boxShadow: '0 24px 60px rgba(0,0,0,0.22)', overflow: 'hidden',
+      }}>
+        <div style={{ padding: '18px 22px', borderBottom: '1px solid var(--grey-100)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--grey-800)' }}>{mode === 'edit' ? 'Edit 1:1' : 'Schedule 1:1'}</div>
+            <div style={{ fontSize: 12, color: 'var(--fg-secondary)', marginTop: 3 }}>Select worker, date, time, linked goal, and agenda.</div>
+          </div>
+          <IconBtn icon="close" title="Close" onClick={onCancel} />
+        </div>
+
+        <div style={{ padding: 22, display: 'grid', gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', marginBottom: 6 }}>Worker</div>
+            <select value={workerId} onChange={e => { setWorkerId(e.target.value); setLinkedGoalId(''); }}
+              style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', background: '#fff' }}>
+              {workers.map(w => <option key={w.id} value={w.id}>{w.name} · {w.role}</option>)}
+            </select>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 120px', gap: 12 }}>
+            <div>
+              <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', marginBottom: 6 }}>Date</div>
+              <input type="date" value={date} onChange={e => setDate(e.target.value)}
+                style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '9px 12px', fontSize: 14, boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', marginBottom: 6 }}>Time</div>
+              <input type="time" value={time} onChange={e => setTime(e.target.value)}
+                style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '9px 12px', fontSize: 14, boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', marginBottom: 6 }}>Period</div>
+              <select value={ampm} onChange={e => setAmpm(e.target.value)}
+                style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', background: '#fff' }}>
+                <option>AM</option>
+                <option>PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', marginBottom: 6 }}>Linked goal</div>
+            <select value={linkedGoalId} onChange={e => setLinkedGoalId(e.target.value)}
+              style={{ width: '100%', border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', background: '#fff' }}>
+              <option value="">No linked goal</option>
+              {workerGoals.map(goal => <option key={goal.id} value={goal.id}>{goal.title} · {goal.progress}%</option>)}
+            </select>
+          </div>
+
+          <div>
+            <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--fg-secondary)', marginBottom: 6 }}>Agenda</div>
+            <textarea value={agendaText} onChange={e => setAgendaText(e.target.value)}
+              placeholder="One agenda item per line"
+              style={{ width: '100%', minHeight: 110, border: '1.5px solid var(--grey-200)', borderRadius: 8, padding: '10px 12px', fontSize: 14, fontFamily: 'inherit', resize: 'vertical', boxSizing: 'border-box' }} />
+          </div>
+        </div>
+
+        <div style={{ padding: '16px 22px', borderTop: '1px solid var(--grey-100)', display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
+          <Btn variant="ghost" onClick={onCancel}>Cancel</Btn>
+          <Btn variant="primary" icon={mode === 'edit' ? 'save' : 'event'} onClick={save}>{mode === 'edit' ? 'Save changes' : 'Schedule'}</Btn>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ----- Meeting card (left rail) ----- */
-function MeetingCard({ m, selected, onSelect, onAddNotes }) {
+function MeetingCard({ m, selected, onSelect, onAddNotes, onEdit }) {
   return (
     <div className={`meeting ${m.status === 'now' ? 'now' : m.status === 'past' ? 'past' : 'upcoming'}`}
       style={selected ? { borderColor: 'var(--brand-blue-500)', boxShadow: '0 0 0 3px var(--brand-blue-100)' } : undefined}
@@ -235,6 +358,7 @@ function MeetingCard({ m, selected, onSelect, onAddNotes }) {
             {m.status === 'now' && <Pill variant="active" dot>Live now</Pill>}
             {m.flag?.kind === 'at-risk' && <Pill variant="at-risk" dot>{m.flag.text}</Pill>}
             {m.flag?.kind === 'warning' && <Pill variant="warning" icon="flag">{m.flag.text}</Pill>}
+            <Btn variant="ghost" size="sm" icon="edit" onClick={(e) => { e.stopPropagation(); onEdit && onEdit(); }}>Edit</Btn>
             <Btn variant={m.status === 'now' ? 'primary' : 'outlined'} size="sm" icon="edit_note" onClick={(e) => { e.stopPropagation(); onAddNotes && onAddNotes(); }}>
               {m.status === 'now' ? 'Take notes' : 'Add notes'}
             </Btn>
@@ -249,103 +373,85 @@ function MeetingCard({ m, selected, onSelect, onAddNotes }) {
   );
 }
 
-/* ----- Meeting detail (right panel) ----- */
-function MeetingDetail({ meeting, onOpenNotes }) {
+/* ----- Upcoming meets (right panel) — capped at 5 ----- */
+function UpcomingMeetings({ todayList, tomorrowList, weekList, onOpenNotes }) {
+  const MAX = 5;
+  const all = [
+    ...todayList
+      .filter(m => m.status !== 'now' && m.status !== 'past')
+      .map(m => ({ id: m.id, worker: m.worker, agenda: m.agenda, dateLabel: 'Today', subLabel: 'Wed, Mar 26', time: m.time, ap: m.ap, raw: m })),
+    ...tomorrowList.map(m => ({ id: m.id, worker: m.worker, agenda: m.agenda, dateLabel: 'Tomorrow', subLabel: 'Thu, Mar 27', time: m.time, ap: m.ap, raw: m })),
+    ...weekList.map(m => ({ id: m.id, worker: m.worker, agenda: m.agenda, dateLabel: m.day, subLabel: m.date, time: m.time, ap: m.ap, raw: m })),
+  ];
+  const items = all.slice(0, MAX);
+  const more = Math.max(0, all.length - items.length);
+
+  function agendaLine(a) {
+    if (!a) return '';
+    return Array.isArray(a) ? a[0] : a;
+  }
+
   return (
     <div className="card" style={{ alignSelf: 'flex-start', position: 'sticky', top: 16 }}>
-      <div className="card-head">
+      <div className="card-head" style={{ paddingBottom: 10 }}>
         <div>
           <div className="title row items-center gap-2">
-            <span className="ms" style={{ color: 'var(--brand-blue-500)' }}>event</span>
-            1:1 with {meeting.worker}
+            <span className="ms" style={{ color: 'var(--brand-blue-500)' }}>event_upcoming</span>
+            Upcoming meets
           </div>
-          <div className="sub">Wed Mar 26 · 10:00 AM · live now</div>
-        </div>
-        <Btn variant="primary" size="sm" icon="edit_note" onClick={onOpenNotes}>Take notes</Btn>
-      </div>
-
-      <div style={{ padding: '14px 18px 4px' }}>
-        <Callout tone="info" icon="info">
-          <strong>Prep summary</strong> · Aditi's OKR is 90% complete — strong project quarter. Last 1:1 you owed her a runbook link. Consider acknowledging the migration win and aligning Q4 priorities.
-        </Callout>
-      </div>
-
-      {/* Linked context */}
-      <div style={{ padding: '14px 18px 0' }}>
-        <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Linked to</div>
-        <div className="row gap-2" style={{ flexWrap: 'wrap' }}>
-          <Pill variant="contrib" icon="flag">Complete 6 migrations · 90%</Pill>
-          <Pill variant="contractor" icon="rocket_launch">Payroll Migration EU · Done</Pill>
-          <Btn variant="text" size="sm" icon="add">Link more</Btn>
+          <div className="sub">Next {items.length} of {all.length} scheduled</div>
         </div>
       </div>
 
-      {/* Agenda */}
-      <div style={{ padding: '18px 18px 0' }}>
-        <div className="row items-center between mb-2">
-          <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Agenda · shared</div>
-          <Btn variant="text" size="sm" icon="add">Add item</Btn>
-        </div>
-        <ol style={{ margin: 0, paddingLeft: 18, fontSize: 12.5, color: 'var(--grey-700)', lineHeight: 1.7 }}>
-          {meeting.agenda.map((a, i) => <li key={i}>{a}</li>)}
-        </ol>
-      </div>
-
-      {/* Notes panel */}
-      <div style={{ padding: '18px 18px 0' }}>
-        <div className="row items-center between mb-2">
-          <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Shared notes</div>
-          <span className="row gap-2 items-center" style={{ fontSize: 11, color: 'var(--fg-secondary)', fontWeight: 600 }}>
-            <span className="ms" style={{ fontSize: 13 }}>visibility</span>Visible to {meeting.worker.split(' ')[0]}
-          </span>
-        </div>
-        <div style={{ background: 'var(--grey-50)', border: '1px solid var(--grey-100)', borderRadius: 8,
-          padding: '10px 12px', fontSize: 12.5, lineHeight: 1.5, color: 'var(--grey-700)', minHeight: 70 }}>
-          <em style={{ color: 'var(--fg-secondary)' }}>
-            Started writing… "Migration wrapped clean — Aditi led the cutover with zero P0s. She's ready to mentor Lina on the next Spain rollout."
-          </em>
-        </div>
-      </div>
-
-      <div style={{ padding: '14px 18px 0' }}>
-        <div className="row items-center between mb-2">
-          <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Private notes · only you</div>
-        </div>
-        <div style={{ background: '#FFFAEB', border: '1px solid #FFE3A5', borderRadius: 8,
-          padding: '10px 12px', fontSize: 12.5, lineHeight: 1.5, color: 'var(--grey-700)', minHeight: 44 }}>
-          <em style={{ color: 'var(--warning-dark)' }}>Consider Aditi for a promotion case in Q4 — she's outpacing the Lead Ops ladder.</em>
-        </div>
-      </div>
-
-      {/* Action items */}
-      <div style={{ padding: '18px 18px 0' }}>
-        <div className="row items-center between mb-2">
-          <div style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Action items</div>
-          <Btn variant="text" size="sm" icon="add">Add</Btn>
-        </div>
-        <div className="col gap-2">
-          {meeting.actionItems.map((a, i) => (
-            <div key={i} className="row items-center gap-3" style={{ padding: '8px 10px', background: a.done ? 'var(--success-bg)' : '#fff',
-              border: '1px solid ' + (a.done ? 'var(--brand-green-200)' : 'var(--grey-100)'), borderRadius: 8 }}>
-              <span className="ms" style={{ fontSize: 18, color: a.done ? 'var(--success-main)' : 'var(--grey-300)' }}>
-                {a.done ? 'check_circle' : 'radio_button_unchecked'}
-              </span>
-              <div className="flex-1" style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--grey-700)',
-                textDecoration: a.done ? 'line-through' : 'none', opacity: a.done ? 0.7 : 1 }}>
-                {a.text}
-              </div>
-              <Avatar name={a.owner} size="xs" />
+      <div>
+        {items.map((m, idx) => (
+          <div
+            key={m.id}
+            onClick={() => onOpenNotes && onOpenNotes(m.raw)}
+            style={{
+              display: 'grid', gridTemplateColumns: '56px 1fr', gap: 12, alignItems: 'center',
+              padding: '12px 18px',
+              borderTop: '1px solid var(--grey-50)',
+              cursor: 'pointer',
+            }}
+          >
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              padding: '6px 4px',
+              background: 'var(--brand-blue-100)',
+              borderRadius: 8,
+              color: 'var(--brand-blue-600)',
+              lineHeight: 1.05,
+            }}>
+              <div style={{ fontSize: 9.5, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{m.dateLabel}</div>
+              <div style={{ fontSize: 14, fontWeight: 800, fontVariantNumeric: 'tabular-nums', marginTop: 2 }}>{m.time}</div>
+              <div style={{ fontSize: 9.5, fontWeight: 800 }}>{m.ap}</div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Convert to feedback */}
-      <div style={{ padding: '16px 18px 18px', marginTop: 16, borderTop: '1px solid var(--grey-100)' }}>
-        <div className="row gap-2">
-          <Btn variant="purple" size="sm" icon="forum">Convert note to feedback</Btn>
-          <Btn variant="ghost"  size="sm" icon="reviews">Send to review</Btn>
-        </div>
+            <div style={{ minWidth: 0 }}>
+              <div className="row items-center gap-2" style={{ marginBottom: 2 }}>
+                <Avatar name={m.worker} size="xs" />
+                <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--grey-800)', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{m.worker}</span>
+              </div>
+              <div style={{
+                fontSize: 11.5, color: 'var(--grey-700)', lineHeight: 1.4,
+                overflow: 'hidden', textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}>
+                {agendaLine(m.agenda)}
+              </div>
+            </div>
+          </div>
+        ))}
+        {items.length === 0 && (
+          <div style={{ padding: '22px 18px', fontSize: 12.5, color: 'var(--fg-secondary)', textAlign: 'center' }}>
+            No upcoming meetings.
+          </div>
+        )}
+        {more > 0 && (
+          <div style={{ padding: '10px 18px', borderTop: '1px solid var(--grey-50)', fontSize: 11.5, color: 'var(--fg-secondary)', textAlign: 'center' }}>
+            +{more} more in the schedule below
+          </div>
+        )}
       </div>
     </div>
   );

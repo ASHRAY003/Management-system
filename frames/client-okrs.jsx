@@ -1,5 +1,5 @@
 /* Frame 2 — OKR Management screen (Client / Manager)
-   Three tabs: Company Goals (read-only), My Goals (editable), People OKRs (manage).
+   Three tabs: Company Goals (read-only), My Goals (editable), People Goals (manage).
    Shows role badges, key results, linked projects, "Link Project" action. */
 
 const { useState: useStateOKR, useRef: useRefOKR, useEffect: useEffectOKR } = React;
@@ -10,7 +10,11 @@ function ClientOKRs() {
   const [stepper, setStepper] = useStateOKR(null); // null | 'goal' | 'okr'
   const [peopleFilterCG, setPeopleFilterCG] = useStateOKR(null); // {id, title} of a company goal
   const [detailGoal, setDetailGoal] = useStateOKR(null); // when set, show GoalDetail page
+  const [storeVersion, setStoreVersion] = useStateOKR(0);
+  const [progressEditor, setProgressEditor] = useStateOKR(null);
   const createBtnRef = useRefOKR(null);
+
+  useEffectOKR(() => window.PerformanceStore.subscribe(() => setStoreVersion(v => v + 1)), []);
 
   // Close create dropdown on outside click
   useEffectOKR(() => {
@@ -29,8 +33,118 @@ function ClientOKRs() {
     setCreateOpen(false);
   };
 
+  function workerName(workerId) {
+    return window.PerformanceStore.workerById(workerId)?.name || 'Worker';
+  }
+
+  function formatKrTarget(kr) {
+    const suffix = kr.unit === '%' ? '%' : kr.unit === 'days' ? 'd' : '';
+    return `${kr.current}${suffix} / ${kr.target}${suffix}`;
+  }
+
+  function progressTone(status, pct) {
+    if (status === 'completed' || pct >= 100) return 'green';
+    if (status === 'blocked' || status === 'at-risk' || pct < 40) return 'amber';
+    if (pct >= 70) return 'green';
+    return '';
+  }
+
+  function storeGoalToProgressGoal(goalId) {
+    const goal = window.PerformanceStore.getGoals().find(g => g.id === goalId);
+    if (!goal) return null;
+    return {
+      id: goal.id,
+      title: goal.title,
+      pct: goal.progress,
+      status: goal.status,
+      kr: (goal.keyResults || []).map(kr => ({
+        id: kr.id,
+        t: kr.title,
+        current: String(kr.current),
+        target: String(kr.target),
+        unit: kr.unit,
+        pct: kr.progress,
+        linkedProject: kr.linkedProject || '',
+      })),
+    };
+  }
+
+  function goalDetailFromStore(goalId, workerName, workerRole) {
+    const goal = window.PerformanceStore.getGoals().find(g => g.id === goalId);
+    if (!goal) return null;
+    return {
+      storeGoalId: goal.id,
+      title: goal.title,
+      description: goal.description || (goal.linkedProject ? 'Linked to ' + goal.linkedProject + '.' : 'No linked project.'),
+      type: 'Performance',
+      typeIcon: 'workspace_premium',
+      privacy: 'Restricted',
+      when: '7/1/2026 — ' + goal.dueDate,
+      daysLeft: 188,
+      perfGoal: true,
+      aligned: goal.linkedProject || null,
+      progress: goal.progress,
+      owner: { name: workerName, role: workerRole },
+      contributors: [{ name: 'Priya Nair', role: 'Manager' }],
+      krs: (goal.keyResults || []).map(kr => ({
+        id: kr.id,
+        owner: workerName,
+        text: kr.title,
+        pct: kr.progress,
+        current: kr.current,
+        target: kr.target,
+        unit: kr.unit,
+        linkedProject: kr.linkedProject || '',
+      })),
+      attachments: 1,
+    };
+  }
+
+  async function saveProgressFromModal(goalId, updatedKr) {
+    try {
+      await Promise.all(updatedKr.map(nextKr =>
+        window.PerformanceStore.updateKeyResult(goalId, nextKr.id, {
+          current: Number(nextKr.current),
+          progress: nextKr.pct,
+        })
+      ));
+      setProgressEditor(null);
+      setDetailGoal(null);
+    } catch (e) {
+      console.error('saveProgressFromModal failed', e);
+      alert(`Could not save progress: ${e.message}`);
+    }
+  }
+
+  function peopleGoalRows() {
+    // Employer People Goals reads from the same goal assignment data as Worker My Goals.
+    return window.PerformanceStore.getPeopleGoals().flatMap(group =>
+      group.goals.map(goal => ({
+        id: goal.id,
+        worker: group.worker.name,
+        workerId: group.worker.id,
+        role: group.worker.role,
+        title: goal.title,
+        desc: goal.description,
+        pct: goal.progress,
+        status: goal.status,
+        due: goal.dueDate,
+        period: goal.period,
+        linkedProject: goal.linkedProject,
+        source: goal.source,
+        kr: (goal.keyResults || []).map(kr => ({
+          id: kr.id,
+          t: kr.title,
+          pct: kr.progress,
+          target: formatKrTarget(kr),
+          assignedTo: (kr.assignedToIds || []).map(workerName),
+        })),
+      }))
+    );
+  }
+
   /* ---------------- Company Goals (read-only) ---------------- */
-  const companyOKRs = [
+  const companyOKRs_UNUSED_MOCK = [
     {
       id: 'CG-01',
       title: 'Make Acme the #1 payroll platform for remote teams',
@@ -69,8 +183,31 @@ function ClientOKRs() {
     },
   ];
 
+  // Company OKRs = goals tagged as goalType=company (regardless of assignees).
+  // They can still show up under People Goals if assignees are workers.
+  const companyOKRs = (window.PerformanceStore.getGoals() || [])
+    .filter(g => g.goalType === 'company')
+    .map(g => ({
+      id: g.id,
+      title: g.title,
+      desc: g.description || '',
+      owner: g.assigneeIds?.length
+        ? (window.PerformanceStore.workerById(g.assigneeIds[0])?.name || '')
+        : (window.PerformanceStore.getCurrentUser?.()?.name || '—'),
+      ownerRole: 'Company OKR',
+      pct: g.progress || 0,
+      status: (g.status || '').replace('_', '-'),
+      due: g.dueDate || '',
+      period: g.period || '',
+      kr: (g.keyResults || []).map(kr => ({
+        t: kr.title,
+        pct: kr.progress || 0,
+        target: `${kr.currentValue ?? 0} / ${kr.targetValue ?? 0}`,
+      })),
+    }));
+
   /* ---------------- My Goals (editable, manager-owned) ---------------- */
-  const myOKRs = [
+  const myOKRs_UNUSED_MOCK = [
     {
       id: 'MG-01',
       role: 'owner',
@@ -118,8 +255,27 @@ function ClientOKRs() {
     },
   ];
 
-  /* ---------------- People OKRs (workers managed by Priya) ---------------- */
-  const peopleOKRs = [
+  // Manager-owned goals (the manager picked "Self" or is the owner).
+  const meId = window.PerformanceStore.getCurrentUser?.()?.id;
+  const myOKRs = (window.PerformanceStore.getGoals() || [])
+    .filter(g => g.ownerUserId === meId || g.ownerId === meId)
+    .map(g => ({
+      id: g.id,
+      role: 'owner',
+      title: g.title,
+      desc: g.description || '',
+      pct: g.progress || 0,
+      status: (g.status || '').replace('_', '-'),
+      due: g.dueDate || '',
+      period: g.period || '',
+      linkedProject: g.linkedProject || null,
+      kr: (g.keyResults || []).length,
+      krDone: (g.keyResults || []).filter(kr => kr.status === 'completed').length,
+      contribs: (g.assigneeIds || []).map(id => window.PerformanceStore.workerById(id)?.name).filter(Boolean),
+    }));
+
+  /* ---------------- Demo People Goals seed source retained for visual reference ---------------- */
+  const demoPeopleOKRs_UNUSED = [
     {
       id: 'PO-01', worker: 'Aditi Sharma', role: 'Senior Ops',
       title: 'Complete 6 customer payroll migrations to v2 platform',
@@ -177,6 +333,8 @@ function ClientOKRs() {
     },
   ];
 
+  const demoPeopleOKRs = [];
+  const peopleOKRs = peopleGoalRows();
   const tabCounts = { company: companyOKRs.length, my: myOKRs.length, people: peopleOKRs.length };
 
   return (
@@ -188,11 +346,34 @@ function ClientOKRs() {
           initial={stepper.initial}
           mode={stepper.mode}
           onCancel={() => setStepper(null)}
-          onCreate={() => setStepper(null)}
+          onCreate={async (payload) => {
+            try {
+              const created = await window.PerformanceStore.createGoal(payload);
+              const goalType = created?.goalType || payload.type || payload.goalType;
+              setStepper(null);
+              setTab(goalType === 'company' ? 'company' : (goalType === 'individual' || !goalType) ? 'my' : 'people');
+            } catch (e) {
+              console.error('createGoal failed', e);
+              alert(`Could not create goal: ${e.message}`);
+            }
+          }}
         />
       ) : detailGoal ? (
-        <GoalDetail goal={detailGoal} role="manager" onBack={() => setDetailGoal(null)} />
+        <GoalDetail
+          goal={detailGoal}
+          role="manager"
+          onBack={() => setDetailGoal(null)}
+          onProgressSave={(updatedKr) => saveProgressFromModal(detailGoal.storeGoalId, updatedKr)}
+        />
       ) : (<>
+
+      {progressEditor && (
+        <UpdateProgressModal
+          goal={progressEditor}
+          onCancel={() => setProgressEditor(null)}
+          onSave={({ kr }) => saveProgressFromModal(progressEditor.id, kr)}
+        />
+      )}
 
       <PerfTabs active="okrs" />
 
@@ -220,7 +401,7 @@ function ClientOKRs() {
           <span className="count">{tabCounts.my}</span>
         </div>
         <div className={`tab ${tab === 'people' ? 'active' : ''}`} onClick={() => setTab('people')}>
-          <span className="ms">groups</span>People OKRs
+          <span className="ms">groups</span>People Goals
           <span className="count">{tabCounts.people}</span>
         </div>
         <div className="tab" style={{ marginLeft: 'auto' }}>
@@ -289,7 +470,7 @@ function ClientOKRs() {
                   </div>
                   <div style={{ alignSelf: 'flex-start' }}>
                     <div style={{ fontSize: 11, color: 'var(--fg-secondary)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>Overall progress</div>
-                    <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
+                    <ProgressBar pct={o.pct} big color={progressTone(o.status, o.pct)} />
                   </div>
                 </div>
               </div>
@@ -338,7 +519,22 @@ function ClientOKRs() {
                   </div>
                   <div className="o-actions">
                     {o.role === 'owner' && <>
-                      <Btn variant="ghost" size="sm" icon="edit">Edit</Btn>
+                      <Btn variant="ghost" size="sm" icon="edit" onClick={() => setStepper({ kind: 'goal', mode: 'edit', initial: {
+                        name: o.title,
+                        gtype: 'individual',
+                        privacy: 'restricted',
+                        isPerf: true,
+                        krs: Array.from({length: o.kr || 3}, (_, i) => ({
+                          name: 'KR ' + (i+1) + ' for ' + o.title,
+                          start: 0,
+                          target: 100,
+                          unit: '%',
+                        })),
+                        dates: o.due ? '7/1/2026 — ' + o.due : '7/1/2026 — 9/30/2026',
+                        owner: 'Priya Nair',
+                        contributors: o.contribs,
+                        linkedProject: o.linkedProject || '',
+                      } })}>Edit</Btn>
                       <Btn variant="primary" size="sm" icon="trending_up" onClick={() => setDetailGoal({
                         title: o.title,
                         description: o.desc,
@@ -374,7 +570,7 @@ function ClientOKRs() {
                         ? <>You're contributing toward this goal — owned by <strong>{o.contribs[0]}</strong>.</>
                         : <>Stakeholder · you receive updates but don't own progress.</>}
                   </div>
-                  <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
+                  <ProgressBar pct={o.pct} big color={progressTone(o.status, o.pct)} />
                 </div>
               </div>
             ))}
@@ -383,7 +579,7 @@ function ClientOKRs() {
       )}
 
       {/* ============================================================
-          TAB · PEOPLE OKRs (manage workers' OKRs)
+          TAB · PEOPLE GOALS (manage workers' goals)
           ============================================================ */}
       {tab === 'people' && (
         <>
@@ -391,12 +587,12 @@ function ClientOKRs() {
             <Callout tone="info" icon="account_tree"
               title={`Filtered by company goal · ${peopleFilterCG.id}`}
               action={<Btn variant="ghost" size="sm" icon="close" onClick={() => setPeopleFilterCG(null)}>Clear filter</Btn>}>
-              Showing people OKRs aligned to <strong style={{ color: 'var(--grey-700)' }}>“{peopleFilterCG.title}”</strong>. 3 of 5 OKRs match.
+              Showing people goals aligned to <strong style={{ color: 'var(--grey-700)' }}>“{peopleFilterCG.title}”</strong>. {peopleOKRs.length} goals match.
             </Callout>
           ) : (
             <Callout tone="success" icon="groups"
-              title="People OKRs — your direct reports & dotted-line workers">
-              5 workers. Create, edit, link projects to OKRs.
+              title="People Goals — your direct reports & dotted-line workers">
+              {peopleOKRs.length} goals across your team. Create, edit, link projects to goals.
             </Callout>
           )}
 
@@ -423,6 +619,7 @@ function ClientOKRs() {
                         <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--grey-700)', lineHeight: 1.2 }}>{o.worker}</div>
                         <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)', marginTop: 2 }}>{o.role} · {o.id}</div>
                       </div>
+                      {o.source === 'self-created' && <Pill variant="contrib" icon="person">Created by worker</Pill>}
                     </div>
                     <div className="o-title">{o.title}</div>
                     <div className="o-meta">
@@ -439,28 +636,8 @@ function ClientOKRs() {
                     </div>
                   </div>
                   <div className="o-actions">
-                    <Btn variant="ghost" size="sm" icon="visibility" onClick={() => setDetailGoal({
-                      title: o.title,
-                      description: o.linkedProject ? 'Linked to ' + o.linkedProject + '.' : 'No linked project.',
-                      type: 'Performance',
-                      typeIcon: 'workspace_premium',
-                      privacy: 'Restricted',
-                      when: '7/1/2026 — ' + o.due,
-                      daysLeft: 188,
-                      perfGoal: true,
-                      aligned: o.linkedProject || null,
-                      progress: o.pct,
-                      owner: { name: o.worker, role: o.role },
-                      contributors: [{ name: 'Priya Nair', role: 'Manager' }],
-                      krs: o.kr.map((k, i) => ({
-                        id: i+1, owner: o.worker, text: k.t, pct: k.pct,
-                        current: k.target.split('/')[0]?.trim(),
-                        target:  k.target.split('/')[1]?.trim() || k.target,
-                        unit: k.target.includes('%') ? '%' : 'count',
-                      })),
-                      attachments: 1,
-                    })}>View</Btn>
-                    <Btn variant="ghost" size="sm" icon="forum" onClick={() => window.location.hash = '/client/feedback'}>Give feedback</Btn>
+                    <Btn variant="ghost" size="sm" icon="visibility" onClick={() => setDetailGoal(goalDetailFromStore(o.id, o.worker, o.role))}>View</Btn>
+                    <Btn variant="ghost" size="sm" icon="forum" onClick={() => window.location.hash = '/client/reviews'}>Give feedback</Btn>
                     <Btn variant="ghost" size="sm" icon="event" onClick={() => window.location.hash = '/client/meetings'}>Schedule 1:1</Btn>
                   </div>
                 </div>
@@ -470,9 +647,9 @@ function ClientOKRs() {
                     <div className="kr" key={i}>
                       <div className="num">KR{i+1}</div>
                       <div className="text">{k.t}</div>
-                      <div className="target">{k.target}</div>
-                      <ProgressBar pct={k.pct} color={k.pct >= 70 ? 'green' : k.pct >= 40 ? '' : 'amber'} />
-                      <Btn variant="ghost" size="sm" style={{ padding: '4px 8px' }} icon="edit">Edit</Btn>
+                      <div className="target">{k.target}{k.assignedTo?.length ? ` · ${k.assignedTo.join(', ')}` : ''}</div>
+                      <ProgressBar pct={k.pct} color={progressTone(null, k.pct)} />
+                      <Btn variant="ghost" size="sm" style={{ padding: '4px 8px' }} icon="edit" onClick={() => setProgressEditor(storeGoalToProgressGoal(o.id))}>Edit</Btn>
                     </div>
                   ))}
                 </div>
@@ -490,7 +667,7 @@ function ClientOKRs() {
                       <span>No project linked — link a project to track progress.</span>
                     </div>
                   )}
-                  <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
+                  <ProgressBar pct={o.pct} big color={progressTone(o.status, o.pct)} />
                 </div>
               </div>
             ))}

@@ -1,5 +1,5 @@
 /* Goal Detail page — matches the reference screenshot.
-   Shared component used by both client People OKRs view (when "View" is clicked)
+   Shared component used by both client People Goals view (when "View" is clicked)
    and worker's My Goals view.
 
    Layout:
@@ -9,73 +9,97 @@
      - LEFT (2/3): Goal Progress card + Key Results rows
      - RIGHT (1/3): Tracking chart, Days until due, Attachments, Owner, Contributors */
 
-const { useState: useStateGD } = React;
+const { useState: useStateGD, useEffect: useEffectGD } = React;
 
-function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
+function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal, onProgressSave }) {
   const [showAddKR, setShowAddKR] = useStateGD(false);
   const [newKR, setNewKR] = useStateGD({ name: '', start: 0, target: 100, unit: '%', assignTo: '' });
   const [updateModal, setUpdateModal] = useStateGD(false);
   const [dotMenu, setDotMenu] = useStateGD(null);
+  const [, setStoreVersion] = useStateGD(0);
 
-  // Default sample goal if none provided
+  // Re-render on any store change so KRs / progress stay in sync with the cache.
+  useEffectGD(() => window.PerformanceStore.subscribe(() => setStoreVersion(v => v + 1)), []);
+
+  // Default empty goal if none provided
   const baseGoal = goal || {
-    title: 'Build a Scalable Operations Engine to Support 2× Growth with Lower Opex',
-    description: 'Drive operational leverage by automating manual workflows and lifting employees-per-Ops-FTE.',
-    type: 'Development',
-    typeIcon: 'eco',
+    title: 'Untitled goal',
+    description: '',
+    type: 'Performance',
+    typeIcon: 'flag',
     privacy: 'Restricted',
-    when: '1/1/2026 — 12/31/2026',
-    daysLeft: 223,
+    when: '',
+    daysLeft: 0,
     perfGoal: true,
     aligned: null,
     tags: [],
-    progress: 24,
-    owner: { name: 'Ashray Gupta', role: 'Associate Product Manager' },
-    contributors: [
-      { name: 'Aditi Sharma', role: 'Senior Ops' },
-      { name: 'Lina Chen',    role: 'Onboarding Mgr' },
-      { name: 'Priya Nair',   role: 'Manager' },
-    ],
-    krs: [
-      { id: 1, current: 92,  target: 300, unit: 'count',     pct: 31, owner: 'Aditi Sharma', text: 'Increase employees managed per Ops FTE from ~133 → 300+ per Ops resource', linkedProject: 'Payroll Migration EU' },
-      { id: 2, current: 18,  target: 80,  unit: '%',         pct: 23, owner: 'Lina Chen',    text: 'Automate 80% of payroll workflows (Input → Validation → Processing → Payout)', linkedProject: 'Vendor Setup Automation' },
-      { id: 3, current: 14,  target: 90,  unit: '%',         pct: 16, owner: 'Aditi Sharma', text: 'Reduce payroll processing errors by 90%' },
-      { id: 4, current: 28,  target: 90,  unit: '%',         pct: 31, owner: 'Priya Nair',   text: 'Enable 90% of customer queries via self-serve + smart channels', linkedProject: 'Client Onboarding Q3' },
-      { id: 5, current: null,target: null,unit: 'incomplete',pct: 0,  owner: 'Lina Chen',    text: 'Achieve zero manual intervention across top 5 payroll corridors' },
-    ],
-    attachments: 2,
+    progress: 0,
+    owner: null,
+    contributors: [],
+    krs: [],
+    attachments: 0,
   };
 
-  const [krs, setKrsGD] = useStateGD(baseGoal.krs || []);
-  const g = { ...baseGoal, krs };
+  // Source of truth: when this goal has a backing record (storeGoalId),
+  // ALWAYS read the latest KRs + progress from the store cache. The `goal`
+  // prop is a snapshot taken at click time and goes stale after any write.
+  const liveGoal = baseGoal.storeGoalId
+    ? window.PerformanceStore.getGoals().find(x => x.id === baseGoal.storeGoalId)
+    : null;
+  const krs = liveGoal
+    ? (liveGoal.keyResults || []).map(k => ({
+        id: k.id,
+        text: k.title,
+        pct: k.progress,
+        current: k.currentValue,
+        target: k.targetValue,
+        unit: k.metricType,
+        linkedProject: k.linkedProject,
+        owner: baseGoal.owner?.name,
+      }))
+    : (baseGoal.krs || []);
+  const liveProgress = liveGoal ? liveGoal.progress : (baseGoal.progress || 0);
+  const g = { ...baseGoal, krs, progress: liveProgress };
 
   const isWorker = role === 'worker';
   const canEdit  = !isWorker || g.ownedByMe;
 
-  function saveNewKR() {
+  async function saveNewKR() {
     if (!newKR.name.trim()) return;
-    const nextId = krs.length ? Math.max(...krs.map(k => k.id || 0)) + 1 : 1;
-    setKrsGD([...krs, {
-      id: nextId,
-      text: newKR.name,
-      current: newKR.start,
-      target: newKR.target,
-      unit: newKR.unit,
-      pct: 0,
-      owner: newKR.assignTo || baseGoal.owner?.name || 'Unassigned',
-    }]);
-    setShowAddKR(false);
-    setNewKR({ name: '', start: 0, target: 100, unit: '%', assignTo: '' });
+    const goalId = baseGoal.storeGoalId || baseGoal.id;
+    if (!goalId) {
+      alert('Cannot add a key result: this goal has no backing record yet.');
+      return;
+    }
+    try {
+      await window.PerformanceStore.createKeyResult(goalId, {
+        title: newKR.name,
+        startValue: Number(newKR.start) || 0,
+        currentValue: Number(newKR.start) || 0,
+        targetValue: Number(newKR.target) || 100,
+        metricType: newKR.unit || 'count',
+      });
+      // No local state to update — `krs` is derived from the cache and the
+      // store's refreshGoals() already emitted, so the new KR appears on the
+      // next render.
+      setShowAddKR(false);
+      setNewKR({ name: '', start: 0, target: 100, unit: '%', assignTo: '' });
+    } catch (e) {
+      console.error('createKeyResult failed', e);
+      alert(`Could not add key result: ${e.message}`);
+    }
   }
 
   const modalGoal = {
     ...g,
     kr: krs.map(k => ({
+      id: k.id,
       t: k.text,
       current: String(k.current ?? 0),
       target: String(k.target ?? 0),
       unit: k.unit,
       pct: k.pct || 0,
+      linkedProject: k.linkedProject || '',
     })),
   };
 
@@ -86,9 +110,10 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
           goal={modalGoal}
           onCancel={() => setUpdateModal(false)}
           onSave={({ kr: updatedKr, pct }) => {
-            setKrsGD(krs.map((k, i) => updatedKr[i]
-              ? { ...k, current: updatedKr[i].current, pct: updatedKr[i].pct }
-              : k));
+            // Local state was a leftover — `krs` is now derived from the
+            // store cache. Just delegate to the parent's onProgressSave
+            // (which writes through the store and triggers a refresh).
+            if (onProgressSave) onProgressSave(updatedKr, pct);
             setUpdateModal(false);
           }}
         />
@@ -214,7 +239,7 @@ function GoalDetail({ goal, role = 'manager', onBack, onUpdateGoal }) {
                             <span className="ms" style={{ fontSize: 17 }}>edit</span>Edit
                           </button>
                           <button
-                            onClick={() => { setDotMenu(null); setKrsGD(krs.filter(k => k.id !== kr.id)); }}
+                            onClick={() => { setDotMenu(null); alert('Deleting key results is not supported yet.'); }}
                             style={{ width: '100%', padding: '9px 16px', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13.5, fontFamily: 'inherit', textAlign: 'left', display: 'flex', alignItems: 'center', gap: 8, color: 'var(--error-main)', fontWeight: 600 }}>
                             <span className="ms" style={{ fontSize: 17 }}>delete</span>Delete
                           </button>
