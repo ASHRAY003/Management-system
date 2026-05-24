@@ -74,7 +74,7 @@ function ClientDashboard() {
           sub="Active OKRs across the company · top movers this week"
           icon="flag"
           action={<div className="row gap-2">
-            <Btn variant="text"  size="sm" iconTrailing="arrow_forward">All goals</Btn>
+            <Btn variant="text" size="sm" iconTrailing="arrow_forward" onClick={() => window.location.hash = '/client/okrs'}>All goals</Btn>
           </div>}
           padBody={false}
         >
@@ -126,7 +126,7 @@ function ClientDashboard() {
           icon="reviews"
           action={<div className="row gap-2">
             <Btn variant="ghost" size="sm" icon="download">Export CSV</Btn>
-            <Btn variant="text" size="sm" iconTrailing="arrow_forward">All cycles</Btn>
+            <Btn variant="text" size="sm" iconTrailing="arrow_forward" onClick={() => window.location.hash = '/client/all-cycles'}>All cycles</Btn>
           </div>}
           padBody={false}
         >
@@ -237,3 +237,131 @@ function ClientDashboard() {
 }
 
 window.ClientDashboard = ClientDashboard;
+
+/* ── All Review Cycles (manager view) ─────────────────────────────────────── */
+function ClientAllCycles() {
+  const Store = window.PerformanceStore;
+  const [, setVersion] = React.useState(0);
+  React.useEffect(() => Store.subscribe(() => setVersion(v => v + 1)), []);
+  React.useEffect(() => { Store.refreshAll && Store.refreshAll(); }, []);
+
+  const cycles = [...Store.getReviewCycles()].sort(
+    (a, b) => String(b.periodEnd || b.createdAt || '').localeCompare(String(a.periodEnd || a.createdAt || ''))
+  );
+
+  function cycleStats(cycleId) {
+    const parts = Store.getReviewParticipants(cycleId);
+    const total = parts.length;
+    const done = parts.filter(p =>
+      p.managerReviewStatus === 'submitted' || p.managerReviewStatus === 'shared'
+    ).length;
+    const selfDone = parts.filter(p => p.selfReviewStatus === 'submitted').length;
+    const pendingManager = parts.filter(p =>
+      p.managerReviewStatus === 'not-started' || p.managerReviewStatus === 'not_started' || p.managerReviewStatus === 'draft'
+    ).length;
+    return { total, done, selfDone, pendingManager, pct: total ? Math.round(done / total * 100) : 0 };
+  }
+
+  const statusVariant = s => s === 'active' ? 'active' : s === 'closed' ? 'completed' : s === 'draft' ? 'draft' : 'warning';
+
+  return (
+    <Shell persona="client" active="performance"
+      crumb={['Acme Holdings', 'Performance', 'Reviews', 'All cycles']}>
+      <PerfTabs active="reviews" />
+
+      <div className="row items-center between mb-4">
+        <Btn variant="ghost" icon="arrow_back" onClick={() => window.location.hash = '/client/dashboard'}>Back to dashboard</Btn>
+        <Btn variant="primary" icon="play_circle" onClick={() => window.location.hash = '/client/reviews'}>Start review cycle</Btn>
+      </div>
+
+      <PageHead
+        eyebrow="Performance Management · Reviews"
+        title={`All review cycles · ${cycles.length}`}
+        sub="Every review cycle in your organisation, newest first."
+      />
+
+      <SectionCard title="Review cycles" sub={`${cycles.length} total`} icon="event_repeat" padBody={false}>
+        {cycles.length === 0 && (
+          <div style={{ padding: '24px 22px', fontSize: 13, color: 'var(--fg-secondary)' }}>
+            No review cycles yet.{' '}
+            <a href="#/client/reviews" style={{ color: 'var(--primary)' }}>Start one →</a>
+          </div>
+        )}
+        {cycles.map(c => {
+          const { total, done, selfDone, pendingManager, pct } = cycleStats(c.id);
+          const isOverdue = c.managerReviewDueDate && new Date(c.managerReviewDueDate) < new Date() && c.status === 'active';
+          return (
+            <div key={c.id} style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0,2fr) 110px 180px 180px 180px auto',
+              gap: 16, alignItems: 'center',
+              padding: '14px 22px',
+              borderTop: '1px solid var(--grey-50)',
+            }}>
+              {/* Name + period */}
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--grey-800)' }}>{c.name}</div>
+                <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)', marginTop: 2 }}>
+                  {c.periodStart} → {c.periodEnd}
+                  {c.purpose && <span style={{ marginLeft: 8, color: 'var(--fg-disabled)' }}>· {c.purpose}</span>}
+                </div>
+              </div>
+
+              {/* Status */}
+              <Pill variant={statusVariant(c.status)} dot>{c.status}</Pill>
+
+              {/* Participants + completion */}
+              <div className="col gap-1">
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '.05em' }}>
+                  Manager reviews
+                </span>
+                {c.status === 'draft'
+                  ? <span style={{ fontSize: 12, color: 'var(--fg-disabled)', fontStyle: 'italic' }}>Not started</span>
+                  : total > 0
+                    ? <>
+                        <ProgressBar pct={pct} color={isOverdue ? 'amber' : 'green'} />
+                        <span style={{ fontSize: 11, color: 'var(--fg-secondary)', fontWeight: 600 }}>{done}/{total} complete</span>
+                      </>
+                    : <span style={{ fontSize: 12, color: 'var(--fg-disabled)' }}>No participants</span>}
+              </div>
+
+              {/* Self-reviews */}
+              <div className="col gap-1">
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '.05em' }}>
+                  Self-reviews
+                </span>
+                {total > 0
+                  ? <span style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--grey-700)' }}>{selfDone}/{total} submitted</span>
+                  : <span style={{ fontSize: 12, color: 'var(--fg-disabled)' }}>—</span>}
+              </div>
+
+              {/* Due dates */}
+              <div className="col gap-1">
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '.05em' }}>
+                  Manager due
+                </span>
+                <span style={{ fontSize: 12.5, fontWeight: 600, color: isOverdue ? 'var(--error-dark)' : 'var(--grey-700)' }}>
+                  {c.managerReviewDueDate || '—'}
+                  {isOverdue && <Pill variant="overdue" size="sm" style={{ marginLeft: 6 }}>Overdue</Pill>}
+                </span>
+              </div>
+
+              {/* Action */}
+              <div className="row gap-2" style={{ justifyContent: 'flex-end' }}>
+                <Btn variant="ghost" size="sm" icon={c.status === 'draft' ? 'settings' : 'open_in_new'}
+                  onClick={() => {
+                    try { window.sessionStorage.setItem('payo.reviews.openCycleId', c.id); } catch (e) {}
+                    window.location.hash = '/client/reviews';
+                  }}>
+                  {c.status === 'draft' ? 'Configure' : 'Open'}
+                </Btn>
+              </div>
+            </div>
+          );
+        })}
+      </SectionCard>
+    </Shell>
+  );
+}
+
+window.ClientAllCycles = ClientAllCycles;
