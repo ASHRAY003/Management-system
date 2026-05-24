@@ -27,26 +27,6 @@ function ClientDashboard() {
     { name: 'Engineering 360°',          type: '360° Feedback', participants: 38, pct: 31, pending: 'Peers', due: 'Apr 07, 2026', status: 'active' },
   ].sort(byDue);
 
-  const projectSignals = [
-    { project: 'Payroll Migration EU',     worker: 'Aditi Sharma', okr: 'Complete 5 migrations',          status: 'Completed',  trigger: 'Manager review due',  triggerVariant: 'review-due' },
-    { project: 'Vendor Setup Automation',  worker: 'Omar Khan',    okr: 'Reduce setup time by 20%',       status: 'In Progress',trigger: 'No review yet',       triggerVariant: 'draft' },
-    { project: 'Client Onboarding Q3',     worker: 'Lina Chen',    okr: 'Improve onboarding quality',     status: 'Completed',  trigger: 'Self-review pending', triggerVariant: 'warning' },
-    { project: 'Comms Unification',        worker: 'Diego Alvarez',okr: 'Launch unified platform v1',     status: 'In Progress',trigger: 'Milestone review',    triggerVariant: 'progress' },
-  ];
-
-  const comp = [
-    { worker: 'Aditi Sharma', role: 'Senior Ops',      okrPct: 90, outcome: 'Exceeds expectations', projects: '6/6', signal: 'eligible',      signalLabel: 'Eligible for review' },
-    { worker: 'Omar Khan',    role: 'Vendor Lead',     okrPct: 72, outcome: 'Meets expectations',   projects: '4/5', signal: 'monitor',       signalLabel: 'Monitor' },
-    { worker: 'Lina Chen',    role: 'Onboarding Mgr',  okrPct: 45, outcome: 'Needs support',        projects: '2/5', signal: 'needs-support', signalLabel: 'Not recommended yet' },
-    { worker: 'Diego Alvarez',role: 'Senior Engineer', okrPct: 82, outcome: 'Exceeds expectations', projects: '5/5', signal: 'eligible',      signalLabel: 'Eligible for review' },
-  ];
-
-  const feed = [
-    { who: 'Priya Nair', icon: 'rate_review', when: '2h ago', text: <><strong>Aditi Sharma</strong> received project feedback for <strong>Payroll Migration EU</strong></>, tag: 'Project' },
-    { who: 'Karim Idris', icon: 'flag', when: '4h ago',         text: <><strong>Omar Khan</strong> received goal feedback for <strong>Vendor Setup Automation</strong></>, tag: 'Goal' },
-    { who: 'Lina Chen',   icon: 'how_to_reg', when: 'yesterday', text: <><strong>Lina Chen</strong> completed self-review for <strong>Client Onboarding Q3</strong></>, tag: 'Self-review' },
-    { who: 'Hannah Mueller', icon: 'celebration', when: '2d ago',  text: <><strong>Hannah Mueller</strong> recognized <strong>Diego Alvarez</strong> for shipping the API refactor</>, tag: 'Recognition' },
-  ];
 
   return (
     <Shell persona="client" active="performance"
@@ -171,66 +151,6 @@ function ClientDashboard() {
               ))}
             </tbody>
           </table>
-        </SectionCard>
-      </div>
-
-      {/* Row: Project Performance Signals (2/3) + Recent Feedback (1/3) */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 16, marginBottom: 16 }}>
-        <SectionCard
-          title="Project performance signals"
-          sub="Project completions flowing into reviews and OKR progress"
-          icon="rocket_launch"
-          action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">All projects</Btn>}
-          padBody={false}
-        >
-          <table className="tbl">
-            <thead><tr>
-              <th>Project</th><th>Worker</th><th>Linked OKR</th><th>Status</th>
-            </tr></thead>
-            <tbody>
-              {projectSignals.map((p, i) => (
-                <tr key={i}>
-                  <td>
-                    <div style={{ fontWeight: 700, color: 'var(--grey-700)', fontSize: 13 }}>{p.project}</div>
-                  </td>
-                  <td>
-                    <div className="worker-cell">
-                      <Avatar name={p.worker} size="sm" />
-                      <span className="name">{p.worker}</span>
-                    </div>
-                  </td>
-                  <td><span className="link-cell"><span className="ms">flag</span>{p.okr}</span></td>
-                  <td>
-                    {p.status === 'Completed'  && <Pill variant="completed" dot>Completed</Pill>}
-                    {p.status === 'In Progress'&& <Pill variant="progress" dot>In progress</Pill>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </SectionCard>
-
-        <SectionCard
-          title="Recent feedback"
-          sub="Across goals, projects, and peers"
-          icon="forum"
-          action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">View feed</Btn>}
-          padBody={false}
-        >
-          <div>
-            {feed.map((f, i) => (
-              <div className="feed-item" key={i}>
-                <Avatar name={f.who} size="sm" />
-                <div className="b">
-                  <div className="t">{f.text}</div>
-                  <div className="meta">
-                    <span className="ms" style={{ fontSize: 13 }}>{f.icon}</span>
-                    <span>{f.tag} · {f.when}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </SectionCard>
       </div>
 
