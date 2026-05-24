@@ -36,11 +36,11 @@ function WorkerDashboard() {
             const Store = window.PerformanceStore;
             const workerId = Store.getCurrentWorkerId();
             const participants = Store.getData().reviewParticipants || [];
-            const target =
-              participants.find(p => p.workerId === workerId && p.selfReviewStatus !== 'submitted') ||
-              participants.find(p => p.workerId === workerId);
-            if (target) {
-              try { window.sessionStorage.setItem('payo.workerReviews.openSelf', target.id); } catch (e) {}
+            const pending = participants.find(p =>
+              p.workerId === workerId && p.selfReviewStatus !== 'submitted'
+            );
+            if (pending) {
+              try { window.sessionStorage.setItem('payo.workerReviews.openSelf', pending.id); } catch (e) {}
             }
             window.location.hash = '/worker/reviews';
           }}>Start self-review</Btn>
@@ -82,11 +82,11 @@ function WorkerDashboard() {
                 const Store = window.PerformanceStore;
                 const workerId = Store.getCurrentWorkerId();
                 const participants = Store.getData().reviewParticipants || [];
-                const target =
-                  participants.find(p => p.workerId === workerId && p.selfReviewStatus !== 'submitted') ||
-                  participants.find(p => p.workerId === workerId);
-                if (target) {
-                  try { window.sessionStorage.setItem('payo.workerReviews.openSelf', target.id); } catch (e) {}
+                const pending = participants.find(p =>
+                  p.workerId === workerId && p.selfReviewStatus !== 'submitted'
+                );
+                if (pending) {
+                  try { window.sessionStorage.setItem('payo.workerReviews.openSelf', pending.id); } catch (e) {}
                 }
                 window.location.hash = '/worker/reviews';
               }}>Continue self-review</Btn>
