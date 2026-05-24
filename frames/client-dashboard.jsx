@@ -10,20 +10,22 @@ function ClientDashboard() {
     { tone: 'teal',    icon: 'event_available',label: '1:1s this month',      value: '64', trend: { dir: 'flat', text: '0' },   sub: '8 today · 12 this week' },
   ];
 
+  const byDue = (a, b) => new Date(a.due) - new Date(b.due);
+
   const goals = [
     { name: 'Improve payroll migration quality',     owner: 'Ops Team',      project: 'Payroll Migration EU',     pct: 70, status: 'on-track', due: 'Sep 30, 2026', okrType: 'company' },
     { name: 'Reduce vendor setup time by 20%',       owner: 'Omar Khan',     project: 'Vendor Setup Automation',  pct: 45, status: 'at-risk',  due: 'Oct 15, 2026', okrType: 'individual' },
     { name: 'Complete onboarding projects on time',  owner: 'Aditi Sharma',  project: 'Client Onboarding Q3',     pct: 90, status: 'on-track', due: 'Sep 20, 2026', okrType: 'individual' },
     { name: 'Launch the unified comms platform',     owner: 'Engineering',   project: 'Comms Unification',        pct: 32, status: 'at-risk',  due: 'Dec 15, 2026', okrType: 'team' },
     { name: 'Cut support backlog under 50',          owner: 'Lina Chen',     project: 'CS Quality Q3',            pct: 58, status: 'on-track', due: 'Oct 30, 2026', okrType: 'individual' },
-  ];
+  ].sort(byDue);
 
   const cycles = [
     { name: 'Q3 Performance Review',     type: 'Quarterly', participants: 120, pct: 68, pending: 'Managers',  due: 'Oct 15, 2026', status: 'active'   },
     { name: 'Payroll Migration Review',  type: 'Project',   participants: 8,   pct: 40, pending: 'Workers',   due: 'May 25, 2026', status: 'overdue'  },
     { name: 'Annual Review 2026',        type: 'Annual',    participants: 250, pct: 0,  pending: 'HR Admin',  due: 'Dec 15, 2026', status: 'draft'    },
     { name: 'Engineering 360°',          type: '360° Feedback', participants: 38, pct: 31, pending: 'Peers', due: 'Apr 07, 2026', status: 'active' },
-  ];
+  ].sort(byDue);
 
   const projectSignals = [
     { project: 'Payroll Migration EU',     worker: 'Aditi Sharma', okr: 'Complete 5 migrations',          status: 'Completed',  trigger: 'Manager review due',  triggerVariant: 'review-due' },
