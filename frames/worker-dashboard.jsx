@@ -32,7 +32,18 @@ function WorkerDashboard() {
         sub="Your goals, feedback, 1:1s and reviews at a glance. Your self-review for Q3 is due Sep 30."
         actions={<>
           <Btn variant="ghost" icon="add_reaction">Request feedback</Btn>
-          <Btn variant="primary" icon="rate_review">Start self-review</Btn>
+          <Btn variant="primary" icon="rate_review" onClick={() => {
+            const Store = window.PerformanceStore;
+            const workerId = Store.getCurrentWorkerId();
+            const participants = Store.getData().reviewParticipants || [];
+            const target =
+              participants.find(p => p.workerId === workerId && p.selfReviewStatus !== 'submitted') ||
+              participants.find(p => p.workerId === workerId);
+            if (target) {
+              try { window.sessionStorage.setItem('payo.workerReviews.openSelf', target.id); } catch (e) {}
+            }
+            window.location.hash = '/worker/reviews';
+          }}>Start self-review</Btn>
         </>}
       />
 
@@ -67,7 +78,18 @@ function WorkerDashboard() {
               Reflect on your goals, projects shipped, and growth areas. Your draft auto-saves and you can attach feedback from peers and managers.
             </div>
             <div className="row gap-2">
-              <Btn variant="primary" icon="play_arrow">Continue self-review</Btn>
+              <Btn variant="primary" icon="play_arrow" onClick={() => {
+                const Store = window.PerformanceStore;
+                const workerId = Store.getCurrentWorkerId();
+                const participants = Store.getData().reviewParticipants || [];
+                const target =
+                  participants.find(p => p.workerId === workerId && p.selfReviewStatus !== 'submitted') ||
+                  participants.find(p => p.workerId === workerId);
+                if (target) {
+                  try { window.sessionStorage.setItem('payo.workerReviews.openSelf', target.id); } catch (e) {}
+                }
+                window.location.hash = '/worker/reviews';
+              }}>Continue self-review</Btn>
               <Btn variant="ghost" icon="schedule">Remind me tomorrow</Btn>
             </div>
           </div>

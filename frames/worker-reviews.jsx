@@ -3,10 +3,32 @@
    review type (manager / peer / client / project / self), summary, rating,
    and links to read the full review. */
 
-const { useState: useStateWR } = React;
+const { useState: useStateWR, useEffect: useEffectWR } = React;
 
 function WorkerReviews() {
   const [active, setActive] = useStateWR(null);
+  const [selfReviewParticipantId, setSelfReviewParticipantId] = useStateWR(null);
+
+  useEffectWR(() => {
+    const pid = window.sessionStorage.getItem('payo.workerReviews.openSelf');
+    if (pid) {
+      window.sessionStorage.removeItem('payo.workerReviews.openSelf');
+      setSelfReviewParticipantId(pid);
+    }
+  }, []);
+
+  if (selfReviewParticipantId) {
+    return (
+      <Shell persona="worker" active="performance"
+        crumb={['Payo WFM', 'Performance', 'Feedback & Reviews', 'Self-review']}>
+        <PerfTabs variant="worker" active="reviews" />
+        <WorkerSelfReview
+          participantId={selfReviewParticipantId}
+          onBack={() => setSelfReviewParticipantId(null)}
+        />
+      </Shell>
+    );
+  }
 
   // Reviews grouped by month
   const groups = [
