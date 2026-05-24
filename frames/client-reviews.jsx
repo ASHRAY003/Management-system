@@ -15,6 +15,15 @@ function ClientReviews() {
 
   React.useEffect(() => window.PerformanceStore.subscribe(() => setStoreVersion(v => v + 1)), []);
 
+  // Fetch legacy reviews for all workers so the list view shows real ratings.
+  React.useEffect(() => {
+    if (view === 'list') {
+      window.PerformanceStore.getWorkers().forEach(w => {
+        window.PerformanceStore.refreshLegacyReviews(w.id);
+      });
+    }
+  }, [view]);
+
   React.useEffect(() => {
     if (window.sessionStorage.getItem('payo.reviews.openStepper') === '1') {
       window.sessionStorage.removeItem('payo.reviews.openStepper');
@@ -38,17 +47,30 @@ function ClientReviews() {
     'Priya Mehta':   { amount: 110000, currency: 'USD' },
   };
 
-  const team = window.PerformanceStore.getWorkers().map(w => ({
-    id: w.id,
-    name: w.name,
-    role: w.role || w.title || '',
-    reviewsCount: 0,
-    lastReview: '—',
-    lastRating: 0,
-    lastOutcome: '—',
-    pendingFor: null,
-    currentComp: WORKER_COMP[w.name] || null,
-  }));
+  const allParticipants = window.PerformanceStore.getData().reviewParticipants || [];
+
+  const team = window.PerformanceStore.getWorkers().map(w => {
+    const reviews = window.PerformanceStore.getReviewsForWorker(w.id, true);
+    const sorted = [...reviews].sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+    const latest = sorted[0];
+    const lastRating = latest ? (Number(latest.rating) || 0) : 0;
+    const lastOutcome = lastRating >= 4 ? 'Exceeds' : lastRating >= 2.5 ? 'Meets' : lastRating > 0 ? 'Below' : '—';
+    const pendingCount = allParticipants.filter(p =>
+      p.workerId === w.id &&
+      (p.managerReviewStatus === 'not-started' || p.managerReviewStatus === 'not_started' || p.managerReviewStatus === 'draft')
+    ).length;
+    return {
+      id: w.id,
+      name: w.name,
+      role: w.role || w.title || '',
+      reviewsCount: reviews.length,
+      lastReview: latest?.createdAt || '—',
+      lastRating,
+      lastOutcome,
+      pendingFor: pendingCount > 0 ? `${pendingCount} cycle${pendingCount > 1 ? 's' : ''}` : null,
+      currentComp: WORKER_COMP[w.name] || null,
+    };
+  });
 
   // -- Start review cycle stepper
   if (view === 'cycle-stepper') {
