@@ -221,6 +221,8 @@ function ClientReviews() {
         </table>
       </SectionCard>
 
+      <ReviewCompensationConfig />
+
     </Shell>
   );
 }
@@ -1088,5 +1090,290 @@ function ClientSelfReviewViewer({ participantId, onBack, onWriteManagerReview })
   );
 }
 
+/* ── Review Compensation Config ─────────────────────────────────────────── */
+const COMP_CONFIG_KEY = 'payo.compensationRules.v1';
+
+const COMP_DEFAULTS = [
+  { id: 1, minScore: 0, maxScore: 1,    revisionType: 'no_change',    revisionValue: 0,    currency: 'USD', label: 'No compensation revision' },
+  { id: 2, minScore: 1, maxScore: 2,    revisionType: 'fixed_amount', revisionValue: 200,  currency: 'USD', label: '+200 USD' },
+  { id: 3, minScore: 2, maxScore: 4,    revisionType: 'fixed_amount', revisionValue: 500,  currency: 'USD', label: '+500 USD' },
+  { id: 4, minScore: 4, maxScore: null, revisionType: 'fixed_amount', revisionValue: 1000, currency: 'USD', label: '+1000 USD' },
+];
+
+function loadCompConfig() {
+  try { return JSON.parse(localStorage.getItem(COMP_CONFIG_KEY)) || COMP_DEFAULTS; }
+  catch (e) { return COMP_DEFAULTS; }
+}
+function saveCompConfig(rows) {
+  try { localStorage.setItem(COMP_CONFIG_KEY, JSON.stringify(rows)); } catch (e) {}
+}
+
+function validateRanges(rows) {
+  const errors = {};
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    if (r.maxScore !== null && r.minScore >= r.maxScore) {
+      errors[r.id] = 'Min must be less than max';
+    }
+    if ((r.revisionType === 'fixed_amount' || r.revisionType === 'percentage') && !r.revisionValue && r.revisionValue !== 0) {
+      errors[r.id] = 'Value required';
+    }
+    // overlap check
+    for (let j = 0; j < rows.length; j++) {
+      if (i === j) continue;
+      const s = rows[j];
+      const aMax = r.maxScore === null ? Infinity : r.maxScore;
+      const bMax = s.maxScore === null ? Infinity : s.maxScore;
+      if (r.minScore < bMax && aMax > s.minScore) {
+        errors[r.id] = errors[r.id] || 'Overlaps with another range';
+      }
+    }
+  }
+  const openEnded = rows.filter(r => r.maxScore === null);
+  if (openEnded.length > 1) {
+    openEnded.forEach(r => { errors[r.id] = 'Only one open-ended range allowed'; });
+  }
+  return errors;
+}
+
+function ReviewCompensationConfig() {
+  const [rows, setRows] = useStateCR(loadCompConfig);
+  const [editId, setEditId] = useStateCR(null);
+  const [draft, setDraft] = useStateCR({});
+  const [saved, setSaved] = useStateCR(false);
+  const [errors, setErrors] = useStateCR({});
+
+  const TYPE_LABELS = {
+    no_change: 'No change',
+    fixed_amount: 'Fixed amount',
+    percentage: 'Percentage',
+    manual_review: 'Manual review',
+  };
+
+  function startEdit(row) {
+    setEditId(row.id);
+    setDraft({ ...row });
+    setErrors({});
+  }
+
+  function cancelEdit() {
+    setEditId(null);
+    setDraft({});
+  }
+
+  function commitEdit() {
+    const updated = rows.map(r => r.id === editId ? { ...draft } : r);
+    const errs = validateRanges(updated);
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    setRows(updated);
+    setEditId(null);
+    setDraft({});
+    setErrors({});
+  }
+
+  function addRow() {
+    const newRow = { id: Date.now(), minScore: 0, maxScore: 1, revisionType: 'fixed_amount', revisionValue: 0, currency: 'USD', label: '' };
+    setRows(prev => [...prev, newRow]);
+    setEditId(newRow.id);
+    setDraft({ ...newRow });
+    setErrors({});
+  }
+
+  function removeRow(id) {
+    setRows(prev => prev.filter(r => r.id !== id));
+    if (editId === id) { setEditId(null); setDraft({}); }
+    setErrors({});
+  }
+
+  function resetToDefault() {
+    setRows(COMP_DEFAULTS);
+    setEditId(null);
+    setDraft({});
+    setErrors({});
+    setSaved(false);
+  }
+
+  function handleSave() {
+    const errs = validateRanges(rows);
+    if (Object.keys(errs).length) { setErrors(errs); return; }
+    saveCompConfig(rows);
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2500);
+  }
+
+  const inCell = (style) => ({
+    border: '1.5px solid var(--grey-200)', borderRadius: 6,
+    padding: '4px 8px', fontSize: 12.5, fontFamily: 'inherit',
+    background: '#fff', ...style,
+  });
+
+  return (
+    <div className="card" style={{ marginTop: 16 }}>
+      {/* Header */}
+      <div className="card-head">
+        <div>
+          <div className="title">
+            <span className="ms">payments</span>
+            Review Compensation Config
+          </div>
+          <div className="sub">Map review star ratings to suggested compensation or rate revision amounts.</div>
+        </div>
+        <div className="row gap-2">
+          <Btn variant="ghost" size="sm" icon="restart_alt" onClick={resetToDefault}>Reset</Btn>
+          <Btn variant="ghost" size="sm" icon="add" onClick={addRow}>Add range</Btn>
+          <Btn variant={saved ? 'ghost' : 'primary'} size="sm" icon={saved ? 'check' : 'save'} onClick={handleSave}>
+            {saved ? 'Saved!' : 'Save config'}
+          </Btn>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div style={{ overflowX: 'auto' }}>
+        <table className="tbl">
+          <thead>
+            <tr>
+              <th>Star range</th>
+              <th>Revision type</th>
+              <th>Amount</th>
+              <th>Currency</th>
+              <th>Label</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {rows.length === 0 && (
+              <tr>
+                <td colSpan={6} style={{ padding: '20px 18px', color: 'var(--fg-secondary)', fontSize: 13 }}>
+                  No ranges defined. Click <strong>Add range</strong> above.
+                </td>
+              </tr>
+            )}
+            {rows.map(row => {
+              const isEditing = editId === row.id;
+              const d = isEditing ? draft : row;
+              const scoreLabel = d.maxScore === null ? `${d.minScore}+` : `${d.minScore} – ${d.maxScore}`;
+              const rowError = errors[row.id];
+
+              return (
+                <React.Fragment key={row.id}>
+                  <tr style={{ background: isEditing ? 'var(--grey-50)' : rowError ? '#FFF3F3' : 'transparent' }}>
+                    {/* Star range */}
+                    <td>
+                      {isEditing ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                          <input type="number" value={d.minScore} min={0} step={0.5}
+                            style={inCell({ width: 52 })}
+                            onChange={e => setDraft(p => ({ ...p, minScore: Number(e.target.value) }))} />
+                          <span style={{ fontSize: 11, color: 'var(--fg-secondary)' }}>–</span>
+                          <input type="number" value={d.maxScore ?? ''} min={0} step={0.5} placeholder="∞"
+                            style={inCell({ width: 52 })}
+                            onChange={e => setDraft(p => ({ ...p, maxScore: e.target.value === '' ? null : Number(e.target.value) }))} />
+                          <span style={{ fontSize: 11, color: 'var(--fg-secondary)' }}>stars</span>
+                        </div>
+                      ) : (
+                        <span style={{ fontWeight: 700, fontSize: 13, color: 'var(--grey-800)', fontVariantNumeric: 'tabular-nums' }}>
+                          {scoreLabel} ★
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Revision type */}
+                    <td>
+                      {isEditing ? (
+                        <select value={d.revisionType}
+                          style={inCell({})}
+                          onChange={e => setDraft(p => ({ ...p, revisionType: e.target.value }))}>
+                          <option value="no_change">No change</option>
+                          <option value="fixed_amount">Fixed amount</option>
+                          <option value="percentage">Percentage</option>
+                          <option value="manual_review">Manual review</option>
+                        </select>
+                      ) : (
+                        <Pill variant={d.revisionType === 'no_change' ? 'draft' : d.revisionType === 'manual_review' ? 'warning' : 'on-track'} size="sm">
+                          {TYPE_LABELS[d.revisionType] || d.revisionType}
+                        </Pill>
+                      )}
+                    </td>
+
+                    {/* Amount */}
+                    <td>
+                      {isEditing ? (
+                        <input type="number" value={d.revisionValue ?? ''}
+                          disabled={d.revisionType === 'no_change' || d.revisionType === 'manual_review'}
+                          style={inCell({ width: 80, opacity: (d.revisionType === 'no_change' || d.revisionType === 'manual_review') ? 0.4 : 1 })}
+                          onChange={e => setDraft(p => ({ ...p, revisionValue: e.target.value === '' ? null : Number(e.target.value) }))} />
+                      ) : (
+                        <span style={{ fontSize: 13, color: 'var(--grey-700)' }}>
+                          {d.revisionType === 'no_change' ? '—'
+                            : d.revisionType === 'manual_review' ? 'Manual'
+                            : d.revisionType === 'percentage' ? `${d.revisionValue}%`
+                            : `+${d.revisionValue}`}
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Currency */}
+                    <td>
+                      {isEditing ? (
+                        <select value={d.currency || 'USD'}
+                          disabled={d.revisionType === 'no_change' || d.revisionType === 'manual_review' || d.revisionType === 'percentage'}
+                          style={inCell({ opacity: (d.revisionType === 'no_change' || d.revisionType === 'manual_review' || d.revisionType === 'percentage') ? 0.4 : 1 })}
+                          onChange={e => setDraft(p => ({ ...p, currency: e.target.value }))}>
+                          {['USD', 'EUR', 'GBP', 'INR', 'SGD', 'AED'].map(c => <option key={c}>{c}</option>)}
+                        </select>
+                      ) : (
+                        <span style={{ fontSize: 13, color: 'var(--fg-secondary)' }}>
+                          {d.revisionType === 'percentage' || d.revisionType === 'no_change' ? '—' : (d.currency || 'USD')}
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Label */}
+                    <td>
+                      {isEditing ? (
+                        <input type="text" value={d.label || ''} placeholder="e.g. +500 USD"
+                          style={inCell({ width: 130 })}
+                          onChange={e => setDraft(p => ({ ...p, label: e.target.value }))} />
+                      ) : (
+                        <span style={{ fontSize: 12.5, color: 'var(--grey-600)' }}>
+                          {d.label || <em style={{ color: 'var(--fg-disabled)' }}>—</em>}
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Actions */}
+                    <td className="actions-cell">
+                      {isEditing ? (
+                        <>
+                          <Btn variant="primary" size="sm" icon="check" onClick={commitEdit}>OK</Btn>
+                          <Btn variant="ghost" size="sm" icon="close" onClick={cancelEdit} />
+                        </>
+                      ) : (
+                        <>
+                          <Btn variant="ghost" size="sm" icon="edit" onClick={() => startEdit(row)} />
+                          <Btn variant="ghost" size="sm" icon="delete" onClick={() => removeRow(row.id)}
+                            style={{ color: 'var(--error-main)' }} />
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                  {rowError && (
+                    <tr style={{ background: '#FFF3F3' }}>
+                      <td colSpan={6} style={{ padding: '4px 18px 8px', fontSize: 12, color: 'var(--error-main)', fontWeight: 600 }}>
+                        ⚠ {rowError}
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+window.ReviewCompensationConfig = ReviewCompensationConfig;
 window.ClientReviews = ClientReviews;
 window.CompensationConfigPanel = CompensationConfigPanel;
