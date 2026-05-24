@@ -4,36 +4,14 @@
 
 const { useState: useStateStep } = React;
 
-const LINKED_PROJECTS = [];
-
-// Pulled fresh on each render so newly-added workers show up immediately.
-function currentWorkers() {
-  return window.PerformanceStore?.getWorkers?.() || [];
-}
-
-function workerIdForStepperName(name) {
-  return window.PerformanceStore?.workerIdFromName?.(name) ||
-    currentWorkers().find(w => w.name === name)?.id ||
-    null;
-}
-
-// Owner is stored on the Goal as User.id, not Worker.id — go through
-// Worker.userId so a manager picking a worker as the owner still works.
-function ownerUserIdForStepperName(name) {
-  const w = currentWorkers().find(x => x.name === name);
-  return w?.userId || null;
-}
-
-function parseStepperDates(dates) {
-  const parts = String(dates || '').split('—').map(p => p.trim());
-  const dueDate = parts[1] || parts[0] || '';
-  let period = 'Custom';
-  if (/7\/1\/2026/.test(dates) && /9\/30\/2026/.test(dates)) period = 'Q3 2026';
-  if (/10\/1\/2026/.test(dates) && /12\/31\/2026/.test(dates)) period = 'Q4 2026';
-  if (/1\/1\/2026/.test(dates) && /3\/31\/2026/.test(dates)) period = 'Q1 2026';
-  if (/4\/1\/2026/.test(dates) && /6\/30\/2026/.test(dates)) period = 'Q2 2026';
-  return { dueDate, period };
-}
+const LINKED_PROJECTS = [
+  'Payroll Migration EU',
+  'KYB Automation v2',
+  'Contractor Onboarding Revamp',
+  'CSAT Recovery Program',
+  'Ops Tooling Modernisation',
+  'Q3 Payroll Quality Initiative',
+];
 
 const STEPS = [
   { id: 'name',  label: 'Name & Type' },
@@ -45,21 +23,18 @@ const STEPS = [
 
 function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, onCreate }) {
   const [stepIdx, setStepIdx] = useStateStep(0);
-  // If a worker is creating, default the contributors list to their own name
-  // and the owner field to their name — they can't pick anyone else anyway.
-  const meBoot = window.PerformanceStore?.getCurrentUser?.();
-  const isWorkerCreator = meBoot?.role === 'worker';
-  const [name, setName] = useStateStep(initial.name ?? '');
+  const [name, setName] = useStateStep(initial.name ?? 'Reduce vendor setup time by 20%');
   const [gtype, setGType] = useStateStep(initial.gtype ?? 'individual');
   const [privacy, setPrivacy] = useStateStep(initial.privacy ?? 'restricted');
   const [isPerf, setIsPerf] = useStateStep(initial.isPerf ?? true);
-  const [krs, setKrs] = useStateStep(initial.krs ?? []);
+  const [krs, setKrs] = useStateStep(initial.krs ?? [
+    { name: 'Average vendor setup time', start: 8, target: 6.4, unit: 'days' },
+    { name: 'KYB automation coverage',   start: 0, target: 80,  unit: '%' },
+  ]);
   const [krDir, setKrDir] = useStateStep('Increase');
-  const [dates, setDates] = useStateStep(initial.dates ?? '');
-  const [contributors, setContributors] = useStateStep(initial.contributors ?? (isWorkerCreator ? [meBoot.name] : []));
-  // Owner is derived from the first contributor so the chip is never empty.
-  // Picking somebody changes who's responsible; toggling everyone off clears it.
-  const owner = (initial.owner) || contributors[0] || '';
+  const [dates, setDates] = useStateStep(initial.dates ?? '7/1/2026 — 9/30/2026');
+  const [owner, setOwner] = useStateStep(initial.owner ?? 'Omar Khan');
+  const [contributors, setContributors] = useStateStep(initial.contributors ?? ['Aditi Sharma', 'Priya Nair']);
   const [opts, setOpts] = useStateStep(initial.opts ?? { alignment: true, description: false, tags: true });
   const [linkedProject, setLinkedProject] = useStateStep(initial.linkedProject ?? '');
 
@@ -68,91 +43,6 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
   const title = mode === 'edit' ? (kind === 'okr' ? 'Edit OKR' : 'Edit Goal') : (kind === 'okr' ? 'New OKR' : 'New Goal');
 
   const displayName = name?.trim() ? name.trim() : (kind === 'okr' ? 'Untitled OKR' : 'Untitled Goal');
-  const me = window.PerformanceStore?.getCurrentUser?.();
-  const selfTag = me ? `Self (${me.name})` : '__self__';
-  const selectedSelf = contributors.includes(selfTag);
-  const selectedWorkerIds = contributors
-    .filter(c => c !== selfTag)
-    .map(workerIdForStepperName)
-    .filter(Boolean);
-
-  function toggleContributor(workerName) {
-    setContributors(prev => prev.includes(workerName)
-      ? prev.filter(c => c !== workerName)
-      : [...prev, workerName]);
-  }
-
-  function toggleKrAssignee(index, workerId) {
-    setKrs(prev => prev.map((kr, i) => {
-      if (i !== index) return kr;
-      const assignedToIds = kr.assignedToIds || selectedWorkerIds;
-      return {
-        ...kr,
-        assignedToIds: assignedToIds.includes(workerId)
-          ? assignedToIds.filter(id => id !== workerId)
-          : [...assignedToIds, workerId],
-      };
-    }));
-  }
-
-  function buildPayload(status = 'not-started') {
-    const { dueDate, period } = parseStepperDates(dates);
-    const assigneeIds = selectedWorkerIds;
-    const ownerWorkerId = workerIdForStepperName(owner);
-    // Owner-resolution rules:
-    //  - Worker creator → owner is always the worker's own user id.
-    //  - Manager picked "Self" chip → owner is the manager's user id.
-    //  - Manager picked a worker as owner → owner is that worker's user id (via Worker.userId).
-    //  - Fallback → the manager.
-    const isWorker = me?.role === 'worker';
-    // owner = contributors[0] (the chip the user sees). Decide ownerUserId by
-    // whether that first pick is "Self ..." or a worker name.
-    const ownerIsSelf = owner === selfTag;
-    const ownerUserFromPick = ownerUserIdForStepperName(owner);
-    const ownerId = isWorker
-      ? me.id
-      : (ownerIsSelf
-          ? (me?.id || window.PerformanceStore?.MANAGER_ID)
-          : (ownerUserFromPick || me?.id || window.PerformanceStore?.MANAGER_ID));
-    const keyResults = krs.map(kr => ({
-      title: kr.name,
-      current: Number(kr.start) || 0,
-      target: Number(kr.target) || 100,
-      unit: kr.unit || '%',
-      progress: 0,
-      status: 'not-started',
-      assignedToIds: kr.assignedToIds?.length ? kr.assignedToIds : assigneeIds,
-      linkedProject: kr.linkedProject || linkedProject,
-    }));
-    return {
-      title: displayName,
-      name: displayName,
-      type: gtype,
-      privacy,
-      visibility: privacy,
-      dates,
-      dueDate,
-      period,
-      owner,
-      // ownerUserId is what the backend stores; the store's toBackendGoalPayload
-      // reads p.ownerUserId. Pass our resolved ownerId there.
-      ownerUserId: ownerId,
-      ownerId,
-      ownerType: isWorker ? 'worker' : 'manager',
-      contributors,
-      assigneeIds,
-      collaboratorIds: assigneeIds,
-      keyResults,
-      krs: keyResults,
-      linkedProject,
-      status,
-      progress: 0,
-      isPerformanceGoal: isPerf,
-      createdBy: ownerId,
-      createdByRole: isWorker ? 'worker' : 'employer',
-      source: isWorker ? 'worker_created' : 'employer_assigned',
-    };
-  }
 
   return (
     <div className="stepper-takeover">
@@ -360,18 +250,6 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                       <button className="danger" title="Delete" onClick={() => setKrs(krs.filter((_, j) => j !== i))}><span className="ms">delete</span></button>
                     </div>
                   </div>
-                  <div style={{ marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Assigned to</span>
-                    {currentWorkers().map(w => {
-                      const assigned = (kr.assignedToIds || selectedWorkerIds).includes(w.id);
-                      return (
-                        <button key={w.id} className={`opt-chip ${assigned ? 'active' : ''}`} style={{ padding: '4px 9px', fontSize: 12 }}
-                          onClick={() => toggleKrAssignee(i, w.id)}>
-                          <span className="ms" style={{ fontSize: 14 }}>{assigned ? 'check' : 'person_add'}</span>{w.name}
-                        </button>
-                      );
-                    })}
-                  </div>
                 </div>
               ))}
               <div className="new-kr-row">
@@ -422,7 +300,7 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
               </div>
 
               <div className="field">
-                <div className="lh"><div className="lbl">Assignees / Collaborators</div></div>
+                <div className="lh"><div className="lbl">Contributors</div></div>
                 <div className="user-field">
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', paddingTop: 4 }}>
                     {contributors.map((c, i) => (
@@ -430,43 +308,10 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                         {c}<span className="x" onClick={() => setContributors(contributors.filter((_, j) => j !== i))}>×</span>
                       </span>
                     ))}
-                    <input placeholder={contributors.length === 0 ? 'Type names here to select multiple assignees' : ''} style={{ flex: 1, minWidth: 200 }} />
+                    <input placeholder={contributors.length === 0 ? 'Type names here to select multiple contributors' : ''} style={{ flex: 1, minWidth: 200 }} />
                   </div>
                 </div>
-                <div className="help">Assignees and collaborators are workers actively pursuing and updating this goal.</div>
-                <div style={{ marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                  {(() => {
-                    const me = window.PerformanceStore.getCurrentUser?.();
-                    if (!me) return null;
-                    // Workers can only assign themselves to their own goals.
-                    if (me.role === 'worker') {
-                      const myName = me.name;
-                      const picked = contributors.includes(myName);
-                      return (
-                        <button className={`opt-chip ${picked ? 'active' : ''}`}
-                          onClick={() => toggleContributor(myName)}
-                          style={{ background: picked ? 'var(--success-bg)' : undefined, color: picked ? 'var(--success-dark)' : undefined, fontWeight: 700 }}>
-                          <span className="ms">{picked ? 'check_circle' : 'person'}</span>Me · {me.name}
-                        </button>
-                      );
-                    }
-                    // Managers / admins get a Self chip plus every worker.
-                    const selfName = `Self (${me.name})`;
-                    const selfPicked = contributors.includes(selfName);
-                    return (
-                      <>
-                        <button className={`opt-chip ${selfPicked ? 'active' : ''}`} onClick={() => toggleContributor(selfName)} style={{ background: selfPicked ? 'var(--success-bg)' : undefined, color: selfPicked ? 'var(--success-dark)' : undefined, fontWeight: 700 }}>
-                          <span className="ms">{selfPicked ? 'check_circle' : 'person'}</span>Self · {me.name}
-                        </button>
-                        {currentWorkers().map(w => (
-                          <button key={w.id} className={`opt-chip ${contributors.includes(w.name) ? 'active' : ''}`} onClick={() => toggleContributor(w.name)}>
-                            <span className="ms">{contributors.includes(w.name) ? 'check_circle' : 'person_add'}</span>{w.name}
-                          </button>
-                        ))}
-                      </>
-                    );
-                  })()}
-                </div>
+                <div className="help">Contributors are users that are actively pursuing and updating the progress of this goal.</div>
               </div>
 
               <div className="field" style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--grey-100)' }}>
@@ -521,7 +366,7 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                   <span className="v"><Avatar name={owner} size="xs" />{owner}</span>
                 </div>
                 <div className="dotted-row">
-                  <span className="k">Assignees / Collaborators</span>
+                  <span className="k">Contributors</span>
                   <span className="dots" />
                   <span className="v">{contributors.length ? <><AvatarStack names={contributors} size="xs" /> {contributors.length} contributor{contributors.length > 1 ? 's' : ''}</> : '0 contributors'}</span>
                 </div>
@@ -565,13 +410,13 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
               <>
                 {mode === 'edit' ? (
                   <>
-                    <button className="btn-draft" onClick={() => onCreate && onCreate(buildPayload('not-started'))}>Save as draft</button>
-                    <Btn variant="primary" onClick={() => onCreate && onCreate(buildPayload('not-started'))}>Save changes</Btn>
+                    <button className="btn-draft">Save as draft</button>
+                    <Btn variant="primary" onClick={() => onCreate && onCreate({ name, gtype, krs, dates, owner, contributors })}>Save changes</Btn>
                   </>
                 ) : (
                   <>
-                    <button className="btn-draft" onClick={() => onCreate && onCreate(buildPayload('not-started'))}>Create in Draft Mode</button>
-                    <Btn variant="primary" onClick={() => onCreate && onCreate(buildPayload('not-started'))}>Create {kind === 'okr' ? 'OKR' : 'Goal'}</Btn>
+                    <button className="btn-draft">Create in Draft Mode</button>
+                    <Btn variant="primary" onClick={() => onCreate && onCreate({ name, gtype, krs, dates, owner, contributors })}>Create {kind === 'okr' ? 'OKR' : 'Goal'}</Btn>
                   </>
                 )}
               </>

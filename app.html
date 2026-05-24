@@ -94,11 +94,10 @@ html, body { margin: 0; padding: 0; background: #F1EFEC; min-height: 100vh; }
   display: flex;
   align-items: center;
   padding: 0 16px;
-  gap: 10px;
+  gap: 8px;
   z-index: 9999;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
-.back-bar button:hover { background: rgba(0, 117, 225, 0.08); }
 .back-bar a {
   display: flex;
   align-items: center;
@@ -126,47 +125,33 @@ html, body { margin: 0; padding: 0; background: #F1EFEC; min-height: 100vh; }
 <script src="vendor/babel.js"></script>
 
 <!-- Shared shell + components -->
-<script type="text/babel" src="shared.jsx?v=5"></script>
-<script type="text/babel" src="frames/performance-store.jsx?v=5"></script>
-<script type="text/babel" src="frames/login.jsx?v=5"></script>
+<script type="text/babel" src="shared.jsx"></script>
 
 <!-- Shared sub-screens -->
-<script type="text/babel" src="frames/goal-detail.jsx?v=5"></script>
-<script type="text/babel" src="frames/goal-stepper.jsx?v=5"></script>
-<script type="text/babel" src="frames/meeting-notes.jsx?v=5"></script>
-<script type="text/babel" src="frames/review-cycle-stepper.jsx?v=5"></script>
-<script type="text/babel" src="frames/manager-review-form.jsx?v=5"></script>
-<script type="text/babel" src="frames/worker-self-review.jsx?v=5"></script>
-<script type="text/babel" src="frames/notifications.jsx?v=5"></script>
-<script type="text/babel" src="frames/all-review-cycles.jsx?v=5"></script>
+<script type="text/babel" src="frames/goal-detail.jsx"></script>
+<script type="text/babel" src="frames/goal-stepper.jsx"></script>
+<script type="text/babel" src="frames/meeting-notes.jsx"></script>
 
 <!-- Client screens -->
-<script type="text/babel" src="frames/client-dashboard.jsx?v=5"></script>
-<script type="text/babel" src="frames/client-okrs.jsx?v=5"></script>
-<script type="text/babel" src="frames/client-reviews.jsx?v=5"></script>
-<script type="text/babel" src="frames/client-meetings.jsx?v=5"></script>
+<script type="text/babel" src="frames/client-dashboard.jsx"></script>
+<script type="text/babel" src="frames/client-okrs.jsx"></script>
+<script type="text/babel" src="frames/client-meetings.jsx"></script>
+<script type="text/babel" src="frames/client-reviews.jsx"></script>
 
 <!-- Worker screens -->
-<script type="text/babel" src="frames/worker-dashboard.jsx?v=5"></script>
-<script type="text/babel" src="frames/worker-goals.jsx?v=5"></script>
-<script type="text/babel" src="frames/worker-meetings.jsx?v=5"></script>
-<script type="text/babel" src="frames/worker-reviews.jsx?v=5"></script>
+<script type="text/babel" src="frames/worker-dashboard.jsx"></script>
+<script type="text/babel" src="frames/worker-goals.jsx"></script>
+<script type="text/babel" src="frames/worker-meetings.jsx"></script>
+<script type="text/babel" src="frames/worker-reviews.jsx"></script>
 
 <!-- Admin -->
-<script type="text/babel" src="frames/admin-dashboard.jsx?v=5"></script>
+<script type="text/babel" src="frames/admin-dashboard.jsx"></script>
 
 <script type="text/babel">
 const { useState, useEffect } = React;
 
 /* ── Route map ── */
 const ROUTES = [
-  {
-    section: 'Auth',
-    colorClass: 'admin-num',
-    items: [
-      { hash: '/login',              num: '00', label: 'Login / Switch account' },
-    ],
-  },
   {
     section: 'Client / Manager',
     colorClass: 'client-num',
@@ -178,7 +163,6 @@ const ROUTES = [
       { hash: '/client/reviews',     num: '03', label: 'Reviews' },
       { hash: '/client/meetings',    num: '04', label: '1:1 Meetings' },
       { hash: '/client/notes',       num: '04b', label: '1:1 Notes Editor' },
-      { hash: '/client/notifications', num: '04c', label: 'Notifications' },
     ],
   },
   {
@@ -195,8 +179,7 @@ const ROUTES = [
       { hash: '/worker/dashboard', num: '06', label: 'My Dashboard' },
       { hash: '/worker/goals',     num: '07', label: 'My Goals' },
       { hash: '/worker/meetings',  num: '08', label: 'My 1:1 Sessions' },
-      { hash: '/worker/reviews',   num: '09', label: 'Feedback & Reviews' },
-      { hash: '/worker/notifications', num: '10', label: 'Notifications' },
+      { hash: '/worker/reviews',   num: '09', label: 'Reviews' },
     ],
   },
 ];
@@ -214,7 +197,6 @@ function useHash() {
 
 /* ── Render a route ── */
 function renderView(hash) {
-  if (hash === '/login') return <LoginScreen />;
   switch (hash) {
     case '/client/dashboard':
       return <ClientDashboard />;
@@ -225,18 +207,7 @@ function renderView(hash) {
         <Shell persona="client" active="performance"
           crumb={['Acme Holdings', 'Performance', 'Goals & OKRs', 'New Goal']}>
           <GoalStepper kind="goal" onCancel={() => { window.location.hash = '/client/okrs'; }}
-            onCreate={async (payload) => {
-              // The stepper's buildPayload already sets ownerUserId, source,
-              // createdByRole correctly for both managers and workers. We
-              // simply pass it through and surface any backend error.
-              try {
-                await window.PerformanceStore.createGoal(payload);
-                window.location.hash = '/client/okrs';
-              } catch (e) {
-                console.error('createGoal failed', e);
-                alert(`Could not create goal: ${e.message}`);
-              }
-            }} />
+            onCreate={() => { window.location.hash = '/client/okrs'; }} />
         </Shell>
       );
     case '/client/goal-detail':
@@ -267,23 +238,6 @@ function renderView(hash) {
       );
     case '/admin/dashboard':
       return <AdminDashboard />;
-    case '/projects':
-      return (
-        <Shell persona="client" active="performance"
-          crumb={['Acme Holdings', 'Projects']}>
-          <PageHead
-            eyebrow="Projects"
-            title="Projects"
-            sub="Projects live in the Payo WFM core, alongside time-tracking and payroll. This perf-management prototype links projects from goals and OKRs."
-            actions={<Btn variant="ghost" icon="arrow_back" onClick={() => window.location.hash = '/client/dashboard'}>Back to dashboard</Btn>}
-          />
-          <Callout tone="info" icon="rocket_launch">
-            <strong>Projects view stub.</strong> In production, this card opens the Projects module. From here in the prototype, you can still see project links inside <a href="#/client/okrs">Goals &amp; OKRs</a>.
-          </Callout>
-        </Shell>
-      );
-    case '/client/notifications':
-      return <NotificationsPage persona="client" />;
     case '/worker/dashboard':
       return <WorkerDashboard />;
     case '/worker/goals':
@@ -292,10 +246,6 @@ function renderView(hash) {
       return <WorkerMeetings />;
     case '/worker/reviews':
       return <WorkerReviews />;
-    case '/worker/reviews/all':
-      return <AllReviewCyclesPage />;
-    case '/worker/notifications':
-      return <NotificationsPage persona="worker" />;
     default:
       return null;
   }
@@ -338,65 +288,9 @@ function HomeNav() {
 function App() {
   const hash = useHash();
   const isHome = hash === '/' || hash === '';
-  const isLogin = hash === '/login';
   const label = labelFor(hash);
 
-  const [authState, setAuthState] = useState(() => ({
-    bootstrapping: window.PerformanceStore.isAuthenticated(),
-    user: window.PerformanceStore.getCurrentUser(),
-  }));
-
-  useEffect(() => {
-    // Force re-render on store changes (user login/logout/data refresh).
-    const off = window.PerformanceStore.subscribe(() => {
-      setAuthState({
-        bootstrapping: false,
-        user: window.PerformanceStore.getCurrentUser(),
-      });
-    });
-    if (window.PerformanceStore.isAuthenticated() && !window.PerformanceStore.isBootstrapped()) {
-      window.PerformanceStore.bootstrap()
-        .finally(() => setAuthState({
-          bootstrapping: false,
-          user: window.PerformanceStore.getCurrentUser(),
-        }));
-    } else {
-      setAuthState({ bootstrapping: false, user: window.PerformanceStore.getCurrentUser() });
-    }
-    return off;
-  }, []);
-
-  // Re-fetch every slice when the route changes so a tab that was open
-  // before a write happened in another session picks up the latest data.
-  useEffect(() => {
-    if (!hash || hash === '/login' || hash === '/' || hash === '') return;
-    if (!window.PerformanceStore.isAuthenticated()) return;
-    window.PerformanceStore.refreshAll();
-  }, [hash]);
-
-  // Auth gate: unauthenticated users can only see HomeNav + LoginScreen.
-  const requiresAuth = !isHome && !isLogin;
-  if (requiresAuth && !window.PerformanceStore.isAuthenticated()) {
-    window.location.hash = '/login';
-    return null;
-  }
-
-  if (isLogin) {
-    return renderView('/login');
-  }
-  if (isHome) return <HomeNav user={authState.user} />;
-
-  if (authState.bootstrapping) {
-    return (
-      <div style={{
-        minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-        color: '#666', fontSize: 14,
-      }}>
-        Loading your workspace…
-      </div>
-    );
-  }
+  if (isHome) return <HomeNav />;
 
   const view = renderView(hash);
   if (!view) return (
@@ -411,22 +305,6 @@ function App() {
       <div className="back-bar">
         <a href="#">← All views</a>
         {label && <><span className="sep">/</span><span className="route-label">{label}</span></>}
-        <span style={{ flex: 1 }} />
-        {authState.user && (
-          <span style={{ fontSize: 12.5, color: '#555' }}>
-            Signed in as <strong style={{ color: '#1a1a1a' }}>{authState.user.name}</strong>
-            <span style={{ color: '#999' }}> · {authState.user.role}</span>
-          </span>
-        )}
-        <button
-          onClick={() => window.PerformanceStore.logout()}
-          style={{
-            border: 'none', background: 'transparent',
-            color: '#0075E1', cursor: 'pointer', fontSize: 12.5, fontWeight: 600,
-            padding: '4px 10px', borderRadius: 6,
-          }}>
-          {authState.user ? 'Log out' : 'Sign in'}
-        </button>
       </div>
       <div className="view-wrap">{view}</div>
     </>

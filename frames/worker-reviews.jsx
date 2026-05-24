@@ -7,66 +7,89 @@ const { useState: useStateWR } = React;
 
 function WorkerReviews() {
   const [active, setActive] = useStateWR(null);
-  // cycleView: null | { kind: 'self-review' | 'shared', participantId }
-  const [cycleView, setCycleView] = useStateWR(null);
-  const [storeVersion, setStoreVersion] = useStateWR(0);
 
-  React.useEffect(() => window.PerformanceStore.subscribe(() => setStoreVersion(v => v + 1)), []);
-
-  // Deep-links from the All-cycles page set these session keys.
-  React.useEffect(() => {
-    try {
-      const sShared = window.sessionStorage.getItem('payo.workerReviews.openShared');
-      if (sShared) { window.sessionStorage.removeItem('payo.workerReviews.openShared'); setCycleView({ kind: 'shared', participantId: sShared }); return; }
-      const sSelf = window.sessionStorage.getItem('payo.workerReviews.openSelf');
-      if (sSelf)   { window.sessionStorage.removeItem('payo.workerReviews.openSelf');   setCycleView({ kind: 'view-self', participantId: sSelf });   return; }
-    } catch (e) {}
-  }, []);
-
-  const currentWorkerId = window.PerformanceStore.getCurrentWorkerId();
-  const currentWorker = window.PerformanceStore.workerById(currentWorkerId);
-
-  // -- Drill-in: self-review form (edit or read-only post-submit)
-  if (cycleView?.kind === 'self-review' || cycleView?.kind === 'view-self') {
-    return (
-      <Shell persona="worker" active="performance"
-        crumb={['Payo WFM', 'Performance', 'Reviews', 'Self-review']}>
-        <WorkerSelfReview participantId={cycleView.participantId} onBack={() => setCycleView(null)} />
-      </Shell>
-    );
-  }
-
-  // -- Drill-in: view shared final review
-  if (cycleView?.kind === 'shared') {
-    return (
-      <Shell persona="worker" active="performance"
-        crumb={['Payo WFM', 'Performance', 'Reviews', 'Shared review']}>
-        <SharedReviewView participantId={cycleView.participantId} onBack={() => setCycleView(null)} />
-      </Shell>
-    );
-  }
-
-  const sharedStoreReviews = window.PerformanceStore.getReviewsForWorker(currentWorkerId)
-    .map(r => ({
-      id: r.id,
-      when: r.createdAt,
-      author: 'Priya Nair',
-      authorRole: 'Manager',
-      type: 'manager',
-      cycle: r.title,
-      rating: Number(r.rating) || 0,
-      ratingLabel: Number(r.rating) >= 4.5 ? 'Exceeds expectations' : 'Manager rating',
-      summary: r.comments,
-      excerpt: r.comments,
-      krs: [],
-    }));
-
-  // Reviews grouped by month — only the ones actually shared with this worker.
-  const groups = sharedStoreReviews.length ? [{
-    month: 'Shared by manager',
-    label: 'Visible reviews only',
-    reviews: sharedStoreReviews,
-  }] : [];
+  // Reviews grouped by month
+  const groups = [
+    {
+      month: 'September 2026', label: 'Q3 cycle',
+      reviews: [
+        {
+          id: 'r1',
+          when: 'Sep 28, 2026',
+          author: 'Priya Nair',  authorRole: 'Manager',
+          type: 'manager', cycle: 'Q3 Performance Review',
+          rating: 4.5, ratingLabel: 'Exceeds expectations',
+          summary: 'Strong Q3. Led the Spain cutover with zero P0s, mentored Lina through her first migration, and built the runbook the rest of the team is now using.',
+          excerpt: 'Aditi continues to operate above her role. Her work on the Spain migration set a new bar for cutover quality — the renewal that followed (3-year, $1.4M ACV) is directly attributable. She\'s ready to formalize the Lead Ops path; recommend promotion case for Q4.',
+          krs: ['6 migrations · 6/6 done', '0 P0s through cutover', 'CSAT 4.4 / 4.5 target'],
+        },
+        {
+          id: 'r2',
+          when: 'Sep 22, 2026',
+          author: 'Hannah Mueller', authorRole: 'Skip-level',
+          type: 'manager', cycle: 'Q3 Skip-level check-in',
+          rating: 4.0, ratingLabel: 'Meets+ expectations',
+          summary: 'Career-track conversation. Aligned on Lead Ops growth path. Aditi is ready, we need to firm up scope and timeline.',
+          excerpt: 'Aditi has the technical depth and operational instincts for Lead Ops. The growth area is comfort with ambiguity at the program level — fewer prescriptive playbooks, more leading through influence.',
+        },
+        {
+          id: 'r3',
+          when: 'Sep 20, 2026',
+          author: 'Lina Chen', authorRole: 'Peer',
+          type: 'peer', cycle: 'Q3 360°',
+          rating: 5.0, ratingLabel: 'Outstanding',
+          summary: 'Pairing on the migration runbook saved me a month. Aditi explains complex workflows in a way that sticks.',
+          excerpt: 'When we paired on the rollback flows, Aditi pre-built the diagrams so the doc clicked on the first read. I now use her template for every new client onboarding.',
+        },
+        {
+          id: 'r4',
+          when: 'Sep 18, 2026',
+          author: 'Marco Diaz', authorRole: 'Client',
+          type: 'client', cycle: 'Project completion',
+          rating: 5.0, ratingLabel: 'Outstanding',
+          summary: 'Communication during cutover was the difference between a hard week and a smooth one.',
+          excerpt: '"Aditi kept us informed every step. We never felt out of the loop, and her playbook for the cutover day was the most organized thing I\'ve seen in 12 years of payroll migrations."',
+        },
+      ],
+    },
+    {
+      month: 'August 2026', label: 'Project reviews',
+      reviews: [
+        {
+          id: 'r5',
+          when: 'Aug 14, 2026',
+          author: 'Priya Nair', authorRole: 'Manager',
+          type: 'project', cycle: 'Italy migration retro',
+          rating: 4.0, ratingLabel: 'Meets+ expectations',
+          summary: 'Solid execution on the Italy cutover. Surfaced runbook gaps proactively — exactly what we needed before Spain.',
+          excerpt: 'Aditi flagged 7 doc gaps in the runbook that would have hit us hard in Spain. Owning the fix herself.',
+        },
+        {
+          id: 'r6',
+          when: 'Aug 02, 2026',
+          author: 'Aditi Sharma', authorRole: 'Self',
+          type: 'self', cycle: 'Mid-cycle self-review',
+          rating: 3.5, ratingLabel: 'On track',
+          summary: 'Migration KR ahead of pace. Mentorship KR slightly behind — need to formalize cadence with Lina.',
+          excerpt: 'Strongest stretch I\'ve had in 2 years. Areas to grow: more comfort with stakeholder pushback at the steerco level.',
+        },
+      ],
+    },
+    {
+      month: 'June 2026', label: 'H1 wrap',
+      reviews: [
+        {
+          id: 'r7',
+          when: 'Jun 27, 2026',
+          author: 'Priya Nair', authorRole: 'Manager',
+          type: 'manager', cycle: 'H1 Performance Review',
+          rating: 4.0, ratingLabel: 'Meets+ expectations',
+          summary: 'Productive H1. Carried the payroll migration narrative end-to-end.',
+          excerpt: 'Aditi grew into the senior IC role in H1. Key area for H2: lead at least one program, not just contribute.',
+        },
+      ],
+    },
+  ];
 
   const typeMeta = {
     manager:   { icon: 'badge',          tone: 'employee',   label: 'Manager review' },
@@ -166,37 +189,20 @@ function WorkerReviews() {
 
       <PageHead
         eyebrow="My performance"
-        title={`Feedback & Reviews · viewing as ${currentWorker?.name || 'Worker'}`}
-        sub="All the feedback and reviews you've received, organized by month. Click any tile to read the full text and rating."
+        title="Reviews I've received"
+        sub="Every review you've received, organized by month. Click any tile to read the full text and rating."
         actions={<>
           <Btn variant="ghost" icon="filter_list">Filters</Btn>
           <Btn variant="ghost" icon="download">Export</Btn>
         </>}
       />
 
-      <MyReviewCyclesPanel
-        currentWorkerId={currentWorkerId}
-        onStartSelfReview={(participantId) => setCycleView({ kind: 'self-review', participantId })}
-        onViewSelfReview={(participantId) => setCycleView({ kind: 'view-self', participantId })}
-        onViewShared={(participantId) => setCycleView({ kind: 'shared', participantId })}
-      />
-
-      {(() => {
-        const allShared = window.PerformanceStore.getReviewsForWorker(currentWorkerId);
-        const ratings = allShared.map(r => Number(r.rating)).filter(n => !isNaN(n) && n > 0);
-        const avg = ratings.length ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1) : '—';
-        const outstanding = allShared.filter(r => String(r.rating || '').toLowerCase().includes('exceed')).length;
-        const myCycles = window.PerformanceStore.getReviewCyclesForWorker(currentWorkerId);
-        const nextCycle = myCycles.filter(c => c.status === 'active').sort((a,b) => String(a.selfReviewDueDate||a.periodEnd||'').localeCompare(String(b.selfReviewDueDate||b.periodEnd||'')))[0];
-        return (
-          <div className="stats-row c-4 mb-4">
-            <StatCard tone="green"  icon="task_alt"    label="Total reviews"  value={String(allShared.length)} sub={allShared.length ? 'Shared with you' : 'No reviews yet'} />
-            <StatCard tone="blue"   icon="star"        label="Average rating" value={String(avg)}              sub={ratings.length ? `Across ${ratings.length} review${ratings.length === 1 ? '' : 's'}` : 'No ratings yet'} />
-            <StatCard tone="purple" icon="celebration" label="Outstanding"    value={String(outstanding)}       sub={outstanding ? '"Exceeds expectations" reviews' : 'None yet'} />
-            <StatCard tone="amber"  icon="event"       label="Next review"    value={nextCycle ? (nextCycle.selfReviewDueDate || 'Soon') : '—'} sub={nextCycle ? nextCycle.name : 'No active cycle'} />
-          </div>
-        );
-      })()}
+      <div className="stats-row c-4 mb-4">
+        <StatCard tone="green"  icon="task_alt"    label="Total reviews"   value="12" sub="Across all cycles" />
+        <StatCard tone="blue"   icon="star"        label="Average rating"  value="4.3" sub="Last 4 cycles · trending up" />
+        <StatCard tone="purple" icon="celebration" label="Outstanding"     value="3"  sub="reviews this year" />
+        <StatCard tone="amber"  icon="event"       label="Next review"     value="Q4" sub="Cycle opens Dec 1, 2026" />
+      </div>
 
       <div className="row gap-2 mb-4 items-center" style={{ flexWrap: 'wrap' }}>
         <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: 4 }}>Type:</span>
@@ -255,182 +261,6 @@ function WorkerReviews() {
         </div>
       ))}
     </Shell>
-  );
-}
-
-/* ---------- My review cycles panel ---------- */
-function MyReviewCyclesPanel({ currentWorkerId, onStartSelfReview, onViewShared, onViewSelfReview }) {
-  const MAX = 2;
-  const cyclesAll = window.PerformanceStore.getReviewCyclesForWorker(currentWorkerId);
-  // Most recent first (by periodEnd then by createdAt fallback)
-  cyclesAll.sort((a, b) => String(b.periodEnd || b.createdAt || '').localeCompare(String(a.periodEnd || a.createdAt || '')));
-  const cycles = cyclesAll.slice(0, MAX);
-  const hidden = cyclesAll.length - cycles.length;
-
-  if (cyclesAll.length === 0) {
-    return (
-      <SectionCard
-        title="My review cycles"
-        sub="No active review cycles right now."
-        icon="event_repeat"
-        style={{ marginBottom: 16 }}
-      >
-        <div style={{ fontSize: 13, color: 'var(--fg-secondary)' }}>
-          When your manager launches a cycle that includes you, it will appear here with a Start self-review action.
-        </div>
-      </SectionCard>
-    );
-  }
-  return (
-    <SectionCard
-      title="My review cycles"
-      sub={`Showing the ${cycles.length} most recent · ${cyclesAll.length} total`}
-      icon="event_repeat"
-      padBody={false}
-      style={{ marginBottom: 16 }}
-      action={
-        cyclesAll.length > MAX
-          ? <Btn variant="ghost" size="sm" iconTrailing="arrow_forward" onClick={() => window.location.hash = '/worker/reviews/all'}>View all ({cyclesAll.length})</Btn>
-          : null
-      }
-    >
-      {cycles.map(c => {
-        const p = window.PerformanceStore.getReviewParticipantForWorker(c.id, currentWorkerId);
-        const sr = p ? window.PerformanceStore.getSelfReview(p.id) : null;
-        const selfStatus = sr?.status || p?.selfReviewStatus || 'not-started';
-        const finalShared = p?.finalReviewStatus === 'shared' || p?.finalReviewStatus === 'acknowledged';
-        const acknowledged = p?.finalReviewStatus === 'acknowledged';
-        return (
-          <div key={c.id} style={{
-            display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) 130px 140px 240px',
-            gap: 16, alignItems: 'center',
-            padding: '14px 22px', borderTop: '1px solid var(--grey-50)',
-          }}>
-            <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--grey-800)' }}>{c.name}</div>
-              <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)', marginTop: 2 }}>{c.periodStart} → {c.periodEnd} · self-review due {c.selfReviewDueDate || '—'}</div>
-            </div>
-            <Pill variant={c.status === 'active' ? 'active' : 'draft'} dot>{c.status}</Pill>
-            <div className="col gap-1">
-              <span style={{ fontSize: 10.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Self-review</span>
-              {selfStatus === 'submitted'   && <Pill variant="completed" dot>Submitted</Pill>}
-              {selfStatus === 'draft'       && <Pill variant="warning"   dot>Draft</Pill>}
-              {selfStatus === 'not-started' && <Pill variant="draft">Not started</Pill>}
-            </div>
-            <div className="row gap-2" style={{ justifyContent: 'flex-end', flexWrap: 'wrap' }}>
-              {!finalShared && selfStatus !== 'submitted' && p && (
-                <Btn variant="primary" size="sm" icon={selfStatus === 'draft' ? 'edit' : 'play_arrow'} onClick={() => onStartSelfReview(p.id)}>
-                  {selfStatus === 'draft' ? 'Continue self-review' : 'Start self-review'}
-                </Btn>
-              )}
-              {selfStatus === 'submitted' && p && (
-                <Btn variant="ghost" size="sm" icon="visibility" onClick={() => onViewSelfReview(p.id)}>View my self-review</Btn>
-              )}
-              {finalShared && p && (
-                <Btn variant={acknowledged ? 'ghost' : 'primary'} size="sm" icon={acknowledged ? 'check' : 'visibility'} onClick={() => onViewShared(p.id)}>
-                  {acknowledged ? 'View shared review' : 'View & acknowledge'}
-                </Btn>
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </SectionCard>
-  );
-}
-
-/* ---------- Shared final review view (worker side) ---------- */
-function SharedReviewView({ participantId, onBack }) {
-  const Store = window.PerformanceStore;
-  const [storeVersion, setStoreVersion] = useStateWR(0);
-  React.useEffect(() => Store.subscribe(() => setStoreVersion(v => v + 1)), []);
-
-  const participant = Store.getReviewParticipantById(participantId);
-  const cycle = participant ? Store.getReviewCycleById(participant.reviewCycleId) : null;
-  const worker = participant ? Store.workerById(participant.workerId) : null;
-  const mr = participant ? Store.getManagerReview(participantId) : null;
-  const visible = mr?.visibleToWorker || mr?.status === 'shared';
-  const [ackComment, setAckComment] = useStateWR(participant?.acknowledgementComment || '');
-  const acknowledged = participant?.finalReviewStatus === 'acknowledged';
-
-  if (!participant || !cycle || !mr || !visible) {
-    return (
-      <div className="card" style={{ padding: 24 }}>
-        <Btn variant="ghost" icon="arrow_back" onClick={onBack}>Back</Btn>
-        <div style={{ marginTop: 16, fontSize: 14, color: 'var(--fg-secondary)' }}>
-          This review hasn't been shared with you yet.
-        </div>
-      </div>
-    );
-  }
-
-  function ackAndBack() {
-    Store.acknowledgeReview(participantId, ackComment);
-    onBack && onBack();
-  }
-
-  return (
-    <>
-      <div className="row items-center between mb-4">
-        <Btn variant="ghost" icon="arrow_back" onClick={onBack}>Back to my reviews</Btn>
-        {acknowledged
-          ? <Pill variant="eligible" icon="check">Acknowledged</Pill>
-          : <Btn variant="primary" icon="check" onClick={ackAndBack}>Acknowledge review</Btn>}
-      </div>
-
-      <PageHead
-        eyebrow={`${cycle.name} · Shared by your manager`}
-        title="Your final review"
-        sub={`Period ${cycle.periodStart} → ${cycle.periodEnd} · for ${worker?.name}`}
-      />
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 16 }}>
-        <div className="col gap-4">
-          <SectionCard title="Final performance summary" icon="summarize">
-            <div style={{ fontSize: 13.5, color: 'var(--grey-700)', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
-              {mr.finalSummary || <em style={{ color: 'var(--fg-disabled)' }}>No final summary provided.</em>}
-            </div>
-          </SectionCard>
-          <SectionCard title="Key strengths" icon="star">
-            <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>
-              {mr.strengths || <em style={{ color: 'var(--fg-disabled)' }}>—</em>}
-            </div>
-          </SectionCard>
-          <SectionCard title="Development areas" icon="trending_up">
-            <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>
-              {mr.improvementAreas || <em style={{ color: 'var(--fg-disabled)' }}>—</em>}
-            </div>
-          </SectionCard>
-          <SectionCard title="Next cycle focus" icon="flag">
-            <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>
-              {mr.nextCycleFocus || <em style={{ color: 'var(--fg-disabled)' }}>—</em>}
-            </div>
-          </SectionCard>
-
-          {!acknowledged && (
-            <SectionCard title="Your acknowledgement" sub="Optional comment to your manager" icon="check_circle">
-              <textarea className="rc-input" rows={4} value={ackComment} onChange={e => setAckComment(e.target.value)}
-                placeholder="Thanks for the feedback. Aligned on the next cycle focus." />
-              <div className="row gap-2" style={{ marginTop: 10, justifyContent: 'flex-end' }}>
-                <Btn variant="primary" icon="check" onClick={ackAndBack}>Acknowledge review</Btn>
-              </div>
-            </SectionCard>
-          )}
-        </div>
-
-        <div className="col gap-3" style={{ position: 'sticky', top: 16, alignSelf: 'flex-start' }}>
-          {cycle.showRatingToWorker && mr.rating && (
-            <div className="card" style={{ padding: '20px 22px', textAlign: 'center' }}>
-              <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Overall rating</div>
-              <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--success-dark)', letterSpacing: '-0.01em', lineHeight: 1.2 }}>{mr.rating}</div>
-            </div>
-          )}
-          <Callout tone="info" icon="lock">
-            <strong>Manager private notes are not visible to you.</strong> What you see here is the final shared review only.
-          </Callout>
-        </div>
-      </div>
-    </>
   );
 }
 

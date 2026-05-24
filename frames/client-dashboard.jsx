@@ -4,38 +4,47 @@
    Signals, Recent Feedback. */
 
 function ClientDashboard() {
-  // Live counts derived from the store
-  const Store = window.PerformanceStore;
-  const allGoals = Store.getGoals();
-  const allMeetings = Store.getData().meetings;
-  const allCycles = Store.getReviewCycles();
-
   const kpis = [
-    { tone: 'blue',    icon: 'flag',           label: 'Active OKRs',     value: String(allGoals.length),    sub: `${allGoals.filter(g => g.status === 'on_track' || g.status === 'on-track').length} on track · ${allGoals.filter(g => g.status === 'at_risk' || g.status === 'at-risk').length} at risk`, route: '/client/okrs' },
-    { tone: 'purple',  icon: 'rocket_launch',  label: 'Linked projects', value: String(new Set(allGoals.map(g => g.linkedProject).filter(Boolean)).size), sub: 'Projects referenced by goals', route: '/projects' },
-    { tone: 'teal',    icon: 'event_available',label: '1:1s this month', value: String(allMeetings.length),  sub: `${allMeetings.filter(m => m.status === 'scheduled' || m.status === 'live').length} scheduled`, route: '/client/meetings' },
+    { tone: 'blue',    icon: 'flag',           label: 'Active OKRs',          value: '42', trend: { dir: 'up',   text: '+6' }, sub: '11 company · 14 team · 17 individual' },
+    { tone: 'purple',  icon: 'rocket_launch',  label: 'Linked projects',      value: '31', trend: { dir: 'up',   text: '+8' },  sub: '18 active · 9 done · 4 at-risk' },
+    { tone: 'teal',    icon: 'event_available',label: '1:1s this month',      value: '64', trend: { dir: 'flat', text: '0' },   sub: '8 today · 12 this week' },
   ];
 
-  const attentionGoals = [];
-  const goals = allGoals.map(g => ({
-    name: g.title,
-    owner: (g.assigneeIds || []).map(id => Store.workerById(id)?.name).filter(Boolean).join(', ') || '—',
-    project: g.linkedProject || '',
-    pct: g.progress || 0,
-    status: (g.status || '').replace('_', '-'),
-    due: g.dueDate || '',
-    okrType: g.type || 'individual',
-  }));
+  const goals = [
+    { name: 'Improve payroll migration quality',     owner: 'Ops Team',      project: 'Payroll Migration EU',     pct: 70, status: 'on-track', due: 'Sep 30, 2026', okrType: 'company' },
+    { name: 'Reduce vendor setup time by 20%',       owner: 'Omar Khan',     project: 'Vendor Setup Automation',  pct: 45, status: 'at-risk',  due: 'Oct 15, 2026', okrType: 'individual' },
+    { name: 'Complete onboarding projects on time',  owner: 'Aditi Sharma',  project: 'Client Onboarding Q3',     pct: 90, status: 'on-track', due: 'Sep 20, 2026', okrType: 'individual' },
+    { name: 'Launch the unified comms platform',     owner: 'Engineering',   project: 'Comms Unification',        pct: 32, status: 'at-risk',  due: 'Dec 15, 2026', okrType: 'team' },
+    { name: 'Cut support backlog under 50',          owner: 'Lina Chen',     project: 'CS Quality Q3',            pct: 58, status: 'on-track', due: 'Oct 30, 2026', okrType: 'individual' },
+  ];
 
-  const cycles = allCycles.map(c => ({
-    name: c.name,
-    type: c.reviewType ? c.reviewType[0].toUpperCase() + c.reviewType.slice(1) : 'Quarterly',
-    participants: (Store.getReviewParticipants(c.id) || []).length,
-    pct: 0,
-    pending: 'Workers',
-    due: c.managerReviewDueDate || c.periodEnd || '',
-    status: c.status,
-  }));
+  const cycles = [
+    { name: 'Q3 Performance Review',     type: 'Quarterly', participants: 120, pct: 68, pending: 'Managers',  due: 'Oct 15, 2026', status: 'active'   },
+    { name: 'Payroll Migration Review',  type: 'Project',   participants: 8,   pct: 40, pending: 'Workers',   due: 'May 25, 2026', status: 'overdue'  },
+    { name: 'Annual Review 2026',        type: 'Annual',    participants: 250, pct: 0,  pending: 'HR Admin',  due: 'Dec 15, 2026', status: 'draft'    },
+    { name: 'Engineering 360°',          type: '360° Feedback', participants: 38, pct: 31, pending: 'Peers', due: 'Apr 07, 2026', status: 'active' },
+  ];
+
+  const projectSignals = [
+    { project: 'Payroll Migration EU',     worker: 'Aditi Sharma', okr: 'Complete 5 migrations',          status: 'Completed',  trigger: 'Manager review due',  triggerVariant: 'review-due' },
+    { project: 'Vendor Setup Automation',  worker: 'Omar Khan',    okr: 'Reduce setup time by 20%',       status: 'In Progress',trigger: 'No review yet',       triggerVariant: 'draft' },
+    { project: 'Client Onboarding Q3',     worker: 'Lina Chen',    okr: 'Improve onboarding quality',     status: 'Completed',  trigger: 'Self-review pending', triggerVariant: 'warning' },
+    { project: 'Comms Unification',        worker: 'Diego Alvarez',okr: 'Launch unified platform v1',     status: 'In Progress',trigger: 'Milestone review',    triggerVariant: 'progress' },
+  ];
+
+  const comp = [
+    { worker: 'Aditi Sharma', role: 'Senior Ops',      okrPct: 90, outcome: 'Exceeds expectations', projects: '6/6', signal: 'eligible',      signalLabel: 'Eligible for review' },
+    { worker: 'Omar Khan',    role: 'Vendor Lead',     okrPct: 72, outcome: 'Meets expectations',   projects: '4/5', signal: 'monitor',       signalLabel: 'Monitor' },
+    { worker: 'Lina Chen',    role: 'Onboarding Mgr',  okrPct: 45, outcome: 'Needs support',        projects: '2/5', signal: 'needs-support', signalLabel: 'Not recommended yet' },
+    { worker: 'Diego Alvarez',role: 'Senior Engineer', okrPct: 82, outcome: 'Exceeds expectations', projects: '5/5', signal: 'eligible',      signalLabel: 'Eligible for review' },
+  ];
+
+  const feed = [
+    { who: 'Priya Nair', icon: 'rate_review', when: '2h ago', text: <><strong>Aditi Sharma</strong> received project feedback for <strong>Payroll Migration EU</strong></>, tag: 'Project' },
+    { who: 'Karim Idris', icon: 'flag', when: '4h ago',         text: <><strong>Omar Khan</strong> received goal feedback for <strong>Vendor Setup Automation</strong></>, tag: 'Goal' },
+    { who: 'Lina Chen',   icon: 'how_to_reg', when: 'yesterday', text: <><strong>Lina Chen</strong> completed self-review for <strong>Client Onboarding Q3</strong></>, tag: 'Self-review' },
+    { who: 'Hannah Mueller', icon: 'celebration', when: '2d ago',  text: <><strong>Hannah Mueller</strong> recognized <strong>Diego Alvarez</strong> for shipping the API refactor</>, tag: 'Recognition' },
+  ];
 
   return (
     <Shell persona="client" active="performance"
@@ -48,28 +57,16 @@ function ClientDashboard() {
         title="Performance overview"
         sub="Track goals, project outcomes, reviews, feedback, and compensation signals — all in one place."
         actions={<>
-          <Btn variant="ghost" icon="forum" onClick={() => window.location.hash = '/client/reviews'}>Give feedback</Btn>
-          <Btn variant="outlined" icon="play_circle" onClick={() => {
-            window.sessionStorage.setItem('payo.reviews.openStepper', '1');
-            window.location.hash = '/client/reviews';
-          }}>Start review cycle</Btn>
+          <Btn variant="ghost" icon="forum" onClick={() => window.location.hash = '/client/feedback'}>Give feedback</Btn>
+          <Btn variant="outlined" icon="play_circle">Start review cycle</Btn>
           <Btn variant="primary" icon="add">Create goal</Btn>
         </>}
       />
 
-      {/* KPI cards — clickable, route to relevant section */}
+      {/* KPI cards */}
       <div className="stats-row c-3 mb-4">
-        {kpis.map((k, i) => (
-          <StatCard
-            key={i}
-            {...k}
-            onClick={() => { if (k.route) window.location.hash = k.route; }}
-          />
-        ))}
+        {kpis.map((k, i) => <StatCard key={i} {...k} />)}
       </div>
-
-      {/* Needs attention — goals due in the next 10 days */}
-      <GoalsDueSoon goals={attentionGoals} variant="client" />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 16, marginBottom: 16 }}>
         <SectionCard
@@ -172,6 +169,66 @@ function ClientDashboard() {
               ))}
             </tbody>
           </table>
+        </SectionCard>
+      </div>
+
+      {/* Row: Project Performance Signals (2/3) + Recent Feedback (1/3) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 16, marginBottom: 16 }}>
+        <SectionCard
+          title="Project performance signals"
+          sub="Project completions flowing into reviews and OKR progress"
+          icon="rocket_launch"
+          action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">All projects</Btn>}
+          padBody={false}
+        >
+          <table className="tbl">
+            <thead><tr>
+              <th>Project</th><th>Worker</th><th>Linked OKR</th><th>Status</th>
+            </tr></thead>
+            <tbody>
+              {projectSignals.map((p, i) => (
+                <tr key={i}>
+                  <td>
+                    <div style={{ fontWeight: 700, color: 'var(--grey-700)', fontSize: 13 }}>{p.project}</div>
+                  </td>
+                  <td>
+                    <div className="worker-cell">
+                      <Avatar name={p.worker} size="sm" />
+                      <span className="name">{p.worker}</span>
+                    </div>
+                  </td>
+                  <td><span className="link-cell"><span className="ms">flag</span>{p.okr}</span></td>
+                  <td>
+                    {p.status === 'Completed'  && <Pill variant="completed" dot>Completed</Pill>}
+                    {p.status === 'In Progress'&& <Pill variant="progress" dot>In progress</Pill>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </SectionCard>
+
+        <SectionCard
+          title="Recent feedback"
+          sub="Across goals, projects, and peers"
+          icon="forum"
+          action={<Btn variant="text" size="sm" iconTrailing="arrow_forward">View feed</Btn>}
+          padBody={false}
+        >
+          <div>
+            {feed.map((f, i) => (
+              <div className="feed-item" key={i}>
+                <Avatar name={f.who} size="sm" />
+                <div className="b">
+                  <div className="t">{f.text}</div>
+                  <div className="meta">
+                    <span className="ms" style={{ fontSize: 13 }}>{f.icon}</span>
+                    <span>{f.tag} · {f.when}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </SectionCard>
       </div>
 

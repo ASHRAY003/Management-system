@@ -4,22 +4,21 @@
    feedback received, and the "what I can't see" transparency strip. */
 
 function WorkerDashboard() {
-  const Store = window.PerformanceStore;
-  const myGoals = Store.getGoalsForWorker();
-  const myMeetings = Store.getMeetingsForWorker();
-  const myFeedback = Store.getFeedbackForWorker();
-  const myCycles = Store.getReviewCyclesForWorker();
-  const pendingSelfReviews = (Store.getData().reviewParticipants || []).filter(p => p.workerId === Store.getCurrentWorkerId() && p.selfReviewStatus !== 'submitted').length;
-
   const kpis = [
-    { tone: 'green', icon: 'flag',            label: 'My active goals',     value: String(myGoals.length),       sub: myGoals.length ? `${myGoals.filter(g => g.status === 'on_track' || g.status === 'on-track').length} on track` : 'No goals assigned yet' },
-    { tone: 'blue',  icon: 'event_available', label: 'Upcoming 1:1s',       value: String(myMeetings.length),    sub: myMeetings.length ? `${myMeetings.filter(m => m.status === 'scheduled' || m.status === 'live').length} scheduled` : 'No 1:1s scheduled' },
-    { tone: 'pink',  icon: 'inbox',           label: 'Feedback received',   value: String(myFeedback.length),    sub: myFeedback.length ? 'See feedback & reviews' : 'No feedback yet' },
-    { tone: 'amber', icon: 'rate_review',     label: 'Pending self-review', value: String(pendingSelfReviews),   sub: pendingSelfReviews ? 'Action required' : 'Nothing due' },
+    { tone: 'green',  icon: 'flag',           label: 'My active goals',     value: '4',  trend: { dir: 'up', text: '+1' }, sub: '2 owner · 1 contributor · 1 stakeholder' },
+    { tone: 'blue',   icon: 'event_available',label: 'Upcoming 1:1s',       value: '3',  sub: 'Next: today at 10:00 with Priya' },
+    { tone: 'pink',   icon: 'inbox',          label: 'Feedback received',   value: '12', trend: { dir: 'up', text: '+5' }, sub: 'Last 30 days · 9 positive · 3 dev' },
+    { tone: 'amber',  icon: 'rate_review',    label: 'Pending self-review', value: '1',  sub: 'Q3 cycle · due Sep 30' },
   ];
 
-  const attentionGoals = [];
-  const feedback = [];
+  const feedback = [
+    { from: 'Priya Nair', role: 'Manager', when: '2h ago', type: 'project',
+      text: "Aditi led the Spain cutover flawlessly — zero P0s, customer signed a 3-year renewal the same week. She's ready to take on the next anchor migration as lead." },
+    { from: 'Karim Idris', role: 'Peer', when: 'Yesterday', type: 'recognition',
+      text: 'Thanks for jumping into the KYB blocker on Friday — you saved Omar a week of waiting. ⭐' },
+    { from: 'Marco Diaz', role: 'Client', when: '1w ago', type: 'project',
+      text: "Aditi's communication during cutover was the difference between a hard week and a smooth one." },
+  ];
 
   return (
     <Shell persona="worker" active="performance"
@@ -29,8 +28,12 @@ function WorkerDashboard() {
 
       <PageHead
         eyebrow="My performance"
-        title={`Hi ${(window.PerformanceStore.getCurrentUser?.()?.name || '').split(' ')[0] || 'there'} 👋`}
-        sub="Your goals, feedback, 1:1s and reviews at a glance."
+        title="Hi Aditi 👋"
+        sub="Your goals, feedback, 1:1s and reviews at a glance. Your self-review for Q3 is due Sep 30."
+        actions={<>
+          <Btn variant="ghost" icon="add_reaction">Request feedback</Btn>
+          <Btn variant="primary" icon="rate_review">Start self-review</Btn>
+        </>}
       />
 
       <div className="mb-4">
@@ -45,9 +48,6 @@ function WorkerDashboard() {
       <div className="stats-row c-4 mb-4">
         {kpis.map((k, i) => <StatCard key={i} {...k} />)}
       </div>
-
-      {/* Needs attention — goals due in the next 10 days */}
-      <GoalsDueSoon goals={attentionGoals} variant="worker" />
 
       {/* Self-review prompt + Today's 1:1 */}
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: 16, marginBottom: 16 }}>

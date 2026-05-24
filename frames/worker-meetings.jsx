@@ -6,37 +6,49 @@ const { useState: useStateWM } = React;
 
 function WorkerMeetings() {
   const [openNotes, setOpenNotes] = useStateWM(null);
-  const [storeVersion, setStoreVersion] = useStateWM(0);
 
-  React.useEffect(() => window.PerformanceStore.subscribe(() => setStoreVersion(v => v + 1)), []);
+  const today = {
+    when: 'Today · Wed Mar 26', time: '10:00 AM', dur: '30 min',
+    with: 'Priya Nair', role: 'Manager · weekly 1:1', live: true,
+    agenda: [
+      'Wrap-up of Payroll Migration EU and what went well',
+      'Q4 priorities — which migrations to take on next',
+      'Career growth — Lead Ops path',
+    ],
+  };
 
-  const upcoming = [];
+  const upcoming = [
+    { when: 'Thu Mar 27', time: '11:00 AM', with: 'Hannah Mueller', role: 'Skip-level', agenda: 'Career goals & compliance OKR alignment' },
+    { when: 'Fri Mar 28', time: '9:30 AM',  with: 'Lina Chen',      role: 'Peer mentor', agenda: 'Onboarding playbook pairing' },
+    { when: 'Wed Apr 2',  time: '10:00 AM', with: 'Priya Nair',     role: 'Weekly 1:1',  agenda: 'Goal check-in + Q4 priorities' },
+  ];
 
-  const storeSessions = window.PerformanceStore.getMeetingsForWorker(window.PerformanceStore.CURRENT_WORKER_ID).map(m => {
-    let whenStr = 'Scheduled', timeStr = '';
-    if (m.scheduledAt) {
-      const d = new Date(m.scheduledAt);
-      whenStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-    }
-    return {
-    id: m.id,
-    when: whenStr,
-    time: timeStr,
-    with: 'Priya Mehta',
-    role: 'Manager · 1:1',
-    live: m.status === 'live',
-    agenda: m.agenda,
-    summary: m.sharedNotes,
-    workerPrivateNotes: m.workerPrivateNotes,
-    actionItems: (m.actionItems || []).filter(a => a.shared !== false),
-    linked: (m.linkedGoalIds || []).map(id => {
-      const goal = window.PerformanceStore.getGoals().find(g => g.id === id);
-      return { kind: 'okr', label: goal ? `${goal.title} · ${goal.progress}%` : 'Linked goal' };
-    }),
-  }; });
-  const liveSession = storeSessions.find(m => m.live) || null;
-  const pastSessions = storeSessions.filter(m => !m.live);
+  const past = [
+    {
+      when: 'Mar 17 · 10:00 AM', with: 'Priya Nair', role: 'Weekly 1:1',
+      summary: 'Set Q3 goals — 6 migrations + mentor Lina. Owe runbook link by Friday.',
+      actionItems: [
+        { text: 'Pair on cutover-day playbook with Lina', done: true },
+        { text: 'File JIRA tickets for the runbook gaps', done: true },
+        { text: 'Review draft career-ladder doc Priya sends', done: false },
+      ],
+      linked: [{ kind: 'okr', label: 'Complete 6 migrations' }],
+    },
+    {
+      when: 'Mar 10 · 10:00 AM', with: 'Priya Nair', role: 'Weekly 1:1',
+      summary: 'Discussed Italy cutover retro. Aditi flagged onboarding doc gaps that need to be fixed before Spain.',
+      actionItems: [
+        { text: 'Document Italy cutover lessons in shared runbook', done: true },
+      ],
+      linked: [{ kind: 'project', label: 'Payroll Migration EU' }],
+    },
+    {
+      when: 'Mar 03 · 10:00 AM', with: 'Hannah Mueller', role: 'Skip-level',
+      summary: 'Career goal alignment — Aditi wants to formalize Lead Ops path.',
+      actionItems: [],
+      linked: [],
+    },
+  ];
 
   // Worker variant of the notes editor — only shared notes visible.
   if (openNotes) {
@@ -58,59 +70,51 @@ function WorkerMeetings() {
         title="My 1:1 sessions"
         sub="Your check-ins with managers, peers and mentors. Prep agenda items before, read shared notes and action items after."
         actions={<>
-          <Btn variant="primary" icon="add" onClick={async () => {
-            const reason = window.prompt('Reason for the 1:1 (optional)');
-            if (reason === null) return; // user cancelled
-            try {
-              await window.PerformanceStore.request1on1({ reason: reason || '' });
-              alert('Request sent. Your manager has been notified.');
-            } catch (e) {
-              alert(`Could not send request: ${e.message}`);
-            }
-          }}>Request a 1:1</Btn>
+          <Btn variant="ghost" icon="add">Request a 1:1</Btn>
         </>}
       />
 
       <div className="stats-row c-3 mb-4">
-        <StatCard tone="blue"   icon="event_available" label="Upcoming"            value={String(upcoming.length)}        sub={upcoming.length ? 'Scheduled' : 'No 1:1s scheduled'} />
-        <StatCard tone="green"  icon="task_alt"        label="Action items"        value={String(pastSessions.reduce((s, p) => s + (p.actionItems?.length || 0), 0))} sub="Across past sessions" />
-        <StatCard tone="purple" icon="schedule"        label="Sessions this year"  value={String(storeSessions.length)}   sub="Total with your manager" />
+        <StatCard tone="blue"  icon="event_available" label="Upcoming"            value="4" sub="Next: today at 10:00 AM" />
+        <StatCard tone="green" icon="task_alt"        label="Action items"        value="2 / 4" sub="Open / completed this month" />
+        <StatCard tone="purple"icon="schedule"        label="Sessions this year"  value="38" sub="34 with manager · 4 skip-level" />
       </div>
 
       {/* Live now card */}
-      {liveSession && (
-        <div className="card mb-4" style={{ borderColor: 'var(--brand-blue-500)', boxShadow: '0 0 0 4px var(--brand-blue-100)' }}>
-          <div style={{ padding: '20px 24px' }}>
-            <div className="row items-center gap-3 mb-3">
-              <Avatar name={liveSession.with} size="lg" />
-              <div className="flex-1">
-                <div className="row items-center gap-2 mb-1">
-                  <Pill variant="active" dot>Live now</Pill>
-                  <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                    {liveSession.when} · {liveSession.time}
-                  </span>
-                </div>
-                <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--grey-700)', letterSpacing: '-0.01em' }}>1:1 with {liveSession.with}</div>
-                <div style={{ fontSize: 12, color: 'var(--fg-secondary)', marginTop: 2 }}>{liveSession.role}</div>
+      <div className="card mb-4" style={{ borderColor: 'var(--brand-blue-500)', boxShadow: '0 0 0 4px var(--brand-blue-100)' }}>
+        <div style={{ padding: '20px 24px' }}>
+          <div className="row items-center gap-3 mb-3">
+            <Avatar name={today.with} size="lg" />
+            <div className="flex-1">
+              <div className="row items-center gap-2 mb-1">
+                <Pill variant="active" dot>Live now</Pill>
+                <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  {today.when} · {today.time}
+                </span>
               </div>
-              <Btn variant="primary" icon="edit_note" onClick={() => setOpenNotes({
-                ...liveSession,
-                when: liveSession.when + (liveSession.time ? ' · ' + liveSession.time : ''),
-              })}>Take notes</Btn>
+              <div style={{ fontSize: 18, fontWeight: 800, color: 'var(--grey-700)', letterSpacing: '-0.01em' }}>1:1 with {today.with}</div>
+              <div style={{ fontSize: 12, color: 'var(--fg-secondary)', marginTop: 2 }}>{today.role}</div>
             </div>
+            <Btn variant="primary" icon="edit_note" onClick={() => setOpenNotes({
+              when: today.when + ' · ' + today.time, with: today.with, role: today.role, live: true,
+              agenda: today.agenda,
+              summary: '',
+              actionItems: [],
+              linked: [{ kind: 'okr', label: 'Complete 6 migrations · 90%' }, { kind: 'project', label: 'Payroll Migration EU · Done' }],
+            })}>Take notes</Btn>
+          </div>
 
-            <div style={{ background: 'var(--brand-blue-50)', borderRadius: 10, padding: '14px 16px' }}>
-              <div className="row items-center between mb-2">
-                <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--brand-blue-600)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Shared agenda</div>
-                <Btn variant="text" size="sm" icon="add">Add item</Btn>
-              </div>
-              <ol style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.7 }}>
-                {(liveSession.agenda || []).map((a, i) => <li key={i}>{a}</li>)}
-              </ol>
+          <div style={{ background: 'var(--brand-blue-50)', borderRadius: 10, padding: '14px 16px' }}>
+            <div className="row items-center between mb-2">
+              <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--brand-blue-600)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Shared agenda</div>
+              <Btn variant="text" size="sm" icon="add">Add item</Btn>
             </div>
+            <ol style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.7 }}>
+              {today.agenda.map((a, i) => <li key={i}>{a}</li>)}
+            </ol>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Upcoming */}
       <SectionCard
@@ -149,8 +153,8 @@ function WorkerMeetings() {
           icon="history"
           padBody={false}
         >
-          {pastSessions.map((p, i) => (
-            <div key={p.id || i} style={{ padding: '16px 20px', borderBottom: i < pastSessions.length - 1 ? '1px solid var(--grey-50)' : 'none',
+          {past.map((p, i) => (
+            <div key={i} style={{ padding: '16px 20px', borderBottom: i < past.length - 1 ? '1px solid var(--grey-50)' : 'none',
               display: 'grid', gridTemplateColumns: '160px 1fr auto', gap: 16, alignItems: 'start' }}>
               <div>
                 <div style={{ fontSize: 12, fontWeight: 800, color: 'var(--grey-700)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{p.when}</div>
@@ -191,7 +195,7 @@ function WorkerMeetings() {
       </div>
 
       <Callout tone="info" icon="visibility_off" style={{ marginTop: 16 }}>
-        Manager <strong>private notes</strong> are not visible to you. You see the shared notes, shared agenda, and shared action items you both agreed to.
+        Manager <strong>private notes</strong> are not visible to you. You see the shared notes, shared agenda, and action items you both agreed to.
       </Callout>
     </Shell>
   );
@@ -201,7 +205,6 @@ function WorkerMeetings() {
    Mirrors the manager's MeetingNotesEditor layout but hides the private panel. */
 function WorkerNotesView({ meeting, onBack }) {
   const [privateDirty, setPrivateDirtyWN] = React.useState(false);
-  const [workerPrivateNotes, setWorkerPrivateNotes] = React.useState(meeting.workerPrivateNotes || 'Want to ask Priya about the Lead Ops promotion track and whether I can shadow her on the next QBR.');
 
   return (
     <div className="notes-takeover">
@@ -242,7 +245,6 @@ function WorkerNotesView({ meeting, onBack }) {
                   <div className="saved">Live · synced<span className="ind" /></div>
                 </div>
                 <div className="editor-body" style={{ minHeight: 90 }}>
-                  {/* Manager private notes are intentionally excluded from worker view. */}
                   {meeting.summary || (
                     <em style={{ color: 'var(--fg-secondary)' }}>Shared notes will appear here once your manager starts writing.</em>
                   )}
@@ -283,13 +285,10 @@ function WorkerNotesView({ meeting, onBack }) {
                   suppressContentEditableWarning={true}
                   data-placeholder="Your private notes — only you can see these…"
                   style={{ minHeight: 100, outline: 'none' }}
-                  onInput={(e) => { setWorkerPrivateNotes(e.currentTarget.innerText); setPrivateDirtyWN(true); }}
-                  onBlur={() => {
-                    if (meeting.id) window.PerformanceStore.updateMeetingNotes(meeting.id, { workerPrivateNotes });
-                    setPrivateDirtyWN(false);
-                  }}
+                  onInput={() => setPrivateDirtyWN(true)}
+                  onBlur={() => setPrivateDirtyWN(false)}
                 >
-                  {workerPrivateNotes}
+                  Want to ask Priya about the Lead Ops promotion track and whether I can shadow her on the next QBR.
                 </div>
               </div>
             </div>

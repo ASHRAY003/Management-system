@@ -5,33 +5,27 @@
 
 const { useState: useStateNE } = React;
 
-function MeetingNotesEditor({ meetingId, worker = '', role = '', linked = [], initialSharedNotes = '', initialPrivateNotes = '', initialActions = null, onBack }) {
+function MeetingNotesEditor({ worker = 'Aditi Sharma', role = 'Senior Ops · weekly', linked = [], onBack }) {
   const [sharedDirty,  setSharedDirty]  = useStateNE(false);
   const [privateDirty, setPrivateDirty] = useStateNE(false);
-  const [sharedNotes, setSharedNotes] = useStateNE(initialSharedNotes || '');
-  const [managerPrivateNotes, setManagerPrivateNotes] = useStateNE(initialPrivateNotes || '');
-  const [actions, setActions] = useStateNE(initialActions || []);
+  const [actions, setActions] = useStateNE([
+    { id: 'a1', text: 'Share v2 migration runbook with Aditi',         done: true,  owner: 'P' },
+    { id: 'a2', text: 'Confirm Aditi shadows Lina on Spain kickoff',   done: true,  owner: 'P' },
+    { id: 'a3', text: 'Draft career-ladder doc for Lead Ops by Apr 5', done: false, owner: 'P', due: 'Apr 5' },
+  ]);
 
-  const persistNotes = (patch) => {
-    if (!meetingId) return;
-    window.PerformanceStore.updateMeetingNotes(meetingId, patch);
-  };
-  const toggle = id => {
-    const nextActions = actions.map(a => a.id === id ? { ...a, done: !a.done, shared: true } : { ...a, shared: true });
-    setActions(nextActions);
-    persistNotes({ actionItems: nextActions });
-  };
-  const saveAndClose = () => {
-    persistNotes({
-      sharedNotes,
-      managerPrivateNotes,
-      actionItems: actions.map(a => ({ ...a, shared: true })),
-    });
-    onBack && onBack();
-  };
+  const toggle = id => setActions(actions.map(a => a.id === id ? { ...a, done: !a.done } : a));
 
-  /* ===== Past meeting (empty by default) ===== */
-  const past = null;
+  /* ===== Past meeting (read-only style) ===== */
+  const past = {
+    when: 'Mar 17 · 11:00 AM',
+    sharedNote: 'Set Q3 goals: 6 migrations, mentor Lina, and one knowledge-share talk. Aditi noted runbook gaps from the Italy cutover.',
+    privateNote: 'Watch for over-commitment — Aditi tends to absorb scope. Encourage her to delegate the cutover-day playbook to Lina.',
+    actions: [
+      { id: 'p1', text: 'Pair on cutover-day playbook with Lina', done: true,  owner: 'A' },
+      { id: 'p2', text: 'File JIRA tickets for the runbook gaps', done: true,  owner: 'A' },
+    ],
+  };
 
   return (
     <div className="notes-takeover">
@@ -48,7 +42,7 @@ function MeetingNotesEditor({ meetingId, worker = '', role = '', linked = [], in
           <Btn variant="ghost" icon="summarize">Summary</Btn>
           <Btn variant="ghost" icon="rate_review">Send to review</Btn>
           <Btn variant="ghost" icon="forum">Convert to feedback</Btn>
-          <Btn variant="primary" icon="check" onClick={saveAndClose}>Done</Btn>
+          <Btn variant="primary" icon="check">Done</Btn>
         </div>
       </div>
 
@@ -92,16 +86,11 @@ function MeetingNotesEditor({ meetingId, worker = '', role = '', linked = [], in
                   suppressContentEditableWarning={true}
                   data-placeholder="Start writing shared notes…"
                   style={{ outline: 'none' }}
-                  onInput={(e) => { setSharedNotes(e.currentTarget.innerText); setSharedDirty(true); }}
-                  onBlur={(e) => {
-                    const latestSharedNotes = e.currentTarget.innerText;
-                    setSharedNotes(latestSharedNotes);
-                    // Shared notes are persisted for both manager and worker views.
-                    persistNotes({ sharedNotes: latestSharedNotes, actionItems: actions.map(a => ({ ...a, shared: true })) });
-                    setSharedDirty(false);
-                  }}
+                  onInput={() => setSharedDirty(true)}
+                  onBlur={() => setSharedDirty(false)}
                 >
-                  <div>{sharedNotes}</div>
+                  <div>Migration wrapped clean — Aditi led the Spain cutover with zero P0s. Customer signed a 3-year renewal the same week.</div>
+                  <div style={{ marginTop: 8 }}>Q4 priorities discussed: pick up Brazil + take Lina as a shadow. Aditi wants to formalize her Lead Ops path.</div>
                   <div className="ai-prompt">
                     <span className="ms" style={{ fontSize: 14, verticalAlign: '-2px', marginRight: 4, color: 'var(--brand-blue-500)' }}>lightbulb</span>
                     Suggestion: link this note to her OKR <strong>"Complete 6 migrations"</strong> — it's 90% done.
@@ -146,53 +135,56 @@ function MeetingNotesEditor({ meetingId, worker = '', role = '', linked = [], in
                   suppressContentEditableWarning={true}
                   data-placeholder="Private thoughts — only you can see these…"
                   style={{ outline: 'none' }}
-                  onInput={(e) => { setManagerPrivateNotes(e.currentTarget.innerText); setPrivateDirty(true); }}
-                  onBlur={(e) => {
-                    const latestManagerPrivateNotes = e.currentTarget.innerText;
-                    setManagerPrivateNotes(latestManagerPrivateNotes);
-                    // Manager private notes are intentionally excluded from worker view.
-                    persistNotes({ managerPrivateNotes: latestManagerPrivateNotes });
-                    setPrivateDirty(false);
-                  }}
+                  onInput={() => setPrivateDirty(true)}
+                  onBlur={() => setPrivateDirty(false)}
                 >
-                  {managerPrivateNotes}
+                  Consider Aditi for a promotion case in Q4 — she's outpacing the Lead Ops ladder. Sync with Hannah before raising it.
                 </div>
               </div>
             </div>
 
-            {past && (
-              <div className="notes-event past" id="evt-prev">
-                <div className="when">{past.when}</div>
-                <div className="notes-card">
-                  <div className="nc-head">
-                    <div className="lead"><span className="ms">groups</span>Shared Notes</div>
-                    <div className="saved">Read-only<span className="ind" /></div>
-                  </div>
-                  <div className="editor-body" style={{ minHeight: 60 }}>{past.sharedNote}</div>
-                  <div className="action-section">
-                    <div className="h">Action Items</div>
-                    {(past.actions || []).map(a => (
-                      <div key={a.id} className={`action-row ${a.done ? 'done' : ''}`}>
-                        <div className={`check-sq ${a.done ? 'done' : ''}`}>
-                          {a.done && <span className="ms">check</span>}
-                        </div>
-                        <span className="text">{a.text}</span>
-                        <span className="owner-chip">{a.owner}</span>
-                      </div>
-                    ))}
-                  </div>
+            {/* ====== Previous meeting (read-only) ====== */}
+            <div className="notes-event past" id="evt-prev">
+              <div className="when">{past.when}</div>
+
+              <div className="notes-card">
+                <div className="nc-head">
+                  <div className="lead"><span className="ms">groups</span>Shared Notes</div>
+                  <div className="saved">Read-only · 9 days ago<span className="ind" /></div>
                 </div>
-                <div className="notes-card private">
-                  <div className="nc-head">
-                    <div className="lead"><span className="ms">lock</span>Private Notes
-                      <span className="meta"><span className="ms">visibility</span>Only visible to you</span>
+                <div className="editor-body" style={{ minHeight: 60 }}>{past.sharedNote}</div>
+                <div className="action-section">
+                  <div className="h">Action Items</div>
+                  {past.actions.map(a => (
+                    <div key={a.id} className={`action-row ${a.done ? 'done' : ''}`}>
+                      <div className={`check-sq ${a.done ? 'done' : ''}`}>
+                        {a.done && <span className="ms">check</span>}
+                      </div>
+                      <span className="text">{a.text}</span>
+                      <span className="owner-chip">{a.owner}</span>
                     </div>
-                    <div className="saved">Read-only<span className="ind" /></div>
-                  </div>
-                  <div className="editor-body" style={{ minHeight: 60 }}>{past.privateNote}</div>
+                  ))}
                 </div>
               </div>
-            )}
+
+              <div className="notes-card private">
+                <div className="nc-head">
+                  <div className="lead"><span className="ms">lock</span>Private Notes
+                    <span className="meta"><span className="ms">visibility</span>Only visible to you</span>
+                  </div>
+                  <div className="saved">Read-only<span className="ind" /></div>
+                </div>
+                <div className="editor-body" style={{ minHeight: 60 }}>{past.privateNote}</div>
+              </div>
+            </div>
+
+            {/* New meeting placeholder */}
+            <div className="notes-event past">
+              <div className="when" style={{ color: 'var(--fg-disabled)' }}>
+                <span className="ms" style={{ fontSize: 16 }}>history</span>
+                Older sessions (3 more) — scroll up to load
+              </div>
+            </div>
           </div>
 
           {/* Right side: quick jump + linked context */}

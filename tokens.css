@@ -1002,7 +1002,7 @@ body {
 .create-menu .opt .b .t { font-size: 13.5px; font-weight: 800; color: var(--grey-700); letter-spacing: -0.01em;}
 .create-menu .opt .b .d { font-size: 11.5px; color: var(--fg-secondary); margin-top: 2px; line-height: 1.4;}
 
-/* Filter chip with remove (used on People Goals after View Goals) */
+/* Filter chip with remove (used on People OKRs after View OKRs) */
 .filter-chip-active { display:inline-flex; align-items:center; gap: 8px; padding: 6px 8px 6px 12px;
   background: var(--brand-blue-50); border: 1px solid var(--brand-blue-200); border-radius: 7px;
   font-size: 12.5px; font-weight: 700; color: var(--brand-blue-600);}
@@ -1018,47 +1018,3 @@ body {
 .sev.high .d { background: var(--error-main); box-shadow: 0 0 0 3px rgba(227,27,12,0.12);}
 .sev.med  .d { background: var(--warning-main); box-shadow: 0 0 0 3px rgba(237,108,2,0.12);}
 .sev.low  .d { background: var(--brand-blue-400); box-shadow: 0 0 0 3px rgba(95,178,255,0.16);}
-
-/* ── Review cycle stepper inputs ── */
-.rc-input {
-  width: 100%;
-  font-family: inherit;
-  font-size: 13.5px;
-  color: var(--grey-800);
-  background: #fff;
-  border: 1.5px solid var(--grey-200);
-  border-radius: 8px;
-  padding: 9px 11px;
-  box-sizing: border-box;
-  transition: border-color 0.12s, box-shadow 0.12s;
-}
-.rc-input:focus {
-  outline: none;
-  border-color: var(--brand-blue-500);
-  box-shadow: 0 0 0 3px var(--brand-blue-100);
-}
-textarea.rc-input { resize: vertical; line-height: 1.5; }
-
-/* ── StatCard clickable variant ── */
-.stat.clickable {
-  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
-  position: relative;
-}
-.stat.clickable:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-.stat.clickable:focus-visible {
-  outline: 3px solid var(--brand-blue-100);
-  outline-offset: 2px;
-}
-.stat .stat-chev {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  opacity: 0;
-  color: var(--fg-secondary);
-  transition: opacity 0.12s ease, transform 0.12s ease;
-}
-.stat.clickable:hover .stat-chev { opacity: 1; transform: translateX(2px); }
-.stat .stat-chev .ms { font-size: 18px; }
