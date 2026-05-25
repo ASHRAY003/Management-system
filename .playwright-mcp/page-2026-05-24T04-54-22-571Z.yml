@@ -1,0 +1,371 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 03 · Reviews
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Priya Mehta
+      - generic [ref=e9]: · manager
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: Acme Holdings · HR
+      - generic [ref=e19]:
+        - generic [ref=e20]: badge
+        - generic [ref=e21]: HR Admin · Client manager
+      - generic [ref=e22]:
+        - generic [ref=e23]: Workforce
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: dashboard
+            - generic [ref=e27]: Dashboard
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: groups
+            - generic [ref=e30]: People
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: description
+            - generic [ref=e33]: Contracts
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: work
+            - generic [ref=e36]: Projects
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: sync
+            - generic [ref=e39]: Payroll
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: insights
+            - generic [ref=e42]: Performance
+      - generic [ref=e43]:
+        - generic [ref=e44]: Workspace
+        - generic [ref=e45]:
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: schedule
+            - generic [ref=e48]: Time & leave
+          - generic [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: receipt_long
+            - generic [ref=e51]: Expenses
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: folder
+            - generic [ref=e54]: Documents
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: bar_chart
+            - generic [ref=e57]: Reports
+          - generic [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: settings
+            - generic [ref=e60]: Settings
+      - generic [ref=e62]:
+        - generic [ref=e63]: PM
+        - generic [ref=e64]:
+          - generic [ref=e65]: Priya Mehta
+          - generic [ref=e66]: priya@demo.com
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: Acme Holdings
+          - generic [ref=e71]: chevron_right
+          - generic [ref=e72]: Performance
+          - generic [ref=e73]: chevron_right
+          - generic [ref=e74]: Reviews
+        - generic [ref=e75]:
+          - generic [ref=e76]: badge
+          - text: Client / Manager view
+        - generic [ref=e77]:
+          - generic [ref=e78]: search
+          - textbox "Search people, goals, reviews…" [ref=e79]
+          - generic [ref=e80]: ⌘K
+        - generic [ref=e82] [cursor=pointer]: help
+        - generic [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]: notifications
+          - generic [ref=e86]: "5"
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89] [cursor=pointer]: Dashboard
+          - generic [ref=e90] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e91] [cursor=pointer]: Reviews
+          - generic [ref=e92] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e94] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e95]: expand_more
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: Performance Management
+            - heading "Reviews" [level=1] [ref=e99]
+            - generic [ref=e100]: Run formal review cycles for employees and contractors, or write individual reviews.
+          - generic [ref=e101]:
+            - button "filter_list Filters" [ref=e102] [cursor=pointer]:
+              - generic [ref=e103]: filter_list
+              - text: Filters
+            - button "download Export" [ref=e104] [cursor=pointer]:
+              - generic [ref=e105]: download
+              - text: Export
+            - button "play_circle Start review cycle" [ref=e106] [cursor=pointer]:
+              - generic [ref=e107]: play_circle
+              - text: Start review cycle
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - generic [ref=e110]: Reviews to write
+            - generic [ref=e112]: "0"
+            - generic [ref=e113]: Nothing pending
+            - generic [ref=e115]: reviews
+          - generic [ref=e116]:
+            - generic [ref=e117]: Self-reviews submitted
+            - generic [ref=e119]: "1"
+            - generic [ref=e120]: Across 1 participant
+            - generic [ref=e122]: task_alt
+          - generic [ref=e123]:
+            - generic [ref=e124]: Feedback given
+            - generic [ref=e126]: "0"
+            - generic [ref=e127]: No feedback given yet
+            - generic [ref=e129]: inbox
+          - generic [ref=e130]:
+            - generic [ref=e131]: Ready to share
+            - generic [ref=e133]: "1"
+            - generic [ref=e134]: Submitted, not shared
+            - generic [ref=e136]: pending_actions
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - generic [ref=e141]: event_repeat
+                - text: Review cycles
+              - generic [ref=e142]: 2 cycles on record
+            - button "play_circle Start review cycle" [ref=e143] [cursor=pointer]:
+              - generic [ref=e144]: play_circle
+              - text: Start review cycle
+          - generic [ref=e145]:
+            - generic [ref=e146] [cursor=pointer]:
+              - generic [ref=e147]:
+                - generic [ref=e148]: Q3 2026 Performance Review
+                - generic [ref=e149]: "2026-07-01 → 2026-09-30 · purpose: —"
+              - generic [ref=e150]: active
+              - generic [ref=e152]:
+                - generic [ref=e153]: groups
+                - text: Employees
+              - generic [ref=e154]:
+                - generic "Participants" [ref=e155]:
+                  - generic [ref=e156]: group
+                  - text: "1"
+                - generic "Self-reviews submitted" [ref=e157]:
+                  - generic [ref=e158]: person
+                  - text: 1/1
+                - generic "Manager reviews submitted" [ref=e159]:
+                  - generic [ref=e160]: badge
+                  - text: 1/1
+                - generic "Shared with worker" [ref=e161]:
+                  - generic [ref=e162]: visibility
+                  - text: 0/1
+              - button "Open arrow_forward" [ref=e163]:
+                - text: Open
+                - generic [ref=e164]: arrow_forward
+            - generic [ref=e165] [cursor=pointer]:
+              - generic [ref=e166]:
+                - generic [ref=e167]: Q3 2026 Performance Review
+                - generic [ref=e168]: "2026-07-01 → 2026-09-30 · purpose: review the work done"
+              - generic [ref=e169]: draft
+              - generic [ref=e171]:
+                - generic [ref=e172]: groups
+                - text: Employees
+              - generic [ref=e173]:
+                - generic "Participants" [ref=e174]:
+                  - generic [ref=e175]: group
+                  - text: "0"
+                - generic "Self-reviews submitted" [ref=e176]:
+                  - generic [ref=e177]: person
+                  - text: 0/0
+                - generic "Manager reviews submitted" [ref=e178]:
+                  - generic [ref=e179]: badge
+                  - text: 0/0
+                - generic "Shared with worker" [ref=e180]:
+                  - generic [ref=e181]: visibility
+                  - text: 0/0
+              - button "Open arrow_forward" [ref=e182]:
+                - text: Open
+                - generic [ref=e183]: arrow_forward
+        - generic [ref=e184]:
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - generic [ref=e188]: groups
+              - text: My direct reports
+            - generic [ref=e189]: Click a worker to view their review history or write a new review
+          - table [ref=e191]:
+            - rowgroup [ref=e192]:
+              - row "Worker Reviews Last review Last rating Current comp Cycle status" [ref=e193]:
+                - columnheader "Worker" [ref=e194]
+                - columnheader "Reviews" [ref=e195]
+                - columnheader "Last review" [ref=e196]
+                - columnheader "Last rating" [ref=e197]
+                - columnheader "Current comp" [ref=e198]
+                - columnheader "Cycle status" [ref=e199]
+                - columnheader [ref=e200]
+            - rowgroup [ref=e201]:
+              - row "AS Aditi Sharma Senior Ops 3 May 24, 2026 by you star star star star star 5.0 Exceeds USD 72,000 send Submitted · not shared history History open_in_new Open cycle" [ref=e202]:
+                - cell "AS Aditi Sharma Senior Ops" [ref=e203]:
+                  - generic [ref=e204]:
+                    - generic [ref=e205]: AS
+                    - generic [ref=e206]:
+                      - generic [ref=e207]: Aditi Sharma
+                      - generic [ref=e208]: Senior Ops
+                - cell "3" [ref=e209]
+                - cell "May 24, 2026 by you" [ref=e210]:
+                  - generic [ref=e211]: May 24, 2026
+                  - generic [ref=e212]: by you
+                - cell "star star star star star 5.0 Exceeds" [ref=e213]:
+                  - generic [ref=e214]:
+                    - generic [ref=e215]:
+                      - generic [ref=e216]: star
+                      - generic [ref=e217]: star
+                      - generic [ref=e218]: star
+                      - generic [ref=e219]: star
+                      - generic [ref=e220]: star
+                    - generic [ref=e221]: "5.0"
+                    - generic [ref=e222]: Exceeds
+                - cell "USD 72,000" [ref=e223]:
+                  - generic [ref=e224]: USD 72,000
+                - cell "send Submitted · not shared" [ref=e225]:
+                  - generic [ref=e226]:
+                    - generic [ref=e227]: send
+                    - text: Submitted · not shared
+                - cell "history History open_in_new Open cycle" [ref=e228]:
+                  - button "history History" [ref=e229] [cursor=pointer]:
+                    - generic [ref=e230]: history
+                    - text: History
+                  - button "open_in_new Open cycle" [ref=e231] [cursor=pointer]:
+                    - generic [ref=e232]: open_in_new
+                    - text: Open cycle
+              - row "RM Rahul Mehta Implementation Consultant 0 — by you star star star star star 0.0 — USD 85,000 Up to date history History" [ref=e233]:
+                - cell "RM Rahul Mehta Implementation Consultant" [ref=e234]:
+                  - generic [ref=e235]:
+                    - generic [ref=e236]: RM
+                    - generic [ref=e237]:
+                      - generic [ref=e238]: Rahul Mehta
+                      - generic [ref=e239]: Implementation Consultant
+                - cell "0" [ref=e240]
+                - cell "— by you" [ref=e241]:
+                  - generic [ref=e242]: —
+                  - generic [ref=e243]: by you
+                - cell "star star star star star 0.0 —" [ref=e244]:
+                  - generic [ref=e245]:
+                    - generic [ref=e246]:
+                      - generic [ref=e247]: star
+                      - generic [ref=e248]: star
+                      - generic [ref=e249]: star
+                      - generic [ref=e250]: star
+                      - generic [ref=e251]: star
+                    - generic [ref=e252]: "0.0"
+                    - generic [ref=e253]: —
+                - cell "USD 85,000" [ref=e254]:
+                  - generic [ref=e255]: USD 85,000
+                - cell "Up to date" [ref=e256]:
+                  - generic [ref=e257]: Up to date
+                - cell "history History" [ref=e259]:
+                  - button "history History" [ref=e260] [cursor=pointer]:
+                    - generic [ref=e261]: history
+                    - text: History
+        - generic [ref=e262]:
+          - generic [ref=e263]:
+            - generic [ref=e264]:
+              - generic [ref=e265]:
+                - generic [ref=e266]: payments
+                - text: Review Compensation Config
+              - generic [ref=e267]: Map review star ratings to a % hike on existing compensation. Percentage is applied to each worker's current base salary.
+            - generic [ref=e268]:
+              - button "restart_alt Reset" [ref=e269] [cursor=pointer]:
+                - generic [ref=e270]: restart_alt
+                - text: Reset
+              - button "add Add range" [ref=e271] [cursor=pointer]:
+                - generic [ref=e272]: add
+                - text: Add range
+              - button "save Save config" [ref=e273] [cursor=pointer]:
+                - generic [ref=e274]: save
+                - text: Save config
+          - table [ref=e276]:
+            - rowgroup [ref=e277]:
+              - row "Star range Revision type % Hike / Amount Currency Label" [ref=e278]:
+                - columnheader "Star range" [ref=e279]
+                - columnheader "Revision type" [ref=e280]
+                - columnheader "% Hike / Amount" [ref=e281]
+                - columnheader "Currency" [ref=e282]
+                - columnheader "Label" [ref=e283]
+                - columnheader [ref=e284]
+            - rowgroup [ref=e285]:
+              - row "0 – 1 ★ No change — — No hike edit delete" [ref=e286]:
+                - cell "0 – 1 ★" [ref=e287]:
+                  - generic [ref=e288]: 0 – 1 ★
+                - cell "No change" [ref=e289]:
+                  - generic [ref=e290]: No change
+                - cell "—" [ref=e291]
+                - cell "—" [ref=e292]
+                - cell "No hike" [ref=e293]
+                - cell "edit delete" [ref=e294]:
+                  - button "edit" [ref=e295] [cursor=pointer]:
+                    - generic [ref=e296]: edit
+                  - button "delete" [ref=e297] [cursor=pointer]:
+                    - generic [ref=e298]: delete
+              - row "1 – 2 ★ Percentage +5% — +5% hike edit delete" [ref=e299]:
+                - cell "1 – 2 ★" [ref=e300]:
+                  - generic [ref=e301]: 1 – 2 ★
+                - cell "Percentage" [ref=e302]:
+                  - generic [ref=e303]: Percentage
+                - cell "+5%" [ref=e304]:
+                  - generic [ref=e306]: +5%
+                - cell "—" [ref=e307]
+                - cell "+5% hike" [ref=e308]
+                - cell "edit delete" [ref=e309]:
+                  - button "edit" [ref=e310] [cursor=pointer]:
+                    - generic [ref=e311]: edit
+                  - button "delete" [ref=e312] [cursor=pointer]:
+                    - generic [ref=e313]: delete
+              - row "2 – 4 ★ Percentage +10% — +10% hike edit delete" [ref=e314]:
+                - cell "2 – 4 ★" [ref=e315]:
+                  - generic [ref=e316]: 2 – 4 ★
+                - cell "Percentage" [ref=e317]:
+                  - generic [ref=e318]: Percentage
+                - cell "+10%" [ref=e319]:
+                  - generic [ref=e321]: +10%
+                - cell "—" [ref=e322]
+                - cell "+10% hike" [ref=e323]
+                - cell "edit delete" [ref=e324]:
+                  - button "edit" [ref=e325] [cursor=pointer]:
+                    - generic [ref=e326]: edit
+                  - button "delete" [ref=e327] [cursor=pointer]:
+                    - generic [ref=e328]: delete
+              - row "4+ ★ Percentage +15% — +15% hike edit delete" [ref=e329]:
+                - cell "4+ ★" [ref=e330]:
+                  - generic [ref=e331]: 4+ ★
+                - cell "Percentage" [ref=e332]:
+                  - generic [ref=e333]: Percentage
+                - cell "+15%" [ref=e334]:
+                  - generic [ref=e336]: +15%
+                - cell "—" [ref=e337]
+                - cell "+15% hike" [ref=e338]
+                - cell "edit delete" [ref=e339]:
+                  - button "edit" [ref=e340] [cursor=pointer]:
+                    - generic [ref=e341]: edit
+                  - button "delete" [ref=e342] [cursor=pointer]:
+                    - generic [ref=e343]: delete
+          - generic [ref=e344]:
+            - generic [ref=e345]: Example hike preview · based on current team compensation
+            - generic [ref=e346]:
+              - generic [ref=e347]:
+                - text: Aditi Sharma·+5% hike→
+                - generic [ref=e348]: +USD 3,600
+              - generic [ref=e349]:
+                - text: Aditi Sharma·+10% hike→
+                - generic [ref=e350]: +USD 7,200
+              - generic [ref=e351]:
+                - text: Aditi Sharma·+15% hike→
+                - generic [ref=e352]: +USD 10,800
+              - generic [ref=e353]:
+                - text: Rahul Mehta·+5% hike→
+                - generic [ref=e354]: +USD 4,250
+              - generic [ref=e355]:
+                - text: Rahul Mehta·+10% hike→
+                - generic [ref=e356]: +USD 8,500
+              - generic [ref=e357]:
+                - text: Rahul Mehta·+15% hike→
+                - generic [ref=e358]: +USD 12,750

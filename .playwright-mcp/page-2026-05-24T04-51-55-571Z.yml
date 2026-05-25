@@ -1,0 +1,151 @@
+- generic [ref=e2]:
+  - generic [ref=e37]:
+    - link "← All views" [ref=e38] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e39]: /
+    - generic [ref=e40]: 03 · Reviews
+    - generic [ref=e41]:
+      - text: Signed in as
+      - strong [ref=e42]: Priya Mehta
+      - generic [ref=e43]: · manager
+    - button "Log out" [ref=e44] [cursor=pointer]
+  - generic [ref=e391]:
+    - complementary [ref=e392]:
+      - generic [ref=e393]:
+        - generic [ref=e394]: P
+        - generic [ref=e395]:
+          - generic [ref=e396]: Payo WFM
+          - generic [ref=e397]: Acme Holdings · HR
+      - generic [ref=e398]:
+        - generic [ref=e399]: badge
+        - generic [ref=e400]: HR Admin · Client manager
+      - generic [ref=e401]:
+        - generic [ref=e402]: Workforce
+        - generic [ref=e403]:
+          - generic [ref=e404] [cursor=pointer]:
+            - generic [ref=e405]: dashboard
+            - generic [ref=e406]: Dashboard
+          - generic [ref=e407] [cursor=pointer]:
+            - generic [ref=e408]: groups
+            - generic [ref=e409]: People
+          - generic [ref=e410] [cursor=pointer]:
+            - generic [ref=e411]: description
+            - generic [ref=e412]: Contracts
+          - generic [ref=e413] [cursor=pointer]:
+            - generic [ref=e414]: work
+            - generic [ref=e415]: Projects
+          - generic [ref=e416] [cursor=pointer]:
+            - generic [ref=e417]: sync
+            - generic [ref=e418]: Payroll
+          - generic [ref=e419] [cursor=pointer]:
+            - generic [ref=e420]: insights
+            - generic [ref=e421]: Performance
+      - generic [ref=e422]:
+        - generic [ref=e423]: Workspace
+        - generic [ref=e424]:
+          - generic [ref=e425] [cursor=pointer]:
+            - generic [ref=e426]: schedule
+            - generic [ref=e427]: Time & leave
+          - generic [ref=e428] [cursor=pointer]:
+            - generic [ref=e429]: receipt_long
+            - generic [ref=e430]: Expenses
+          - generic [ref=e431] [cursor=pointer]:
+            - generic [ref=e432]: folder
+            - generic [ref=e433]: Documents
+          - generic [ref=e434] [cursor=pointer]:
+            - generic [ref=e435]: bar_chart
+            - generic [ref=e436]: Reports
+          - generic [ref=e437] [cursor=pointer]:
+            - generic [ref=e438]: settings
+            - generic [ref=e439]: Settings
+      - generic [ref=e441]:
+        - generic [ref=e442]: PM
+        - generic [ref=e443]:
+          - generic [ref=e444]: Priya Mehta
+          - generic [ref=e445]: priya@demo.com
+    - generic [ref=e446]:
+      - generic [ref=e447]:
+        - generic [ref=e448]:
+          - generic [ref=e449]: Acme Holdings
+          - generic [ref=e450]: chevron_right
+          - generic [ref=e451]: Performance
+          - generic [ref=e452]: chevron_right
+          - generic [ref=e453]: Reviews
+          - generic [ref=e736]: chevron_right
+          - generic [ref=e737]: Cycle
+        - generic [ref=e454]:
+          - generic [ref=e455]: badge
+          - text: Client / Manager view
+        - generic [ref=e456]:
+          - generic [ref=e457]: search
+          - textbox "Search people, goals, reviews…" [ref=e458]
+          - generic [ref=e459]: ⌘K
+        - generic [ref=e461] [cursor=pointer]: help
+        - generic [ref=e463] [cursor=pointer]:
+          - generic [ref=e464]: notifications
+          - generic [ref=e465]: "5"
+      - generic [ref=e466]:
+        - generic [ref=e467]:
+          - generic [ref=e468] [cursor=pointer]: Dashboard
+          - generic [ref=e469] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e470] [cursor=pointer]: Reviews
+          - generic [ref=e471] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e473] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e474]: expand_more
+        - generic [ref=e738]:
+          - button "arrow_back Back to reviews" [ref=e739] [cursor=pointer]:
+            - generic [ref=e740]: arrow_back
+            - text: Back to reviews
+          - generic [ref=e741]:
+            - generic [ref=e742]: active
+            - generic [ref=e744]:
+              - generic [ref=e745]: groups
+              - text: Employees
+        - generic [ref=e747]:
+          - generic [ref=e748]: undefined · 2026-07-01 → 2026-09-30
+          - heading "Q3 2026 Performance Review" [level=1] [ref=e749]
+          - generic [ref=e750]: Self-review due 2026-06-22 · Manager review due 2026-07-07 · Final sharing 2026-07-07
+        - generic [ref=e751]:
+          - generic [ref=e753]:
+            - generic [ref=e754]:
+              - generic [ref=e755]: checklist
+              - text: Participants
+            - generic [ref=e756]: 1 people in this cycle
+          - table [ref=e758]:
+            - rowgroup [ref=e759]:
+              - row "Worker Type Self-review Manager review Final review" [ref=e760]:
+                - columnheader "Worker" [ref=e761]
+                - columnheader "Type" [ref=e762]
+                - columnheader "Self-review" [ref=e763]
+                - columnheader "Manager review" [ref=e764]
+                - columnheader "Final review" [ref=e765]
+                - columnheader [ref=e766]
+            - rowgroup [ref=e767]:
+              - row "AS Aditi Sharma Senior Ops badge Employee Self Review Submitted Manager Review Submitted Not shared visibility View self-review visibility View Review payments Revise Compensation" [ref=e768]:
+                - cell "AS Aditi Sharma Senior Ops" [ref=e769]:
+                  - generic [ref=e770]:
+                    - generic [ref=e771]: AS
+                    - generic [ref=e772]:
+                      - generic [ref=e773]: Aditi Sharma
+                      - generic [ref=e774]: Senior Ops
+                - cell "badge Employee" [ref=e775]:
+                  - generic [ref=e776]:
+                    - generic [ref=e777]: badge
+                    - text: Employee
+                - cell "Self Review Submitted" [ref=e778]:
+                  - generic [ref=e779]: Self Review Submitted
+                - cell "Manager Review Submitted" [ref=e781]:
+                  - generic [ref=e782]: Manager Review Submitted
+                - cell "Not shared" [ref=e784]:
+                  - generic [ref=e785]: Not shared
+                - cell "visibility View self-review visibility View Review payments Revise Compensation" [ref=e786]:
+                  - button "visibility View self-review" [ref=e787] [cursor=pointer]:
+                    - generic [ref=e788]: visibility
+                    - text: View self-review
+                  - button "visibility View Review" [ref=e789] [cursor=pointer]:
+                    - generic [ref=e790]: visibility
+                    - text: View Review
+                  - button "payments Revise Compensation" [ref=e791] [cursor=pointer]:
+                    - generic [ref=e792]: payments
+                    - text: Revise Compensation

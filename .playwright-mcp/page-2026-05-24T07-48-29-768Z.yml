@@ -1,0 +1,218 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 07 · My Goals
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: My workspace
+      - generic [ref=e19]:
+        - generic [ref=e20]: verified_user
+        - generic [ref=e21]: Worker · Self-service
+      - generic [ref=e22]:
+        - generic [ref=e23]: My workspace
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: home
+            - generic [ref=e27]: Home
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: person
+            - generic [ref=e30]: My profile
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: payments
+            - generic [ref=e33]: Pay
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: schedule
+            - generic [ref=e36]: Time off
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: insights
+            - generic [ref=e39]: Performance
+      - generic [ref=e40]:
+        - generic [ref=e41]: Restricted
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]: paid
+            - generic [ref=e45]: Compensation insights
+            - generic [ref=e46]: lock
+          - generic [ref=e47]:
+            - generic [ref=e48]: flag
+            - generic [ref=e49]: Other workers’ OKRs
+            - generic [ref=e50]: lock
+          - generic [ref=e51]:
+            - generic [ref=e52]: lock
+            - generic [ref=e53]: Manager private notes
+            - generic [ref=e54]: lock
+      - generic [ref=e56]:
+        - generic [ref=e57]: AS
+        - generic [ref=e58]:
+          - generic [ref=e59]: Aditi Sharma
+          - generic [ref=e60]: aditi@demo.com
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]: Payo WFM
+          - generic [ref=e65]: chevron_right
+          - generic [ref=e66]: Performance
+          - generic [ref=e67]: chevron_right
+          - generic [ref=e68]: My Goals
+        - generic [ref=e69]:
+          - generic [ref=e70]: verified_user
+          - text: Worker self-service
+        - generic [ref=e71]:
+          - generic [ref=e72]: search
+          - textbox "Search my goals, reviews…" [ref=e73]
+          - generic [ref=e74]: ⌘K
+        - generic [ref=e76] [cursor=pointer]: help
+        - generic [ref=e78] [cursor=pointer]:
+          - generic [ref=e79]: notifications
+          - generic [ref=e80]: "3"
+      - generic [ref=e814]:
+        - generic [ref=e816]:
+          - generic [ref=e817]:
+            - generic [ref=e819]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e820]
+          - button "close" [ref=e821] [cursor=pointer]:
+            - generic [ref=e822]: close
+        - generic [ref=e823]:
+          - generic [ref=e824]:
+            - generic [ref=e827] [cursor=pointer]: Name & Type
+            - generic [ref=e831]: Key Results
+            - generic [ref=e835]: Goal Dates
+            - generic [ref=e839]: Users
+            - generic [ref=e843]: Review
+          - generic [ref=e844]:
+            - generic [ref=e846]: gps_fixed
+            - button "delete_outline" [ref=e896] [cursor=pointer]:
+              - generic [ref=e897]: delete_outline
+            - generic [ref=e898]: Improve CSAT score to 4.8
+            - generic [ref=e899]:
+              - generic [ref=e901]: drag_indicator
+              - generic [ref=e902]:
+                - generic [ref=e903]: "Key Result #1"
+                - generic [ref=e904]: 25 / 512 Characters
+              - textbox [ref=e905]: Average vendor setup time
+              - generic [ref=e906]: Trackable metric that will indicate goal progress.
+              - generic [ref=e907]:
+                - generic [ref=e908]: Linked Project · optional
+                - generic [ref=e909]:
+                  - generic:
+                    - generic: link_off
+                  - combobox [ref=e910] [cursor=pointer]:
+                    - option "No linked project" [selected]
+                    - option "Payroll Migration EU"
+                    - option "Vendor Setup Automation"
+                    - option "Client Onboarding Q3"
+                    - option "Comms Unification"
+                    - option "CS Quality Q3"
+                    - option "Q3 Review Cycle Ops"
+                    - option "Review Quality rollout"
+                    - option "KYB Automation v2"
+                    - option "Contractor Onboarding Revamp"
+                    - option "CSAT Recovery Program"
+                    - option "Ops Tooling Modernisation"
+                    - option "Q3 Payroll Quality Initiative"
+              - generic [ref=e911]:
+                - generic [ref=e912]:
+                  - generic [ref=e913]: Start
+                  - spinbutton [ref=e914]: "8"
+                - generic [ref=e915]:
+                  - generic [ref=e916]: Target
+                  - spinbutton [ref=e917]: "6.4"
+                - generic [ref=e918]:
+                  - generic [ref=e919]: Unit
+                  - generic [ref=e920]:
+                    - generic:
+                      - generic: event
+                    - combobox [ref=e921] [cursor=pointer]:
+                      - option "Percentage"
+                      - option "Days" [selected]
+                      - option "Count"
+                      - option "USD"
+              - generic [ref=e922]:
+                - generic [ref=e923]:
+                  - strong [ref=e924]: "Tracking:"
+                  - text: Increase Average vendor setup from 8 to 6.4
+                - generic [ref=e925]:
+                  - button "person" [ref=e926] [cursor=pointer]:
+                    - generic [ref=e927]: person
+                  - button "content_copy" [ref=e928] [cursor=pointer]:
+                    - generic [ref=e929]: content_copy
+                  - button "delete" [ref=e930] [cursor=pointer]:
+                    - generic [ref=e931]: delete
+            - generic [ref=e932]:
+              - generic [ref=e934]: drag_indicator
+              - generic [ref=e935]:
+                - generic [ref=e936]: "Key Result #2"
+                - generic [ref=e937]: 23 / 512 Characters
+              - textbox [ref=e938]: KYB automation coverage
+              - generic [ref=e939]: Trackable metric that will indicate goal progress.
+              - generic [ref=e940]:
+                - generic [ref=e941]: Linked Project · optional
+                - generic [ref=e942]:
+                  - generic:
+                    - generic: link_off
+                  - combobox [ref=e943] [cursor=pointer]:
+                    - option "No linked project" [selected]
+                    - option "Payroll Migration EU"
+                    - option "Vendor Setup Automation"
+                    - option "Client Onboarding Q3"
+                    - option "Comms Unification"
+                    - option "CS Quality Q3"
+                    - option "Q3 Review Cycle Ops"
+                    - option "Review Quality rollout"
+                    - option "KYB Automation v2"
+                    - option "Contractor Onboarding Revamp"
+                    - option "CSAT Recovery Program"
+                    - option "Ops Tooling Modernisation"
+                    - option "Q3 Payroll Quality Initiative"
+              - generic [ref=e944]:
+                - generic [ref=e945]:
+                  - generic [ref=e946]: Start
+                  - spinbutton [ref=e947]: "0"
+                - generic [ref=e948]:
+                  - generic [ref=e949]: Target
+                  - spinbutton [ref=e950]: "80"
+                - generic [ref=e951]:
+                  - generic [ref=e952]: Unit
+                  - generic [ref=e953]:
+                    - generic:
+                      - generic: percent
+                    - combobox [ref=e954] [cursor=pointer]:
+                      - option "Percentage" [selected]
+                      - option "Days"
+                      - option "Count"
+                      - option "USD"
+              - generic [ref=e955]:
+                - generic [ref=e956]:
+                  - strong [ref=e957]: "Tracking:"
+                  - text: Increase KYB automation coverage from
+                  - generic [ref=e958]: 0%
+                  - text: to
+                  - generic [ref=e959]: 80%
+                - generic [ref=e960]:
+                  - button "person" [ref=e961] [cursor=pointer]:
+                    - generic [ref=e962]: person
+                  - button "content_copy" [ref=e963] [cursor=pointer]:
+                    - generic [ref=e964]: content_copy
+                  - button "delete" [ref=e965] [cursor=pointer]:
+                    - generic [ref=e966]: delete
+            - button "add New Key Result" [ref=e969] [cursor=pointer]:
+              - generic [ref=e970]: add
+              - text: New Key Result
+          - generic [ref=e890]:
+            - button "Back" [ref=e972] [cursor=pointer]:
+              - generic [ref=e973]: Back
+            - generic [ref=e892]:
+              - generic [ref=e893]: check_circle
+              - text: Saved Just Now
+            - button "Next" [active] [ref=e895] [cursor=pointer]

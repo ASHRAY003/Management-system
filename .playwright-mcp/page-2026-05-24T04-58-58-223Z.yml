@@ -1,0 +1,221 @@
+- generic [ref=e2]:
+  - generic [ref=e498]:
+    - link "← All views" [ref=e499] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e500]: /
+    - generic [ref=e501]: 04c · Notifications
+    - generic [ref=e502]:
+      - text: Signed in as
+      - strong [ref=e503]: Priya Mehta
+      - generic [ref=e504]: · manager
+    - button "Log out" [ref=e505] [cursor=pointer]
+  - generic [ref=e852]:
+    - complementary [ref=e853]:
+      - generic [ref=e854]:
+        - generic [ref=e855]: P
+        - generic [ref=e856]:
+          - generic [ref=e857]: Payo WFM
+          - generic [ref=e858]: Acme Holdings · HR
+      - generic [ref=e859]:
+        - generic [ref=e860]: badge
+        - generic [ref=e861]: HR Admin · Client manager
+      - generic [ref=e862]:
+        - generic [ref=e863]: Workforce
+        - generic [ref=e864]:
+          - generic [ref=e865] [cursor=pointer]:
+            - generic [ref=e866]: dashboard
+            - generic [ref=e867]: Dashboard
+          - generic [ref=e868] [cursor=pointer]:
+            - generic [ref=e869]: groups
+            - generic [ref=e870]: People
+          - generic [ref=e871] [cursor=pointer]:
+            - generic [ref=e872]: description
+            - generic [ref=e873]: Contracts
+          - generic [ref=e874] [cursor=pointer]:
+            - generic [ref=e875]: work
+            - generic [ref=e876]: Projects
+          - generic [ref=e877] [cursor=pointer]:
+            - generic [ref=e878]: sync
+            - generic [ref=e879]: Payroll
+          - generic [ref=e880] [cursor=pointer]:
+            - generic [ref=e881]: insights
+            - generic [ref=e882]: Performance
+      - generic [ref=e883]:
+        - generic [ref=e884]: Workspace
+        - generic [ref=e885]:
+          - generic [ref=e886] [cursor=pointer]:
+            - generic [ref=e887]: schedule
+            - generic [ref=e888]: Time & leave
+          - generic [ref=e889] [cursor=pointer]:
+            - generic [ref=e890]: receipt_long
+            - generic [ref=e891]: Expenses
+          - generic [ref=e892] [cursor=pointer]:
+            - generic [ref=e893]: folder
+            - generic [ref=e894]: Documents
+          - generic [ref=e895] [cursor=pointer]:
+            - generic [ref=e896]: bar_chart
+            - generic [ref=e897]: Reports
+          - generic [ref=e898] [cursor=pointer]:
+            - generic [ref=e899]: settings
+            - generic [ref=e900]: Settings
+      - generic [ref=e902]:
+        - generic [ref=e903]: PM
+        - generic [ref=e904]:
+          - generic [ref=e905]: Priya Mehta
+          - generic [ref=e906]: priya@demo.com
+    - generic [ref=e907]:
+      - generic [ref=e908]:
+        - generic [ref=e909]:
+          - generic [ref=e910]: Acme Holdings
+          - generic [ref=e911]: chevron_right
+          - generic [ref=e912]: Performance
+          - generic [ref=e913]: chevron_right
+          - generic [ref=e914]: Notifications
+        - generic [ref=e915]:
+          - generic [ref=e916]: badge
+          - text: Client / Manager view
+        - generic [ref=e917]:
+          - generic [ref=e918]: search
+          - textbox "Search people, goals, reviews…" [ref=e919]
+          - generic [ref=e920]: ⌘K
+        - generic [ref=e922] [cursor=pointer]: help
+        - generic [ref=e924] [cursor=pointer]:
+          - generic [ref=e925]: notifications
+          - generic [ref=e926]: "5"
+      - generic [ref=e927]:
+        - generic [ref=e928]:
+          - generic [ref=e929] [cursor=pointer]: Dashboard
+          - generic [ref=e930] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e931] [cursor=pointer]: Reviews
+          - generic [ref=e932] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e934] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e935]: expand_more
+        - generic [ref=e936]:
+          - generic [ref=e937]:
+            - generic [ref=e938]: Notifications
+            - heading "All notifications" [level=1] [ref=e939]
+            - generic [ref=e940]: 7 total · 5 unread
+          - button "done_all Mark all as read" [ref=e942] [cursor=pointer]:
+            - generic [ref=e943]: done_all
+            - text: Mark all as read
+        - generic [ref=e944]:
+          - button "All 7" [ref=e945] [cursor=pointer]:
+            - text: All
+            - generic [ref=e946]: "7"
+          - button "Unread 5" [ref=e947] [cursor=pointer]:
+            - text: Unread
+            - generic [ref=e948]: "5"
+          - button "Goals 0" [ref=e949] [cursor=pointer]:
+            - text: Goals
+            - generic [ref=e950]: "0"
+          - button "OKRs 0" [ref=e951] [cursor=pointer]:
+            - text: OKRs
+            - generic [ref=e952]: "0"
+          - button "Reviews 1" [ref=e953] [cursor=pointer]:
+            - text: Reviews
+            - generic [ref=e954]: "1"
+          - button "1:1s 6" [ref=e955] [cursor=pointer]:
+            - text: 1:1s
+            - generic [ref=e956]: "6"
+          - button "Feedback 0" [ref=e957] [cursor=pointer]:
+            - text: Feedback
+            - generic [ref=e958]: "0"
+        - generic [ref=e959]:
+          - generic [ref=e961]:
+            - generic [ref=e962]:
+              - generic [ref=e963]: notifications
+              - text: 7 notifications
+            - generic [ref=e964]: All
+          - generic [ref=e965]:
+            - generic [ref=e966] [cursor=pointer]:
+              - generic [ref=e968]: event
+              - generic [ref=e969]:
+                - generic [ref=e970]: Aditi Sharma requested a 1:1
+                - generic [ref=e971]: Aditi Sharma requested a 1:1.
+              - generic [ref=e972]: medium
+              - generic [ref=e973]: 1m ago
+              - generic [ref=e974]:
+                - button "Schedule 1:1 arrow_forward" [ref=e975]:
+                  - text: Schedule 1:1
+                  - generic [ref=e976]: arrow_forward
+                - button "archive" [ref=e977]:
+                  - generic [ref=e978]: archive
+            - generic [ref=e979] [cursor=pointer]:
+              - generic [ref=e981]: event
+              - generic [ref=e982]:
+                - generic [ref=e983]: 1:1 today
+                - generic [ref=e984]: You have a 1:1 with Aditi Sharma today.
+              - generic [ref=e985]: medium
+              - generic [ref=e986]: 5h ago
+              - generic [ref=e987]:
+                - button "Open 1:1 arrow_forward" [ref=e988]:
+                  - text: Open 1:1
+                  - generic [ref=e989]: arrow_forward
+                - button "archive" [ref=e990]:
+                  - generic [ref=e991]: archive
+            - generic [ref=e992] [cursor=pointer]:
+              - generic [ref=e994]: assignment_turned_in
+              - generic [ref=e995]:
+                - generic [ref=e996]: Self-review submitted
+                - generic [ref=e997]: Aditi Sharma submitted their self-review for Q3 2026 Performance Review.
+              - generic [ref=e998]: medium
+              - generic [ref=e999]: 11h ago
+              - generic [ref=e1000]:
+                - button "Open manager review arrow_forward" [ref=e1001]:
+                  - text: Open manager review
+                  - generic [ref=e1002]: arrow_forward
+                - button "archive" [ref=e1003]:
+                  - generic [ref=e1004]: archive
+            - generic [ref=e1005] [cursor=pointer]:
+              - generic [ref=e1007]: event
+              - generic [ref=e1008]:
+                - generic [ref=e1009]: 1:1 today
+                - generic [ref=e1010]: You have a 1:1 with Aditi Sharma today.
+              - generic [ref=e1011]: medium
+              - generic [ref=e1012]: 11h ago
+              - generic [ref=e1013]:
+                - button "Open 1:1 arrow_forward" [ref=e1014]:
+                  - text: Open 1:1
+                  - generic [ref=e1015]: arrow_forward
+                - button "archive" [ref=e1016]:
+                  - generic [ref=e1017]: archive
+            - generic [ref=e1018] [cursor=pointer]:
+              - generic [ref=e1020]: event
+              - generic [ref=e1021]:
+                - generic [ref=e1022]: 1:1 today
+                - generic [ref=e1023]: You have a 1:1 with Aditi Sharma today.
+              - generic [ref=e1024]: medium
+              - generic [ref=e1025]: 12h ago
+              - generic [ref=e1026]:
+                - button "Open 1:1 arrow_forward" [ref=e1027]:
+                  - text: Open 1:1
+                  - generic [ref=e1028]: arrow_forward
+                - button "archive" [ref=e1029]:
+                  - generic [ref=e1030]: archive
+            - generic [ref=e1031] [cursor=pointer]:
+              - generic [ref=e1033]: event
+              - generic [ref=e1034]:
+                - generic [ref=e1035]: Aditi Sharma requested a 1:1
+                - generic [ref=e1036]: "Aditi Sharma requested a 1:1. Reason: Testing 1:1 request"
+              - generic [ref=e1037]: medium
+              - generic [ref=e1038]: 12h ago
+              - generic [ref=e1039]:
+                - button "Schedule 1:1 arrow_forward" [ref=e1040]:
+                  - text: Schedule 1:1
+                  - generic [ref=e1041]: arrow_forward
+                - button "archive" [ref=e1042]:
+                  - generic [ref=e1043]: archive
+            - generic [ref=e1044] [cursor=pointer]:
+              - generic [ref=e1046]: event
+              - generic [ref=e1047]:
+                - generic [ref=e1048]: Aditi Sharma requested a 1:1
+                - generic [ref=e1049]: "Aditi Sharma requested a 1:1. Reason: Want to discuss my Q3 goals"
+              - generic [ref=e1050]: medium
+              - generic [ref=e1051]: 12h ago
+              - generic [ref=e1052]:
+                - button "Schedule 1:1 arrow_forward" [ref=e1053]:
+                  - text: Schedule 1:1
+                  - generic [ref=e1054]: arrow_forward
+                - button "archive" [ref=e1055]:
+                  - generic [ref=e1056]: archive

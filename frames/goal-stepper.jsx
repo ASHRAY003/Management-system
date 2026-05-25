@@ -21,7 +21,7 @@ const STEPS = [
   { id: 'review',label: 'Review' },
 ];
 
-function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, onCreate }) {
+function GoalStepper({ kind = 'goal', mode = 'create', role = 'manager', initial = {}, onCancel, onCreate }) {
   const [stepIdx, setStepIdx] = useStateStep(0);
   const [name, setName] = useStateStep(initial.name ?? 'Reduce vendor setup time by 20%');
   const [gtype, setGType] = useStateStep(initial.gtype ?? 'individual');
@@ -33,10 +33,8 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
   ]);
   const [krDir, setKrDir] = useStateStep('Increase');
   const [dates, setDates] = useStateStep(initial.dates ?? '7/1/2026 — 9/30/2026');
-  const [owner, setOwner] = useStateStep(initial.owner ?? 'Omar Khan');
+  const [owner, setOwner] = useStateStep(initial.owner ?? (window.PerformanceStore?.getCurrentUser()?.name || 'Aditi Sharma'));
   const [contributors, setContributors] = useStateStep(initial.contributors ?? ['Aditi Sharma', 'Priya Nair']);
-  const [opts, setOpts] = useStateStep(initial.opts ?? { alignment: true, description: false, tags: true });
-  const [linkedProject, setLinkedProject] = useStateStep(initial.linkedProject ?? '');
 
   const step = STEPS[stepIdx].id;
   const isLast = stepIdx === STEPS.length - 1;
@@ -109,7 +107,7 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                       <option value="individual">Individual</option>
                       <option value="team">Team</option>
                       <option value="project">Project-linked</option>
-                      <option value="company">Company</option>
+                      {role !== 'worker' && <option value="company">Company</option>}
                     </select>
                   </div>
                 </div>
@@ -142,39 +140,6 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                 Marking this as a Performance Goal will allow it to be included in future performance reviews.
               </div>
 
-              <div className="more-options">
-                <div className="h">More Options</div>
-                <div className="chips">
-                  <button className={`opt-chip ${opts.alignment ? 'active' : ''}`} onClick={() => setOpts({ ...opts, alignment: !opts.alignment })}>
-                    <span className="ms">account_tree</span>Alignment{opts.alignment && <span className="ms" style={{ fontSize: 14 }}>check</span>}
-                  </button>
-                  <button className={`opt-chip ${opts.description ? 'active' : ''}`} onClick={() => setOpts({ ...opts, description: !opts.description })}>
-                    <span className="ms">add_circle</span>Description{opts.description && <span className="ms" style={{ fontSize: 14 }}>check</span>}
-                  </button>
-                  <button className={`opt-chip ${opts.tags ? 'active' : ''}`} onClick={() => setOpts({ ...opts, tags: !opts.tags })}>
-                    <span className="ms">sell</span>Tags{opts.tags && <span className="ms" style={{ fontSize: 14 }}>check</span>}
-                  </button>
-                </div>
-                {opts.alignment && (
-                  <div style={{ marginTop: 14, padding: '12px 14px', background: 'var(--brand-blue-50)', border: '1px solid var(--brand-blue-200)', borderRadius: 8 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--brand-blue-600)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.04em' }}>Aligned to company goal</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13.5, color: 'var(--grey-700)', fontWeight: 600 }}>
-                      <span className="ms" style={{ color: 'var(--brand-blue-500)', fontSize: 16 }}>account_tree</span>
-                      CG-01 · Make Acme the #1 payroll platform for remote teams
-                    </div>
-                  </div>
-                )}
-                {opts.tags && (
-                  <div style={{ marginTop: 14, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                    <Pill variant="contractor">vendor-ops</Pill>
-                    <Pill variant="employee">q3-2026</Pill>
-                    <Pill variant="contrib">automation</Pill>
-                    <button className="opt-chip" style={{ padding: '4px 10px', fontSize: 12 }}>
-                      <span className="ms" style={{ fontSize: 14 }}>add</span>Add tag
-                    </button>
-                  </div>
-                )}
-              </div>
             </>
           )}
 
@@ -195,6 +160,9 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                   />
                   <div className="kr-help">Trackable metric that will indicate goal progress.</div>
                   <div className="field" style={{ marginBottom: 12 }}>
+                    <div style={{ fontSize: 11.5, fontWeight: 600, color: 'var(--fg-secondary)', marginBottom: 6 }}>
+                      Linked Project <span style={{ fontWeight: 400, color: 'var(--fg-disabled)' }}>· optional</span>
+                    </div>
                     <div className="sel-wrap">
                       <span className="lead-icon">
                         <span className="ms" style={{ color: kr.linkedProject ? 'var(--brand-blue-500)' : undefined }}>
@@ -203,13 +171,15 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                       </span>
                       <select className="sel with-lead" value={kr.linkedProject || ''} onChange={e => setKrs(krs.map((k, j) => j === i ? { ...k, linkedProject: e.target.value } : k))}>
                         <option value="">No linked project</option>
-                        {LINKED_PROJECTS.map(p => <option key={p} value={p}>{p}</option>)}
+                        {(window.ProjectStore ? window.ProjectStore.getProjectNames() : LINKED_PROJECTS).map(p => (
+                          <option key={p} value={p}>{p}</option>
+                        ))}
                       </select>
                     </div>
                     {kr.linkedProject && (
                       <div className="help" style={{ color: 'var(--brand-blue-600)', marginTop: 4 }}>
                         <span className="ms" style={{ fontSize: 14, verticalAlign: 'middle', marginRight: 4 }}>info</span>
-                        Progress tracked from <strong>{kr.linkedProject}</strong>.
+                        When <strong>{kr.linkedProject}</strong> is marked complete, this key result will be auto-completed.
                       </div>
                     )}
                   </div>
@@ -292,8 +262,21 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                 <div className="lh"><div className="lbl">Owner</div></div>
                 <div className="user-field">
                   <div className="floating-label">Only one owner per goal</div>
-                  <div>
-                    <span className="selected">{owner}<span className="x">×</span></span>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', paddingTop: 4 }}>
+                    {owner && (
+                      <span className="selected" style={{ alignSelf: 'auto' }}>
+                        {owner}<span className="x" onClick={() => setOwner('')}>×</span>
+                      </span>
+                    )}
+                    {!owner && (
+                      <input
+                        autoFocus
+                        placeholder="Type a name to assign owner"
+                        style={{ flex: 1, minWidth: 200 }}
+                        onKeyDown={e => { if (e.key === 'Enter' && e.target.value.trim()) { setOwner(e.target.value.trim()); e.target.value = ''; } }}
+                        onBlur={e => { if (e.target.value.trim()) setOwner(e.target.value.trim()); }}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className="help">Owners are responsible for keeping goals up-to-date and keeping contributors accountable.</div>
@@ -308,17 +291,12 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                         {c}<span className="x" onClick={() => setContributors(contributors.filter((_, j) => j !== i))}>×</span>
                       </span>
                     ))}
-                    <input placeholder={contributors.length === 0 ? 'Type names here to select multiple contributors' : ''} style={{ flex: 1, minWidth: 200 }} />
+                    <input placeholder={contributors.length === 0 ? 'Type names here to select multiple contributors' : ''} style={{ flex: 1, minWidth: 200 }}
+                      onKeyDown={e => { if (e.key === 'Enter' && e.target.value.trim()) { setContributors([...contributors, e.target.value.trim()]); e.target.value = ''; } }}
+                    />
                   </div>
                 </div>
                 <div className="help">Contributors are users that are actively pursuing and updating the progress of this goal.</div>
-              </div>
-
-              <div className="field" style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--grey-100)' }}>
-                <div className="lh"><div className="lbl" style={{ fontSize: 14 }}>Stakeholders <span style={{ fontSize: 12, color: 'var(--fg-secondary)', fontWeight: 500 }}>· optional · receive updates</span></div></div>
-                <div className="user-field">
-                  <input placeholder="Add stakeholders who should see progress but won't update it" />
-                </div>
               </div>
             </>
           )}
@@ -330,7 +308,7 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                 gtype === 'individual' ? 'Individual Goal' :
                 gtype === 'team' ? 'Team Goal' :
                 gtype === 'project' ? 'Project-Linked Goal' : 'Company Goal'
-              } · {opts.alignment ? 'Aligned to CG-01' : 'Not Aligned'}</div>
+              }</div>
 
               <div className="review-meta-row">
                 <div className="item">
@@ -353,7 +331,14 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                   <div className="dotted-row" key={i}>
                     <span className="k">{kr.name || `Key result #${i+1}`}</span>
                     <span className="dots" />
-                    <span className="v">{krDir === 'Increase' ? '↑' : '↓'} to {kr.target}{kr.unit === '%' ? '%' : ` ${kr.unit}`}</span>
+                    <span className="v" style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                      {krDir === 'Increase' ? '↑' : '↓'} to {kr.target}{kr.unit === '%' ? '%' : ` ${kr.unit}`}
+                      {kr.linkedProject && (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 11, fontWeight: 700, color: 'var(--brand-blue-600)', background: 'var(--brand-blue-50)', border: '1px solid var(--brand-blue-200)', borderRadius: 6, padding: '2px 7px' }}>
+                          <span className="ms" style={{ fontSize: 12 }}>link</span>{kr.linkedProject}
+                        </span>
+                      )}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -372,27 +357,6 @@ function GoalStepper({ kind = 'goal', mode = 'create', initial = {}, onCancel, o
                 </div>
               </div>
 
-              {opts.alignment && (
-                <div className="review-sec">
-                  <h4>Alignment</h4>
-                  <div className="dotted-row">
-                    <span className="k">Aligned to</span>
-                    <span className="dots" />
-                    <span className="v"><span className="ms" style={{ fontSize: 16, color: 'var(--brand-blue-500)' }}>account_tree</span>CG-01 · Acme #1 payroll platform</span>
-                  </div>
-                </div>
-              )}
-
-              {opts.tags && (
-                <div className="review-sec">
-                  <h4>Tags</h4>
-                  <div style={{ display: 'flex', gap: 8 }}>
-                    <Pill variant="contractor">vendor-ops</Pill>
-                    <Pill variant="employee">q3-2026</Pill>
-                    <Pill variant="contrib">automation</Pill>
-                  </div>
-                </div>
-              )}
             </div>
           )}
         </div>

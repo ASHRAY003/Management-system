@@ -1,0 +1,190 @@
+- generic [ref=e2]:
+  - generic [ref=e79]:
+    - link "← All views" [ref=e80] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e81]: /
+    - generic [ref=e82]: 04 · 1:1 Meetings
+    - generic [ref=e83]:
+      - text: Signed in as
+      - strong [ref=e84]: Priya Mehta
+      - generic [ref=e85]: · manager
+    - button "Log out" [ref=e86] [cursor=pointer]
+  - generic [ref=e1100]:
+    - complementary [ref=e1101]:
+      - generic [ref=e1102]:
+        - generic [ref=e1103]: P
+        - generic [ref=e1104]:
+          - generic [ref=e1105]: Payo WFM
+          - generic [ref=e1106]: Acme Holdings · HR
+      - generic [ref=e1107]:
+        - generic [ref=e1108]: badge
+        - generic [ref=e1109]: HR Admin · Client manager
+      - generic [ref=e1110]:
+        - generic [ref=e1111]: Workforce
+        - generic [ref=e1112]:
+          - generic [ref=e1113] [cursor=pointer]:
+            - generic [ref=e1114]: dashboard
+            - generic [ref=e1115]: Dashboard
+          - generic [ref=e1116] [cursor=pointer]:
+            - generic [ref=e1117]: groups
+            - generic [ref=e1118]: People
+          - generic [ref=e1119] [cursor=pointer]:
+            - generic [ref=e1120]: description
+            - generic [ref=e1121]: Contracts
+          - generic [ref=e1122] [cursor=pointer]:
+            - generic [ref=e1123]: work
+            - generic [ref=e1124]: Projects
+          - generic [ref=e1125] [cursor=pointer]:
+            - generic [ref=e1126]: sync
+            - generic [ref=e1127]: Payroll
+          - generic [ref=e1128] [cursor=pointer]:
+            - generic [ref=e1129]: insights
+            - generic [ref=e1130]: Performance
+      - generic [ref=e1131]:
+        - generic [ref=e1132]: Workspace
+        - generic [ref=e1133]:
+          - generic [ref=e1134] [cursor=pointer]:
+            - generic [ref=e1135]: schedule
+            - generic [ref=e1136]: Time & leave
+          - generic [ref=e1137] [cursor=pointer]:
+            - generic [ref=e1138]: receipt_long
+            - generic [ref=e1139]: Expenses
+          - generic [ref=e1140] [cursor=pointer]:
+            - generic [ref=e1141]: folder
+            - generic [ref=e1142]: Documents
+          - generic [ref=e1143] [cursor=pointer]:
+            - generic [ref=e1144]: bar_chart
+            - generic [ref=e1145]: Reports
+          - generic [ref=e1146] [cursor=pointer]:
+            - generic [ref=e1147]: settings
+            - generic [ref=e1148]: Settings
+      - generic [ref=e1150]:
+        - generic [ref=e1151]: PM
+        - generic [ref=e1152]:
+          - generic [ref=e1153]: Priya Mehta
+          - generic [ref=e1154]: priya@demo.com
+    - generic [ref=e1155]:
+      - generic [ref=e1156]:
+        - generic [ref=e1157]:
+          - generic [ref=e1158]: Acme Holdings
+          - generic [ref=e1159]: chevron_right
+          - generic [ref=e1160]: Performance
+          - generic [ref=e1161]: chevron_right
+          - generic [ref=e1162]: 1:1 Meetings
+        - generic [ref=e1163]:
+          - generic [ref=e1164]: badge
+          - text: Client / Manager view
+        - generic [ref=e1165]:
+          - generic [ref=e1166]: search
+          - textbox "Search people, goals, reviews…" [ref=e1167]
+          - generic [ref=e1168]: ⌘K
+        - generic [ref=e1170] [cursor=pointer]: help
+        - generic [ref=e1172] [cursor=pointer]:
+          - generic [ref=e1173]: notifications
+          - generic [ref=e1174]: "2"
+      - generic [ref=e1175]:
+        - generic [ref=e1176]:
+          - generic [ref=e1177] [cursor=pointer]: Dashboard
+          - generic [ref=e1178] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e1179] [cursor=pointer]: Reviews
+          - generic [ref=e1180] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e1182] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e1183]: expand_more
+        - generic [ref=e1184]:
+          - generic [ref=e1185]:
+            - generic [ref=e1186]: Performance Management
+            - heading "1:1 Meetings" [level=1] [ref=e1187]
+            - generic [ref=e1188]: Run check-ins with your direct reports. Link notes to goals, projects, feedback, or reviews — convert action items into real follow-ups.
+          - button "add Schedule 1:1" [ref=e1190] [cursor=pointer]:
+            - generic [ref=e1191]: add
+            - text: Schedule 1:1
+        - generic [ref=e1192]:
+          - generic [ref=e1193]:
+            - generic [ref=e1194]: 1:1s today
+            - generic [ref=e1196]: "1"
+            - generic [ref=e1197]: Scheduled or live
+            - generic [ref=e1199]: event_available
+          - generic [ref=e1200]:
+            - generic [ref=e1201]: This week
+            - generic [ref=e1203]: "1"
+            - generic [ref=e1204]: Total scheduled
+            - generic [ref=e1206]: calendar_month
+          - generic [ref=e1207]:
+            - generic [ref=e1208]: Action items closed
+            - generic [ref=e1210]: "0"
+            - generic [ref=e1211]: No items yet
+            - generic [ref=e1213]: task_alt
+        - generic [ref=e1214]:
+          - generic [ref=e1215]:
+            - generic [ref=e1216]:
+              - generic [ref=e1217]: Today
+              - generic [ref=e1218]: Wed, Mar 26 · 2026
+              - generic [ref=e1219]: 1 meetings
+            - generic [ref=e1221]:
+              - generic [ref=e1222]:
+                - generic [ref=e1223]: 10:00
+                - generic [ref=e1224]: AM
+                - generic [ref=e1225]: 30 min
+              - generic [ref=e1226]:
+                - generic [ref=e1227]:
+                  - generic [ref=e1228]:
+                    - generic [ref=e1229]: AS
+                    - generic [ref=e1230]:
+                      - generic [ref=e1231]: Aditi Sharma
+                      - generic [ref=e1232]: Senior Ops
+                  - generic [ref=e1233]:
+                    - button "edit Edit" [ref=e1234] [cursor=pointer]:
+                      - generic [ref=e1235]: edit
+                      - text: Edit
+                    - button "edit_note Add notes" [ref=e1236] [cursor=pointer]:
+                      - generic [ref=e1237]: edit_note
+                      - text: Add notes
+                - generic [ref=e1238]:
+                  - strong [ref=e1239]: Agenda ·
+                  - text: Test
+            - generic [ref=e1240]:
+              - generic [ref=e1241]: Tomorrow
+              - generic [ref=e1242]: Thu, Mar 27
+              - generic [ref=e1243]: 0 meetings
+            - generic [ref=e1245]:
+              - generic [ref=e1246]: Rest of this week
+              - generic [ref=e1247]: Mar 27–29
+              - generic [ref=e1248]: 0 meetings
+            - table [ref=e1251]:
+              - rowgroup [ref=e1252]:
+                - row "When Worker Agenda" [ref=e1253]:
+                  - columnheader "When" [ref=e1254]
+                  - columnheader "Worker" [ref=e1255]
+                  - columnheader "Agenda" [ref=e1256]
+                  - columnheader [ref=e1257]
+              - rowgroup
+            - generic [ref=e1258]:
+              - generic [ref=e1259]: Past sessions
+              - generic [ref=e1260]: Last 30 days
+              - generic [ref=e1261]: 42 meetings
+            - table [ref=e1264]:
+              - rowgroup [ref=e1265]:
+                - row "Date Worker Topic Notes summary" [ref=e1266]:
+                  - columnheader "Date" [ref=e1267]
+                  - columnheader "Worker" [ref=e1268]
+                  - columnheader "Topic" [ref=e1269]
+                  - columnheader "Notes summary" [ref=e1270]
+                  - columnheader [ref=e1271]
+              - rowgroup
+          - generic [ref=e1272]:
+            - generic [ref=e1274]:
+              - generic [ref=e1275]:
+                - generic [ref=e1276]: event_upcoming
+                - text: Upcoming meets
+              - generic [ref=e1277]: Next 1 of 1 scheduled
+            - generic [ref=e1279] [cursor=pointer]:
+              - generic [ref=e1280]:
+                - generic [ref=e1281]: Today
+                - generic [ref=e1282]: 10:00
+                - generic [ref=e1283]: AM
+              - generic [ref=e1284]:
+                - generic [ref=e1285]:
+                  - generic [ref=e1286]: AS
+                  - generic [ref=e1287]: Aditi Sharma
+                - generic [ref=e1288]: Test

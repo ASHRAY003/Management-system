@@ -126,31 +126,32 @@ html, body { margin: 0; padding: 0; background: #F1EFEC; min-height: 100vh; }
 <script src="vendor/babel.js"></script>
 
 <!-- Shared shell + components -->
-<script type="text/babel" src="shared.jsx?v=18"></script>
+<script type="text/babel" src="shared.jsx?v=20"></script>
 <script type="text/babel" src="frames/performance-store.jsx?v=18"></script>
+<script type="text/babel" src="frames/projects.jsx?v=23"></script>
 <script type="text/babel" src="frames/login.jsx?v=18"></script>
 
 <!-- Shared sub-screens -->
 <script type="text/babel" src="frames/goal-detail.jsx?v=18"></script>
-<script type="text/babel" src="frames/goal-stepper.jsx?v=18"></script>
+<script type="text/babel" src="frames/goal-stepper.jsx?v=23"></script>
 <script type="text/babel" src="frames/meeting-notes.jsx?v=18"></script>
 <script type="text/babel" src="frames/review-cycle-stepper.jsx?v=18"></script>
-<script type="text/babel" src="frames/manager-review-form.jsx?v=18"></script>
+<script type="text/babel" src="frames/manager-review-form.jsx?v=19"></script>
 <script type="text/babel" src="frames/worker-self-review.jsx?v=18"></script>
 <script type="text/babel" src="frames/notifications.jsx?v=18"></script>
 <script type="text/babel" src="frames/all-review-cycles.jsx?v=18"></script>
 
 <!-- Client screens -->
-<script type="text/babel" src="frames/client-dashboard.jsx?v=18"></script>
-<script type="text/babel" src="frames/client-okrs.jsx?v=18"></script>
+<script type="text/babel" src="frames/client-dashboard.jsx?v=22"></script>
+<script type="text/babel" src="frames/client-okrs.jsx?v=25"></script>
 <script type="text/babel" src="frames/client-reviews.jsx?v=18"></script>
 <script type="text/babel" src="frames/client-meetings.jsx?v=18"></script>
 
 <!-- Worker screens -->
-<script type="text/babel" src="frames/worker-dashboard.jsx?v=18"></script>
-<script type="text/babel" src="frames/worker-goals.jsx?v=18"></script>
+<script type="text/babel" src="frames/worker-dashboard.jsx?v=19"></script>
+<script type="text/babel" src="frames/worker-goals.jsx?v=25"></script>
 <script type="text/babel" src="frames/worker-meetings.jsx?v=18"></script>
-<script type="text/babel" src="frames/worker-reviews.jsx?v=18"></script>
+<script type="text/babel" src="frames/worker-reviews.jsx?v=20"></script>
 
 <!-- Admin -->
 <script type="text/babel" src="frames/admin-dashboard.jsx?v=18"></script>
@@ -180,6 +181,7 @@ const ROUTES = [
       { hash: '/client/meetings',    num: '04', label: '1:1 Meetings' },
       { hash: '/client/notes',       num: '04b', label: '1:1 Notes Editor' },
       { hash: '/client/notifications', num: '04c', label: 'Notifications' },
+      { hash: '/projects',            num: '04d', label: 'Projects Module' },
     ],
   },
   {
@@ -193,7 +195,8 @@ const ROUTES = [
     section: 'Worker',
     colorClass: 'worker-num',
     items: [
-      { hash: '/worker/dashboard', num: '06', label: 'My Dashboard' },
+      { hash: '/worker/dashboard',  num: '06', label: 'My Dashboard' },
+      { hash: '/worker/projects',   num: '06b', label: 'My Projects' },
       { hash: '/worker/goals',     num: '07', label: 'My Goals' },
       { hash: '/worker/meetings',  num: '08', label: 'My 1:1 Sessions' },
       { hash: '/worker/reviews',   num: '09', label: 'Feedback & Reviews' },
@@ -271,22 +274,11 @@ function renderView(hash) {
     case '/admin/dashboard':
       return <AdminDashboard />;
     case '/projects':
-      return (
-        <Shell persona="client" active="performance"
-          crumb={['Acme Holdings', 'Projects']}>
-          <PageHead
-            eyebrow="Projects"
-            title="Projects"
-            sub="Projects live in the Payo WFM core, alongside time-tracking and payroll. This perf-management prototype links projects from goals and OKRs."
-            actions={<Btn variant="ghost" icon="arrow_back" onClick={() => window.location.hash = '/client/dashboard'}>Back to dashboard</Btn>}
-          />
-          <Callout tone="info" icon="rocket_launch">
-            <strong>Projects view stub.</strong> In production, this card opens the Projects module. From here in the prototype, you can still see project links inside <a href="#/client/okrs">Goals &amp; OKRs</a>.
-          </Callout>
-        </Shell>
-      );
+      return <ProjectsPage />;
     case '/client/notifications':
       return <NotificationsPage persona="client" />;
+    case '/worker/projects':
+      return <ProjectsPage persona="worker" />;
     case '/worker/dashboard':
       return <WorkerDashboard />;
     case '/worker/goals':

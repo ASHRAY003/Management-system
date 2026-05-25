@@ -1,0 +1,97 @@
+- generic [ref=e2]:
+  - generic [ref=e367]:
+    - link "← All views" [ref=e368] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e371]:
+      - text: Signed in as
+      - strong [ref=e372]: Aditi Sharma
+      - generic [ref=e373]: · worker
+    - button "Log out" [ref=e374] [cursor=pointer]
+  - generic [ref=e905]:
+    - complementary [ref=e906]:
+      - generic [ref=e907]:
+        - generic [ref=e908]: P
+        - generic [ref=e909]:
+          - generic [ref=e910]: Payo WFM
+          - generic [ref=e911]: Acme Holdings · HR
+      - generic [ref=e912]:
+        - generic [ref=e913]: badge
+        - generic [ref=e914]: HR Admin · Client manager
+      - generic [ref=e915]:
+        - generic [ref=e916]: Workforce
+        - generic [ref=e917]:
+          - generic [ref=e918] [cursor=pointer]:
+            - generic [ref=e919]: dashboard
+            - generic [ref=e920]: Dashboard
+          - generic [ref=e921] [cursor=pointer]:
+            - generic [ref=e922]: groups
+            - generic [ref=e923]: People
+          - generic [ref=e924] [cursor=pointer]:
+            - generic [ref=e925]: description
+            - generic [ref=e926]: Contracts
+          - generic [ref=e927] [cursor=pointer]:
+            - generic [ref=e928]: work
+            - generic [ref=e929]: Projects
+          - generic [ref=e930] [cursor=pointer]:
+            - generic [ref=e931]: sync
+            - generic [ref=e932]: Payroll
+          - generic [ref=e933] [cursor=pointer]:
+            - generic [ref=e934]: insights
+            - generic [ref=e935]: Performance
+      - generic [ref=e936]:
+        - generic [ref=e937]: Workspace
+        - generic [ref=e938]:
+          - generic [ref=e939] [cursor=pointer]:
+            - generic [ref=e940]: schedule
+            - generic [ref=e941]: Time & leave
+          - generic [ref=e942] [cursor=pointer]:
+            - generic [ref=e943]: receipt_long
+            - generic [ref=e944]: Expenses
+          - generic [ref=e945] [cursor=pointer]:
+            - generic [ref=e946]: folder
+            - generic [ref=e947]: Documents
+          - generic [ref=e948] [cursor=pointer]:
+            - generic [ref=e949]: bar_chart
+            - generic [ref=e950]: Reports
+          - generic [ref=e951] [cursor=pointer]:
+            - generic [ref=e952]: settings
+            - generic [ref=e953]: Settings
+      - generic [ref=e955]:
+        - generic [ref=e956]: AS
+        - generic [ref=e957]:
+          - generic [ref=e958]: Aditi Sharma
+          - generic [ref=e959]: aditi@demo.com
+    - generic [ref=e960]:
+      - generic [ref=e961]:
+        - generic [ref=e962]:
+          - generic [ref=e963]: Acme Holdings
+          - generic [ref=e964]: chevron_right
+          - generic [ref=e965]: Projects
+        - generic [ref=e966]:
+          - generic [ref=e967]: badge
+          - text: Client / Manager view
+        - generic [ref=e968]:
+          - generic [ref=e969]: search
+          - textbox "Search people, goals, reviews…" [ref=e970]
+          - generic [ref=e971]: ⌘K
+        - generic [ref=e973] [cursor=pointer]: help
+        - generic [ref=e975] [cursor=pointer]:
+          - generic [ref=e976]: notifications
+          - generic [ref=e977]: "3"
+      - generic [ref=e978]:
+        - generic [ref=e979]:
+          - generic [ref=e980]:
+            - generic [ref=e981]: Projects
+            - heading "Projects" [level=1] [ref=e982]
+            - generic [ref=e983]: Projects live in the Payo WFM core, alongside time-tracking and payroll. This perf-management prototype links projects from goals and OKRs.
+          - button "arrow_back Back to dashboard" [ref=e985] [cursor=pointer]:
+            - generic [ref=e986]: arrow_back
+            - text: Back to dashboard
+        - generic [ref=e987]:
+          - generic [ref=e988]: rocket_launch
+          - generic [ref=e990]:
+            - strong [ref=e991]: Projects view stub.
+            - text: In production, this card opens the Projects module. From here in the prototype, you can still see project links inside
+            - link "Goals & OKRs" [ref=e992] [cursor=pointer]:
+              - /url: "#/client/okrs"
+            - text: .

@@ -1,0 +1,306 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]:
+      - text: Signed in as
+      - strong [ref=e6]: Aditi Sharma
+      - generic [ref=e7]: · worker
+    - button "Log out" [ref=e8] [cursor=pointer]
+  - generic [ref=e10]:
+    - complementary [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]: P
+        - generic [ref=e14]:
+          - generic [ref=e15]: Payo WFM
+          - generic [ref=e16]: Acme Holdings · HR
+      - generic [ref=e17]:
+        - generic [ref=e18]: badge
+        - generic [ref=e19]: HR Admin · Client manager
+      - generic [ref=e20]:
+        - generic [ref=e21]: Workforce
+        - generic [ref=e22]:
+          - generic [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: dashboard
+            - generic [ref=e25]: Dashboard
+          - generic [ref=e26] [cursor=pointer]:
+            - generic [ref=e27]: groups
+            - generic [ref=e28]: People
+          - generic [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]: description
+            - generic [ref=e31]: Contracts
+          - generic [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: work
+            - generic [ref=e34]: Projects
+          - generic [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]: sync
+            - generic [ref=e37]: Payroll
+          - generic [ref=e38] [cursor=pointer]:
+            - generic [ref=e39]: insights
+            - generic [ref=e40]: Performance
+      - generic [ref=e41]:
+        - generic [ref=e42]: Workspace
+        - generic [ref=e43]:
+          - generic [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: schedule
+            - generic [ref=e46]: Time & leave
+          - generic [ref=e47] [cursor=pointer]:
+            - generic [ref=e48]: receipt_long
+            - generic [ref=e49]: Expenses
+          - generic [ref=e50] [cursor=pointer]:
+            - generic [ref=e51]: folder
+            - generic [ref=e52]: Documents
+          - generic [ref=e53] [cursor=pointer]:
+            - generic [ref=e54]: bar_chart
+            - generic [ref=e55]: Reports
+          - generic [ref=e56] [cursor=pointer]:
+            - generic [ref=e57]: settings
+            - generic [ref=e58]: Settings
+      - generic [ref=e60]:
+        - generic [ref=e61]: AS
+        - generic [ref=e62]:
+          - generic [ref=e63]: Aditi Sharma
+          - generic [ref=e64]: aditi@demo.com
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - generic [ref=e68]: Acme Holdings
+          - generic [ref=e69]: chevron_right
+          - generic [ref=e70]: Projects
+        - generic [ref=e71]:
+          - generic [ref=e72]: badge
+          - text: Client / Manager view
+        - generic [ref=e73]:
+          - generic [ref=e74]: search
+          - textbox "Search people, goals, reviews…" [ref=e75]
+          - generic [ref=e76]: ⌘K
+        - generic [ref=e78] [cursor=pointer]: help
+        - generic [ref=e80] [cursor=pointer]:
+          - generic [ref=e81]: notifications
+          - generic [ref=e82]: "3"
+      - generic [ref=e83]:
+        - generic [ref=e296]:
+          - generic [ref=e297]:
+            - generic [ref=e299]: rocket_launch
+            - generic [ref=e300]:
+              - generic [ref=e301]: Mark project as complete?
+              - generic [ref=e302]: This will auto-complete all linked OKRs
+          - generic [ref=e303]:
+            - generic [ref=e304]: Payroll Migration EU
+            - generic [ref=e305]: "3 OKRs will be auto-completed:"
+            - generic [ref=e306]:
+              - generic [ref=e307]: flag
+              - text: PO-01 · Aditi Sharma · 6 migrations
+            - generic [ref=e308]:
+              - generic [ref=e309]: flag
+              - text: TG-02 · Ops Team · Payroll quality EU
+            - generic [ref=e310]:
+              - generic [ref=e311]: flag
+              - text: MG-05 · Priya Nair · 99.5% accuracy
+          - generic [ref=e312]:
+            - button "Cancel" [ref=e313] [cursor=pointer]
+            - button "check_circle Yes, mark complete" [ref=e314] [cursor=pointer]:
+              - generic [ref=e315]: check_circle
+              - text: Yes, mark complete
+        - generic [ref=e84]:
+          - generic [ref=e85] [cursor=pointer]: Dashboard
+          - generic [ref=e86] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e87] [cursor=pointer]: Reviews
+          - generic [ref=e88] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e90] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e91]: expand_more
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: Projects
+            - heading "Projects" [level=1] [ref=e95]
+            - generic [ref=e96]: Projects tracked in Payo WFM. When a project is marked complete, all linked OKRs are automatically completed.
+          - generic [ref=e97]:
+            - button "filter_list Filters" [ref=e98] [cursor=pointer]:
+              - generic [ref=e99]: filter_list
+              - text: Filters
+            - button "add Add project" [ref=e100] [cursor=pointer]:
+              - generic [ref=e101]: add
+              - text: Add project
+        - generic [ref=e102]:
+          - generic [ref=e103]: link
+          - generic [ref=e104]:
+            - generic [ref=e105]: How OKR auto-completion works
+            - generic [ref=e106]:
+              - text: When a project is marked complete here, every OKR and goal linked to that project is automatically marked as
+              - strong [ref=e107]: Completed (100%)
+              - text: in both the client and worker views — no manual update needed.
+        - generic [ref=e108]:
+          - button "All 12" [ref=e109] [cursor=pointer]:
+            - text: All
+            - generic [ref=e110]: "12"
+          - button "Active 12" [ref=e111] [cursor=pointer]:
+            - text: Active
+            - generic [ref=e112]: "12"
+          - button "Completed 0" [ref=e113] [cursor=pointer]:
+            - text: Completed
+            - generic [ref=e114]: "0"
+        - generic [ref=e115]:
+          - generic [ref=e118]:
+            - generic [ref=e119]: rocket_launch
+            - text: 12 projects
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic [ref=e123]:
+                - generic [ref=e124]: rocket_launch
+                - generic [ref=e125]: Payroll Migration EU
+              - generic [ref=e126]: Active
+              - generic [ref=e128]:
+                - generic [ref=e129]: Linked OKRs
+                - generic [ref=e130]:
+                  - generic [ref=e131]:
+                    - generic [ref=e132]: flag
+                    - text: PO-01 · Aditi Sharma · 6 migrations
+                  - generic [ref=e133]:
+                    - generic [ref=e134]: flag
+                    - text: TG-02 · Ops Team · Payroll quality EU
+                  - generic [ref=e135]:
+                    - generic [ref=e136]: flag
+                    - text: MG-05 · Priya Nair · 99.5% accuracy
+              - button "check_circle Mark complete" [active] [ref=e138] [cursor=pointer]:
+                - generic [ref=e139]: check_circle
+                - text: Mark complete
+            - generic [ref=e140]:
+              - generic [ref=e142]:
+                - generic [ref=e143]: rocket_launch
+                - generic [ref=e144]: Vendor Setup Automation
+              - generic [ref=e145]: Active
+              - generic [ref=e147]:
+                - generic [ref=e148]: Linked OKRs
+                - generic [ref=e149]:
+                  - generic [ref=e150]:
+                    - generic [ref=e151]: flag
+                    - text: PO-02 · Omar Khan · Reduce setup time 20%
+                  - generic [ref=e152]:
+                    - generic [ref=e153]: flag
+                    - text: MG-03 · Priya Nair · Vendor network goal
+              - button "check_circle Mark complete" [ref=e155] [cursor=pointer]:
+                - generic [ref=e156]: check_circle
+                - text: Mark complete
+            - generic [ref=e157]:
+              - generic [ref=e159]:
+                - generic [ref=e160]: rocket_launch
+                - generic [ref=e161]: Client Onboarding Q3
+              - generic [ref=e162]: Active
+              - generic [ref=e164]:
+                - generic [ref=e165]: Linked OKRs
+                - generic [ref=e167]:
+                  - generic [ref=e168]: flag
+                  - text: PO-03 · Lina Chen · Onboarding quality 4.6
+              - button "check_circle Mark complete" [ref=e170] [cursor=pointer]:
+                - generic [ref=e171]: check_circle
+                - text: Mark complete
+            - generic [ref=e172]:
+              - generic [ref=e174]:
+                - generic [ref=e175]: rocket_launch
+                - generic [ref=e176]: Comms Unification
+              - generic [ref=e177]: Active
+              - generic [ref=e179]:
+                - generic [ref=e180]: Linked OKRs
+                - generic [ref=e182]:
+                  - generic [ref=e183]: flag
+                  - text: PO-04 · Diego Alvarez · Payments v2 API
+              - button "check_circle Mark complete" [ref=e185] [cursor=pointer]:
+                - generic [ref=e186]: check_circle
+                - text: Mark complete
+            - generic [ref=e187]:
+              - generic [ref=e189]:
+                - generic [ref=e190]: rocket_launch
+                - generic [ref=e191]: CS Quality Q3
+              - generic [ref=e192]: Active
+              - generic [ref=e194]:
+                - generic [ref=e195]: Linked OKRs
+                - generic [ref=e197]:
+                  - generic [ref=e198]: flag
+                  - text: MG-02 · Priya Nair · Review feedback quality
+              - button "check_circle Mark complete" [ref=e200] [cursor=pointer]:
+                - generic [ref=e201]: check_circle
+                - text: Mark complete
+            - generic [ref=e202]:
+              - generic [ref=e204]:
+                - generic [ref=e205]: rocket_launch
+                - generic [ref=e206]: Q3 Review Cycle Ops
+              - generic [ref=e207]: Active
+              - generic [ref=e209]:
+                - generic [ref=e210]: Linked OKRs
+                - generic [ref=e212]:
+                  - generic [ref=e213]: flag
+                  - text: MG-01 · Priya Nair · Q3 review cycle rollout
+              - button "check_circle Mark complete" [ref=e215] [cursor=pointer]:
+                - generic [ref=e216]: check_circle
+                - text: Mark complete
+            - generic [ref=e217]:
+              - generic [ref=e219]:
+                - generic [ref=e220]: rocket_launch
+                - generic [ref=e221]: Review Quality rollout
+              - generic [ref=e222]: Active
+              - generic [ref=e224]:
+                - generic [ref=e225]: Linked OKRs
+                - generic [ref=e227]:
+                  - generic [ref=e228]: flag
+                  - text: MG-02 · Priya Nair · Review quality
+              - button "check_circle Mark complete" [ref=e230] [cursor=pointer]:
+                - generic [ref=e231]: check_circle
+                - text: Mark complete
+            - generic [ref=e232]:
+              - generic [ref=e234]:
+                - generic [ref=e235]: rocket_launch
+                - generic [ref=e236]: KYB Automation v2
+              - generic [ref=e237]: Active
+              - generic [ref=e239]:
+                - generic [ref=e240]: Linked OKRs
+                - text: No OKRs linked
+              - button "check_circle Mark complete" [ref=e242] [cursor=pointer]:
+                - generic [ref=e243]: check_circle
+                - text: Mark complete
+            - generic [ref=e244]:
+              - generic [ref=e246]:
+                - generic [ref=e247]: rocket_launch
+                - generic [ref=e248]: Contractor Onboarding Revamp
+              - generic [ref=e249]: Active
+              - generic [ref=e251]:
+                - generic [ref=e252]: Linked OKRs
+                - text: No OKRs linked
+              - button "check_circle Mark complete" [ref=e254] [cursor=pointer]:
+                - generic [ref=e255]: check_circle
+                - text: Mark complete
+            - generic [ref=e256]:
+              - generic [ref=e258]:
+                - generic [ref=e259]: rocket_launch
+                - generic [ref=e260]: CSAT Recovery Program
+              - generic [ref=e261]: Active
+              - generic [ref=e263]:
+                - generic [ref=e264]: Linked OKRs
+                - text: No OKRs linked
+              - button "check_circle Mark complete" [ref=e266] [cursor=pointer]:
+                - generic [ref=e267]: check_circle
+                - text: Mark complete
+            - generic [ref=e268]:
+              - generic [ref=e270]:
+                - generic [ref=e271]: rocket_launch
+                - generic [ref=e272]: Ops Tooling Modernisation
+              - generic [ref=e273]: Active
+              - generic [ref=e275]:
+                - generic [ref=e276]: Linked OKRs
+                - text: No OKRs linked
+              - button "check_circle Mark complete" [ref=e278] [cursor=pointer]:
+                - generic [ref=e279]: check_circle
+                - text: Mark complete
+            - generic [ref=e280]:
+              - generic [ref=e282]:
+                - generic [ref=e283]: rocket_launch
+                - generic [ref=e284]: Q3 Payroll Quality Initiative
+              - generic [ref=e285]: Active
+              - generic [ref=e287]:
+                - generic [ref=e288]: Linked OKRs
+                - generic [ref=e290]:
+                  - generic [ref=e291]: flag
+                  - text: TG-02 · Ops Team · Payroll quality
+              - button "check_circle Mark complete" [ref=e293] [cursor=pointer]:
+                - generic [ref=e294]: check_circle
+                - text: Mark complete

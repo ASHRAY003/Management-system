@@ -1,0 +1,35 @@
+- generic [ref=e773]:
+  - generic [ref=e774]:
+    - generic [ref=e775]: Payo WFM
+    - generic [ref=e776]: Performance Management
+    - generic [ref=e777]: Sign in to continue.
+  - generic [ref=e778]:
+    - generic [ref=e779]:
+      - generic [ref=e780]: Email
+      - textbox "Email" [ref=e781]: priya@demo.com
+    - generic [ref=e782]:
+      - generic [ref=e783]: Password
+      - textbox "Password" [ref=e784]: password123
+    - button "Sign in" [ref=e785] [cursor=pointer]
+  - generic [ref=e786]:
+    - generic [ref=e787]: Demo accounts
+    - generic [ref=e788]:
+      - button "Priya Mehta Manager · priya@demo.com Sign in →" [ref=e789] [cursor=pointer]:
+        - generic [ref=e790]:
+          - generic [ref=e791]: Priya Mehta
+          - generic [ref=e792]: Manager · priya@demo.com
+        - generic [ref=e793]: Sign in →
+      - button "Aditi Sharma Employee · aditi@demo.com Sign in →" [ref=e794] [cursor=pointer]:
+        - generic [ref=e795]:
+          - generic [ref=e796]: Aditi Sharma
+          - generic [ref=e797]: Employee · aditi@demo.com
+        - generic [ref=e798]: Sign in →
+      - button "Rahul Mehta Contractor · rahul@demo.com Sign in →" [ref=e799] [cursor=pointer]:
+        - generic [ref=e800]:
+          - generic [ref=e801]: Rahul Mehta
+          - generic [ref=e802]: Contractor · rahul@demo.com
+        - generic [ref=e803]: Sign in →
+    - generic [ref=e804]:
+      - text: All demo accounts use the password
+      - code [ref=e805]: password123
+      - text: .

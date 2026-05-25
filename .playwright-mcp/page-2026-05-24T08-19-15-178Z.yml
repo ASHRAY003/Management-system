@@ -1,0 +1,496 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 04d · Projects Module
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: Acme Holdings · HR
+      - generic [ref=e19]:
+        - generic [ref=e20]: badge
+        - generic [ref=e21]: HR Admin · Client manager
+      - generic [ref=e22]:
+        - generic [ref=e23]: Workforce
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: dashboard
+            - generic [ref=e27]: Dashboard
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: groups
+            - generic [ref=e30]: People
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: description
+            - generic [ref=e33]: Contracts
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: work
+            - generic [ref=e36]: Projects
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: sync
+            - generic [ref=e39]: Payroll
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: insights
+            - generic [ref=e42]: Performance
+      - generic [ref=e43]:
+        - generic [ref=e44]: Workspace
+        - generic [ref=e45]:
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: schedule
+            - generic [ref=e48]: Time & leave
+          - generic [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: receipt_long
+            - generic [ref=e51]: Expenses
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: folder
+            - generic [ref=e54]: Documents
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: bar_chart
+            - generic [ref=e57]: Reports
+          - generic [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: settings
+            - generic [ref=e60]: Settings
+      - generic [ref=e62]:
+        - generic [ref=e63]: AS
+        - generic [ref=e64]:
+          - generic [ref=e65]: Aditi Sharma
+          - generic [ref=e66]: aditi@demo.com
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: Acme Holdings
+          - generic [ref=e71]: chevron_right
+          - generic [ref=e72]: Projects
+        - generic [ref=e73]:
+          - generic [ref=e74]: badge
+          - text: Client / Manager view
+        - generic [ref=e75]:
+          - generic [ref=e76]: search
+          - textbox "Search people, goals, reviews…" [ref=e77]
+          - generic [ref=e78]: ⌘K
+        - generic [ref=e80] [cursor=pointer]: help
+        - generic [ref=e82] [cursor=pointer]:
+          - generic [ref=e83]: notifications
+          - generic [ref=e84]: "3"
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87] [cursor=pointer]: Dashboard
+          - generic [ref=e88] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e89] [cursor=pointer]: Reviews
+          - generic [ref=e90] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e92] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e93]: expand_more
+        - generic [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: Projects
+            - heading "Projects" [level=1] [ref=e97]
+            - generic [ref=e98]: All active projects. Marking a project complete auto-completes every linked OKR in both manager and worker views.
+          - generic [ref=e99]:
+            - button "flag Goals & OKRs" [ref=e100] [cursor=pointer]:
+              - generic [ref=e101]: flag
+              - text: Goals & OKRs
+            - button "add Add project" [ref=e102] [cursor=pointer]:
+              - generic [ref=e103]: add
+              - text: Add project
+        - generic [ref=e104]:
+          - generic [ref=e105]: link
+          - generic [ref=e106]:
+            - generic [ref=e107]: Project → OKR auto-completion
+            - generic [ref=e108]:
+              - text: When you mark a project complete, all OKRs linked to it are instantly marked
+              - strong [ref=e109]: Completed (100%)
+              - text: in both the manager Goals & OKRs view and the worker My Goals view.
+        - generic [ref=e110]:
+          - button "All 12" [ref=e111] [cursor=pointer]:
+            - text: All
+            - generic [ref=e112]: "12"
+          - button "Active 10" [ref=e113] [cursor=pointer]:
+            - text: Active
+            - generic [ref=e114]: "10"
+          - button "Completed 2" [ref=e115] [cursor=pointer]:
+            - text: Completed
+            - generic [ref=e116]: "2"
+        - generic [ref=e117]:
+          - generic [ref=e118]:
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - generic [ref=e123]: check_circle
+                  - generic [ref=e124]:
+                    - generic [ref=e125]: Payroll Migration EU
+                    - generic [ref=e126]: Migrate 6 anchor EU customers from legacy payroll system to v2 platform with zero P0 incidents.
+                - generic [ref=e127]:
+                  - generic [ref=e128]: high
+                  - generic [ref=e129]: Completed
+              - generic [ref=e131]:
+                - generic [ref=e132]:
+                  - generic [ref=e133]: AS
+                  - generic [ref=e134]: Aditi Sharma
+                - generic [ref=e135]:
+                  - generic [ref=e136]: event
+                  - text: Due Sep 30, 2026
+                - generic [ref=e137]:
+                  - generic [ref=e138]: verified
+                  - text: Completed May 24, 2026
+                - generic [ref=e139]:
+                  - generic [ref=e140]: flag
+                  - text: 2 linked KRs
+            - generic [ref=e141]:
+              - generic [ref=e142]:
+                - generic [ref=e143]:
+                  - generic [ref=e144]: Progress
+                  - generic [ref=e145]: 100%
+                - generic [ref=e149]: 100%
+              - generic [ref=e151]:
+                - generic [ref=e152]:
+                  - generic [ref=e153]: flag
+                  - text: PO-01 · Aditi Sharma · Migrate 6 anchor customers
+                - generic [ref=e154]:
+                  - generic [ref=e155]: flag
+                  - text: TG-02 · Ops Team · Payroll runs without P0 below 1%
+              - button "restart_alt Reopen" [ref=e157] [cursor=pointer]:
+                - generic [ref=e158]: restart_alt
+                - text: Reopen
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - generic [ref=e161]:
+                - generic [ref=e162]:
+                  - generic [ref=e164]: check_circle
+                  - generic [ref=e165]:
+                    - generic [ref=e166]: Vendor Setup Automation
+                    - generic [ref=e167]: Automate KYB checks and reduce vendor onboarding from 8 days to 6.4 days through workflow automation.
+                - generic [ref=e168]:
+                  - generic [ref=e169]: high
+                  - generic [ref=e170]: Completed
+              - generic [ref=e172]:
+                - generic [ref=e173]:
+                  - generic [ref=e174]: OK
+                  - generic [ref=e175]: Omar Khan
+                - generic [ref=e176]:
+                  - generic [ref=e177]: event
+                  - text: Due Oct 15, 2026
+                - generic [ref=e178]:
+                  - generic [ref=e179]: verified
+                  - text: Completed May 24, 2026
+                - generic [ref=e180]:
+                  - generic [ref=e181]: flag
+                  - text: 2 linked KRs
+            - generic [ref=e182]:
+              - generic [ref=e183]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: Progress
+                  - generic [ref=e186]: 100%
+                - generic [ref=e190]: 100%
+              - generic [ref=e192]:
+                - generic [ref=e193]:
+                  - generic [ref=e194]: flag
+                  - text: PO-02 · Omar Khan · Automate KYB checks for 80% of vendors
+                - generic [ref=e195]:
+                  - generic [ref=e196]: flag
+                  - text: UG-HTNLT · Aditi Sharma · Average vendor setup time
+              - button "restart_alt Reopen" [ref=e198] [cursor=pointer]:
+                - generic [ref=e199]: restart_alt
+                - text: Reopen
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - generic [ref=e202]:
+                - generic [ref=e203]:
+                  - generic [ref=e205]: rocket_launch
+                  - generic [ref=e206]:
+                    - generic [ref=e207]: Client Onboarding Q3
+                    - generic [ref=e208]: Improve client onboarding quality score to 4.6 by reducing time-to-first-payroll to under 14 days.
+                - generic [ref=e209]:
+                  - generic [ref=e210]: medium
+                  - generic [ref=e211]: Active
+              - generic [ref=e213]:
+                - generic [ref=e214]:
+                  - generic [ref=e215]: LC
+                  - generic [ref=e216]: Lina Chen
+                - generic [ref=e217]:
+                  - generic [ref=e218]: event
+                  - text: Due Oct 30, 2026
+                - generic [ref=e219]:
+                  - generic [ref=e220]: flag
+                  - text: 2 linked KRs
+            - generic [ref=e221]:
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e224]: Progress
+                  - generic [ref=e225]: 58%
+                - generic [ref=e229]: 58%
+              - generic [ref=e231]:
+                - generic [ref=e232]:
+                  - generic [ref=e233]: flag
+                  - text: PO-03 · Lina Chen · Onboarding NPS up to 60
+                - generic [ref=e234]:
+                  - generic [ref=e235]: flag
+                  - text: UG-HK4JH · Aditi Sharma · Average vendor setup time
+              - button "check_circle Mark complete" [ref=e237] [cursor=pointer]:
+                - generic [ref=e238]: check_circle
+                - text: Mark complete
+          - generic [ref=e239]:
+            - generic [ref=e240]:
+              - generic [ref=e241]:
+                - generic [ref=e242]:
+                  - generic [ref=e244]: rocket_launch
+                  - generic [ref=e245]:
+                    - generic [ref=e246]: Comms Unification
+                    - generic [ref=e247]: Refactor payments service to v2 API and reduce p95 latency by 30% with zero-downtime cutover.
+                - generic [ref=e248]:
+                  - generic [ref=e249]: medium
+                  - generic [ref=e250]: Active
+              - generic [ref=e252]:
+                - generic [ref=e253]:
+                  - generic [ref=e254]: DA
+                  - generic [ref=e255]: Diego Alvarez
+                - generic [ref=e256]:
+                  - generic [ref=e257]: event
+                  - text: Due Nov 15, 2026
+                - generic [ref=e258]:
+                  - generic [ref=e259]: flag
+                  - text: 1 linked KR
+            - generic [ref=e260]:
+              - generic [ref=e261]:
+                - generic [ref=e262]:
+                  - generic [ref=e263]: Progress
+                  - generic [ref=e264]: 82%
+                - generic [ref=e268]: 82%
+              - generic [ref=e271]:
+                - generic [ref=e272]: flag
+                - text: PO-04 · Diego Alvarez · Migrate all 14 endpoints
+              - button "check_circle Mark complete" [ref=e274] [cursor=pointer]:
+                - generic [ref=e275]: check_circle
+                - text: Mark complete
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - generic [ref=e278]:
+                - generic [ref=e279]:
+                  - generic [ref=e281]: rocket_launch
+                  - generic [ref=e282]:
+                    - generic [ref=e283]: CS Quality Q3
+                    - generic [ref=e284]: Cut support backlog under 50 and move 80% of CS escalations to self-serve playbooks.
+                - generic [ref=e285]:
+                  - generic [ref=e286]: medium
+                  - generic [ref=e287]: Active
+              - generic [ref=e289]:
+                - generic [ref=e290]:
+                  - generic [ref=e291]: LC
+                  - generic [ref=e292]: Lina Chen
+                - generic [ref=e293]:
+                  - generic [ref=e294]: event
+                  - text: Due Oct 30, 2026
+            - generic [ref=e295]:
+              - generic [ref=e296]:
+                - generic [ref=e297]:
+                  - generic [ref=e298]: Progress
+                  - generic [ref=e299]: 58%
+                - generic [ref=e303]: 58%
+              - generic [ref=e304]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e306] [cursor=pointer]:
+                - generic [ref=e307]: check_circle
+                - text: Mark complete
+          - generic [ref=e308]:
+            - generic [ref=e309]:
+              - generic [ref=e310]:
+                - generic [ref=e311]:
+                  - generic [ref=e313]: rocket_launch
+                  - generic [ref=e314]:
+                    - generic [ref=e315]: Q3 Review Cycle Ops
+                    - generic [ref=e316]: Drive 90% completion of self + manager reviews in Q3 2026 across all teams.
+                - generic [ref=e317]:
+                  - generic [ref=e318]: high
+                  - generic [ref=e319]: Active
+              - generic [ref=e321]:
+                - generic [ref=e322]:
+                  - generic [ref=e323]: PN
+                  - generic [ref=e324]: Priya Nair
+                - generic [ref=e325]:
+                  - generic [ref=e326]: event
+                  - text: Due Oct 15, 2026
+            - generic [ref=e327]:
+              - generic [ref=e328]:
+                - generic [ref=e329]:
+                  - generic [ref=e330]: Progress
+                  - generic [ref=e331]: 68%
+                - generic [ref=e335]: 68%
+              - generic [ref=e336]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e338] [cursor=pointer]:
+                - generic [ref=e339]: check_circle
+                - text: Mark complete
+          - generic [ref=e340]:
+            - generic [ref=e341]:
+              - generic [ref=e342]:
+                - generic [ref=e343]:
+                  - generic [ref=e345]: rocket_launch
+                  - generic [ref=e346]:
+                    - generic [ref=e347]: Review Quality rollout
+                    - generic [ref=e348]: Bring vague/bias flags in performance reviews below 5 per cycle.
+                - generic [ref=e349]:
+                  - generic [ref=e350]: low
+                  - generic [ref=e351]: Active
+              - generic [ref=e353]:
+                - generic [ref=e354]:
+                  - generic [ref=e355]: PN
+                  - generic [ref=e356]: Priya Nair
+                - generic [ref=e357]:
+                  - generic [ref=e358]: event
+                  - text: Due Sep 30, 2026
+            - generic [ref=e359]:
+              - generic [ref=e360]:
+                - generic [ref=e361]:
+                  - generic [ref=e362]: Progress
+                  - generic [ref=e363]: 78%
+                - generic [ref=e367]: 78%
+              - generic [ref=e368]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e370] [cursor=pointer]:
+                - generic [ref=e371]: check_circle
+                - text: Mark complete
+          - generic [ref=e372]:
+            - generic [ref=e373]:
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - generic [ref=e377]: rocket_launch
+                  - generic [ref=e378]:
+                    - generic [ref=e379]: KYB Automation v2
+                    - generic [ref=e380]: Second phase of KYB automation — expand coverage to 80% of all new vendor applications.
+                - generic [ref=e381]:
+                  - generic [ref=e382]: low
+                  - generic [ref=e383]: Active
+              - generic [ref=e385]:
+                - generic [ref=e386]:
+                  - generic [ref=e387]: OK
+                  - generic [ref=e388]: Omar Khan
+                - generic [ref=e389]:
+                  - generic [ref=e390]: event
+                  - text: Due Dec 15, 2026
+            - generic [ref=e391]:
+              - generic [ref=e392]:
+                - generic [ref=e393]:
+                  - generic [ref=e394]: Progress
+                  - generic [ref=e395]: 22%
+                - generic [ref=e399]: 22%
+              - generic [ref=e400]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e402] [cursor=pointer]:
+                - generic [ref=e403]: check_circle
+                - text: Mark complete
+          - generic [ref=e404]:
+            - generic [ref=e405]:
+              - generic [ref=e406]:
+                - generic [ref=e407]:
+                  - generic [ref=e409]: rocket_launch
+                  - generic [ref=e410]:
+                    - generic [ref=e411]: Contractor Onboarding Revamp
+                    - generic [ref=e412]: Redesign contractor onboarding across 60+ countries to reduce compliance risk and speed up activation.
+                - generic [ref=e413]:
+                  - generic [ref=e414]: medium
+                  - generic [ref=e415]: Active
+              - generic [ref=e417]:
+                - generic [ref=e418]:
+                  - generic [ref=e419]: HM
+                  - generic [ref=e420]: Hannah Mueller
+                - generic [ref=e421]:
+                  - generic [ref=e422]: event
+                  - text: Due Nov 30, 2026
+            - generic [ref=e423]:
+              - generic [ref=e424]:
+                - generic [ref=e425]:
+                  - generic [ref=e426]: Progress
+                  - generic [ref=e427]: 35%
+                - generic [ref=e431]: 35%
+              - generic [ref=e432]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e434] [cursor=pointer]:
+                - generic [ref=e435]: check_circle
+                - text: Mark complete
+          - generic [ref=e436]:
+            - generic [ref=e437]:
+              - generic [ref=e438]:
+                - generic [ref=e439]:
+                  - generic [ref=e441]: rocket_launch
+                  - generic [ref=e442]:
+                    - generic [ref=e443]: CSAT Recovery Program
+                    - generic [ref=e444]: Targeted outreach and service recovery for accounts with CSAT below 3.5 in Q2.
+                - generic [ref=e445]:
+                  - generic [ref=e446]: high
+                  - generic [ref=e447]: Active
+              - generic [ref=e449]:
+                - generic [ref=e450]:
+                  - generic [ref=e451]: LC
+                  - generic [ref=e452]: Lina Chen
+                - generic [ref=e453]:
+                  - generic [ref=e454]: event
+                  - text: Due Sep 30, 2026
+            - generic [ref=e455]:
+              - generic [ref=e456]:
+                - generic [ref=e457]:
+                  - generic [ref=e458]: Progress
+                  - generic [ref=e459]: 50%
+                - generic [ref=e463]: 50%
+              - generic [ref=e464]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e466] [cursor=pointer]:
+                - generic [ref=e467]: check_circle
+                - text: Mark complete
+          - generic [ref=e468]:
+            - generic [ref=e469]:
+              - generic [ref=e470]:
+                - generic [ref=e471]:
+                  - generic [ref=e473]: rocket_launch
+                  - generic [ref=e474]:
+                    - generic [ref=e475]: Ops Tooling Modernisation
+                    - generic [ref=e476]: Replace legacy ops dashboards with unified Payo WFM tooling — reduce manual ops steps by 40%.
+                - generic [ref=e477]:
+                  - generic [ref=e478]: low
+                  - generic [ref=e479]: Active
+              - generic [ref=e481]:
+                - generic [ref=e482]:
+                  - generic [ref=e483]: AS
+                  - generic [ref=e484]: Aditi Sharma
+                - generic [ref=e485]:
+                  - generic [ref=e486]: event
+                  - text: Due Dec 31, 2026
+            - generic [ref=e487]:
+              - generic [ref=e488]:
+                - generic [ref=e489]:
+                  - generic [ref=e490]: Progress
+                  - generic [ref=e491]: 15%
+                - generic [ref=e495]: 15%
+              - generic [ref=e496]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e498] [cursor=pointer]:
+                - generic [ref=e499]: check_circle
+                - text: Mark complete
+          - generic [ref=e500]:
+            - generic [ref=e501]:
+              - generic [ref=e502]:
+                - generic [ref=e503]:
+                  - generic [ref=e505]: rocket_launch
+                  - generic [ref=e506]:
+                    - generic [ref=e507]: Q3 Payroll Quality Initiative
+                    - generic [ref=e508]: Drive payroll run accuracy above 99.5% across all EU corridors with P0 rate below 1%.
+                - generic [ref=e509]:
+                  - generic [ref=e510]: high
+                  - generic [ref=e511]: Active
+              - generic [ref=e513]:
+                - generic [ref=e514]:
+                  - generic [ref=e515]: OT
+                  - generic [ref=e516]: Ops Team
+                - generic [ref=e517]:
+                  - generic [ref=e518]: event
+                  - text: Due Sep 30, 2026
+            - generic [ref=e519]:
+              - generic [ref=e520]:
+                - generic [ref=e521]:
+                  - generic [ref=e522]: Progress
+                  - generic [ref=e523]: 91%
+                - generic [ref=e527]: 91%
+              - generic [ref=e528]: No KRs linked to this project
+              - button "check_circle Mark complete" [ref=e530] [cursor=pointer]:
+                - generic [ref=e531]: check_circle
+                - text: Mark complete

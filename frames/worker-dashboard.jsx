@@ -32,30 +32,10 @@ function WorkerDashboard() {
         sub="Your goals, feedback, 1:1s and reviews at a glance. Your self-review for Q3 is due Sep 30."
         actions={<>
           <Btn variant="ghost" icon="add_reaction">Request feedback</Btn>
-          <Btn variant="primary" icon="rate_review" onClick={() => {
-            const Store = window.PerformanceStore;
-            const workerId = Store.getCurrentWorkerId();
-            const participants = Store.getData().reviewParticipants || [];
-            const pending = participants.find(p =>
-              p.workerId === workerId && p.selfReviewStatus !== 'submitted'
-            );
-            if (pending) {
-              try { window.sessionStorage.setItem('payo.workerReviews.openSelf', pending.id); } catch (e) {}
-            }
-            window.location.hash = '/worker/reviews';
-          }}>Start self-review</Btn>
         </>}
       />
 
-      <div className="mb-4">
-        <Callout tone="success" icon="verified_user"
-          title="This is your private workspace"
-          action={<Btn variant="text" size="sm" iconTrailing="open_in_new">What I can see</Btn>}>
-          You only see your own goals, feedback, reviews and 1:1s. Compensation insights for other workers and manager private notes are not visible to you.
-        </Callout>
-      </div>
-
-      {/* 4 KPIs */}
+{/* 4 KPIs */}
       <div className="stats-row c-4 mb-4">
         {kpis.map((k, i) => <StatCard key={i} {...k} />)}
       </div>

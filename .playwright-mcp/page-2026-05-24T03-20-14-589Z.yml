@@ -1,0 +1,259 @@
+- generic [ref=e2]:
+  - generic [ref=e37]:
+    - link "← All views" [ref=e38] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e39]: /
+    - generic [ref=e40]: 03 · Reviews
+    - generic [ref=e41]:
+      - text: Signed in as
+      - strong [ref=e42]: Priya Mehta
+      - generic [ref=e43]: · manager
+    - button "Log out" [ref=e44] [cursor=pointer]
+  - generic [ref=e310]:
+    - complementary [ref=e311]:
+      - generic [ref=e312]:
+        - generic [ref=e313]: P
+        - generic [ref=e314]:
+          - generic [ref=e315]: Payo WFM
+          - generic [ref=e316]: Acme Holdings · HR
+      - generic [ref=e317]:
+        - generic [ref=e318]: badge
+        - generic [ref=e319]: HR Admin · Client manager
+      - generic [ref=e320]:
+        - generic [ref=e321]: Workforce
+        - generic [ref=e322]:
+          - generic [ref=e323] [cursor=pointer]:
+            - generic [ref=e324]: dashboard
+            - generic [ref=e325]: Dashboard
+          - generic [ref=e326] [cursor=pointer]:
+            - generic [ref=e327]: groups
+            - generic [ref=e328]: People
+          - generic [ref=e329] [cursor=pointer]:
+            - generic [ref=e330]: description
+            - generic [ref=e331]: Contracts
+          - generic [ref=e332] [cursor=pointer]:
+            - generic [ref=e333]: work
+            - generic [ref=e334]: Projects
+          - generic [ref=e335] [cursor=pointer]:
+            - generic [ref=e336]: sync
+            - generic [ref=e337]: Payroll
+          - generic [ref=e338] [cursor=pointer]:
+            - generic [ref=e339]: insights
+            - generic [ref=e340]: Performance
+      - generic [ref=e341]:
+        - generic [ref=e342]: Workspace
+        - generic [ref=e343]:
+          - generic [ref=e344] [cursor=pointer]:
+            - generic [ref=e345]: schedule
+            - generic [ref=e346]: Time & leave
+          - generic [ref=e347] [cursor=pointer]:
+            - generic [ref=e348]: receipt_long
+            - generic [ref=e349]: Expenses
+          - generic [ref=e350] [cursor=pointer]:
+            - generic [ref=e351]: folder
+            - generic [ref=e352]: Documents
+          - generic [ref=e353] [cursor=pointer]:
+            - generic [ref=e354]: bar_chart
+            - generic [ref=e355]: Reports
+          - generic [ref=e356] [cursor=pointer]:
+            - generic [ref=e357]: settings
+            - generic [ref=e358]: Settings
+      - generic [ref=e360]:
+        - generic [ref=e361]: PM
+        - generic [ref=e362]:
+          - generic [ref=e363]: Priya Mehta
+          - generic [ref=e364]: priya@demo.com
+    - generic [ref=e365]:
+      - generic [ref=e366]:
+        - generic [ref=e367]:
+          - generic [ref=e368]: Acme Holdings
+          - generic [ref=e369]: chevron_right
+          - generic [ref=e370]: Performance
+          - generic [ref=e371]: chevron_right
+          - generic [ref=e372]: Reviews
+        - generic [ref=e373]:
+          - generic [ref=e374]: badge
+          - text: Client / Manager view
+        - generic [ref=e375]:
+          - generic [ref=e376]: search
+          - textbox "Search people, goals, reviews…" [ref=e377]
+          - generic [ref=e378]: ⌘K
+        - generic [ref=e380] [cursor=pointer]: help
+        - generic [ref=e382] [cursor=pointer]:
+          - generic [ref=e383]: notifications
+          - generic [ref=e384]: "5"
+      - generic [ref=e385]:
+        - generic [ref=e386]:
+          - generic [ref=e387] [cursor=pointer]: Dashboard
+          - generic [ref=e388] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e389] [cursor=pointer]: Reviews
+          - generic [ref=e390] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e391] [cursor=pointer]: Review Compensation
+          - generic [ref=e393] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e394]: expand_more
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - generic [ref=e397]: Performance Management
+            - heading "Reviews" [level=1] [ref=e398]
+            - generic [ref=e399]: Run formal review cycles for employees and contractors, or write individual reviews.
+          - generic [ref=e400]:
+            - button "filter_list Filters" [ref=e401] [cursor=pointer]:
+              - generic [ref=e402]: filter_list
+              - text: Filters
+            - button "download Export" [ref=e403] [cursor=pointer]:
+              - generic [ref=e404]: download
+              - text: Export
+            - button "play_circle Start review cycle" [ref=e405] [cursor=pointer]:
+              - generic [ref=e406]: play_circle
+              - text: Start review cycle
+        - generic [ref=e407]:
+          - generic [ref=e408]:
+            - generic [ref=e409]: Reviews to write
+            - generic [ref=e411]: "0"
+            - generic [ref=e412]: Nothing pending
+            - generic [ref=e414]: reviews
+          - generic [ref=e415]:
+            - generic [ref=e416]: Self-reviews submitted
+            - generic [ref=e418]: "1"
+            - generic [ref=e419]: Across 1 participant
+            - generic [ref=e421]: task_alt
+          - generic [ref=e422]:
+            - generic [ref=e423]: Feedback given
+            - generic [ref=e425]: "0"
+            - generic [ref=e426]: No feedback given yet
+            - generic [ref=e428]: inbox
+          - generic [ref=e429]:
+            - generic [ref=e430]: Ready to share
+            - generic [ref=e432]: "1"
+            - generic [ref=e433]: Submitted, not shared
+            - generic [ref=e435]: pending_actions
+        - generic [ref=e436]:
+          - generic [ref=e437]:
+            - generic [ref=e438]:
+              - generic [ref=e439]:
+                - generic [ref=e440]: event_repeat
+                - text: Review cycles
+              - generic [ref=e441]: 2 cycles on record
+            - button "play_circle Start review cycle" [ref=e442] [cursor=pointer]:
+              - generic [ref=e443]: play_circle
+              - text: Start review cycle
+          - generic [ref=e444]:
+            - generic [ref=e445] [cursor=pointer]:
+              - generic [ref=e446]:
+                - generic [ref=e447]: Q3 2026 Performance Review
+                - generic [ref=e448]: "2026-07-01 → 2026-09-30 · purpose: —"
+              - generic [ref=e449]: active
+              - generic [ref=e451]:
+                - generic [ref=e452]: groups
+                - text: Employees
+              - generic [ref=e453]:
+                - generic "Participants" [ref=e454]:
+                  - generic [ref=e455]: group
+                  - text: "1"
+                - generic "Self-reviews submitted" [ref=e456]:
+                  - generic [ref=e457]: person
+                  - text: 1/1
+                - generic "Manager reviews submitted" [ref=e458]:
+                  - generic [ref=e459]: badge
+                  - text: 1/1
+                - generic "Shared with worker" [ref=e460]:
+                  - generic [ref=e461]: visibility
+                  - text: 0/1
+              - button "Open arrow_forward" [ref=e462]:
+                - text: Open
+                - generic [ref=e463]: arrow_forward
+            - generic [ref=e464] [cursor=pointer]:
+              - generic [ref=e465]:
+                - generic [ref=e466]: Q3 2026 Performance Review
+                - generic [ref=e467]: "2026-07-01 → 2026-09-30 · purpose: review the work done"
+              - generic [ref=e468]: draft
+              - generic [ref=e470]:
+                - generic [ref=e471]: groups
+                - text: Employees
+              - generic [ref=e472]:
+                - generic "Participants" [ref=e473]:
+                  - generic [ref=e474]: group
+                  - text: "0"
+                - generic "Self-reviews submitted" [ref=e475]:
+                  - generic [ref=e476]: person
+                  - text: 0/0
+                - generic "Manager reviews submitted" [ref=e477]:
+                  - generic [ref=e478]: badge
+                  - text: 0/0
+                - generic "Shared with worker" [ref=e479]:
+                  - generic [ref=e480]: visibility
+                  - text: 0/0
+              - button "Open arrow_forward" [ref=e481]:
+                - text: Open
+                - generic [ref=e482]: arrow_forward
+        - generic [ref=e483]:
+          - generic [ref=e485]:
+            - generic [ref=e486]:
+              - generic [ref=e487]: groups
+              - text: My direct reports
+            - generic [ref=e488]: Click a worker to view their review history or write a new review
+          - table [ref=e490]:
+            - rowgroup [ref=e491]:
+              - row "Worker Reviews Last review Last rating Cycle status" [ref=e492]:
+                - columnheader "Worker" [ref=e493]
+                - columnheader "Reviews" [ref=e494]
+                - columnheader "Last review" [ref=e495]
+                - columnheader "Last rating" [ref=e496]
+                - columnheader "Cycle status" [ref=e497]
+                - columnheader [ref=e498]
+            - rowgroup [ref=e499]:
+              - row "AS Aditi Sharma Senior Ops 0 — by you star star star star star 0.0 — Up to date history History" [ref=e500]:
+                - cell "AS Aditi Sharma Senior Ops" [ref=e501]:
+                  - generic [ref=e502]:
+                    - generic [ref=e503]: AS
+                    - generic [ref=e504]:
+                      - generic [ref=e505]: Aditi Sharma
+                      - generic [ref=e506]: Senior Ops
+                - cell "0" [ref=e507]
+                - cell "— by you" [ref=e508]:
+                  - generic [ref=e509]: —
+                  - generic [ref=e510]: by you
+                - cell "star star star star star 0.0 —" [ref=e511]:
+                  - generic [ref=e512]:
+                    - generic [ref=e513]:
+                      - generic [ref=e514]: star
+                      - generic [ref=e515]: star
+                      - generic [ref=e516]: star
+                      - generic [ref=e517]: star
+                      - generic [ref=e518]: star
+                    - generic [ref=e519]: "0.0"
+                    - generic [ref=e520]: —
+                - cell "Up to date" [ref=e521]:
+                  - generic [ref=e522]: Up to date
+                - cell "history History" [ref=e524]:
+                  - button "history History" [ref=e525] [cursor=pointer]:
+                    - generic [ref=e526]: history
+                    - text: History
+              - row "RM Rahul Mehta Implementation Consultant 0 — by you star star star star star 0.0 — Up to date history History" [ref=e527]:
+                - cell "RM Rahul Mehta Implementation Consultant" [ref=e528]:
+                  - generic [ref=e529]:
+                    - generic [ref=e530]: RM
+                    - generic [ref=e531]:
+                      - generic [ref=e532]: Rahul Mehta
+                      - generic [ref=e533]: Implementation Consultant
+                - cell "0" [ref=e534]
+                - cell "— by you" [ref=e535]:
+                  - generic [ref=e536]: —
+                  - generic [ref=e537]: by you
+                - cell "star star star star star 0.0 —" [ref=e538]:
+                  - generic [ref=e539]:
+                    - generic [ref=e540]:
+                      - generic [ref=e541]: star
+                      - generic [ref=e542]: star
+                      - generic [ref=e543]: star
+                      - generic [ref=e544]: star
+                      - generic [ref=e545]: star
+                    - generic [ref=e546]: "0.0"
+                    - generic [ref=e547]: —
+                - cell "Up to date" [ref=e548]:
+                  - generic [ref=e549]: Up to date
+                - cell "history History" [ref=e551]:
+                  - button "history History" [ref=e552] [cursor=pointer]:
+                    - generic [ref=e553]: history
+                    - text: History

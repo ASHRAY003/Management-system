@@ -1,0 +1,708 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 02 · Goals & OKRs
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: Acme Holdings · HR
+      - generic [ref=e19]:
+        - generic [ref=e20]: badge
+        - generic [ref=e21]: HR Admin · Client manager
+      - generic [ref=e22]:
+        - generic [ref=e23]: Workforce
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: dashboard
+            - generic [ref=e27]: Dashboard
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: groups
+            - generic [ref=e30]: People
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: description
+            - generic [ref=e33]: Contracts
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: work
+            - generic [ref=e36]: Projects
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: sync
+            - generic [ref=e39]: Payroll
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: insights
+            - generic [ref=e42]: Performance
+      - generic [ref=e43]:
+        - generic [ref=e44]: Workspace
+        - generic [ref=e45]:
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: schedule
+            - generic [ref=e48]: Time & leave
+          - generic [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: receipt_long
+            - generic [ref=e51]: Expenses
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: folder
+            - generic [ref=e54]: Documents
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: bar_chart
+            - generic [ref=e57]: Reports
+          - generic [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: settings
+            - generic [ref=e60]: Settings
+      - generic [ref=e62]:
+        - generic [ref=e63]: AS
+        - generic [ref=e64]:
+          - generic [ref=e65]: Aditi Sharma
+          - generic [ref=e66]: aditi@demo.com
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: Acme Holdings
+          - generic [ref=e71]: chevron_right
+          - generic [ref=e72]: Performance
+          - generic [ref=e73]: chevron_right
+          - generic [ref=e74]: Goals & OKRs
+        - generic [ref=e75]:
+          - generic [ref=e76]: badge
+          - text: Client / Manager view
+        - generic [ref=e77]:
+          - generic [ref=e78]: search
+          - textbox "Search people, goals, reviews…" [ref=e79]
+          - generic [ref=e80]: ⌘K
+        - generic [ref=e82] [cursor=pointer]: help
+        - generic [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]: notifications
+          - generic [ref=e86]: "3"
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89] [cursor=pointer]: Dashboard
+          - generic [ref=e90] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e91] [cursor=pointer]: Reviews
+          - generic [ref=e92] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e94] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e95]: expand_more
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: Performance Management
+            - heading "Goals & OKRs" [level=1] [ref=e99]
+            - generic [ref=e100]: Create and track company, team, individual and project-linked OKRs.
+          - generic [ref=e101]:
+            - button "filter_list Filters" [ref=e102] [cursor=pointer]:
+              - generic [ref=e103]: filter_list
+              - text: Filters
+            - button "link Link project" [ref=e104] [cursor=pointer]:
+              - generic [ref=e105]: link
+              - text: Link project
+            - button "add Create Goal" [ref=e107] [cursor=pointer]:
+              - generic [ref=e108]: add
+              - text: Create Goal
+        - generic [ref=e109]:
+          - generic [ref=e110] [cursor=pointer]:
+            - generic [ref=e111]: lock
+            - text: Company Goals
+            - generic [ref=e112]: "3"
+          - generic [ref=e113] [cursor=pointer]:
+            - generic [ref=e114]: person
+            - text: My Goals
+            - generic [ref=e115]: "5"
+          - generic [ref=e116] [cursor=pointer]:
+            - generic [ref=e117]: groups
+            - text: People OKRs
+            - generic [ref=e118]: "11"
+          - generic [ref=e119] [cursor=pointer]:
+            - generic [ref=e120]: view_module
+            - generic [ref=e121]: "View:"
+            - generic [ref=e122]: Cards
+        - generic [ref=e123]:
+          - generic [ref=e124]: groups
+          - generic [ref=e125]:
+            - generic [ref=e126]: People OKRs — your direct reports & dotted-line workers
+            - generic [ref=e127]: 5 workers. Create, edit, link projects to OKRs.
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - generic [ref=e132]:
+                  - generic [ref=e133]: AS
+                  - generic [ref=e134]:
+                    - generic [ref=e135]: Aditi Sharma
+                    - generic [ref=e136]: Senior Ops · PO-01
+                - generic [ref=e137]: Complete 6 customer payroll migrations to v2 platform
+                - generic [ref=e138]:
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: link
+                    - generic [ref=e141]: Payroll Migration EU
+                  - generic [ref=e142]:
+                    - generic [ref=e143]: event
+                    - text: Due
+                    - generic [ref=e144]: Sep 30, 2026
+                  - generic [ref=e145]:
+                    - generic [ref=e146]: flag
+                    - generic [ref=e147]: "3"
+                    - text: key results
+                  - generic [ref=e148]: On track
+              - generic [ref=e150]:
+                - button "visibility View" [ref=e151] [cursor=pointer]:
+                  - generic [ref=e152]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e153] [cursor=pointer]:
+                  - generic [ref=e154]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e155] [cursor=pointer]:
+                  - generic [ref=e156]: event
+                  - text: Schedule 1:1
+            - generic [ref=e157]:
+              - generic [ref=e158]:
+                - generic [ref=e159]: KR1
+                - generic [ref=e160]: Migrate 6 anchor customersPayroll Migration EU
+                - generic [ref=e161]: 6 / 6
+                - generic [ref=e165]: 100%
+              - generic [ref=e166]:
+                - generic [ref=e167]: KR2
+                - generic [ref=e168]: Zero P0 incidents during migration
+                - generic [ref=e169]: 0 / 0
+                - generic [ref=e173]: 100%
+              - generic [ref=e174]:
+                - generic [ref=e175]: KR3
+                - generic [ref=e176]: CSAT > 4.5 post-migration
+                - generic [ref=e177]: 4.4 / 4.5
+                - generic [ref=e181]: 70%
+            - generic [ref=e182]:
+              - generic [ref=e183]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: link
+                  - generic [ref=e186]:
+                    - text: Linked to
+                    - strong [ref=e187]: Payroll Migration EU
+                - generic [ref=e188]:
+                  - generic [ref=e189]: check_circle
+                  - text: Auto-completed ·
+                  - strong [ref=e190]: Payroll Migration EU
+                  - text: was marked complete
+              - generic [ref=e194]: 90%
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]:
+                - generic [ref=e198]:
+                  - generic [ref=e199]: AS
+                  - generic [ref=e200]:
+                    - generic [ref=e201]: Aditi Sharma
+                    - generic [ref=e202]: Senior Ops · PO-09
+                - generic [ref=e203]: Mentor 2 junior teammates through their first migration
+                - generic [ref=e204]:
+                  - generic [ref=e205]:
+                    - generic [ref=e206]: link
+                    - button "add Link a project" [ref=e207] [cursor=pointer]:
+                      - generic [ref=e208]: add
+                      - text: Link a project
+                  - generic [ref=e209]:
+                    - generic [ref=e210]: event
+                    - text: Due
+                    - generic [ref=e211]: Dec 15, 2026
+                  - generic [ref=e212]:
+                    - generic [ref=e213]: flag
+                    - generic [ref=e214]: "2"
+                    - text: key results
+                  - generic [ref=e215]: On track
+              - generic [ref=e217]:
+                - button "visibility View" [ref=e218] [cursor=pointer]:
+                  - generic [ref=e219]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e220] [cursor=pointer]:
+                  - generic [ref=e221]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e222] [cursor=pointer]:
+                  - generic [ref=e223]: event
+                  - text: Schedule 1:1
+            - generic [ref=e224]:
+              - generic [ref=e225]:
+                - generic [ref=e226]: KR1
+                - generic [ref=e227]: Pair on at least 4 client kickoffs
+                - generic [ref=e228]: 3 / 4
+                - generic [ref=e232]: 75%
+              - generic [ref=e233]:
+                - generic [ref=e234]: KR2
+                - generic [ref=e235]: Document one knowledge transfer per month
+                - generic [ref=e236]: 3 / 6
+                - generic [ref=e240]: 50%
+            - generic [ref=e241]:
+              - generic [ref=e243]:
+                - generic [ref=e244]: warning_amber
+                - generic [ref=e245]: No project linked — link a project to track progress.
+              - generic [ref=e249]: 55%
+          - generic [ref=e250]:
+            - generic [ref=e251]:
+              - generic [ref=e252]:
+                - generic [ref=e253]:
+                  - generic [ref=e254]: OK
+                  - generic [ref=e255]:
+                    - generic [ref=e256]: Omar Khan
+                    - generic [ref=e257]: Vendor Lead · PO-02
+                - generic [ref=e258]: Reduce vendor setup time by 20% (8d → 6.4d)
+                - generic [ref=e259]:
+                  - generic [ref=e260]:
+                    - generic [ref=e261]: link
+                    - generic [ref=e262]: Vendor Setup Automation
+                  - generic [ref=e263]:
+                    - generic [ref=e264]: event
+                    - text: Due
+                    - generic [ref=e265]: Oct 15, 2026
+                  - generic [ref=e266]:
+                    - generic [ref=e267]: flag
+                    - generic [ref=e268]: "3"
+                    - text: key results
+                  - generic [ref=e269]: At risk
+              - generic [ref=e271]:
+                - button "visibility View" [ref=e272] [cursor=pointer]:
+                  - generic [ref=e273]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e274] [cursor=pointer]:
+                  - generic [ref=e275]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e276] [cursor=pointer]:
+                  - generic [ref=e277]: event
+                  - text: Schedule 1:1
+            - generic [ref=e278]:
+              - generic [ref=e279]:
+                - generic [ref=e280]: KR1
+                - generic [ref=e281]: Automate KYB checks for 80% of vendorsVendor Setup Automation
+                - generic [ref=e282]: 50 / 80
+                - generic [ref=e286]: 62%
+              - generic [ref=e287]:
+                - generic [ref=e288]: KR2
+                - generic [ref=e289]: Average setup time under 7d
+                - generic [ref=e290]: 7.5 / 7
+                - generic [ref=e294]: 40%
+              - generic [ref=e295]:
+                - generic [ref=e296]: KR3
+                - generic [ref=e297]: Vendor satisfaction > 4.0
+                - generic [ref=e298]: 3.2 / 4.0
+                - generic [ref=e302]: 25%
+            - generic [ref=e303]:
+              - generic [ref=e305]:
+                - generic [ref=e306]: link
+                - generic [ref=e307]:
+                  - text: Linked to
+                  - strong [ref=e308]: Vendor Setup Automation
+              - generic [ref=e312]: 45%
+          - generic [ref=e313]:
+            - generic [ref=e314]:
+              - generic [ref=e315]:
+                - generic [ref=e316]:
+                  - generic [ref=e317]: LC
+                  - generic [ref=e318]:
+                    - generic [ref=e319]: Lina Chen
+                    - generic [ref=e320]: Onboarding Mgr · PO-03
+                - generic [ref=e321]: Improve client onboarding quality score to 4.6
+                - generic [ref=e322]:
+                  - generic [ref=e323]:
+                    - generic [ref=e324]: link
+                    - generic [ref=e325]: Client Onboarding Q3
+                  - generic [ref=e326]:
+                    - generic [ref=e327]: event
+                    - text: Due
+                    - generic [ref=e328]: Oct 30, 2026
+                  - generic [ref=e329]:
+                    - generic [ref=e330]: flag
+                    - generic [ref=e331]: "3"
+                    - text: key results
+                  - generic [ref=e332]: On track
+              - generic [ref=e334]:
+                - button "visibility View" [ref=e335] [cursor=pointer]:
+                  - generic [ref=e336]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e337] [cursor=pointer]:
+                  - generic [ref=e338]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e339] [cursor=pointer]:
+                  - generic [ref=e340]: event
+                  - text: Schedule 1:1
+            - generic [ref=e341]:
+              - generic [ref=e342]:
+                - generic [ref=e343]: KR1
+                - generic [ref=e344]: Onboarding NPS up to 60Client Onboarding Q3
+                - generic [ref=e345]: 52 / 60
+                - generic [ref=e349]: 55%
+              - generic [ref=e350]:
+                - generic [ref=e351]: KR2
+                - generic [ref=e352]: Time-to-first-payroll under 14d
+                - generic [ref=e353]: 15d / 14d
+                - generic [ref=e357]: 70%
+              - generic [ref=e358]:
+                - generic [ref=e359]: KR3
+                - generic [ref=e360]: Knowledge base coverage > 90%
+                - generic [ref=e361]: 78% / 90%
+                - generic [ref=e365]: 50%
+            - generic [ref=e366]:
+              - generic [ref=e368]:
+                - generic [ref=e369]: link
+                - generic [ref=e370]:
+                  - text: Linked to
+                  - strong [ref=e371]: Client Onboarding Q3
+              - generic [ref=e375]: 58%
+          - generic [ref=e376]:
+            - generic [ref=e377]:
+              - generic [ref=e378]:
+                - generic [ref=e379]:
+                  - generic [ref=e380]: DA
+                  - generic [ref=e381]:
+                    - generic [ref=e382]: Diego Alvarez
+                    - generic [ref=e383]: Senior Engineer · PO-04
+                - generic [ref=e384]: Refactor payments service to v2 API
+                - generic [ref=e385]:
+                  - generic [ref=e386]:
+                    - generic [ref=e387]: link
+                    - generic [ref=e388]: Comms Unification
+                  - generic [ref=e389]:
+                    - generic [ref=e390]: event
+                    - text: Due
+                    - generic [ref=e391]: Nov 15, 2026
+                  - generic [ref=e392]:
+                    - generic [ref=e393]: flag
+                    - generic [ref=e394]: "3"
+                    - text: key results
+                  - generic [ref=e395]: On track
+              - generic [ref=e397]:
+                - button "visibility View" [ref=e398] [cursor=pointer]:
+                  - generic [ref=e399]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e400] [cursor=pointer]:
+                  - generic [ref=e401]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e402] [cursor=pointer]:
+                  - generic [ref=e403]: event
+                  - text: Schedule 1:1
+            - generic [ref=e404]:
+              - generic [ref=e405]:
+                - generic [ref=e406]: KR1
+                - generic [ref=e407]: Migrate all 14 endpointsComms Unification
+                - generic [ref=e408]: 12 / 14
+                - generic [ref=e412]: 86%
+              - generic [ref=e413]:
+                - generic [ref=e414]: KR2
+                - generic [ref=e415]: Reduce p95 latency by 30%
+                - generic [ref=e416]: −27% / −30%
+                - generic [ref=e420]: 92%
+              - generic [ref=e421]:
+                - generic [ref=e422]: KR3
+                - generic [ref=e423]: Zero downtime cutover
+                - generic [ref=e424]: Pending UAT
+                - generic [ref=e428]: 70%
+            - generic [ref=e429]:
+              - generic [ref=e431]:
+                - generic [ref=e432]: link
+                - generic [ref=e433]:
+                  - text: Linked to
+                  - strong [ref=e434]: Comms Unification
+              - generic [ref=e438]: 82%
+          - generic [ref=e439]:
+            - generic [ref=e440]:
+              - generic [ref=e441]:
+                - generic [ref=e442]:
+                  - generic [ref=e443]: KI
+                  - generic [ref=e444]:
+                    - generic [ref=e445]: Karim Idris
+                    - generic [ref=e446]: Customer Success · PO-05
+                - generic [ref=e447]: Move 80% of CS escalations to self-serve playbooks
+                - generic [ref=e448]:
+                  - generic [ref=e449]:
+                    - generic [ref=e450]: link
+                    - button "add Link a project" [ref=e451] [cursor=pointer]:
+                      - generic [ref=e452]: add
+                      - text: Link a project
+                  - generic [ref=e453]:
+                    - generic [ref=e454]: event
+                    - text: Due
+                    - generic [ref=e455]: Dec 15, 2026
+                  - generic [ref=e456]:
+                    - generic [ref=e457]: flag
+                    - generic [ref=e458]: "3"
+                    - text: key results
+                  - generic [ref=e459]: At risk
+              - generic [ref=e461]:
+                - button "visibility View" [ref=e462] [cursor=pointer]:
+                  - generic [ref=e463]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e464] [cursor=pointer]:
+                  - generic [ref=e465]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e466] [cursor=pointer]:
+                  - generic [ref=e467]: event
+                  - text: Schedule 1:1
+            - generic [ref=e468]:
+              - generic [ref=e469]:
+                - generic [ref=e470]: KR1
+                - generic [ref=e471]: Publish 25 playbooks
+                - generic [ref=e472]: 9 / 25
+                - generic [ref=e476]: 36%
+              - generic [ref=e477]:
+                - generic [ref=e478]: KR2
+                - generic [ref=e479]: Self-serve resolution > 60%
+                - generic [ref=e480]: 38% / 60%
+                - generic [ref=e484]: 18%
+              - generic [ref=e485]:
+                - generic [ref=e486]: KR3
+                - generic [ref=e487]: Escalations down 30%
+                - generic [ref=e488]: −8% / −30%
+                - generic [ref=e492]: 12%
+            - generic [ref=e493]:
+              - generic [ref=e495]:
+                - generic [ref=e496]: warning_amber
+                - generic [ref=e497]: No project linked — link a project to track progress.
+              - generic [ref=e501]: 22%
+          - generic [ref=e502]:
+            - generic [ref=e503]:
+              - generic [ref=e504]:
+                - generic [ref=e505]:
+                  - generic [ref=e506]: AS
+                  - generic [ref=e507]:
+                    - generic [ref=e508]: Aditi Sharma
+                    - generic [ref=e509]: Senior Ops · UG-H9XHI
+                - generic [ref=e510]: Improve CSAT score to 4.8
+                - generic [ref=e511]:
+                  - generic [ref=e512]:
+                    - generic [ref=e513]: link
+                    - button "add Link a project" [ref=e514] [cursor=pointer]:
+                      - generic [ref=e515]: add
+                      - text: Link a project
+                  - generic [ref=e516]:
+                    - generic [ref=e517]: event
+                    - text: Due
+                    - generic [ref=e518]: 9/30/2026
+                  - generic [ref=e519]:
+                    - generic [ref=e520]: flag
+                    - generic [ref=e521]: "2"
+                    - text: key results
+                  - generic [ref=e522]: On track
+              - generic [ref=e524]:
+                - button "visibility View" [ref=e525] [cursor=pointer]:
+                  - generic [ref=e526]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e527] [cursor=pointer]:
+                  - generic [ref=e528]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e529] [cursor=pointer]:
+                  - generic [ref=e530]: event
+                  - text: Schedule 1:1
+            - generic [ref=e531]:
+              - generic [ref=e532]:
+                - generic [ref=e533]: KR1
+                - generic [ref=e534]: Average vendor setup time
+                - generic [ref=e535]: 8 / 6.4
+                - generic [ref=e538]: 0%
+              - generic [ref=e539]:
+                - generic [ref=e540]: KR2
+                - generic [ref=e541]: KYB automation coverage
+                - generic [ref=e542]: 0 / 80
+                - generic [ref=e545]: 0%
+            - generic [ref=e546]:
+              - generic [ref=e548]:
+                - generic [ref=e549]: warning_amber
+                - generic [ref=e550]: No project linked — link a project to track progress.
+              - generic [ref=e553]: 0%
+          - generic [ref=e554]:
+            - generic [ref=e555]:
+              - generic [ref=e556]:
+                - generic [ref=e557]:
+                  - generic [ref=e558]: AS
+                  - generic [ref=e559]:
+                    - generic [ref=e560]: Aditi Sharma
+                    - generic [ref=e561]: Senior Ops · UG-HDAFO
+                - generic [ref=e562]: DEMO
+                - generic [ref=e563]:
+                  - generic [ref=e564]:
+                    - generic [ref=e565]: link
+                    - button "add Link a project" [ref=e566] [cursor=pointer]:
+                      - generic [ref=e567]: add
+                      - text: Link a project
+                  - generic [ref=e568]:
+                    - generic [ref=e569]: event
+                    - text: Due
+                    - generic [ref=e570]: 9/30/2026
+                  - generic [ref=e571]:
+                    - generic [ref=e572]: flag
+                    - generic [ref=e573]: "1"
+                    - text: key results
+                  - generic [ref=e574]: On track
+              - generic [ref=e576]:
+                - button "visibility View" [ref=e577] [cursor=pointer]:
+                  - generic [ref=e578]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e579] [cursor=pointer]:
+                  - generic [ref=e580]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e581] [cursor=pointer]:
+                  - generic [ref=e582]: event
+                  - text: Schedule 1:1
+            - generic [ref=e584]:
+              - generic [ref=e585]: KR1
+              - generic [ref=e586]: DEMO
+              - generic [ref=e587]: 8 / 6.4
+              - generic [ref=e590]: 0%
+            - generic [ref=e591]:
+              - generic [ref=e593]:
+                - generic [ref=e594]: warning_amber
+                - generic [ref=e595]: No project linked — link a project to track progress.
+              - generic [ref=e598]: 0%
+          - generic [ref=e599]:
+            - generic [ref=e600]:
+              - generic [ref=e601]:
+                - generic [ref=e602]:
+                  - generic [ref=e603]: AS
+                  - generic [ref=e604]:
+                    - generic [ref=e605]: Aditi Sharma
+                    - generic [ref=e606]: Senior Ops · UG-HK4JH
+                - generic [ref=e607]: Hit Q3 NPS target
+                - generic [ref=e608]:
+                  - generic [ref=e609]:
+                    - generic [ref=e610]: link
+                    - generic [ref=e611]: Client Onboarding Q3
+                  - generic [ref=e612]:
+                    - generic [ref=e613]: event
+                    - text: Due
+                    - generic [ref=e614]: 9/30/2026
+                  - generic [ref=e615]:
+                    - generic [ref=e616]: flag
+                    - generic [ref=e617]: "2"
+                    - text: key results
+                  - generic [ref=e618]: On track
+              - generic [ref=e620]:
+                - button "visibility View" [ref=e621] [cursor=pointer]:
+                  - generic [ref=e622]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e623] [cursor=pointer]:
+                  - generic [ref=e624]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e625] [cursor=pointer]:
+                  - generic [ref=e626]: event
+                  - text: Schedule 1:1
+            - generic [ref=e627]:
+              - generic [ref=e628]:
+                - generic [ref=e629]: KR1
+                - generic [ref=e630]: Average vendor setup timeClient Onboarding Q3
+                - generic [ref=e631]: 8 / 6.4
+                - generic [ref=e634]: 0%
+              - generic [ref=e635]:
+                - generic [ref=e636]: KR2
+                - generic [ref=e637]: KYB automation coverage
+                - generic [ref=e638]: 0 / 80
+                - generic [ref=e641]: 0%
+            - generic [ref=e642]:
+              - generic [ref=e644]:
+                - generic [ref=e645]: link
+                - generic [ref=e646]:
+                  - text: Linked to
+                  - strong [ref=e647]: Client Onboarding Q3
+              - generic [ref=e650]: 0%
+          - generic [ref=e651]:
+            - generic [ref=e652]:
+              - generic [ref=e653]:
+                - generic [ref=e654]:
+                  - generic [ref=e655]: AS
+                  - generic [ref=e656]:
+                    - generic [ref=e657]: Aditi Sharma
+                    - generic [ref=e658]: Senior Ops · UG-HTNLT
+                - generic [ref=e659]: "2"
+                - generic [ref=e660]:
+                  - generic [ref=e661]:
+                    - generic [ref=e662]: link
+                    - generic [ref=e663]: Vendor Setup Automation
+                  - generic [ref=e664]:
+                    - generic [ref=e665]: event
+                    - text: Due
+                    - generic [ref=e666]: 9/30/2026
+                  - generic [ref=e667]:
+                    - generic [ref=e668]: flag
+                    - generic [ref=e669]: "1"
+                    - text: key results
+                  - generic [ref=e670]: At risk
+              - generic [ref=e672]:
+                - button "visibility View" [ref=e673] [cursor=pointer]:
+                  - generic [ref=e674]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e675] [cursor=pointer]:
+                  - generic [ref=e676]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e677] [cursor=pointer]:
+                  - generic [ref=e678]: event
+                  - text: Schedule 1:1
+            - generic [ref=e680]:
+              - generic [ref=e681]: KR1
+              - generic [ref=e682]: Average vendor setup timeVendor Setup Automation
+              - generic [ref=e683]: 2 / 6.4
+              - generic [ref=e687]: 31%
+            - generic [ref=e688]:
+              - generic [ref=e690]:
+                - generic [ref=e691]: link
+                - generic [ref=e692]:
+                  - text: Linked to
+                  - strong [ref=e693]: Vendor Setup Automation
+              - generic [ref=e697]: 31%
+          - generic [ref=e698]:
+            - generic [ref=e699]:
+              - generic [ref=e700]:
+                - generic [ref=e701]:
+                  - generic [ref=e702]: AS
+                  - generic [ref=e703]:
+                    - generic [ref=e704]: Aditi Sharma
+                    - generic [ref=e705]: Senior Ops · UG-JE08H
+                - generic [ref=e706]: Sync Test Goal from Worker
+                - generic [ref=e707]:
+                  - generic [ref=e708]:
+                    - generic [ref=e709]: link
+                    - button "add Link a project" [ref=e710] [cursor=pointer]:
+                      - generic [ref=e711]: add
+                      - text: Link a project
+                  - generic [ref=e712]:
+                    - generic [ref=e713]: event
+                    - text: Due
+                    - generic [ref=e714]: 9/30/2026
+                  - generic [ref=e715]:
+                    - generic [ref=e716]: flag
+                    - generic [ref=e717]: "2"
+                    - text: key results
+                  - generic [ref=e718]: On track
+              - generic [ref=e720]:
+                - button "visibility View" [ref=e721] [cursor=pointer]:
+                  - generic [ref=e722]: visibility
+                  - text: View
+                - button "forum Give feedback" [ref=e723] [cursor=pointer]:
+                  - generic [ref=e724]: forum
+                  - text: Give feedback
+                - button "event Schedule 1:1" [ref=e725] [cursor=pointer]:
+                  - generic [ref=e726]: event
+                  - text: Schedule 1:1
+            - generic [ref=e727]:
+              - generic [ref=e728]:
+                - generic [ref=e729]: KR1
+                - generic [ref=e730]: Average vendor setup time
+                - generic [ref=e731]: 8 / 6.4
+                - generic [ref=e734]: 0%
+              - generic [ref=e735]:
+                - generic [ref=e736]: KR2
+                - generic [ref=e737]: KYB automation coverage
+                - generic [ref=e738]: 0 / 80
+                - generic [ref=e741]: 0%
+            - generic [ref=e742]:
+              - generic [ref=e744]:
+                - generic [ref=e745]: warning_amber
+                - generic [ref=e746]: No project linked — link a project to track progress.
+              - generic [ref=e749]: 0%
+        - generic [ref=e751]:
+          - generic [ref=e752]: rocket_launch
+          - generic [ref=e754]:
+            - strong [ref=e755]: Project → OKR auto-completion is live.
+            - text: Mark a project as complete in the Projects module and any linked OKRs will automatically update here and in worker views.
+          - button "open_in_new Open Projects" [ref=e756] [cursor=pointer]:
+            - generic [ref=e757]: open_in_new
+            - text: Open Projects

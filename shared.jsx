@@ -127,7 +127,7 @@ const CLIENT_NAV = [
     { id: 'dashboard',  icon: 'dashboard',     label: 'Dashboard' },
     { id: 'people',     icon: 'groups',        label: 'People' },
     { id: 'contracts',  icon: 'description',   label: 'Contracts' },
-    { id: 'projects',   icon: 'work',          label: 'Projects' },
+    { id: 'projects',   icon: 'work',          label: 'Projects',   route: '/projects' },
     { id: 'payroll',    icon: 'sync',          label: 'Payroll' },
     { id: 'performance',icon: 'insights',      label: 'Performance', route: '/client/dashboard' },
   ]},
@@ -160,6 +160,7 @@ const WORKER_NAV = [
     { id: 'pay',         icon: 'payments', label: 'Pay' },
     { id: 'time',        icon: 'schedule', label: 'Time off' },
     { id: 'performance', icon: 'insights', label: 'Performance', route: '/worker/dashboard' },
+    { id: 'projects',    icon: 'work',     label: 'Projects',     route: '/worker/projects' },
   ]},
   { group: 'Restricted', items: [
     { id: 'comp-others',   icon: 'paid',         label: 'Compensation insights', disabled: true },

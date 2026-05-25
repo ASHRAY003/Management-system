@@ -1,0 +1,5 @@
+- generic [ref=e37]:
+  - heading "404 — View not found" [level=1] [ref=e310]
+  - paragraph [ref=e311]:
+    - link "← Back to all views" [ref=e312] [cursor=pointer]:
+      - /url: "#"

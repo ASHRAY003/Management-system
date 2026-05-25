@@ -1,0 +1,174 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 09 · Feedback & Reviews
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: My workspace
+      - generic [ref=e19]:
+        - generic [ref=e20]: verified_user
+        - generic [ref=e21]: Worker · Self-service
+      - generic [ref=e22]:
+        - generic [ref=e23]: My workspace
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: home
+            - generic [ref=e27]: Home
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: person
+            - generic [ref=e30]: My profile
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: payments
+            - generic [ref=e33]: Pay
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: schedule
+            - generic [ref=e36]: Time off
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: insights
+            - generic [ref=e39]: Performance
+      - generic [ref=e40]:
+        - generic [ref=e41]: Restricted
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]: paid
+            - generic [ref=e45]: Compensation insights
+            - generic [ref=e46]: lock
+          - generic [ref=e47]:
+            - generic [ref=e48]: flag
+            - generic [ref=e49]: Other workers’ OKRs
+            - generic [ref=e50]: lock
+          - generic [ref=e51]:
+            - generic [ref=e52]: lock
+            - generic [ref=e53]: Manager private notes
+            - generic [ref=e54]: lock
+      - generic [ref=e56]:
+        - generic [ref=e57]: AS
+        - generic [ref=e58]:
+          - generic [ref=e59]: Aditi Sharma
+          - generic [ref=e60]: aditi@demo.com
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]: Payo WFM
+          - generic [ref=e65]: chevron_right
+          - generic [ref=e66]: Performance
+          - generic [ref=e67]: chevron_right
+          - generic [ref=e68]: Feedback & Reviews
+          - generic [ref=e69]: chevron_right
+          - generic [ref=e70]: Self-review
+        - generic [ref=e71]:
+          - generic [ref=e72]: verified_user
+          - text: Worker self-service
+        - generic [ref=e73]:
+          - generic [ref=e74]: search
+          - textbox "Search my goals, reviews…" [ref=e75]
+          - generic [ref=e76]: ⌘K
+        - generic [ref=e78] [cursor=pointer]: help
+        - generic [ref=e80] [cursor=pointer]:
+          - generic [ref=e81]: notifications
+          - generic [ref=e82]: "3"
+      - generic [ref=e83]:
+        - generic [ref=e84]:
+          - generic [ref=e85] [cursor=pointer]: Dashboard
+          - generic [ref=e86] [cursor=pointer]: My Goals
+          - generic [ref=e87] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e88] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e90] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e91]: expand_more
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - button "arrow_back Back to my reviews" [ref=e94] [cursor=pointer]:
+              - generic [ref=e95]: arrow_back
+              - text: Back to my reviews
+            - generic [ref=e97]: Submitted
+          - generic [ref=e100]:
+            - generic [ref=e101]: Q3 2026 Performance Review · Self-review
+            - heading "Your self-review" [level=1] [ref=e102]
+            - generic [ref=e103]: Period 2026-07-01 → 2026-09-30 · due 2026-06-22 · auto-saves as you type
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - generic [ref=e109]:
+                  - generic [ref=e110]: edit_note
+                  - text: 1 · What were your top achievements during this review period?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e112]: Demo
+              - generic [ref=e113]:
+                - generic [ref=e116]:
+                  - generic [ref=e117]: edit_note
+                  - text: 2 · Which goals or OKRs did you complete or make meaningful progress on?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e119]: Demo
+              - generic [ref=e120]:
+                - generic [ref=e123]:
+                  - generic [ref=e124]: edit_note
+                  - text: 3 · Which goals or OKRs were delayed, blocked, or not completed? Why?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e126]
+              - generic [ref=e127]:
+                - generic [ref=e130]:
+                  - generic [ref=e131]: edit_note
+                  - text: 4 · What challenges or blockers did you face?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e133]
+              - generic [ref=e134]:
+                - generic [ref=e137]:
+                  - generic [ref=e138]: edit_note
+                  - text: 5 · What support did you need from your manager or team?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e140]
+              - generic [ref=e141]:
+                - generic [ref=e144]:
+                  - generic [ref=e145]: edit_note
+                  - text: 6 · What feedback did you receive and act on?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e147]
+              - generic [ref=e148]:
+                - generic [ref=e151]:
+                  - generic [ref=e152]: edit_note
+                  - text: 7 · What skills did you improve during this period?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e154]
+              - generic [ref=e155]:
+                - generic [ref=e158]:
+                  - generic [ref=e159]: edit_note
+                  - text: 8 · What would you like to improve in the next cycle?
+                - textbox "Reflect honestly. Reference goals, KRs, projects, and 1:1s where helpful." [disabled] [ref=e161]
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - generic [ref=e165]:
+                  - generic [ref=e166]:
+                    - generic [ref=e167]: flag
+                    - text: My goals & OKRs
+                  - generic [ref=e168]: Auto-pulled from People Goals · 1 goal
+                - generic [ref=e171]:
+                  - generic [ref=e172]: Improve ops efficiency Q3
+                  - generic [ref=e173]:
+                    - generic [ref=e174]: not-started
+                    - generic [ref=e176]: 0%
+              - generic [ref=e177]:
+                - generic [ref=e179]:
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: event
+                    - text: Shared 1:1 notes
+                  - generic [ref=e182]: 3 meetings in this period
+                - generic [ref=e184]:
+                  - generic [ref=e185]:
+                    - generic [ref=e186]: 2026-05-24T10:00:00.000Z
+                    - emphasis [ref=e188]: No shared notes recorded.
+                  - generic [ref=e189]:
+                    - generic [ref=e190]: 2026-05-23T04:30:00.000Z
+                    - emphasis [ref=e192]: No shared notes recorded.
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: 2026-05-23T04:30:00.000Z
+                    - emphasis [ref=e196]: No shared notes recorded.
+              - generic [ref=e197]:
+                - generic [ref=e198]: info
+                - generic [ref=e200]:
+                  - strong [ref=e201]: Your private notes from 1:1s stay private.
+                  - text: Only shared 1:1 notes appear in this context panel. Manager private notes are never shown to you.

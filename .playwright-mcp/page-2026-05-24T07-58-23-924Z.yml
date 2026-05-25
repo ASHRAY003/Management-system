@@ -1,0 +1,123 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 07 · My Goals
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e595]:
+    - complementary [ref=e596]:
+      - generic [ref=e597]:
+        - generic [ref=e598]: P
+        - generic [ref=e599]:
+          - generic [ref=e600]: Payo WFM
+          - generic [ref=e601]: My workspace
+      - generic [ref=e602]:
+        - generic [ref=e603]: verified_user
+        - generic [ref=e604]: Worker · Self-service
+      - generic [ref=e605]:
+        - generic [ref=e606]: My workspace
+        - generic [ref=e607]:
+          - generic [ref=e608] [cursor=pointer]:
+            - generic [ref=e609]: home
+            - generic [ref=e610]: Home
+          - generic [ref=e611] [cursor=pointer]:
+            - generic [ref=e612]: person
+            - generic [ref=e613]: My profile
+          - generic [ref=e614] [cursor=pointer]:
+            - generic [ref=e615]: payments
+            - generic [ref=e616]: Pay
+          - generic [ref=e617] [cursor=pointer]:
+            - generic [ref=e618]: schedule
+            - generic [ref=e619]: Time off
+          - generic [ref=e620] [cursor=pointer]:
+            - generic [ref=e621]: insights
+            - generic [ref=e622]: Performance
+      - generic [ref=e623]:
+        - generic [ref=e624]: Restricted
+        - generic [ref=e625]:
+          - generic [ref=e626]:
+            - generic [ref=e627]: paid
+            - generic [ref=e628]: Compensation insights
+            - generic [ref=e629]: lock
+          - generic [ref=e630]:
+            - generic [ref=e631]: flag
+            - generic [ref=e632]: Other workers’ OKRs
+            - generic [ref=e633]: lock
+          - generic [ref=e634]:
+            - generic [ref=e635]: lock
+            - generic [ref=e636]: Manager private notes
+            - generic [ref=e637]: lock
+      - generic [ref=e639]:
+        - generic [ref=e640]: AS
+        - generic [ref=e641]:
+          - generic [ref=e642]: Aditi Sharma
+          - generic [ref=e643]: aditi@demo.com
+    - generic [ref=e644]:
+      - generic [ref=e645]:
+        - generic [ref=e646]:
+          - generic [ref=e647]: Payo WFM
+          - generic [ref=e648]: chevron_right
+          - generic [ref=e649]: Performance
+          - generic [ref=e650]: chevron_right
+          - generic [ref=e651]: My Goals
+        - generic [ref=e652]:
+          - generic [ref=e653]: verified_user
+          - text: Worker self-service
+        - generic [ref=e654]:
+          - generic [ref=e655]: search
+          - textbox "Search my goals, reviews…" [ref=e656]
+          - generic [ref=e657]: ⌘K
+        - generic [ref=e659] [cursor=pointer]: help
+        - generic [ref=e661] [cursor=pointer]:
+          - generic [ref=e662]: notifications
+          - generic [ref=e663]: "3"
+      - generic [ref=e984]:
+        - generic [ref=e986]:
+          - generic [ref=e987]:
+            - generic [ref=e989]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e990]
+          - button "close" [ref=e991] [cursor=pointer]:
+            - generic [ref=e992]: close
+        - generic [ref=e993]:
+          - generic [ref=e994]:
+            - generic [ref=e997] [cursor=pointer]: Name & Type
+            - generic [ref=e1001] [cursor=pointer]: Key Results
+            - generic [ref=e1005]: Goal Dates
+            - generic [ref=e1009]: Users
+            - generic [ref=e1013]: Review
+          - generic [ref=e1014]:
+            - generic [ref=e1016]: gps_fixed
+            - button "delete_outline" [ref=e1066] [cursor=pointer]:
+              - generic [ref=e1067]: delete_outline
+            - generic [ref=e1068]: Hit Q3 NPS target
+            - generic [ref=e1147]: What are the start and end dates for this goal?
+            - generic [ref=e1148] [cursor=pointer]:
+              - generic [ref=e1149]: event_available
+              - generic [ref=e1150]: 7/1/2026 — 9/30/2026
+              - generic [ref=e1151]: arrow_drop_down
+            - generic [ref=e1152]: Aligning with Q3 2026 review cycle (Jul 1 – Sep 30).
+            - generic [ref=e1153]:
+              - button "event Q1 2026" [ref=e1154] [cursor=pointer]:
+                - generic [ref=e1155]: event
+                - text: Q1 2026
+              - button "event Q2 2026" [ref=e1156] [cursor=pointer]:
+                - generic [ref=e1157]: event
+                - text: Q2 2026
+              - button "check_circle Q3 2026" [ref=e1158] [cursor=pointer]:
+                - generic [ref=e1159]: check_circle
+                - text: Q3 2026
+              - button "event Q4 2026" [ref=e1160] [cursor=pointer]:
+                - generic [ref=e1161]: event
+                - text: Q4 2026
+          - generic [ref=e1060]:
+            - button "Back" [ref=e1142] [cursor=pointer]:
+              - generic [ref=e1143]: Back
+            - generic [ref=e1062]:
+              - generic [ref=e1063]: check_circle
+              - text: Saved Just Now
+            - button "Next" [active] [ref=e1065] [cursor=pointer]

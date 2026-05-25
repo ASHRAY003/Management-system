@@ -1,0 +1,254 @@
+- generic [ref=e2]:
+  - generic [ref=e344]:
+    - link "← All views" [ref=e345] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e346]: /
+    - generic [ref=e347]: 01 · Performance Dashboard
+    - generic [ref=e348]:
+      - text: Signed in as
+      - strong [ref=e349]: Priya Mehta
+      - generic [ref=e350]: · manager
+    - button "Log out" [ref=e351] [cursor=pointer]
+  - generic [ref=e353]:
+    - complementary [ref=e354]:
+      - generic [ref=e355]:
+        - generic [ref=e356]: P
+        - generic [ref=e357]:
+          - generic [ref=e358]: Payo WFM
+          - generic [ref=e359]: Acme Holdings · HR
+      - generic [ref=e360]:
+        - generic [ref=e361]: badge
+        - generic [ref=e362]: HR Admin · Client manager
+      - generic [ref=e363]:
+        - generic [ref=e364]: Workforce
+        - generic [ref=e365]:
+          - generic [ref=e366] [cursor=pointer]:
+            - generic [ref=e367]: dashboard
+            - generic [ref=e368]: Dashboard
+          - generic [ref=e369] [cursor=pointer]:
+            - generic [ref=e370]: groups
+            - generic [ref=e371]: People
+          - generic [ref=e372] [cursor=pointer]:
+            - generic [ref=e373]: description
+            - generic [ref=e374]: Contracts
+          - generic [ref=e375] [cursor=pointer]:
+            - generic [ref=e376]: work
+            - generic [ref=e377]: Projects
+          - generic [ref=e378] [cursor=pointer]:
+            - generic [ref=e379]: sync
+            - generic [ref=e380]: Payroll
+          - generic [ref=e381] [cursor=pointer]:
+            - generic [ref=e382]: insights
+            - generic [ref=e383]: Performance
+      - generic [ref=e384]:
+        - generic [ref=e385]: Workspace
+        - generic [ref=e386]:
+          - generic [ref=e387] [cursor=pointer]:
+            - generic [ref=e388]: schedule
+            - generic [ref=e389]: Time & leave
+          - generic [ref=e390] [cursor=pointer]:
+            - generic [ref=e391]: receipt_long
+            - generic [ref=e392]: Expenses
+          - generic [ref=e393] [cursor=pointer]:
+            - generic [ref=e394]: folder
+            - generic [ref=e395]: Documents
+          - generic [ref=e396] [cursor=pointer]:
+            - generic [ref=e397]: bar_chart
+            - generic [ref=e398]: Reports
+          - generic [ref=e399] [cursor=pointer]:
+            - generic [ref=e400]: settings
+            - generic [ref=e401]: Settings
+      - generic [ref=e403]:
+        - generic [ref=e404]: PM
+        - generic [ref=e405]:
+          - generic [ref=e406]: Priya Mehta
+          - generic [ref=e407]: priya@demo.com
+    - generic [ref=e408]:
+      - generic [ref=e409]:
+        - generic [ref=e410]:
+          - generic [ref=e411]: Acme Holdings
+          - generic [ref=e412]: chevron_right
+          - generic [ref=e413]: Performance
+          - generic [ref=e414]: chevron_right
+          - generic [ref=e415]: Dashboard
+        - generic [ref=e416]:
+          - generic [ref=e417]: badge
+          - text: Client / Manager view
+        - generic [ref=e418]:
+          - generic [ref=e419]: search
+          - textbox "Search people, goals, reviews…" [ref=e420]
+          - generic [ref=e421]: ⌘K
+        - generic [ref=e423] [cursor=pointer]: help
+        - generic [ref=e425] [cursor=pointer]:
+          - generic [ref=e426]: notifications
+          - generic [ref=e427]: "5"
+      - generic [ref=e428]:
+        - generic [ref=e429]:
+          - generic [ref=e430] [cursor=pointer]: Dashboard
+          - generic [ref=e431] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e432] [cursor=pointer]: Reviews
+          - generic [ref=e433] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e434] [cursor=pointer]: Review Compensation
+          - generic [ref=e436] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e437]: expand_more
+        - generic [ref=e438]:
+          - generic [ref=e439]:
+            - generic [ref=e440]: Performance Management
+            - heading "Performance overview" [level=1] [ref=e441]
+            - generic [ref=e442]: Track goals, project outcomes, reviews, feedback, and compensation signals — all in one place.
+          - generic [ref=e443]:
+            - button "forum Give feedback" [ref=e444] [cursor=pointer]:
+              - generic [ref=e445]: forum
+              - text: Give feedback
+            - button "play_circle Start review cycle" [ref=e446] [cursor=pointer]:
+              - generic [ref=e447]: play_circle
+              - text: Start review cycle
+            - button "add Create goal" [ref=e448] [cursor=pointer]:
+              - generic [ref=e449]: add
+              - text: Create goal
+        - generic [ref=e450]:
+          - button "Active OKRs 3 0 on track · 0 at risk flag arrow_forward" [ref=e451] [cursor=pointer]:
+            - generic [ref=e452]: Active OKRs
+            - generic [ref=e454]: "3"
+            - generic [ref=e455]: 0 on track · 0 at risk
+            - generic [ref=e457]: flag
+            - generic [ref=e459]: arrow_forward
+          - button "Linked projects 0 Projects referenced by goals rocket_launch arrow_forward" [ref=e460] [cursor=pointer]:
+            - generic [ref=e461]: Linked projects
+            - generic [ref=e463]: "0"
+            - generic [ref=e464]: Projects referenced by goals
+            - generic [ref=e466]: rocket_launch
+            - generic [ref=e468]: arrow_forward
+          - button "1:1s this month 3 3 scheduled event_available arrow_forward" [ref=e469] [cursor=pointer]:
+            - generic [ref=e470]: 1:1s this month
+            - generic [ref=e472]: "3"
+            - generic [ref=e473]: 3 scheduled
+            - generic [ref=e475]: event_available
+            - generic [ref=e477]: arrow_forward
+        - generic [ref=e479]:
+          - generic [ref=e480]:
+            - generic [ref=e481]:
+              - generic [ref=e482]:
+                - generic [ref=e483]: flag
+                - text: Goal progress overview
+              - generic [ref=e484]: Active OKRs across the company · top movers this week
+            - button "All goals arrow_forward" [ref=e486] [cursor=pointer]:
+              - text: All goals
+              - generic [ref=e487]: arrow_forward
+          - table [ref=e489]:
+            - rowgroup [ref=e490]:
+              - row "Goal / OKR Owner Linked Project Progress Status Due" [ref=e491]:
+                - columnheader "Goal / OKR" [ref=e492]
+                - columnheader "Owner" [ref=e493]
+                - columnheader "Linked Project" [ref=e494]
+                - columnheader "Progress" [ref=e495]
+                - columnheader "Status" [ref=e496]
+                - columnheader "Due" [ref=e497]
+            - rowgroup [ref=e498]:
+              - row "Q3 Company OKR individual OKR — — link 0% At risk" [ref=e499]:
+                - cell "Q3 Company OKR individual OKR" [ref=e500]:
+                  - generic [ref=e501]: Q3 Company OKR
+                  - generic [ref=e502]: individual OKR
+                - cell "— —" [ref=e503]:
+                  - generic [ref=e504]:
+                    - generic [ref=e505]: —
+                    - generic [ref=e506]: —
+                - cell "link" [ref=e507]:
+                  - generic [ref=e509] [cursor=pointer]: link
+                - cell "0%" [ref=e510]:
+                  - generic [ref=e513]: 0%
+                - cell "At risk" [ref=e514]:
+                  - generic [ref=e515]: At risk
+                - cell [ref=e517]
+              - row "Improve ops efficiency Q3 individual OKR AS Aditi Sharma link 0% At risk" [ref=e518]:
+                - cell "Improve ops efficiency Q3 individual OKR" [ref=e519]:
+                  - generic [ref=e520]: Improve ops efficiency Q3
+                  - generic [ref=e521]: individual OKR
+                - cell "AS Aditi Sharma" [ref=e522]:
+                  - generic [ref=e523]:
+                    - generic [ref=e524]: AS
+                    - generic [ref=e525]: Aditi Sharma
+                - cell "link" [ref=e526]:
+                  - generic [ref=e528] [cursor=pointer]: link
+                - cell "0%" [ref=e529]:
+                  - generic [ref=e532]: 0%
+                - cell "At risk" [ref=e533]:
+                  - generic [ref=e534]: At risk
+                - cell [ref=e536]
+              - row "Test Company Goal 2026 individual OKR — — link 0% At risk" [ref=e537]:
+                - cell "Test Company Goal 2026 individual OKR" [ref=e538]:
+                  - generic [ref=e539]: Test Company Goal 2026
+                  - generic [ref=e540]: individual OKR
+                - cell "— —" [ref=e541]:
+                  - generic [ref=e542]:
+                    - generic [ref=e543]: —
+                    - generic [ref=e544]: —
+                - cell "link" [ref=e545]:
+                  - generic [ref=e547] [cursor=pointer]: link
+                - cell "0%" [ref=e548]:
+                  - generic [ref=e551]: 0%
+                - cell "At risk" [ref=e552]:
+                  - generic [ref=e553]: At risk
+                - cell [ref=e555]
+        - generic [ref=e557]:
+          - generic [ref=e558]:
+            - generic [ref=e559]:
+              - generic [ref=e560]:
+                - generic [ref=e561]: reviews
+                - text: Review cycle status
+              - generic [ref=e562]: Cycles currently in flight
+            - generic [ref=e563]:
+              - button "download Export CSV" [ref=e564] [cursor=pointer]:
+                - generic [ref=e565]: download
+                - text: Export CSV
+              - button "All cycles arrow_forward" [ref=e566] [cursor=pointer]:
+                - text: All cycles
+                - generic [ref=e567]: arrow_forward
+          - table [ref=e569]:
+            - rowgroup [ref=e570]:
+              - row "Review Cycle Type Participants Completion Pending With Due Date Status" [ref=e571]:
+                - columnheader "Review Cycle" [ref=e572]
+                - columnheader "Type" [ref=e573]
+                - columnheader "Participants" [ref=e574]
+                - columnheader "Completion" [ref=e575]
+                - columnheader "Pending With" [ref=e576]
+                - columnheader "Due Date" [ref=e577]
+                - columnheader "Status" [ref=e578]
+                - columnheader [ref=e579]
+            - rowgroup [ref=e580]:
+              - 'row "Q3 2026 Performance Review Cycle #PW-2024 event_note Quarterly 1 0% 0 of 1 complete Workers 2026-07-07 Active View" [ref=e581]':
+                - 'cell "Q3 2026 Performance Review Cycle #PW-2024" [ref=e582]':
+                  - generic [ref=e583]: Q3 2026 Performance Review
+                  - generic [ref=e584]: "Cycle #PW-2024"
+                - cell "event_note Quarterly" [ref=e585]:
+                  - generic [ref=e586]:
+                    - generic [ref=e587]: event_note
+                    - text: Quarterly
+                - cell "1" [ref=e588]
+                - cell "0% 0 of 1 complete" [ref=e589]:
+                  - generic [ref=e590]:
+                    - generic [ref=e593]: 0%
+                    - generic [ref=e594]: 0 of 1 complete
+                - cell "Workers" [ref=e595]
+                - cell "2026-07-07" [ref=e596]
+                - cell "Active" [ref=e597]:
+                  - generic [ref=e598]: Active
+                - cell "View" [ref=e600]:
+                  - button "View" [ref=e601] [cursor=pointer]
+              - 'row "Q3 2026 Performance Review Cycle #PW-2025 event_note Quarterly 0 Not started Workers 2026-07-07 Draft Configure" [ref=e602]':
+                - 'cell "Q3 2026 Performance Review Cycle #PW-2025" [ref=e603]':
+                  - generic [ref=e604]: Q3 2026 Performance Review
+                  - generic [ref=e605]: "Cycle #PW-2025"
+                - cell "event_note Quarterly" [ref=e606]:
+                  - generic [ref=e607]:
+                    - generic [ref=e608]: event_note
+                    - text: Quarterly
+                - cell "0" [ref=e609]
+                - cell "Not started" [ref=e610]
+                - cell "Workers" [ref=e611]
+                - cell "2026-07-07" [ref=e612]
+                - cell "Draft" [ref=e613]:
+                  - generic [ref=e614]: Draft
+                - cell "Configure" [ref=e615]:
+                  - button "Configure" [ref=e616] [cursor=pointer]

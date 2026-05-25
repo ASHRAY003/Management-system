@@ -1,0 +1,177 @@
+- generic [ref=e2]:
+  - generic [ref=e45]:
+    - link "← All views" [ref=e46] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e47]: /
+    - generic [ref=e48]: 09 · Feedback & Reviews
+    - generic [ref=e183]:
+      - text: Signed in as
+      - strong [ref=e184]: Aditi Sharma
+      - generic [ref=e185]: · worker
+    - button "Log out" [ref=e186] [cursor=pointer]
+  - generic [ref=e51]:
+    - complementary [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: P
+        - generic [ref=e55]:
+          - generic [ref=e56]: Payo WFM
+          - generic [ref=e57]: My workspace
+      - generic [ref=e58]:
+        - generic [ref=e59]: verified_user
+        - generic [ref=e60]: Worker · Self-service
+      - generic [ref=e61]:
+        - generic [ref=e62]: My workspace
+        - generic [ref=e63]:
+          - generic [ref=e64] [cursor=pointer]:
+            - generic [ref=e65]: home
+            - generic [ref=e66]: Home
+          - generic [ref=e67] [cursor=pointer]:
+            - generic [ref=e68]: person
+            - generic [ref=e69]: My profile
+          - generic [ref=e70] [cursor=pointer]:
+            - generic [ref=e71]: payments
+            - generic [ref=e72]: Pay
+          - generic [ref=e73] [cursor=pointer]:
+            - generic [ref=e74]: schedule
+            - generic [ref=e75]: Time off
+          - generic [ref=e76] [cursor=pointer]:
+            - generic [ref=e77]: insights
+            - generic [ref=e78]: Performance
+      - generic [ref=e79]:
+        - generic [ref=e80]: Restricted
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e83]: paid
+            - generic [ref=e84]: Compensation insights
+            - generic [ref=e85]: lock
+          - generic [ref=e86]:
+            - generic [ref=e87]: flag
+            - generic [ref=e88]: Other workers’ OKRs
+            - generic [ref=e89]: lock
+          - generic [ref=e90]:
+            - generic [ref=e91]: lock
+            - generic [ref=e92]: Manager private notes
+            - generic [ref=e93]: lock
+      - generic [ref=e95]:
+        - generic [ref=e96]: AS
+        - generic [ref=e97]:
+          - generic [ref=e98]: Aditi Sharma
+          - generic [ref=e187]: aditi@demo.com
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]: Payo WFM
+          - generic [ref=e103]: chevron_right
+          - generic [ref=e104]: Performance
+          - generic [ref=e105]: chevron_right
+          - generic [ref=e106]: Reviews
+        - generic [ref=e107]:
+          - generic [ref=e108]: verified_user
+          - text: Worker self-service
+        - generic [ref=e109]:
+          - generic [ref=e110]: search
+          - textbox "Search my goals, reviews…" [ref=e111]
+          - generic [ref=e112]: ⌘K
+        - generic [ref=e114] [cursor=pointer]: help
+        - generic [ref=e116] [cursor=pointer]:
+          - generic [ref=e117]: notifications
+          - generic [ref=e182]: "2"
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120] [cursor=pointer]: Dashboard
+          - generic [ref=e121] [cursor=pointer]: My Goals
+          - generic [ref=e122] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e123] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e125] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e126]: expand_more
+        - generic [ref=e127]:
+          - generic [ref=e128]:
+            - generic [ref=e129]: My performance
+            - heading "Feedback & Reviews · viewing as Aditi Sharma" [level=1] [ref=e188]
+            - generic [ref=e131]: All the feedback and reviews you've received, organized by month. Click any tile to read the full text and rating.
+          - generic [ref=e132]:
+            - button "filter_list Filters" [ref=e133] [cursor=pointer]:
+              - generic [ref=e134]: filter_list
+              - text: Filters
+            - button "download Export" [ref=e135] [cursor=pointer]:
+              - generic [ref=e136]: download
+              - text: Export
+        - generic [ref=e137]:
+          - generic [ref=e139]:
+            - generic [ref=e140]:
+              - generic [ref=e141]: event_repeat
+              - text: My review cycles
+            - generic [ref=e142]: Showing the 1 most recent · 1 total
+          - generic [ref=e189]:
+            - generic [ref=e190]:
+              - generic [ref=e191]: Q3 2026 Performance Review
+              - generic [ref=e192]: 2026-07-01 → 2026-09-30 · self-review due 2026-06-22
+            - generic [ref=e193]: active
+            - generic [ref=e195]:
+              - generic [ref=e196]: Self-review
+              - generic [ref=e234]: Submitted
+            - button "visibility View my self-review" [ref=e236] [cursor=pointer]:
+              - generic [ref=e237]: visibility
+              - text: View my self-review
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - generic [ref=e147]: Total reviews
+            - generic [ref=e149]: "1"
+            - generic [ref=e150]: Shared with you
+            - generic [ref=e152]: task_alt
+          - generic [ref=e153]:
+            - generic [ref=e154]: Average rating
+            - generic [ref=e156]: "4.5"
+            - generic [ref=e157]: Across 1 review
+            - generic [ref=e159]: star
+          - generic [ref=e160]:
+            - generic [ref=e161]: Outstanding
+            - generic [ref=e163]: "0"
+            - generic [ref=e164]: None yet
+            - generic [ref=e166]: celebration
+          - generic [ref=e167]:
+            - generic [ref=e168]: Next review
+            - generic [ref=e170]: 2026-06-22
+            - generic [ref=e171]: Q3 2026 Performance Review
+            - generic [ref=e173]: event
+        - generic [ref=e174]:
+          - generic [ref=e175]: "Type:"
+          - button "All" [ref=e176] [cursor=pointer]
+          - button "Manager" [ref=e177] [cursor=pointer]
+          - button "Peer" [ref=e178] [cursor=pointer]
+          - button "Client" [ref=e179] [cursor=pointer]
+          - button "Project" [ref=e180] [cursor=pointer]
+          - button "Self" [ref=e181] [cursor=pointer]
+        - generic [ref=e202]:
+          - generic [ref=e203]:
+            - generic [ref=e204]: Shared by manager
+            - generic [ref=e205]: Visible reviews only
+            - generic [ref=e206]: 1 review
+          - button "PN Priya Nair Manager badge Manager review Q3 Review · May 23, 2026 star star star star star Great work Rating 4.5 / 5 Exceeds expectations Read full review arrow_forward" [ref=e209] [cursor=pointer]:
+            - generic [ref=e210]:
+              - generic [ref=e211]:
+                - generic [ref=e212]: PN
+                - generic [ref=e213]:
+                  - generic [ref=e214]: Priya Nair
+                  - generic [ref=e215]: Manager
+              - generic [ref=e216]:
+                - generic [ref=e217]: badge
+                - text: Manager review
+            - generic [ref=e218]:
+              - generic [ref=e219]: Q3 Review · May 23, 2026
+              - generic [ref=e220]:
+                - generic [ref=e221]: star
+                - generic [ref=e222]: star
+                - generic [ref=e223]: star
+                - generic [ref=e224]: star
+                - generic [ref=e225]: star
+            - generic [ref=e226]: Great work
+            - generic [ref=e227]:
+              - generic [ref=e228]:
+                - generic [ref=e229]: Rating
+                - generic [ref=e230]: 4.5 / 5
+                - generic [ref=e231]: Exceeds expectations
+              - generic [ref=e232]:
+                - text: Read full review
+                - generic [ref=e233]: arrow_forward

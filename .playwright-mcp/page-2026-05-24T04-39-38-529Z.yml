@@ -1,0 +1,457 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 01 · Performance Dashboard
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Priya Mehta
+      - generic [ref=e9]: · manager
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: Acme Holdings · HR
+      - generic [ref=e19]:
+        - generic [ref=e20]: badge
+        - generic [ref=e21]: HR Admin · Client manager
+      - generic [ref=e22]:
+        - generic [ref=e23]: Workforce
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: dashboard
+            - generic [ref=e27]: Dashboard
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: groups
+            - generic [ref=e30]: People
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: description
+            - generic [ref=e33]: Contracts
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: work
+            - generic [ref=e36]: Projects
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: sync
+            - generic [ref=e39]: Payroll
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: insights
+            - generic [ref=e42]: Performance
+      - generic [ref=e43]:
+        - generic [ref=e44]: Workspace
+        - generic [ref=e45]:
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: schedule
+            - generic [ref=e48]: Time & leave
+          - generic [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: receipt_long
+            - generic [ref=e51]: Expenses
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: folder
+            - generic [ref=e54]: Documents
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: bar_chart
+            - generic [ref=e57]: Reports
+          - generic [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: settings
+            - generic [ref=e60]: Settings
+      - generic [ref=e62]:
+        - generic [ref=e63]: PM
+        - generic [ref=e64]:
+          - generic [ref=e65]: Priya Mehta
+          - generic [ref=e66]: priya@demo.com
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: Acme Holdings
+          - generic [ref=e71]: chevron_right
+          - generic [ref=e72]: Performance
+          - generic [ref=e73]: chevron_right
+          - generic [ref=e74]: Dashboard
+        - generic [ref=e75]:
+          - generic [ref=e76]: badge
+          - text: Client / Manager view
+        - generic [ref=e77]:
+          - generic [ref=e78]: search
+          - textbox "Search people, goals, reviews…" [ref=e79]
+          - generic [ref=e80]: ⌘K
+        - generic [ref=e82] [cursor=pointer]: help
+        - generic [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]: notifications
+          - generic [ref=e86]: "5"
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89] [cursor=pointer]: Dashboard
+          - generic [ref=e90] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e91] [cursor=pointer]: Reviews
+          - generic [ref=e92] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e94] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e95]: expand_more
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]: Performance Management
+            - heading "Performance overview" [level=1] [ref=e99]
+            - generic [ref=e100]: Track goals, project outcomes, reviews, feedback, and compensation signals — all in one place.
+          - generic [ref=e101]:
+            - button "forum Give feedback" [ref=e102] [cursor=pointer]:
+              - generic [ref=e103]: forum
+              - text: Give feedback
+            - button "play_circle Start review cycle" [ref=e104] [cursor=pointer]:
+              - generic [ref=e105]: play_circle
+              - text: Start review cycle
+            - button "add Create goal" [ref=e106] [cursor=pointer]:
+              - generic [ref=e107]: add
+              - text: Create goal
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - generic [ref=e110]: Active OKRs
+            - generic [ref=e111]:
+              - generic [ref=e112]: "42"
+              - generic [ref=e113]:
+                - generic [ref=e114]: trending_up
+                - text: "+6"
+            - generic [ref=e115]: 11 company · 14 team · 17 individual
+            - generic [ref=e117]: flag
+          - generic [ref=e118]:
+            - generic [ref=e119]: Linked projects
+            - generic [ref=e120]:
+              - generic [ref=e121]: "31"
+              - generic [ref=e122]:
+                - generic [ref=e123]: trending_up
+                - text: "+8"
+            - generic [ref=e124]: 18 active · 9 done · 4 at-risk
+            - generic [ref=e126]: rocket_launch
+          - generic [ref=e127]:
+            - generic [ref=e128]: 1:1s this month
+            - generic [ref=e129]:
+              - generic [ref=e130]: "64"
+              - generic [ref=e131]:
+                - generic [ref=e132]: trending_flat
+                - text: "0"
+            - generic [ref=e133]: 8 today · 12 this week
+            - generic [ref=e135]: event_available
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - generic [ref=e141]: flag
+                - text: Goal progress overview
+              - generic [ref=e142]: Active OKRs across the company · top movers this week
+            - button "All goals arrow_forward" [ref=e144] [cursor=pointer]:
+              - text: All goals
+              - generic [ref=e145]: arrow_forward
+          - table [ref=e147]:
+            - rowgroup [ref=e148]:
+              - row "Goal / OKR Owner Linked Project Progress Status Due" [ref=e149]:
+                - columnheader "Goal / OKR" [ref=e150]
+                - columnheader "Owner" [ref=e151]
+                - columnheader "Linked Project" [ref=e152]
+                - columnheader "Progress" [ref=e153]
+                - columnheader "Status" [ref=e154]
+                - columnheader "Due" [ref=e155]
+            - rowgroup [ref=e156]:
+              - row "Complete onboarding projects on time individual OKR AS Aditi Sharma link Client Onboarding Q3 90% On track Sep 20, 2026" [ref=e157]:
+                - cell "Complete onboarding projects on time individual OKR" [ref=e158]:
+                  - generic [ref=e159]: Complete onboarding projects on time
+                  - generic [ref=e160]: individual OKR
+                - cell "AS Aditi Sharma" [ref=e161]:
+                  - generic [ref=e162]:
+                    - generic [ref=e163]: AS
+                    - generic [ref=e164]: Aditi Sharma
+                - cell "link Client Onboarding Q3" [ref=e165]:
+                  - generic [ref=e166] [cursor=pointer]:
+                    - generic [ref=e167]: link
+                    - text: Client Onboarding Q3
+                - cell "90%" [ref=e168]:
+                  - generic [ref=e172]: 90%
+                - cell "On track" [ref=e173]:
+                  - generic [ref=e174]: On track
+                - cell "Sep 20, 2026" [ref=e176]
+              - row "Improve payroll migration quality company OKR Ops Team link Payroll Migration EU 70% On track Sep 30, 2026" [ref=e177]:
+                - cell "Improve payroll migration quality company OKR" [ref=e178]:
+                  - generic [ref=e179]: Improve payroll migration quality
+                  - generic [ref=e180]: company OKR
+                - cell "Ops Team" [ref=e181]
+                - cell "link Payroll Migration EU" [ref=e182]:
+                  - generic [ref=e183] [cursor=pointer]:
+                    - generic [ref=e184]: link
+                    - text: Payroll Migration EU
+                - cell "70%" [ref=e185]:
+                  - generic [ref=e189]: 70%
+                - cell "On track" [ref=e190]:
+                  - generic [ref=e191]: On track
+                - cell "Sep 30, 2026" [ref=e193]
+              - row "Reduce vendor setup time by 20% individual OKR OK Omar Khan link Vendor Setup Automation 45% At risk Oct 15, 2026" [ref=e194]:
+                - cell "Reduce vendor setup time by 20% individual OKR" [ref=e195]:
+                  - generic [ref=e196]: Reduce vendor setup time by 20%
+                  - generic [ref=e197]: individual OKR
+                - cell "OK Omar Khan" [ref=e198]:
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: OK
+                    - generic [ref=e201]: Omar Khan
+                - cell "link Vendor Setup Automation" [ref=e202]:
+                  - generic [ref=e203] [cursor=pointer]:
+                    - generic [ref=e204]: link
+                    - text: Vendor Setup Automation
+                - cell "45%" [ref=e205]:
+                  - generic [ref=e209]: 45%
+                - cell "At risk" [ref=e210]:
+                  - generic [ref=e211]: At risk
+                - cell "Oct 15, 2026" [ref=e213]
+              - row "Cut support backlog under 50 individual OKR LC Lina Chen link CS Quality Q3 58% On track Oct 30, 2026" [ref=e214]:
+                - cell "Cut support backlog under 50 individual OKR" [ref=e215]:
+                  - generic [ref=e216]: Cut support backlog under 50
+                  - generic [ref=e217]: individual OKR
+                - cell "LC Lina Chen" [ref=e218]:
+                  - generic [ref=e219]:
+                    - generic [ref=e220]: LC
+                    - generic [ref=e221]: Lina Chen
+                - cell "link CS Quality Q3" [ref=e222]:
+                  - generic [ref=e223] [cursor=pointer]:
+                    - generic [ref=e224]: link
+                    - text: CS Quality Q3
+                - cell "58%" [ref=e225]:
+                  - generic [ref=e229]: 58%
+                - cell "On track" [ref=e230]:
+                  - generic [ref=e231]: On track
+                - cell "Oct 30, 2026" [ref=e233]
+              - row "Launch the unified comms platform team OKR Engineering link Comms Unification 32% At risk Dec 15, 2026" [ref=e234]:
+                - cell "Launch the unified comms platform team OKR" [ref=e235]:
+                  - generic [ref=e236]: Launch the unified comms platform
+                  - generic [ref=e237]: team OKR
+                - cell "Engineering" [ref=e238]
+                - cell "link Comms Unification" [ref=e239]:
+                  - generic [ref=e240] [cursor=pointer]:
+                    - generic [ref=e241]: link
+                    - text: Comms Unification
+                - cell "32%" [ref=e242]:
+                  - generic [ref=e246]: 32%
+                - cell "At risk" [ref=e247]:
+                  - generic [ref=e248]: At risk
+                - cell "Dec 15, 2026" [ref=e250]
+        - generic [ref=e252]:
+          - generic [ref=e253]:
+            - generic [ref=e254]:
+              - generic [ref=e255]:
+                - generic [ref=e256]: reviews
+                - text: Review cycle status
+              - generic [ref=e257]: Cycles currently in flight
+            - generic [ref=e258]:
+              - button "download Export CSV" [ref=e259] [cursor=pointer]:
+                - generic [ref=e260]: download
+                - text: Export CSV
+              - button "All cycles arrow_forward" [ref=e261] [cursor=pointer]:
+                - text: All cycles
+                - generic [ref=e262]: arrow_forward
+          - table [ref=e264]:
+            - rowgroup [ref=e265]:
+              - row "Review Cycle Type Participants Completion Pending With Due Date Status" [ref=e266]:
+                - columnheader "Review Cycle" [ref=e267]
+                - columnheader "Type" [ref=e268]
+                - columnheader "Participants" [ref=e269]
+                - columnheader "Completion" [ref=e270]
+                - columnheader "Pending With" [ref=e271]
+                - columnheader "Due Date" [ref=e272]
+                - columnheader "Status" [ref=e273]
+                - columnheader [ref=e274]
+            - rowgroup [ref=e275]:
+              - 'row "Engineering 360° Cycle #PW-2024 hub 360° Feedback 38 31% 12 of 38 complete Peers Apr 07, 2026 Active View" [ref=e276]':
+                - 'cell "Engineering 360° Cycle #PW-2024" [ref=e277]':
+                  - generic [ref=e278]: Engineering 360°
+                  - generic [ref=e279]: "Cycle #PW-2024"
+                - cell "hub 360° Feedback" [ref=e280]:
+                  - generic [ref=e281]:
+                    - generic [ref=e282]: hub
+                    - text: 360° Feedback
+                - cell "38" [ref=e283]
+                - cell "31% 12 of 38 complete" [ref=e284]:
+                  - generic [ref=e285]:
+                    - generic [ref=e289]: 31%
+                    - generic [ref=e290]: 12 of 38 complete
+                - cell "Peers" [ref=e291]
+                - cell "Apr 07, 2026" [ref=e292]
+                - cell "Active" [ref=e293]:
+                  - generic [ref=e294]: Active
+                - cell "View" [ref=e296]:
+                  - button "View" [ref=e297] [cursor=pointer]
+              - 'row "Payroll Migration Review Cycle #PW-2025 event_note Project 8 40% 3 of 8 complete Workers May 25, 2026 Overdue View" [ref=e298]':
+                - 'cell "Payroll Migration Review Cycle #PW-2025" [ref=e299]':
+                  - generic [ref=e300]: Payroll Migration Review
+                  - generic [ref=e301]: "Cycle #PW-2025"
+                - cell "event_note Project" [ref=e302]:
+                  - generic [ref=e303]:
+                    - generic [ref=e304]: event_note
+                    - text: Project
+                - cell "8" [ref=e305]
+                - cell "40% 3 of 8 complete" [ref=e306]:
+                  - generic [ref=e307]:
+                    - generic [ref=e311]: 40%
+                    - generic [ref=e312]: 3 of 8 complete
+                - cell "Workers" [ref=e313]
+                - cell "May 25, 2026" [ref=e314]
+                - cell "Overdue" [ref=e315]:
+                  - generic [ref=e316]: Overdue
+                - cell "View" [ref=e318]:
+                  - button "View" [ref=e319] [cursor=pointer]
+              - 'row "Q3 Performance Review Cycle #PW-2026 event_note Quarterly 120 68% 82 of 120 complete Managers Oct 15, 2026 Active View" [ref=e320]':
+                - 'cell "Q3 Performance Review Cycle #PW-2026" [ref=e321]':
+                  - generic [ref=e322]: Q3 Performance Review
+                  - generic [ref=e323]: "Cycle #PW-2026"
+                - cell "event_note Quarterly" [ref=e324]:
+                  - generic [ref=e325]:
+                    - generic [ref=e326]: event_note
+                    - text: Quarterly
+                - cell "120" [ref=e327]
+                - cell "68% 82 of 120 complete" [ref=e328]:
+                  - generic [ref=e329]:
+                    - generic [ref=e333]: 68%
+                    - generic [ref=e334]: 82 of 120 complete
+                - cell "Managers" [ref=e335]
+                - cell "Oct 15, 2026" [ref=e336]
+                - cell "Active" [ref=e337]:
+                  - generic [ref=e338]: Active
+                - cell "View" [ref=e340]:
+                  - button "View" [ref=e341] [cursor=pointer]
+              - 'row "Annual Review 2026 Cycle #PW-2027 event_note Annual 250 Not started HR Admin Dec 15, 2026 Draft Configure" [ref=e342]':
+                - 'cell "Annual Review 2026 Cycle #PW-2027" [ref=e343]':
+                  - generic [ref=e344]: Annual Review 2026
+                  - generic [ref=e345]: "Cycle #PW-2027"
+                - cell "event_note Annual" [ref=e346]:
+                  - generic [ref=e347]:
+                    - generic [ref=e348]: event_note
+                    - text: Annual
+                - cell "250" [ref=e349]
+                - cell "Not started" [ref=e350]
+                - cell "HR Admin" [ref=e351]
+                - cell "Dec 15, 2026" [ref=e352]
+                - cell "Draft" [ref=e353]:
+                  - generic [ref=e354]: Draft
+                - cell "Configure" [ref=e355]:
+                  - button "Configure" [ref=e356] [cursor=pointer]
+        - generic [ref=e357]:
+          - generic [ref=e358]:
+            - generic [ref=e359]:
+              - generic [ref=e360]:
+                - generic [ref=e361]:
+                  - generic [ref=e362]: rocket_launch
+                  - text: Project performance signals
+                - generic [ref=e363]: Project completions flowing into reviews and OKR progress
+              - button "All projects arrow_forward" [ref=e364] [cursor=pointer]:
+                - text: All projects
+                - generic [ref=e365]: arrow_forward
+            - table [ref=e367]:
+              - rowgroup [ref=e368]:
+                - row "Project Worker Linked OKR Status" [ref=e369]:
+                  - columnheader "Project" [ref=e370]
+                  - columnheader "Worker" [ref=e371]
+                  - columnheader "Linked OKR" [ref=e372]
+                  - columnheader "Status" [ref=e373]
+              - rowgroup [ref=e374]:
+                - row "Payroll Migration EU AS Aditi Sharma flag Complete 5 migrations Completed" [ref=e375]:
+                  - cell "Payroll Migration EU" [ref=e376]:
+                    - generic [ref=e377]: Payroll Migration EU
+                  - cell "AS Aditi Sharma" [ref=e378]:
+                    - generic [ref=e379]:
+                      - generic [ref=e380]: AS
+                      - generic [ref=e381]: Aditi Sharma
+                  - cell "flag Complete 5 migrations" [ref=e382]:
+                    - generic [ref=e383] [cursor=pointer]:
+                      - generic [ref=e384]: flag
+                      - text: Complete 5 migrations
+                  - cell "Completed" [ref=e385]:
+                    - generic [ref=e386]: Completed
+                - row "Vendor Setup Automation OK Omar Khan flag Reduce setup time by 20% In progress" [ref=e388]:
+                  - cell "Vendor Setup Automation" [ref=e389]:
+                    - generic [ref=e390]: Vendor Setup Automation
+                  - cell "OK Omar Khan" [ref=e391]:
+                    - generic [ref=e392]:
+                      - generic [ref=e393]: OK
+                      - generic [ref=e394]: Omar Khan
+                  - cell "flag Reduce setup time by 20%" [ref=e395]:
+                    - generic [ref=e396] [cursor=pointer]:
+                      - generic [ref=e397]: flag
+                      - text: Reduce setup time by 20%
+                  - cell "In progress" [ref=e398]:
+                    - generic [ref=e399]: In progress
+                - row "Client Onboarding Q3 LC Lina Chen flag Improve onboarding quality Completed" [ref=e401]:
+                  - cell "Client Onboarding Q3" [ref=e402]:
+                    - generic [ref=e403]: Client Onboarding Q3
+                  - cell "LC Lina Chen" [ref=e404]:
+                    - generic [ref=e405]:
+                      - generic [ref=e406]: LC
+                      - generic [ref=e407]: Lina Chen
+                  - cell "flag Improve onboarding quality" [ref=e408]:
+                    - generic [ref=e409] [cursor=pointer]:
+                      - generic [ref=e410]: flag
+                      - text: Improve onboarding quality
+                  - cell "Completed" [ref=e411]:
+                    - generic [ref=e412]: Completed
+                - row "Comms Unification DA Diego Alvarez flag Launch unified platform v1 In progress" [ref=e414]:
+                  - cell "Comms Unification" [ref=e415]:
+                    - generic [ref=e416]: Comms Unification
+                  - cell "DA Diego Alvarez" [ref=e417]:
+                    - generic [ref=e418]:
+                      - generic [ref=e419]: DA
+                      - generic [ref=e420]: Diego Alvarez
+                  - cell "flag Launch unified platform v1" [ref=e421]:
+                    - generic [ref=e422] [cursor=pointer]:
+                      - generic [ref=e423]: flag
+                      - text: Launch unified platform v1
+                  - cell "In progress" [ref=e424]:
+                    - generic [ref=e425]: In progress
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - generic [ref=e429]:
+                - generic [ref=e430]:
+                  - generic [ref=e431]: forum
+                  - text: Recent feedback
+                - generic [ref=e432]: Across goals, projects, and peers
+              - button "View feed arrow_forward" [ref=e433] [cursor=pointer]:
+                - text: View feed
+                - generic [ref=e434]: arrow_forward
+            - generic [ref=e436]:
+              - generic [ref=e437]:
+                - generic [ref=e438]: PN
+                - generic [ref=e439]:
+                  - generic [ref=e440]:
+                    - strong [ref=e441]: Aditi Sharma
+                    - text: received project feedback for
+                    - strong [ref=e442]: Payroll Migration EU
+                  - generic [ref=e443]:
+                    - generic [ref=e444]: rate_review
+                    - generic [ref=e445]: Project · 2h ago
+              - generic [ref=e446]:
+                - generic [ref=e447]: KI
+                - generic [ref=e448]:
+                  - generic [ref=e449]:
+                    - strong [ref=e450]: Omar Khan
+                    - text: received goal feedback for
+                    - strong [ref=e451]: Vendor Setup Automation
+                  - generic [ref=e452]:
+                    - generic [ref=e453]: flag
+                    - generic [ref=e454]: Goal · 4h ago
+              - generic [ref=e455]:
+                - generic [ref=e456]: LC
+                - generic [ref=e457]:
+                  - generic [ref=e458]:
+                    - strong [ref=e459]: Lina Chen
+                    - text: completed self-review for
+                    - strong [ref=e460]: Client Onboarding Q3
+                  - generic [ref=e461]:
+                    - generic [ref=e462]: how_to_reg
+                    - generic [ref=e463]: Self-review · yesterday
+              - generic [ref=e464]:
+                - generic [ref=e465]: HM
+                - generic [ref=e466]:
+                  - generic [ref=e467]:
+                    - strong [ref=e468]: Hannah Mueller
+                    - text: recognized
+                    - strong [ref=e469]: Diego Alvarez
+                    - text: for shipping the API refactor
+                  - generic [ref=e470]:
+                    - generic [ref=e471]: celebration
+                    - generic [ref=e472]: Recognition · 2d ago

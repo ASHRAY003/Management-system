@@ -1,0 +1,460 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 07 · My Goals
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e529]:
+    - complementary [ref=e530]:
+      - generic [ref=e531]:
+        - generic [ref=e532]: P
+        - generic [ref=e533]:
+          - generic [ref=e534]: Payo WFM
+          - generic [ref=e535]: My workspace
+      - generic [ref=e536]:
+        - generic [ref=e537]: verified_user
+        - generic [ref=e538]: Worker · Self-service
+      - generic [ref=e539]:
+        - generic [ref=e540]: My workspace
+        - generic [ref=e541]:
+          - generic [ref=e542] [cursor=pointer]:
+            - generic [ref=e543]: home
+            - generic [ref=e544]: Home
+          - generic [ref=e545] [cursor=pointer]:
+            - generic [ref=e546]: person
+            - generic [ref=e547]: My profile
+          - generic [ref=e548] [cursor=pointer]:
+            - generic [ref=e549]: payments
+            - generic [ref=e550]: Pay
+          - generic [ref=e551] [cursor=pointer]:
+            - generic [ref=e552]: schedule
+            - generic [ref=e553]: Time off
+          - generic [ref=e554] [cursor=pointer]:
+            - generic [ref=e555]: insights
+            - generic [ref=e556]: Performance
+          - generic [ref=e557] [cursor=pointer]:
+            - generic [ref=e558]: work
+            - generic [ref=e559]: Projects
+      - generic [ref=e560]:
+        - generic [ref=e561]: Restricted
+        - generic [ref=e562]:
+          - generic [ref=e563]:
+            - generic [ref=e564]: paid
+            - generic [ref=e565]: Compensation insights
+            - generic [ref=e566]: lock
+          - generic [ref=e567]:
+            - generic [ref=e568]: flag
+            - generic [ref=e569]: Other workers’ OKRs
+            - generic [ref=e570]: lock
+          - generic [ref=e571]:
+            - generic [ref=e572]: lock
+            - generic [ref=e573]: Manager private notes
+            - generic [ref=e574]: lock
+      - generic [ref=e576]:
+        - generic [ref=e577]: AS
+        - generic [ref=e578]:
+          - generic [ref=e579]: Aditi Sharma
+          - generic [ref=e580]: aditi@demo.com
+    - generic [ref=e581]:
+      - generic [ref=e582]:
+        - generic [ref=e583]:
+          - generic [ref=e584]: Payo WFM
+          - generic [ref=e585]: chevron_right
+          - generic [ref=e586]: Performance
+          - generic [ref=e587]: chevron_right
+          - generic [ref=e588]: My Goals
+        - generic [ref=e589]:
+          - generic [ref=e590]: verified_user
+          - text: Worker self-service
+        - generic [ref=e591]:
+          - generic [ref=e592]: search
+          - textbox "Search my goals, reviews…" [ref=e593]
+          - generic [ref=e594]: ⌘K
+        - generic [ref=e596] [cursor=pointer]: help
+        - generic [ref=e598] [cursor=pointer]:
+          - generic [ref=e599]: notifications
+          - generic [ref=e600]: "3"
+      - generic [ref=e601]:
+        - generic [ref=e602]:
+          - generic [ref=e603] [cursor=pointer]: Dashboard
+          - generic [ref=e604] [cursor=pointer]: My Goals
+          - generic [ref=e605] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e606] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e608] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e609]: expand_more
+        - generic [ref=e610]:
+          - generic [ref=e611]:
+            - generic [ref=e612]: My performance
+            - heading "My Goals" [level=1] [ref=e613]
+            - generic [ref=e614]: Goals you own, contribute to, or are a stakeholder on. Update progress, add key results, and request feedback any time.
+          - generic [ref=e615]:
+            - button "filter_list Filters" [ref=e616] [cursor=pointer]:
+              - generic [ref=e617]: filter_list
+              - text: Filters
+            - button "add Create Goal" [ref=e618] [cursor=pointer]:
+              - generic [ref=e619]: add
+              - text: Create Goal
+        - generic [ref=e620]:
+          - generic [ref=e621]:
+            - generic [ref=e622]: Active goals
+            - generic [ref=e624]: "4"
+            - generic [ref=e625]: 2 owner · 1 contrib · 1 stake
+            - generic [ref=e627]: flag
+          - generic [ref=e628]:
+            - generic [ref=e629]: Average progress
+            - generic [ref=e630]:
+              - generic [ref=e631]: 80%
+              - generic [ref=e632]:
+                - generic [ref=e633]: trending_up
+                - text: +12%
+            - generic [ref=e634]: Last 30 days
+            - generic [ref=e636]: trending_up
+          - generic [ref=e637]:
+            - generic [ref=e638]: Key results done
+            - generic [ref=e640]: 7/10
+            - generic [ref=e641]: across all my goals
+            - generic [ref=e643]: check_circle
+          - generic [ref=e644]:
+            - generic [ref=e645]: Need attention
+            - generic [ref=e647]: "1"
+            - generic [ref=e648]: No project link · KR drifting
+            - generic [ref=e650]: schedule
+        - generic [ref=e651]:
+          - generic [ref=e652]: "View:"
+          - button "All my goals" [ref=e653] [cursor=pointer]
+          - button "Owned by me" [ref=e654] [cursor=pointer]
+          - button "Contributing" [ref=e655] [cursor=pointer]
+          - button "Stakeholder" [ref=e656] [cursor=pointer]
+          - button "Q3 2026" [ref=e658] [cursor=pointer]
+        - generic [ref=e659]:
+          - generic [ref=e660]:
+            - generic [ref=e661]:
+              - generic [ref=e662]:
+                - generic [ref=e663]:
+                  - generic [ref=e664]: Owner
+                  - generic [ref=e665]: ·
+                  - generic [ref=e666]: PO-01
+                - generic [ref=e667]: Complete 6 customer payroll migrations to v2 platform
+                - generic [ref=e668]:
+                  - generic [ref=e669]:
+                    - generic [ref=e670]: event
+                    - text: Due
+                    - generic [ref=e671]: Sep 30, 2026
+                  - generic [ref=e672]:
+                    - generic [ref=e673]: flag
+                    - generic [ref=e674]: "3"
+                    - text: key results
+                  - generic [ref=e675]: On track
+              - generic [ref=e677]:
+                - button "visibility View" [ref=e678] [cursor=pointer]:
+                  - generic [ref=e679]: visibility
+                  - text: View
+                - button "trending_up Update progress" [ref=e680] [cursor=pointer]:
+                  - generic [ref=e681]: trending_up
+                  - text: Update progress
+            - generic [ref=e682]:
+              - generic [ref=e683]:
+                - generic [ref=e684]: KR1
+                - generic [ref=e685]: Migrate 6 anchor customersPayroll Migration EU
+                - generic [ref=e686]: 6 / 6
+                - generic [ref=e690]: 100%
+              - generic [ref=e691]:
+                - generic [ref=e692]: KR2
+                - generic [ref=e693]: Zero P0 incidents during migration
+                - generic [ref=e694]: 0 / 0
+                - generic [ref=e698]: 100%
+              - generic [ref=e699]:
+                - generic [ref=e700]: KR3
+                - generic [ref=e701]: CSAT > 4.5 post-migration
+                - generic [ref=e702]: 4.4 / 4.5
+                - generic [ref=e706]: 70%
+            - generic [ref=e707]:
+              - generic [ref=e708]:
+                - text: You drive this goal.
+                - generic [ref=e709]:
+                  - generic [ref=e710]: link
+                  - generic [ref=e711]:
+                    - text: Linked to
+                    - strong [ref=e712]: Payroll Migration EU
+                - generic [ref=e713]:
+                  - generic [ref=e714]: check_circle
+                  - text: Auto-completed · Payroll Migration EU was marked complete
+              - generic [ref=e718]: 90%
+          - generic [ref=e719]:
+            - generic [ref=e720]:
+              - generic [ref=e721]:
+                - generic [ref=e722]:
+                  - generic [ref=e723]: Owner
+                  - generic [ref=e724]: ·
+                  - generic [ref=e725]: PO-09
+                - generic [ref=e726]: Mentor 2 junior teammates through their first migration
+                - generic [ref=e727]:
+                  - generic [ref=e728]:
+                    - generic [ref=e729]: event
+                    - text: Due
+                    - generic [ref=e730]: Dec 15, 2026
+                  - generic [ref=e731]:
+                    - generic [ref=e732]: flag
+                    - generic [ref=e733]: "2"
+                    - text: key results
+                  - generic [ref=e734]: On track
+              - generic [ref=e736]:
+                - button "visibility View" [ref=e737] [cursor=pointer]:
+                  - generic [ref=e738]: visibility
+                  - text: View
+                - button "trending_up Update progress" [ref=e739] [cursor=pointer]:
+                  - generic [ref=e740]: trending_up
+                  - text: Update progress
+            - generic [ref=e741]:
+              - generic [ref=e742]:
+                - generic [ref=e743]: KR1
+                - generic [ref=e744]: Pair on at least 4 client kickoffs
+                - generic [ref=e745]: 3 / 4
+                - generic [ref=e749]: 75%
+              - generic [ref=e750]:
+                - generic [ref=e751]: KR2
+                - generic [ref=e752]: Document one knowledge transfer per month
+                - generic [ref=e753]: 3 / 6
+                - generic [ref=e757]: 50%
+            - generic [ref=e758]:
+              - generic [ref=e759]: You drive this goal.
+              - generic [ref=e763]: 55%
+          - generic [ref=e764]:
+            - generic [ref=e765]:
+              - generic [ref=e766]:
+                - generic [ref=e767]:
+                  - generic [ref=e768]: Contributor
+                  - generic [ref=e769]: ·
+                  - generic [ref=e770]: TG-02
+                  - generic [ref=e771]: ·
+                  - generic [ref=e772]: Owned by Ops Team
+                - generic [ref=e773]: Improve overall payroll quality across EU runs
+                - generic [ref=e774]:
+                  - generic [ref=e775]:
+                    - generic [ref=e776]: event
+                    - text: Due
+                    - generic [ref=e777]: Sep 30, 2026
+                  - generic [ref=e778]:
+                    - generic [ref=e779]: flag
+                    - generic [ref=e780]: "2"
+                    - text: key results
+                  - generic [ref=e781]: On track
+              - button "visibility View" [ref=e784] [cursor=pointer]:
+                - generic [ref=e785]: visibility
+                - text: View
+            - generic [ref=e786]:
+              - generic [ref=e787]:
+                - generic [ref=e788]: KR1
+                - generic [ref=e789]: Payroll runs without P0 below 1%Payroll Migration EU
+                - generic [ref=e790]: 0.4% / 1%
+                - generic [ref=e794]: 100%
+              - generic [ref=e795]:
+                - generic [ref=e796]: KR2
+                - generic [ref=e797]: Run accuracy ≥ 99.5%
+                - generic [ref=e798]: 99.4% / 99.5%
+                - generic [ref=e802]: 92%
+            - generic [ref=e803]:
+              - generic [ref=e804]:
+                - text: Contributing toward this goal — owned by
+                - strong [ref=e805]: Ops Team
+                - text: .
+                - generic [ref=e806]:
+                  - generic [ref=e807]: link
+                  - generic [ref=e808]:
+                    - text: Linked to
+                    - strong [ref=e809]: Payroll Migration EU
+                - generic [ref=e810]:
+                  - generic [ref=e811]: check_circle
+                  - text: Auto-completed · Payroll Migration EU was marked complete
+              - generic [ref=e815]: 96%
+          - generic [ref=e816]:
+            - generic [ref=e817]:
+              - generic [ref=e818]:
+                - generic [ref=e819]:
+                  - generic [ref=e820]: Stakeholder
+                  - generic [ref=e821]: ·
+                  - generic [ref=e822]: CG-03
+                  - generic [ref=e823]: ·
+                  - generic [ref=e824]: Hannah Mueller
+                - generic [ref=e825]: Build a global, compliant contractor experience
+                - generic [ref=e826]:
+                  - generic [ref=e827]:
+                    - generic [ref=e828]: event
+                    - text: Due
+                    - generic [ref=e829]: Sep 30, 2026
+                  - generic [ref=e830]:
+                    - generic [ref=e831]: flag
+                    - generic [ref=e832]: "0"
+                    - text: key results
+                  - generic [ref=e833]: On track
+              - button "visibility View" [ref=e836] [cursor=pointer]:
+                - generic [ref=e837]: visibility
+                - text: View
+            - generic [ref=e838]:
+              - generic [ref=e839]: Stakeholder · you receive updates but don't own progress.
+              - generic [ref=e843]: 85%
+          - generic [ref=e844]:
+            - generic [ref=e845]:
+              - generic [ref=e846]:
+                - generic [ref=e847]:
+                  - generic [ref=e848]: Owner
+                  - generic [ref=e849]: ·
+                  - generic [ref=e850]: UG-H9XHI
+                - generic [ref=e851]: Improve CSAT score to 4.8
+                - generic [ref=e852]:
+                  - generic [ref=e853]:
+                    - generic [ref=e854]: event
+                    - text: Due
+                    - generic [ref=e855]: 9/30/2026
+                  - generic [ref=e856]:
+                    - generic [ref=e857]: flag
+                    - generic [ref=e858]: "2"
+                    - text: key results
+                  - generic [ref=e859]: On track
+              - generic [ref=e861]:
+                - button "visibility View" [ref=e862] [cursor=pointer]:
+                  - generic [ref=e863]: visibility
+                  - text: View
+                - button "trending_up Update progress" [ref=e864] [cursor=pointer]:
+                  - generic [ref=e865]: trending_up
+                  - text: Update progress
+            - generic [ref=e866]:
+              - generic [ref=e867]:
+                - generic [ref=e868]: KR1
+                - generic [ref=e869]: Average vendor setup time
+                - generic [ref=e870]: 8 / 6.4
+                - generic [ref=e873]: 0%
+              - generic [ref=e874]:
+                - generic [ref=e875]: KR2
+                - generic [ref=e876]: KYB automation coverage
+                - generic [ref=e877]: 0% / 80%
+                - generic [ref=e880]: 0%
+            - generic [ref=e881]:
+              - generic [ref=e882]: You drive this goal.
+              - generic [ref=e885]: 0%
+          - generic [ref=e886]:
+            - generic [ref=e887]:
+              - generic [ref=e888]:
+                - generic [ref=e889]:
+                  - generic [ref=e890]: Owner
+                  - generic [ref=e891]: ·
+                  - generic [ref=e892]: UG-HDAFO
+                - generic [ref=e893]: DEMO
+                - generic [ref=e894]:
+                  - generic [ref=e895]:
+                    - generic [ref=e896]: event
+                    - text: Due
+                    - generic [ref=e897]: 9/30/2026
+                  - generic [ref=e898]:
+                    - generic [ref=e899]: flag
+                    - generic [ref=e900]: "1"
+                    - text: key results
+                  - generic [ref=e901]: On track
+              - generic [ref=e903]:
+                - button "visibility View" [ref=e904] [cursor=pointer]:
+                  - generic [ref=e905]: visibility
+                  - text: View
+                - button "trending_up Update progress" [ref=e906] [cursor=pointer]:
+                  - generic [ref=e907]: trending_up
+                  - text: Update progress
+            - generic [ref=e909]:
+              - generic [ref=e910]: KR1
+              - generic [ref=e911]: DEMO
+              - generic [ref=e912]: 8 / 6.4
+              - generic [ref=e915]: 0%
+            - generic [ref=e916]:
+              - generic [ref=e917]: You drive this goal.
+              - generic [ref=e920]: 0%
+          - generic [ref=e921]:
+            - generic [ref=e922]:
+              - generic [ref=e923]:
+                - generic [ref=e924]:
+                  - generic [ref=e925]: Owner
+                  - generic [ref=e926]: ·
+                  - generic [ref=e927]: UG-HK4JH
+                - generic [ref=e928]: Hit Q3 NPS target
+                - generic [ref=e929]:
+                  - generic [ref=e930]:
+                    - generic [ref=e931]: event
+                    - text: Due
+                    - generic [ref=e932]: 9/30/2026
+                  - generic [ref=e933]:
+                    - generic [ref=e934]: flag
+                    - generic [ref=e935]: "2"
+                    - text: key results
+                  - generic [ref=e936]: On track
+              - generic [ref=e938]:
+                - button "visibility View" [ref=e939] [cursor=pointer]:
+                  - generic [ref=e940]: visibility
+                  - text: View
+                - button "trending_up Update progress" [ref=e941] [cursor=pointer]:
+                  - generic [ref=e942]: trending_up
+                  - text: Update progress
+            - generic [ref=e943]:
+              - generic [ref=e944]:
+                - generic [ref=e945]: KR1
+                - generic [ref=e946]: Average vendor setup timeClient Onboarding Q3
+                - generic [ref=e947]: 8 / 6.4
+                - generic [ref=e950]: 0%
+              - generic [ref=e951]:
+                - generic [ref=e952]: KR2
+                - generic [ref=e953]: KYB automation coverage
+                - generic [ref=e954]: 0% / 80%
+                - generic [ref=e957]: 0%
+            - generic [ref=e958]:
+              - generic [ref=e959]:
+                - text: You drive this goal.
+                - generic [ref=e960]:
+                  - generic [ref=e961]: link
+                  - generic [ref=e962]:
+                    - text: Linked to
+                    - strong [ref=e963]: Client Onboarding Q3
+              - generic [ref=e966]: 0%
+          - generic [ref=e967]:
+            - generic [ref=e968]:
+              - generic [ref=e969]:
+                - generic [ref=e970]:
+                  - generic [ref=e971]: Owner
+                  - generic [ref=e972]: ·
+                  - generic [ref=e973]: UG-HTNLT
+                - generic [ref=e974]: "2"
+                - generic [ref=e975]:
+                  - generic [ref=e976]:
+                    - generic [ref=e977]: event
+                    - text: Due
+                    - generic [ref=e978]: 9/30/2026
+                  - generic [ref=e979]:
+                    - generic [ref=e980]: flag
+                    - generic [ref=e981]: "1"
+                    - text: key results
+                  - generic [ref=e982]: Completed
+              - generic [ref=e984]:
+                - button "visibility View" [ref=e985] [cursor=pointer]:
+                  - generic [ref=e986]: visibility
+                  - text: View
+                - button "trending_up Update progress" [ref=e987] [cursor=pointer]:
+                  - generic [ref=e988]: trending_up
+                  - text: Update progress
+            - generic [ref=e990]:
+              - generic [ref=e991]: KR1
+              - generic [ref=e992]: Average vendor setup timeVendor Setup Automation
+              - generic [ref=e993]: 8 / 6.4
+              - generic [ref=e997]: 100%
+            - generic [ref=e998]:
+              - generic [ref=e999]:
+                - text: You drive this goal.
+                - generic [ref=e1000]:
+                  - generic [ref=e1001]: link
+                  - generic [ref=e1002]:
+                    - text: Linked to
+                    - strong [ref=e1003]: Vendor Setup Automation
+                - generic [ref=e1004]:
+                  - generic [ref=e1005]: check_circle
+                  - text: Auto-completed · Vendor Setup Automation was marked complete
+              - generic [ref=e1009]: 100%

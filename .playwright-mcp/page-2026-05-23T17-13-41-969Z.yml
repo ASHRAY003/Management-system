@@ -1,0 +1,133 @@
+- generic [ref=e2]:
+  - generic [ref=e79]:
+    - link "← All views" [ref=e80] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e81]: /
+    - generic [ref=e82]: 02 · Goals & OKRs
+    - generic [ref=e83]:
+      - text: Signed in as
+      - strong [ref=e84]: Priya Mehta
+      - generic [ref=e85]: · manager
+    - button "Log out" [ref=e86] [cursor=pointer]
+  - generic [ref=e256]:
+    - complementary [ref=e257]:
+      - generic [ref=e258]:
+        - generic [ref=e259]: P
+        - generic [ref=e260]:
+          - generic [ref=e261]: Payo WFM
+          - generic [ref=e262]: Acme Holdings · HR
+      - generic [ref=e263]:
+        - generic [ref=e264]: badge
+        - generic [ref=e265]: HR Admin · Client manager
+      - generic [ref=e266]:
+        - generic [ref=e267]: Workforce
+        - generic [ref=e268]:
+          - generic [ref=e269] [cursor=pointer]:
+            - generic [ref=e270]: dashboard
+            - generic [ref=e271]: Dashboard
+          - generic [ref=e272] [cursor=pointer]:
+            - generic [ref=e273]: groups
+            - generic [ref=e274]: People
+          - generic [ref=e275] [cursor=pointer]:
+            - generic [ref=e276]: description
+            - generic [ref=e277]: Contracts
+          - generic [ref=e278] [cursor=pointer]:
+            - generic [ref=e279]: work
+            - generic [ref=e280]: Projects
+          - generic [ref=e281] [cursor=pointer]:
+            - generic [ref=e282]: sync
+            - generic [ref=e283]: Payroll
+          - generic [ref=e284] [cursor=pointer]:
+            - generic [ref=e285]: insights
+            - generic [ref=e286]: Performance
+      - generic [ref=e287]:
+        - generic [ref=e288]: Workspace
+        - generic [ref=e289]:
+          - generic [ref=e290] [cursor=pointer]:
+            - generic [ref=e291]: schedule
+            - generic [ref=e292]: Time & leave
+          - generic [ref=e293] [cursor=pointer]:
+            - generic [ref=e294]: receipt_long
+            - generic [ref=e295]: Expenses
+          - generic [ref=e296] [cursor=pointer]:
+            - generic [ref=e297]: folder
+            - generic [ref=e298]: Documents
+          - generic [ref=e299] [cursor=pointer]:
+            - generic [ref=e300]: bar_chart
+            - generic [ref=e301]: Reports
+          - generic [ref=e302] [cursor=pointer]:
+            - generic [ref=e303]: settings
+            - generic [ref=e304]: Settings
+      - generic [ref=e306]:
+        - generic [ref=e307]: PM
+        - generic [ref=e308]:
+          - generic [ref=e309]: Priya Mehta
+          - generic [ref=e310]: priya@demo.com
+    - generic [ref=e311]:
+      - generic [ref=e312]:
+        - generic [ref=e313]:
+          - generic [ref=e314]: Acme Holdings
+          - generic [ref=e315]: chevron_right
+          - generic [ref=e316]: Performance
+          - generic [ref=e317]: chevron_right
+          - generic [ref=e318]: Goals & OKRs
+        - generic [ref=e319]:
+          - generic [ref=e320]: badge
+          - text: Client / Manager view
+        - generic [ref=e321]:
+          - generic [ref=e322]: search
+          - textbox "Search people, goals, reviews…" [ref=e323]
+          - generic [ref=e324]: ⌘K
+        - generic [ref=e326] [cursor=pointer]: help
+        - generic [ref=e328] [cursor=pointer]:
+          - generic [ref=e329]: notifications
+          - generic [ref=e330]: "2"
+      - generic [ref=e331]:
+        - generic [ref=e332]:
+          - generic [ref=e333] [cursor=pointer]: Dashboard
+          - generic [ref=e334] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e335] [cursor=pointer]: Reviews
+          - generic [ref=e336] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e338] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e339]: expand_more
+        - generic [ref=e340]:
+          - generic [ref=e341]:
+            - generic [ref=e342]: Performance Management
+            - heading "Goals & OKRs" [level=1] [ref=e343]
+            - generic [ref=e344]: Create and track company, team, individual and project-linked OKRs.
+          - generic [ref=e345]:
+            - button "filter_list Filters" [ref=e346] [cursor=pointer]:
+              - generic [ref=e347]: filter_list
+              - text: Filters
+            - button "link Link project" [ref=e348] [cursor=pointer]:
+              - generic [ref=e349]: link
+              - text: Link project
+            - button "add Create Goal" [ref=e351] [cursor=pointer]:
+              - generic [ref=e352]: add
+              - text: Create Goal
+        - generic [ref=e353]:
+          - generic [ref=e354] [cursor=pointer]:
+            - generic [ref=e355]: lock
+            - text: Company Goals
+            - generic [ref=e356]: "0"
+          - generic [ref=e357] [cursor=pointer]:
+            - generic [ref=e358]: person
+            - text: My Goals
+            - generic [ref=e359]: "0"
+          - generic [ref=e360] [cursor=pointer]:
+            - generic [ref=e361]: groups
+            - text: People Goals
+            - generic [ref=e362]: "0"
+          - generic [ref=e363] [cursor=pointer]:
+            - generic [ref=e364]: view_module
+            - generic [ref=e365]: "View:"
+            - generic [ref=e366]: Cards
+        - generic [ref=e367]:
+          - generic [ref=e368]: lock
+          - generic [ref=e369]:
+            - generic [ref=e370]: Read-only — set by company leadership
+            - generic [ref=e371]: Company OKRs are managed by Acme's leadership team. You can align your goals to these but cannot edit them directly.
+          - button "Suggest a goal arrow_forward" [ref=e372] [cursor=pointer]:
+            - text: Suggest a goal
+            - generic [ref=e373]: arrow_forward

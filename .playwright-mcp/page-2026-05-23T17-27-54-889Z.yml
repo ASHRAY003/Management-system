@@ -1,0 +1,160 @@
+- generic [ref=e2]:
+  - generic [ref=e1425]:
+    - link "← All views" [ref=e1426] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e1427]: /
+    - generic [ref=e1428]: 06 · My Dashboard
+    - generic [ref=e1429]:
+      - text: Signed in as
+      - strong [ref=e1430]: Aditi Sharma
+      - generic [ref=e1431]: · worker
+    - button "Log out" [ref=e1432] [cursor=pointer]
+  - generic [ref=e1623]:
+    - complementary [ref=e1624]:
+      - generic [ref=e1625]:
+        - generic [ref=e1626]: P
+        - generic [ref=e1627]:
+          - generic [ref=e1628]: Payo WFM
+          - generic [ref=e1629]: My workspace
+      - generic [ref=e1630]:
+        - generic [ref=e1631]: verified_user
+        - generic [ref=e1632]: Worker · Self-service
+      - generic [ref=e1633]:
+        - generic [ref=e1634]: My workspace
+        - generic [ref=e1635]:
+          - generic [ref=e1636] [cursor=pointer]:
+            - generic [ref=e1637]: home
+            - generic [ref=e1638]: Home
+          - generic [ref=e1639] [cursor=pointer]:
+            - generic [ref=e1640]: person
+            - generic [ref=e1641]: My profile
+          - generic [ref=e1642] [cursor=pointer]:
+            - generic [ref=e1643]: payments
+            - generic [ref=e1644]: Pay
+          - generic [ref=e1645] [cursor=pointer]:
+            - generic [ref=e1646]: schedule
+            - generic [ref=e1647]: Time off
+          - generic [ref=e1648] [cursor=pointer]:
+            - generic [ref=e1649]: insights
+            - generic [ref=e1650]: Performance
+      - generic [ref=e1651]:
+        - generic [ref=e1652]: Restricted
+        - generic [ref=e1653]:
+          - generic [ref=e1654]:
+            - generic [ref=e1655]: paid
+            - generic [ref=e1656]: Compensation insights
+            - generic [ref=e1657]: lock
+          - generic [ref=e1658]:
+            - generic [ref=e1659]: flag
+            - generic [ref=e1660]: Other workers’ OKRs
+            - generic [ref=e1661]: lock
+          - generic [ref=e1662]:
+            - generic [ref=e1663]: lock
+            - generic [ref=e1664]: Manager private notes
+            - generic [ref=e1665]: lock
+      - generic [ref=e1667]:
+        - generic [ref=e1668]: AS
+        - generic [ref=e1669]:
+          - generic [ref=e1670]: Aditi Sharma
+          - generic [ref=e1671]: aditi@demo.com
+    - generic [ref=e1672]:
+      - generic [ref=e1673]:
+        - generic [ref=e1674]:
+          - generic [ref=e1675]: Payo WFM
+          - generic [ref=e1676]: chevron_right
+          - generic [ref=e1677]: Performance
+          - generic [ref=e1678]: chevron_right
+          - generic [ref=e1679]: My dashboard
+        - generic [ref=e1680]:
+          - generic [ref=e1681]: verified_user
+          - text: Worker self-service
+        - generic [ref=e1682]:
+          - generic [ref=e1683]: search
+          - textbox "Search my goals, reviews…" [ref=e1684]
+          - generic [ref=e1685]: ⌘K
+        - generic [ref=e1687] [cursor=pointer]: help
+        - generic [ref=e1689] [cursor=pointer]:
+          - generic [ref=e1690]: notifications
+          - generic [ref=e1691]: "1"
+      - generic [ref=e1692]:
+        - generic [ref=e1693]:
+          - generic [ref=e1694] [cursor=pointer]: Dashboard
+          - generic [ref=e1695] [cursor=pointer]: My Goals
+          - generic [ref=e1696] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e1697] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e1699] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e1700]: expand_more
+        - generic [ref=e1702]:
+          - generic [ref=e1703]: My performance
+          - heading "Hi Aditi 👋" [level=1] [ref=e1704]
+          - generic [ref=e1705]: Your goals, feedback, 1:1s and reviews at a glance.
+        - generic [ref=e1707]:
+          - generic [ref=e1708]: verified_user
+          - generic [ref=e1709]:
+            - generic [ref=e1710]: This is your private workspace
+            - generic [ref=e1711]: You only see your own goals, feedback, reviews and 1:1s. Compensation insights for other workers and manager private notes are not visible to you.
+          - button "What I can see open_in_new" [ref=e1712] [cursor=pointer]:
+            - text: What I can see
+            - generic [ref=e1713]: open_in_new
+        - generic [ref=e1714]:
+          - generic [ref=e1715]:
+            - generic [ref=e1716]: My active goals
+            - generic [ref=e1718]: "0"
+            - generic [ref=e1719]: No goals assigned yet
+            - generic [ref=e1721]: flag
+          - generic [ref=e1722]:
+            - generic [ref=e1723]: Upcoming 1:1s
+            - generic [ref=e1725]: "2"
+            - generic [ref=e1726]: 2 scheduled
+            - generic [ref=e1728]: event_available
+          - generic [ref=e1729]:
+            - generic [ref=e1730]: Feedback received
+            - generic [ref=e1732]: "0"
+            - generic [ref=e1733]: No feedback yet
+            - generic [ref=e1735]: inbox
+          - generic [ref=e1736]:
+            - generic [ref=e1737]: Pending self-review
+            - generic [ref=e1739]: "0"
+            - generic [ref=e1740]: Nothing due
+            - generic [ref=e1742]: rate_review
+        - generic [ref=e1743]:
+          - generic [ref=e1745]:
+            - generic [ref=e1746]:
+              - generic [ref=e1748]: rate_review
+              - generic [ref=e1749]:
+                - generic [ref=e1750]: Action needed
+                - generic [ref=e1751]: Your Q3 self-review is due in 4 days
+              - generic [ref=e1752]: Due Sep 30
+            - generic [ref=e1754]: Reflect on your goals, projects shipped, and growth areas. Your draft auto-saves and you can attach feedback from peers and managers.
+            - generic [ref=e1755]:
+              - button "play_arrow Continue self-review" [ref=e1756] [cursor=pointer]:
+                - generic [ref=e1757]: play_arrow
+                - text: Continue self-review
+              - button "schedule Remind me tomorrow" [ref=e1758] [cursor=pointer]:
+                - generic [ref=e1759]: schedule
+                - text: Remind me tomorrow
+          - generic [ref=e1760]:
+            - generic [ref=e1761]:
+              - generic [ref=e1762]:
+                - generic [ref=e1763]:
+                  - generic [ref=e1764]: event
+                  - text: My next 1:1
+                - generic [ref=e1765]: Today · 10:00 AM
+              - button "edit_note Take notes" [ref=e1766] [cursor=pointer]:
+                - generic [ref=e1767]: edit_note
+                - text: Take notes
+            - generic [ref=e1768]:
+              - generic [ref=e1769]:
+                - generic [ref=e1770]: PN
+                - generic [ref=e1771]:
+                  - generic [ref=e1772]: Priya Nair
+                  - generic [ref=e1773]: Manager · weekly 1:1
+              - generic [ref=e1774]: Shared agenda
+              - list [ref=e1775]:
+                - listitem [ref=e1776]: Wrap-up of Payroll Migration EU and what went well
+                - listitem [ref=e1777]: Q4 priorities — which migrations to take on next
+                - listitem [ref=e1778]: Career growth — Lead Ops path
+              - button "add Add an agenda item" [ref=e1779] [cursor=pointer]:
+                - generic [ref=e1780]: add
+                - text: Add an agenda item

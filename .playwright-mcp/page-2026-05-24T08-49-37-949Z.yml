@@ -1,0 +1,156 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 07 · My Goals
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: My workspace
+      - generic [ref=e19]:
+        - generic [ref=e20]: verified_user
+        - generic [ref=e21]: Worker · Self-service
+      - generic [ref=e22]:
+        - generic [ref=e23]: My workspace
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: home
+            - generic [ref=e27]: Home
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: person
+            - generic [ref=e30]: My profile
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: payments
+            - generic [ref=e33]: Pay
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: schedule
+            - generic [ref=e36]: Time off
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: insights
+            - generic [ref=e39]: Performance
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: work
+            - generic [ref=e42]: Projects
+      - generic [ref=e43]:
+        - generic [ref=e44]: Restricted
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: paid
+            - generic [ref=e48]: Compensation insights
+            - generic [ref=e49]: lock
+          - generic [ref=e50]:
+            - generic [ref=e51]: flag
+            - generic [ref=e52]: Other workers’ OKRs
+            - generic [ref=e53]: lock
+          - generic [ref=e54]:
+            - generic [ref=e55]: lock
+            - generic [ref=e56]: Manager private notes
+            - generic [ref=e57]: lock
+      - generic [ref=e59]:
+        - generic [ref=e60]: AS
+        - generic [ref=e61]:
+          - generic [ref=e62]: Aditi Sharma
+          - generic [ref=e63]: aditi@demo.com
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]: Payo WFM
+          - generic [ref=e68]: chevron_right
+          - generic [ref=e69]: Performance
+          - generic [ref=e70]: chevron_right
+          - generic [ref=e71]: My Goals
+        - generic [ref=e72]:
+          - generic [ref=e73]: verified_user
+          - text: Worker self-service
+        - generic [ref=e74]:
+          - generic [ref=e75]: search
+          - textbox "Search my goals, reviews…" [ref=e76]
+          - generic [ref=e77]: ⌘K
+        - generic [ref=e79] [cursor=pointer]: help
+        - generic [ref=e81] [cursor=pointer]:
+          - generic [ref=e82]: notifications
+          - generic [ref=e83]: "3"
+      - generic [ref=e491]:
+        - generic [ref=e493]:
+          - generic [ref=e494]:
+            - generic [ref=e496]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e497]
+          - button "close" [ref=e498] [cursor=pointer]:
+            - generic [ref=e499]: close
+        - generic [ref=e500]:
+          - generic [ref=e501]:
+            - generic [ref=e504] [cursor=pointer]: Name & Type
+            - generic [ref=e508] [cursor=pointer]: Key Results
+            - generic [ref=e512] [cursor=pointer]: Goal Dates
+            - generic [ref=e516] [cursor=pointer]: Users
+            - generic [ref=e520]: Review
+          - generic [ref=e521]:
+            - generic [ref=e523]: gps_fixed
+            - button "delete_outline" [ref=e573] [cursor=pointer]:
+              - generic [ref=e574]: delete_outline
+            - generic [ref=e575]: Sync Test Goal from Worker
+            - generic [ref=e691]:
+              - generic [ref=e692]: Individual Goal · Aligned to CG-01
+              - generic [ref=e693]:
+                - generic [ref=e694]:
+                  - generic [ref=e695]: lock
+                  - text: Restricted
+                - generic [ref=e696]:
+                  - generic [ref=e697]: event_available
+                  - text: 7/1/2026 — 9/30/2026
+                - generic [ref=e698]:
+                  - generic [ref=e699]: workspace_premium
+                  - text: Performance Goal
+              - generic [ref=e700]:
+                - heading "Key Results" [level=4] [ref=e701]
+                - generic [ref=e702]:
+                  - generic [ref=e703]: Average vendor setup time
+                  - generic [ref=e705]: ↑ to 6.4 days
+                - generic [ref=e706]:
+                  - generic [ref=e707]: KYB automation coverage
+                  - generic [ref=e709]: ↑ to 80%
+              - generic [ref=e710]:
+                - heading "Users" [level=4] [ref=e711]
+                - generic [ref=e712]:
+                  - generic [ref=e713]: Owner
+                  - generic [ref=e715]:
+                    - generic [ref=e716]: OK
+                    - text: Omar Khan
+                - generic [ref=e717]:
+                  - generic [ref=e718]: Contributors
+                  - generic [ref=e720]:
+                    - generic [ref=e721]:
+                      - generic [ref=e722]: AS
+                      - generic [ref=e723]: PN
+                    - text: 2 contributors
+              - generic [ref=e724]:
+                - heading "Alignment" [level=4] [ref=e725]
+                - generic [ref=e726]:
+                  - generic [ref=e727]: Aligned to
+                  - generic [ref=e729]:
+                    - generic [ref=e730]: account_tree
+                    - text: "CG-01 · Acme #1 payroll platform"
+              - generic [ref=e731]:
+                - heading "Tags" [level=4] [ref=e732]
+                - generic [ref=e733]:
+                  - generic [ref=e734]: vendor-ops
+                  - generic [ref=e735]: q3-2026
+                  - generic [ref=e736]: automation
+          - generic [ref=e567]:
+            - button "Back" [ref=e649] [cursor=pointer]:
+              - generic [ref=e650]: Back
+            - generic [ref=e569]:
+              - generic [ref=e570]: check_circle
+              - text: Saved Just Now
+            - generic [ref=e571]:
+              - button "Create in Draft Mode" [ref=e737] [cursor=pointer]
+              - button "Create Goal" [ref=e738] [cursor=pointer]

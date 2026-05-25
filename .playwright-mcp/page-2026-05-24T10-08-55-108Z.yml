@@ -1,0 +1,131 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 02b · Create Goal (Stepper)
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: Acme Holdings · HR
+      - generic [ref=e19]:
+        - generic [ref=e20]: badge
+        - generic [ref=e21]: HR Admin · Client manager
+      - generic [ref=e22]:
+        - generic [ref=e23]: Workforce
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: dashboard
+            - generic [ref=e27]: Dashboard
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: groups
+            - generic [ref=e30]: People
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: description
+            - generic [ref=e33]: Contracts
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: work
+            - generic [ref=e36]: Projects
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: sync
+            - generic [ref=e39]: Payroll
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: insights
+            - generic [ref=e42]: Performance
+      - generic [ref=e43]:
+        - generic [ref=e44]: Workspace
+        - generic [ref=e45]:
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: schedule
+            - generic [ref=e48]: Time & leave
+          - generic [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: receipt_long
+            - generic [ref=e51]: Expenses
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: folder
+            - generic [ref=e54]: Documents
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: bar_chart
+            - generic [ref=e57]: Reports
+          - generic [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: settings
+            - generic [ref=e60]: Settings
+      - generic [ref=e62]:
+        - generic [ref=e63]: AS
+        - generic [ref=e64]:
+          - generic [ref=e65]: Aditi Sharma
+          - generic [ref=e66]: aditi@demo.com
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: Acme Holdings
+          - generic [ref=e71]: chevron_right
+          - generic [ref=e72]: Performance
+          - generic [ref=e73]: chevron_right
+          - generic [ref=e74]: Goals & OKRs
+          - generic [ref=e75]: chevron_right
+          - generic [ref=e76]: New Goal
+        - generic [ref=e77]:
+          - generic [ref=e78]: badge
+          - text: Client / Manager view
+        - generic [ref=e79]:
+          - generic [ref=e80]: search
+          - textbox "Search people, goals, reviews…" [ref=e81]
+          - generic [ref=e82]: ⌘K
+        - generic [ref=e84] [cursor=pointer]: help
+        - generic [ref=e86] [cursor=pointer]:
+          - generic [ref=e87]: notifications
+          - generic [ref=e88]: "3"
+      - generic [ref=e90]:
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e95]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e96]
+          - button "close" [ref=e97] [cursor=pointer]:
+            - generic [ref=e98]: close
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - generic [ref=e103] [cursor=pointer]: Name & Type
+            - generic [ref=e107] [cursor=pointer]: Key Results
+            - generic [ref=e111] [cursor=pointer]: Goal Dates
+            - generic [ref=e115]: Users
+            - generic [ref=e119]: Review
+          - generic [ref=e120]:
+            - generic [ref=e122]: gps_fixed
+            - button "delete_outline" [ref=e123] [cursor=pointer]:
+              - generic [ref=e124]: delete_outline
+            - generic [ref=e125]: Reduce vendor setup time by 20%
+            - generic [ref=e221]:
+              - generic [ref=e223]: Owner
+              - generic [ref=e224]:
+                - generic [ref=e225]: Only one owner per goal
+                - generic [ref=e227]:
+                  - text: Aditi Sharma
+                  - generic [ref=e228] [cursor=pointer]: ×
+              - generic [ref=e229]: Owners are responsible for keeping goals up-to-date and keeping contributors accountable.
+            - generic [ref=e230]:
+              - generic [ref=e232]: Contributors
+              - generic [ref=e234]:
+                - generic [ref=e235]:
+                  - text: Aditi Sharma
+                  - generic [ref=e236] [cursor=pointer]: ×
+                - generic [ref=e237]:
+                  - text: Priya Nair
+                  - generic [ref=e238] [cursor=pointer]: ×
+                - textbox [ref=e239]
+              - generic [ref=e240]: Contributors are users that are actively pursuing and updating the progress of this goal.
+          - generic [ref=e199]:
+            - button "Back" [ref=e200] [cursor=pointer]:
+              - generic [ref=e201]: Back
+            - generic [ref=e202]:
+              - generic [ref=e203]: check_circle
+              - text: Saved Just Now
+            - button "Next" [active] [ref=e205] [cursor=pointer]

@@ -1,0 +1,127 @@
+- generic [ref=e2]:
+  - generic [ref=e1425]:
+    - link "← All views" [ref=e1426] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e1427]: /
+    - generic [ref=e1428]: 07 · My Goals
+    - generic [ref=e1429]:
+      - text: Signed in as
+      - strong [ref=e1430]: Aditi Sharma
+      - generic [ref=e1431]: · worker
+    - button "Log out" [ref=e1432] [cursor=pointer]
+  - generic [ref=e1781]:
+    - complementary [ref=e1782]:
+      - generic [ref=e1783]:
+        - generic [ref=e1784]: P
+        - generic [ref=e1785]:
+          - generic [ref=e1786]: Payo WFM
+          - generic [ref=e1787]: My workspace
+      - generic [ref=e1788]:
+        - generic [ref=e1789]: verified_user
+        - generic [ref=e1790]: Worker · Self-service
+      - generic [ref=e1791]:
+        - generic [ref=e1792]: My workspace
+        - generic [ref=e1793]:
+          - generic [ref=e1794] [cursor=pointer]:
+            - generic [ref=e1795]: home
+            - generic [ref=e1796]: Home
+          - generic [ref=e1797] [cursor=pointer]:
+            - generic [ref=e1798]: person
+            - generic [ref=e1799]: My profile
+          - generic [ref=e1800] [cursor=pointer]:
+            - generic [ref=e1801]: payments
+            - generic [ref=e1802]: Pay
+          - generic [ref=e1803] [cursor=pointer]:
+            - generic [ref=e1804]: schedule
+            - generic [ref=e1805]: Time off
+          - generic [ref=e1806] [cursor=pointer]:
+            - generic [ref=e1807]: insights
+            - generic [ref=e1808]: Performance
+      - generic [ref=e1809]:
+        - generic [ref=e1810]: Restricted
+        - generic [ref=e1811]:
+          - generic [ref=e1812]:
+            - generic [ref=e1813]: paid
+            - generic [ref=e1814]: Compensation insights
+            - generic [ref=e1815]: lock
+          - generic [ref=e1816]:
+            - generic [ref=e1817]: flag
+            - generic [ref=e1818]: Other workers’ OKRs
+            - generic [ref=e1819]: lock
+          - generic [ref=e1820]:
+            - generic [ref=e1821]: lock
+            - generic [ref=e1822]: Manager private notes
+            - generic [ref=e1823]: lock
+      - generic [ref=e1825]:
+        - generic [ref=e1826]: AS
+        - generic [ref=e1827]:
+          - generic [ref=e1828]: Aditi Sharma
+          - generic [ref=e1829]: aditi@demo.com
+    - generic [ref=e1830]:
+      - generic [ref=e1831]:
+        - generic [ref=e1832]:
+          - generic [ref=e1833]: Payo WFM
+          - generic [ref=e1834]: chevron_right
+          - generic [ref=e1835]: Performance
+          - generic [ref=e1836]: chevron_right
+          - generic [ref=e1837]: My Goals
+        - generic [ref=e1838]:
+          - generic [ref=e1839]: verified_user
+          - text: Worker self-service
+        - generic [ref=e1840]:
+          - generic [ref=e1841]: search
+          - textbox "Search my goals, reviews…" [ref=e1842]
+          - generic [ref=e1843]: ⌘K
+        - generic [ref=e1845] [cursor=pointer]: help
+        - generic [ref=e1847] [cursor=pointer]:
+          - generic [ref=e1848]: notifications
+          - generic [ref=e1849]: "1"
+      - generic [ref=e1850]:
+        - generic [ref=e1851]:
+          - generic [ref=e1852] [cursor=pointer]: Dashboard
+          - generic [ref=e1853] [cursor=pointer]: My Goals
+          - generic [ref=e1854] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e1855] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e1857] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e1858]: expand_more
+        - generic [ref=e1859]:
+          - generic [ref=e1860]:
+            - generic [ref=e1861]: My performance
+            - heading "My Goals" [level=1] [ref=e1862]
+            - generic [ref=e1863]: Goals you own, contribute to, or are a stakeholder on. Update progress, add key results, and request feedback any time.
+          - generic [ref=e1864]:
+            - button "filter_list Filters" [ref=e1865] [cursor=pointer]:
+              - generic [ref=e1866]: filter_list
+              - text: Filters
+            - button "add Create Goal" [ref=e1867] [cursor=pointer]:
+              - generic [ref=e1868]: add
+              - text: Create Goal
+        - generic [ref=e1869]:
+          - generic [ref=e1870]:
+            - generic [ref=e1871]: Active goals
+            - generic [ref=e1873]: "0"
+            - generic [ref=e1874]: No goals assigned
+            - generic [ref=e1876]: flag
+          - generic [ref=e1877]:
+            - generic [ref=e1878]: Average progress
+            - generic [ref=e1880]: —
+            - generic [ref=e1881]: No KRs yet
+            - generic [ref=e1883]: trending_up
+          - generic [ref=e1884]:
+            - generic [ref=e1885]: Key results done
+            - generic [ref=e1887]: "0"
+            - generic [ref=e1888]: Nothing to track yet
+            - generic [ref=e1890]: check_circle
+          - generic [ref=e1891]:
+            - generic [ref=e1892]: Need attention
+            - generic [ref=e1894]: "0"
+            - generic [ref=e1895]: Everything on track
+            - generic [ref=e1897]: schedule
+        - generic [ref=e1898]:
+          - generic [ref=e1899]: "View:"
+          - button "All my goals" [ref=e1900] [cursor=pointer]
+          - button "Owned by me" [ref=e1901] [cursor=pointer]
+          - button "Contributing" [ref=e1902] [cursor=pointer]
+          - button "Stakeholder" [ref=e1903] [cursor=pointer]
+          - button "Q3 2026" [ref=e1905] [cursor=pointer]

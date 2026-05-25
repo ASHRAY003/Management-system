@@ -1,0 +1,377 @@
+- generic [ref=e2]:
+  - generic [ref=e367]:
+    - link "← All views" [ref=e368] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e369]: /
+    - generic [ref=e370]: 09 · Feedback & Reviews
+    - generic [ref=e371]:
+      - text: Signed in as
+      - strong [ref=e372]: Aditi Sharma
+      - generic [ref=e373]: · worker
+    - button "Log out" [ref=e374] [cursor=pointer]
+  - generic [ref=e543]:
+    - complementary [ref=e544]:
+      - generic [ref=e545]:
+        - generic [ref=e546]: P
+        - generic [ref=e547]:
+          - generic [ref=e548]: Payo WFM
+          - generic [ref=e549]: My workspace
+      - generic [ref=e550]:
+        - generic [ref=e551]: verified_user
+        - generic [ref=e552]: Worker · Self-service
+      - generic [ref=e553]:
+        - generic [ref=e554]: My workspace
+        - generic [ref=e555]:
+          - generic [ref=e556] [cursor=pointer]:
+            - generic [ref=e557]: home
+            - generic [ref=e558]: Home
+          - generic [ref=e559] [cursor=pointer]:
+            - generic [ref=e560]: person
+            - generic [ref=e561]: My profile
+          - generic [ref=e562] [cursor=pointer]:
+            - generic [ref=e563]: payments
+            - generic [ref=e564]: Pay
+          - generic [ref=e565] [cursor=pointer]:
+            - generic [ref=e566]: schedule
+            - generic [ref=e567]: Time off
+          - generic [ref=e568] [cursor=pointer]:
+            - generic [ref=e569]: insights
+            - generic [ref=e570]: Performance
+      - generic [ref=e571]:
+        - generic [ref=e572]: Restricted
+        - generic [ref=e573]:
+          - generic [ref=e574]:
+            - generic [ref=e575]: paid
+            - generic [ref=e576]: Compensation insights
+            - generic [ref=e577]: lock
+          - generic [ref=e578]:
+            - generic [ref=e579]: flag
+            - generic [ref=e580]: Other workers’ OKRs
+            - generic [ref=e581]: lock
+          - generic [ref=e582]:
+            - generic [ref=e583]: lock
+            - generic [ref=e584]: Manager private notes
+            - generic [ref=e585]: lock
+      - generic [ref=e587]:
+        - generic [ref=e588]: AS
+        - generic [ref=e589]:
+          - generic [ref=e590]: Aditi Sharma
+          - generic [ref=e591]: aditi@demo.com
+    - generic [ref=e592]:
+      - generic [ref=e593]:
+        - generic [ref=e594]:
+          - generic [ref=e595]: Payo WFM
+          - generic [ref=e596]: chevron_right
+          - generic [ref=e597]: Performance
+          - generic [ref=e598]: chevron_right
+          - generic [ref=e599]: Reviews
+        - generic [ref=e600]:
+          - generic [ref=e601]: verified_user
+          - text: Worker self-service
+        - generic [ref=e602]:
+          - generic [ref=e603]: search
+          - textbox "Search my goals, reviews…" [ref=e604]
+          - generic [ref=e605]: ⌘K
+        - generic [ref=e607] [cursor=pointer]: help
+        - generic [ref=e609] [cursor=pointer]:
+          - generic [ref=e610]: notifications
+          - generic [ref=e611]: "3"
+      - generic [ref=e612]:
+        - generic [ref=e613]:
+          - generic [ref=e614] [cursor=pointer]: Dashboard
+          - generic [ref=e615] [cursor=pointer]: My Goals
+          - generic [ref=e616] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e617] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e619] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e620]: expand_more
+        - generic [ref=e621]:
+          - generic [ref=e622]:
+            - generic [ref=e623]: My performance
+            - heading "Feedback & Reviews" [level=1] [ref=e624]
+            - generic [ref=e625]: Active review cycles and all reviews you've received, organized by month.
+          - generic [ref=e626]:
+            - button "filter_list Filters" [ref=e627] [cursor=pointer]:
+              - generic [ref=e628]: filter_list
+              - text: Filters
+            - button "download Export" [ref=e629] [cursor=pointer]:
+              - generic [ref=e630]: download
+              - text: Export
+        - generic [ref=e632]:
+          - generic [ref=e634]:
+            - generic [ref=e635]:
+              - generic [ref=e636]: rate_review
+              - text: Active review cycles
+            - generic [ref=e637]: Cycles you're participating in
+          - generic [ref=e638]:
+            - generic [ref=e639]:
+              - generic [ref=e640]:
+                - generic [ref=e641]: Q3 2026 Performance Review
+                - generic [ref=e642]:
+                  - text: 2026-07-01 → 2026-09-30
+                  - generic [ref=e643]:
+                    - text: · Self-review due
+                    - strong [ref=e644]: 2026-06-23
+              - generic [ref=e645]:
+                - generic [ref=e646]:
+                  - generic [ref=e647]: Self-review
+                  - generic [ref=e648]: Pending
+                - generic [ref=e650]:
+                  - generic [ref=e651]: Manager review
+                  - generic [ref=e652]: Pending
+              - button "edit_note Fill in self-review" [ref=e653] [cursor=pointer]:
+                - generic [ref=e654]: edit_note
+                - text: Fill in self-review
+            - generic [ref=e655]:
+              - generic [ref=e656]:
+                - generic [ref=e657]: Q3 2026 Performance Review
+                - generic [ref=e658]:
+                  - text: 2026-07-01 → 2026-09-30
+                  - generic [ref=e659]:
+                    - text: · Self-review due
+                    - strong [ref=e660]: 2026-06-22
+              - generic [ref=e661]:
+                - generic [ref=e662]:
+                  - generic [ref=e663]: Self-review
+                  - generic [ref=e664]: Submitted
+                - generic [ref=e666]:
+                  - generic [ref=e667]: Manager review
+                  - generic [ref=e668]: Complete
+              - button "visibility View self-review" [ref=e670] [cursor=pointer]:
+                - generic [ref=e671]: visibility
+                - text: View self-review
+        - generic [ref=e672]:
+          - generic [ref=e673]:
+            - generic [ref=e674]: Total reviews
+            - generic [ref=e676]: "12"
+            - generic [ref=e677]: Across all cycles
+            - generic [ref=e679]: task_alt
+          - generic [ref=e680]:
+            - generic [ref=e681]: Average rating
+            - generic [ref=e683]: "4.3"
+            - generic [ref=e684]: Last 4 cycles · trending up
+            - generic [ref=e686]: star
+          - generic [ref=e687]:
+            - generic [ref=e688]: Outstanding
+            - generic [ref=e690]: "3"
+            - generic [ref=e691]: reviews this year
+            - generic [ref=e693]: celebration
+          - generic [ref=e694]:
+            - generic [ref=e695]: Next review
+            - generic [ref=e697]: Q4
+            - generic [ref=e698]: Cycle opens Dec 1, 2026
+            - generic [ref=e700]: event
+        - generic [ref=e701]:
+          - generic [ref=e702]: "Type:"
+          - button "All" [ref=e703] [cursor=pointer]
+          - button "Manager" [ref=e704] [cursor=pointer]
+          - button "Peer" [ref=e705] [cursor=pointer]
+          - button "Client" [ref=e706] [cursor=pointer]
+          - button "Project" [ref=e707] [cursor=pointer]
+          - button "Self" [ref=e708] [cursor=pointer]
+        - generic [ref=e709]:
+          - generic [ref=e710]:
+            - generic [ref=e711]: September 2026
+            - generic [ref=e712]: Q3 cycle
+            - generic [ref=e713]: 4 reviews
+          - generic [ref=e715]:
+            - button "PN Priya Nair Manager badge Manager review Q3 Performance Review · Sep 28, 2026 star star star star star Strong Q3. Led the Spain cutover with zero P0s, mentored Lina through her first migration, and built the runbook the rest of the team is now using. Rating 4.5 / 5 Exceeds expectations Read full review arrow_forward" [ref=e716] [cursor=pointer]:
+              - generic [ref=e717]:
+                - generic [ref=e718]:
+                  - generic [ref=e719]: PN
+                  - generic [ref=e720]:
+                    - generic [ref=e721]: Priya Nair
+                    - generic [ref=e722]: Manager
+                - generic [ref=e723]:
+                  - generic [ref=e724]: badge
+                  - text: Manager review
+              - generic [ref=e725]:
+                - generic [ref=e726]: Q3 Performance Review · Sep 28, 2026
+                - generic [ref=e727]:
+                  - generic [ref=e728]: star
+                  - generic [ref=e729]: star
+                  - generic [ref=e730]: star
+                  - generic [ref=e731]: star
+                  - generic [ref=e732]: star
+              - generic [ref=e733]: Strong Q3. Led the Spain cutover with zero P0s, mentored Lina through her first migration, and built the runbook the rest of the team is now using.
+              - generic [ref=e734]:
+                - generic [ref=e735]:
+                  - generic [ref=e736]: Rating
+                  - generic [ref=e737]: 4.5 / 5
+                  - generic [ref=e738]: Exceeds expectations
+                - generic [ref=e739]:
+                  - text: Read full review
+                  - generic [ref=e740]: arrow_forward
+            - button "HM Hannah Mueller Skip-level badge Manager review Q3 Skip-level check-in · Sep 22, 2026 star star star star star Career-track conversation. Aligned on Lead Ops growth path. Aditi is ready, we need to firm up scope and timeline. Rating 4.0 / 5 Meets+ expectations Read full review arrow_forward" [ref=e741] [cursor=pointer]:
+              - generic [ref=e742]:
+                - generic [ref=e743]:
+                  - generic [ref=e744]: HM
+                  - generic [ref=e745]:
+                    - generic [ref=e746]: Hannah Mueller
+                    - generic [ref=e747]: Skip-level
+                - generic [ref=e748]:
+                  - generic [ref=e749]: badge
+                  - text: Manager review
+              - generic [ref=e750]:
+                - generic [ref=e751]: Q3 Skip-level check-in · Sep 22, 2026
+                - generic [ref=e752]:
+                  - generic [ref=e753]: star
+                  - generic [ref=e754]: star
+                  - generic [ref=e755]: star
+                  - generic [ref=e756]: star
+                  - generic [ref=e757]: star
+              - generic [ref=e758]: Career-track conversation. Aligned on Lead Ops growth path. Aditi is ready, we need to firm up scope and timeline.
+              - generic [ref=e759]:
+                - generic [ref=e760]:
+                  - generic [ref=e761]: Rating
+                  - generic [ref=e762]: 4.0 / 5
+                  - generic [ref=e763]: Meets+ expectations
+                - generic [ref=e764]:
+                  - text: Read full review
+                  - generic [ref=e765]: arrow_forward
+            - button "LC Lina Chen Peer group Peer review Q3 360° · Sep 20, 2026 star star star star star Pairing on the migration runbook saved me a month. Aditi explains complex workflows in a way that sticks. Rating 5.0 / 5 Outstanding Read full review arrow_forward" [ref=e766] [cursor=pointer]:
+              - generic [ref=e767]:
+                - generic [ref=e768]:
+                  - generic [ref=e769]: LC
+                  - generic [ref=e770]:
+                    - generic [ref=e771]: Lina Chen
+                    - generic [ref=e772]: Peer
+                - generic [ref=e773]:
+                  - generic [ref=e774]: group
+                  - text: Peer review
+              - generic [ref=e775]:
+                - generic [ref=e776]: Q3 360° · Sep 20, 2026
+                - generic [ref=e777]:
+                  - generic [ref=e778]: star
+                  - generic [ref=e779]: star
+                  - generic [ref=e780]: star
+                  - generic [ref=e781]: star
+                  - generic [ref=e782]: star
+              - generic [ref=e783]: Pairing on the migration runbook saved me a month. Aditi explains complex workflows in a way that sticks.
+              - generic [ref=e784]:
+                - generic [ref=e785]:
+                  - generic [ref=e786]: Rating
+                  - generic [ref=e787]: 5.0 / 5
+                  - generic [ref=e788]: Outstanding
+                - generic [ref=e789]:
+                  - text: Read full review
+                  - generic [ref=e790]: arrow_forward
+            - button "MD Marco Diaz Client apartment Client review Project completion · Sep 18, 2026 star star star star star Communication during cutover was the difference between a hard week and a smooth one. Rating 5.0 / 5 Outstanding Read full review arrow_forward" [ref=e791] [cursor=pointer]:
+              - generic [ref=e792]:
+                - generic [ref=e793]:
+                  - generic [ref=e794]: MD
+                  - generic [ref=e795]:
+                    - generic [ref=e796]: Marco Diaz
+                    - generic [ref=e797]: Client
+                - generic [ref=e798]:
+                  - generic [ref=e799]: apartment
+                  - text: Client review
+              - generic [ref=e800]:
+                - generic [ref=e801]: Project completion · Sep 18, 2026
+                - generic [ref=e802]:
+                  - generic [ref=e803]: star
+                  - generic [ref=e804]: star
+                  - generic [ref=e805]: star
+                  - generic [ref=e806]: star
+                  - generic [ref=e807]: star
+              - generic [ref=e808]: Communication during cutover was the difference between a hard week and a smooth one.
+              - generic [ref=e809]:
+                - generic [ref=e810]:
+                  - generic [ref=e811]: Rating
+                  - generic [ref=e812]: 5.0 / 5
+                  - generic [ref=e813]: Outstanding
+                - generic [ref=e814]:
+                  - text: Read full review
+                  - generic [ref=e815]: arrow_forward
+        - generic [ref=e816]:
+          - generic [ref=e817]:
+            - generic [ref=e818]: August 2026
+            - generic [ref=e819]: Project reviews
+            - generic [ref=e820]: 2 reviews
+          - generic [ref=e822]:
+            - button "PN Priya Nair Manager rocket_launch Project review Italy migration retro · Aug 14, 2026 star star star star star Solid execution on the Italy cutover. Surfaced runbook gaps proactively — exactly what we needed before Spain. Rating 4.0 / 5 Meets+ expectations Read full review arrow_forward" [ref=e823] [cursor=pointer]:
+              - generic [ref=e824]:
+                - generic [ref=e825]:
+                  - generic [ref=e826]: PN
+                  - generic [ref=e827]:
+                    - generic [ref=e828]: Priya Nair
+                    - generic [ref=e829]: Manager
+                - generic [ref=e830]:
+                  - generic [ref=e831]: rocket_launch
+                  - text: Project review
+              - generic [ref=e832]:
+                - generic [ref=e833]: Italy migration retro · Aug 14, 2026
+                - generic [ref=e834]:
+                  - generic [ref=e835]: star
+                  - generic [ref=e836]: star
+                  - generic [ref=e837]: star
+                  - generic [ref=e838]: star
+                  - generic [ref=e839]: star
+              - generic [ref=e840]: Solid execution on the Italy cutover. Surfaced runbook gaps proactively — exactly what we needed before Spain.
+              - generic [ref=e841]:
+                - generic [ref=e842]:
+                  - generic [ref=e843]: Rating
+                  - generic [ref=e844]: 4.0 / 5
+                  - generic [ref=e845]: Meets+ expectations
+                - generic [ref=e846]:
+                  - text: Read full review
+                  - generic [ref=e847]: arrow_forward
+            - button "AS Aditi Sharma Self person Self-review Mid-cycle self-review · Aug 02, 2026 star star star star star Migration KR ahead of pace. Mentorship KR slightly behind — need to formalize cadence with Lina. Rating 3.5 / 5 On track Read full review arrow_forward" [ref=e848] [cursor=pointer]:
+              - generic [ref=e849]:
+                - generic [ref=e850]:
+                  - generic [ref=e851]: AS
+                  - generic [ref=e852]:
+                    - generic [ref=e853]: Aditi Sharma
+                    - generic [ref=e854]: Self
+                - generic [ref=e855]:
+                  - generic [ref=e856]: person
+                  - text: Self-review
+              - generic [ref=e857]:
+                - generic [ref=e858]: Mid-cycle self-review · Aug 02, 2026
+                - generic [ref=e859]:
+                  - generic [ref=e860]: star
+                  - generic [ref=e861]: star
+                  - generic [ref=e862]: star
+                  - generic [ref=e863]: star
+                  - generic [ref=e864]: star
+              - generic [ref=e865]: Migration KR ahead of pace. Mentorship KR slightly behind — need to formalize cadence with Lina.
+              - generic [ref=e866]:
+                - generic [ref=e867]:
+                  - generic [ref=e868]: Rating
+                  - generic [ref=e869]: 3.5 / 5
+                  - generic [ref=e870]: On track
+                - generic [ref=e871]:
+                  - text: Read full review
+                  - generic [ref=e872]: arrow_forward
+        - generic [ref=e873]:
+          - generic [ref=e874]:
+            - generic [ref=e875]: June 2026
+            - generic [ref=e876]: H1 wrap
+            - generic [ref=e877]: 1 review
+          - button "PN Priya Nair Manager badge Manager review H1 Performance Review · Jun 27, 2026 star star star star star Productive H1. Carried the payroll migration narrative end-to-end. Rating 4.0 / 5 Meets+ expectations Read full review arrow_forward" [ref=e880] [cursor=pointer]:
+            - generic [ref=e881]:
+              - generic [ref=e882]:
+                - generic [ref=e883]: PN
+                - generic [ref=e884]:
+                  - generic [ref=e885]: Priya Nair
+                  - generic [ref=e886]: Manager
+              - generic [ref=e887]:
+                - generic [ref=e888]: badge
+                - text: Manager review
+            - generic [ref=e889]:
+              - generic [ref=e890]: H1 Performance Review · Jun 27, 2026
+              - generic [ref=e891]:
+                - generic [ref=e892]: star
+                - generic [ref=e893]: star
+                - generic [ref=e894]: star
+                - generic [ref=e895]: star
+                - generic [ref=e896]: star
+            - generic [ref=e897]: Productive H1. Carried the payroll migration narrative end-to-end.
+            - generic [ref=e898]:
+              - generic [ref=e899]:
+                - generic [ref=e900]: Rating
+                - generic [ref=e901]: 4.0 / 5
+                - generic [ref=e902]: Meets+ expectations
+              - generic [ref=e903]:
+                - text: Read full review
+                - generic [ref=e904]: arrow_forward

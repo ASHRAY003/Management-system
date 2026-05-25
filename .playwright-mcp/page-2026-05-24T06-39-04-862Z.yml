@@ -1,0 +1,278 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 02 · Goals & OKRs
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e406]:
+    - complementary [ref=e407]:
+      - generic [ref=e408]:
+        - generic [ref=e409]: P
+        - generic [ref=e410]:
+          - generic [ref=e411]: Payo WFM
+          - generic [ref=e412]: Acme Holdings · HR
+      - generic [ref=e413]:
+        - generic [ref=e414]: badge
+        - generic [ref=e415]: HR Admin · Client manager
+      - generic [ref=e416]:
+        - generic [ref=e417]: Workforce
+        - generic [ref=e418]:
+          - generic [ref=e419] [cursor=pointer]:
+            - generic [ref=e420]: dashboard
+            - generic [ref=e421]: Dashboard
+          - generic [ref=e422] [cursor=pointer]:
+            - generic [ref=e423]: groups
+            - generic [ref=e424]: People
+          - generic [ref=e425] [cursor=pointer]:
+            - generic [ref=e426]: description
+            - generic [ref=e427]: Contracts
+          - generic [ref=e428] [cursor=pointer]:
+            - generic [ref=e429]: work
+            - generic [ref=e430]: Projects
+          - generic [ref=e431] [cursor=pointer]:
+            - generic [ref=e432]: sync
+            - generic [ref=e433]: Payroll
+          - generic [ref=e434] [cursor=pointer]:
+            - generic [ref=e435]: insights
+            - generic [ref=e436]: Performance
+      - generic [ref=e437]:
+        - generic [ref=e438]: Workspace
+        - generic [ref=e439]:
+          - generic [ref=e440] [cursor=pointer]:
+            - generic [ref=e441]: schedule
+            - generic [ref=e442]: Time & leave
+          - generic [ref=e443] [cursor=pointer]:
+            - generic [ref=e444]: receipt_long
+            - generic [ref=e445]: Expenses
+          - generic [ref=e446] [cursor=pointer]:
+            - generic [ref=e447]: folder
+            - generic [ref=e448]: Documents
+          - generic [ref=e449] [cursor=pointer]:
+            - generic [ref=e450]: bar_chart
+            - generic [ref=e451]: Reports
+          - generic [ref=e452] [cursor=pointer]:
+            - generic [ref=e453]: settings
+            - generic [ref=e454]: Settings
+      - generic [ref=e456]:
+        - generic [ref=e457]: AS
+        - generic [ref=e458]:
+          - generic [ref=e459]: Aditi Sharma
+          - generic [ref=e460]: aditi@demo.com
+    - generic [ref=e461]:
+      - generic [ref=e462]:
+        - generic [ref=e463]:
+          - generic [ref=e464]: Acme Holdings
+          - generic [ref=e465]: chevron_right
+          - generic [ref=e466]: Performance
+          - generic [ref=e467]: chevron_right
+          - generic [ref=e468]: Goals & OKRs
+        - generic [ref=e469]:
+          - generic [ref=e470]: badge
+          - text: Client / Manager view
+        - generic [ref=e471]:
+          - generic [ref=e472]: search
+          - textbox "Search people, goals, reviews…" [ref=e473]
+          - generic [ref=e474]: ⌘K
+        - generic [ref=e476] [cursor=pointer]: help
+        - generic [ref=e478] [cursor=pointer]:
+          - generic [ref=e479]: notifications
+          - generic [ref=e480]: "3"
+      - generic [ref=e481]:
+        - generic [ref=e482]:
+          - generic [ref=e483] [cursor=pointer]: Dashboard
+          - generic [ref=e484] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e485] [cursor=pointer]: Reviews
+          - generic [ref=e486] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e488] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e489]: expand_more
+        - generic [ref=e490]:
+          - generic [ref=e491]:
+            - generic [ref=e492]: Performance Management
+            - heading "Goals & OKRs" [level=1] [ref=e493]
+            - generic [ref=e494]: Create and track company, team, individual and project-linked OKRs.
+          - generic [ref=e495]:
+            - button "filter_list Filters" [ref=e496] [cursor=pointer]:
+              - generic [ref=e497]: filter_list
+              - text: Filters
+            - button "link Link project" [ref=e498] [cursor=pointer]:
+              - generic [ref=e499]: link
+              - text: Link project
+            - button "add Create Goal" [ref=e501] [cursor=pointer]:
+              - generic [ref=e502]: add
+              - text: Create Goal
+        - generic [ref=e503]:
+          - generic [ref=e504] [cursor=pointer]:
+            - generic [ref=e505]: lock
+            - text: Company Goals
+            - generic [ref=e506]: "3"
+          - generic [ref=e507] [cursor=pointer]:
+            - generic [ref=e508]: person
+            - text: My Goals
+            - generic [ref=e509]: "5"
+          - generic [ref=e510] [cursor=pointer]:
+            - generic [ref=e511]: groups
+            - text: People OKRs
+            - generic [ref=e512]: "5"
+          - generic [ref=e513] [cursor=pointer]:
+            - generic [ref=e514]: view_module
+            - generic [ref=e515]: "View:"
+            - generic [ref=e516]: Cards
+        - generic [ref=e517]:
+          - generic [ref=e518]: lock
+          - generic [ref=e519]:
+            - generic [ref=e520]: Read-only — set by company leadership
+            - generic [ref=e521]: Company OKRs are managed by Acme's leadership team. You can align your goals to these but cannot edit them directly.
+          - button "Suggest a goal arrow_forward" [ref=e522] [cursor=pointer]:
+            - text: Suggest a goal
+            - generic [ref=e523]: arrow_forward
+        - generic [ref=e524]:
+          - generic [ref=e525]:
+            - generic [ref=e526]:
+              - generic [ref=e527]:
+                - generic [ref=e528]:
+                  - generic [ref=e529]: lock
+                  - text: Company · CG-01 · FY 2026
+                - generic [ref=e530]: "Make Acme the #1 payroll platform for remote teams"
+                - generic [ref=e531]: Become the de-facto operating system for distributed payroll in 2026 — measured by NPS, market share and platform stickiness.
+                - generic [ref=e532]:
+                  - generic [ref=e533]:
+                    - generic [ref=e534]: EV
+                    - generic [ref=e535]: Erika Voss
+                    - text: · CEO
+                  - generic [ref=e536]:
+                    - generic [ref=e537]: event
+                    - text: Due
+                    - generic [ref=e538]: Dec 31, 2026
+                  - generic [ref=e539]:
+                    - generic [ref=e540]: trending_up
+                    - text: 3 key results
+                  - generic [ref=e541]: On track
+              - generic [ref=e543]:
+                - button "account_tree View linked OKRs" [ref=e544] [cursor=pointer]:
+                  - generic [ref=e545]: account_tree
+                  - text: View linked OKRs
+                - button "edit Edit Goal" [ref=e546] [cursor=pointer]:
+                  - generic [ref=e547]: edit
+                  - text: Edit Goal
+            - generic [ref=e548]:
+              - generic [ref=e549]:
+                - generic [ref=e550]:
+                  - generic [ref=e551]: KR1
+                  - generic [ref=e552]: Reach 12,000 active employer accounts
+                  - generic [ref=e553]: 8.5k / 12k
+                  - generic [ref=e557]: 71%
+                - generic [ref=e558]:
+                  - generic [ref=e559]: KR2
+                  - generic [ref=e560]: Lift platform NPS from 38 to 55
+                  - generic [ref=e561]: 48 / 55
+                  - generic [ref=e565]: 58%
+                - generic [ref=e566]:
+                  - generic [ref=e567]: KR3
+                  - generic [ref=e568]: Reduce annual churn below 9%
+                  - generic [ref=e569]: 10.4% / 9%
+                  - generic [ref=e573]: 62%
+              - generic [ref=e574]:
+                - generic [ref=e575]: Overall progress
+                - generic [ref=e579]: 64%
+          - generic [ref=e580]:
+            - generic [ref=e581]:
+              - generic [ref=e582]:
+                - generic [ref=e583]:
+                  - generic [ref=e584]: lock
+                  - text: Company · CG-02 · Q3–Q4 2026
+                - generic [ref=e585]: Ship the unified Payroll + Performance + Payments suite
+                - generic [ref=e586]: Deliver the integrated platform to GA so customers see one product, not three.
+                - generic [ref=e587]:
+                  - generic [ref=e588]:
+                    - generic [ref=e589]: DP
+                    - generic [ref=e590]: David Park
+                    - text: · CPO
+                  - generic [ref=e591]:
+                    - generic [ref=e592]: event
+                    - text: Due
+                    - generic [ref=e593]: Oct 31, 2026
+                  - generic [ref=e594]:
+                    - generic [ref=e595]: trending_up
+                    - text: 3 key results
+                  - generic [ref=e596]: At risk
+              - generic [ref=e598]:
+                - button "account_tree View linked OKRs" [ref=e599] [cursor=pointer]:
+                  - generic [ref=e600]: account_tree
+                  - text: View linked OKRs
+                - button "edit Edit Goal" [ref=e601] [cursor=pointer]:
+                  - generic [ref=e602]: edit
+                  - text: Edit Goal
+            - generic [ref=e603]:
+              - generic [ref=e604]:
+                - generic [ref=e605]:
+                  - generic [ref=e606]: KR1
+                  - generic [ref=e607]: Performance module GA in 6 markets
+                  - generic [ref=e608]: 2 / 6
+                  - generic [ref=e612]: 33%
+                - generic [ref=e613]:
+                  - generic [ref=e614]: KR2
+                  - generic [ref=e615]: Single sign-on across all modules
+                  - generic [ref=e616]: In rollout
+                  - generic [ref=e620]: 80%
+                - generic [ref=e621]:
+                  - generic [ref=e622]: KR3
+                  - generic [ref=e623]: Migrate 100% of legacy clients
+                  - generic [ref=e624]: 28% / 100%
+                  - generic [ref=e628]: 28%
+              - generic [ref=e629]:
+                - generic [ref=e630]: Overall progress
+                - generic [ref=e634]: 48%
+          - generic [ref=e635]:
+            - generic [ref=e636]:
+              - generic [ref=e637]:
+                - generic [ref=e638]:
+                  - generic [ref=e639]: lock
+                  - text: Company · CG-03 · Q3 2026
+                - generic [ref=e640]: Build a global, compliant contractor experience
+                - generic [ref=e641]: Reduce compliance risk and speed up contractor onboarding across 60+ countries.
+                - generic [ref=e642]:
+                  - generic [ref=e643]:
+                    - generic [ref=e644]: HM
+                    - generic [ref=e645]: Hannah Mueller
+                    - text: · Head of Compliance
+                  - generic [ref=e646]:
+                    - generic [ref=e647]: event
+                    - text: Due
+                    - generic [ref=e648]: Sep 30, 2026
+                  - generic [ref=e649]:
+                    - generic [ref=e650]: trending_up
+                    - text: 3 key results
+                  - generic [ref=e651]: On track
+              - generic [ref=e653]:
+                - button "account_tree View linked OKRs" [ref=e654] [cursor=pointer]:
+                  - generic [ref=e655]: account_tree
+                  - text: View linked OKRs
+                - button "edit Edit Goal" [ref=e656] [cursor=pointer]:
+                  - generic [ref=e657]: edit
+                  - text: Edit Goal
+            - generic [ref=e658]:
+              - generic [ref=e659]:
+                - generic [ref=e660]:
+                  - generic [ref=e661]: KR1
+                  - generic [ref=e662]: Misclassification risk score below 1.5
+                  - generic [ref=e663]: 1.3 / 1.5
+                  - generic [ref=e667]: 92%
+                - generic [ref=e668]:
+                  - generic [ref=e669]: KR2
+                  - generic [ref=e670]: Contractor onboarding under 24h
+                  - generic [ref=e671]: 26h / 24h
+                  - generic [ref=e675]: 84%
+                - generic [ref=e676]:
+                  - generic [ref=e677]: KR3
+                  - generic [ref=e678]: Compliance false-positives below 8%
+                  - generic [ref=e679]: 9.2% / 8%
+                  - generic [ref=e683]: 80%
+              - generic [ref=e684]:
+                - generic [ref=e685]: Overall progress
+                - generic [ref=e689]: 85%

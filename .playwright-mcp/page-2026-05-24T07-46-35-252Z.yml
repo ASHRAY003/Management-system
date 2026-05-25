@@ -1,0 +1,126 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 07 · My Goals
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: My workspace
+      - generic [ref=e19]:
+        - generic [ref=e20]: verified_user
+        - generic [ref=e21]: Worker · Self-service
+      - generic [ref=e22]:
+        - generic [ref=e23]: My workspace
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: home
+            - generic [ref=e27]: Home
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: person
+            - generic [ref=e30]: My profile
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: payments
+            - generic [ref=e33]: Pay
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: schedule
+            - generic [ref=e36]: Time off
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: insights
+            - generic [ref=e39]: Performance
+      - generic [ref=e40]:
+        - generic [ref=e41]: Restricted
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]: paid
+            - generic [ref=e45]: Compensation insights
+            - generic [ref=e46]: lock
+          - generic [ref=e47]:
+            - generic [ref=e48]: flag
+            - generic [ref=e49]: Other workers’ OKRs
+            - generic [ref=e50]: lock
+          - generic [ref=e51]:
+            - generic [ref=e52]: lock
+            - generic [ref=e53]: Manager private notes
+            - generic [ref=e54]: lock
+      - generic [ref=e56]:
+        - generic [ref=e57]: AS
+        - generic [ref=e58]:
+          - generic [ref=e59]: Aditi Sharma
+          - generic [ref=e60]: aditi@demo.com
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e64]: Payo WFM
+          - generic [ref=e65]: chevron_right
+          - generic [ref=e66]: Performance
+          - generic [ref=e67]: chevron_right
+          - generic [ref=e68]: My Goals
+        - generic [ref=e69]:
+          - generic [ref=e70]: verified_user
+          - text: Worker self-service
+        - generic [ref=e71]:
+          - generic [ref=e72]: search
+          - textbox "Search my goals, reviews…" [ref=e73]
+          - generic [ref=e74]: ⌘K
+        - generic [ref=e76] [cursor=pointer]: help
+        - generic [ref=e78] [cursor=pointer]:
+          - generic [ref=e79]: notifications
+          - generic [ref=e80]: "3"
+      - generic [ref=e324]:
+        - generic [ref=e326]:
+          - generic [ref=e327]:
+            - generic [ref=e329]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e330]
+          - button "close" [ref=e331] [cursor=pointer]:
+            - generic [ref=e332]: close
+        - generic [ref=e333]:
+          - generic [ref=e334]:
+            - generic [ref=e337] [cursor=pointer]: Name & Type
+            - generic [ref=e341] [cursor=pointer]: Key Results
+            - generic [ref=e345] [cursor=pointer]: Goal Dates
+            - generic [ref=e349]: Users
+            - generic [ref=e353]: Review
+          - generic [ref=e354]:
+            - generic [ref=e356]: gps_fixed
+            - button "delete_outline" [ref=e406] [cursor=pointer]:
+              - generic [ref=e407]: delete_outline
+            - generic [ref=e408]: Reduce vendor setup time by 20%
+            - generic [ref=e499]:
+              - generic [ref=e501]: Owner
+              - generic [ref=e502]:
+                - generic [ref=e503]: Only one owner per goal
+                - generic [ref=e505]:
+                  - text: Omar Khan
+                  - generic [ref=e506] [cursor=pointer]: ×
+              - generic [ref=e507]: Owners are responsible for keeping goals up-to-date and keeping contributors accountable.
+            - generic [ref=e508]:
+              - generic [ref=e510]: Contributors
+              - generic [ref=e512]:
+                - generic [ref=e513]:
+                  - text: Aditi Sharma
+                  - generic [ref=e514] [cursor=pointer]: ×
+                - generic [ref=e515]:
+                  - text: Priya Nair
+                  - generic [ref=e516] [cursor=pointer]: ×
+                - textbox [ref=e517]
+              - generic [ref=e518]: Contributors are users that are actively pursuing and updating the progress of this goal.
+            - generic [ref=e519]:
+              - generic [ref=e521]: Stakeholders · optional · receive updates
+              - textbox "Add stakeholders who should see progress but won't update it" [ref=e523]
+          - generic [ref=e400]:
+            - button "Back" [ref=e482] [cursor=pointer]:
+              - generic [ref=e483]: Back
+            - generic [ref=e402]:
+              - generic [ref=e403]: check_circle
+              - text: Saved Just Now
+            - button "Next" [active] [ref=e405] [cursor=pointer]

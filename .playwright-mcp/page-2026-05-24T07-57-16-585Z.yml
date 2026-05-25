@@ -1,0 +1,351 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 02 · Goals & OKRs
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: Acme Holdings · HR
+      - generic [ref=e19]:
+        - generic [ref=e20]: badge
+        - generic [ref=e21]: HR Admin · Client manager
+      - generic [ref=e22]:
+        - generic [ref=e23]: Workforce
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: dashboard
+            - generic [ref=e27]: Dashboard
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: groups
+            - generic [ref=e30]: People
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: description
+            - generic [ref=e33]: Contracts
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: work
+            - generic [ref=e36]: Projects
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: sync
+            - generic [ref=e39]: Payroll
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: insights
+            - generic [ref=e42]: Performance
+      - generic [ref=e43]:
+        - generic [ref=e44]: Workspace
+        - generic [ref=e45]:
+          - generic [ref=e46] [cursor=pointer]:
+            - generic [ref=e47]: schedule
+            - generic [ref=e48]: Time & leave
+          - generic [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: receipt_long
+            - generic [ref=e51]: Expenses
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: folder
+            - generic [ref=e54]: Documents
+          - generic [ref=e55] [cursor=pointer]:
+            - generic [ref=e56]: bar_chart
+            - generic [ref=e57]: Reports
+          - generic [ref=e58] [cursor=pointer]:
+            - generic [ref=e59]: settings
+            - generic [ref=e60]: Settings
+      - generic [ref=e62]:
+        - generic [ref=e63]: AS
+        - generic [ref=e64]:
+          - generic [ref=e65]: Aditi Sharma
+          - generic [ref=e66]: aditi@demo.com
+    - generic [ref=e67]:
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e70]: Acme Holdings
+          - generic [ref=e71]: chevron_right
+          - generic [ref=e72]: Performance
+          - generic [ref=e73]: chevron_right
+          - generic [ref=e74]: Goals & OKRs
+        - generic [ref=e75]:
+          - generic [ref=e76]: badge
+          - text: Client / Manager view
+        - generic [ref=e77]:
+          - generic [ref=e78]: search
+          - textbox "Search people, goals, reviews…" [ref=e79]
+          - generic [ref=e80]: ⌘K
+        - generic [ref=e82] [cursor=pointer]: help
+        - generic [ref=e84] [cursor=pointer]:
+          - generic [ref=e85]: notifications
+          - generic [ref=e86]: "3"
+      - generic [ref=e87]:
+        - generic [ref=e336]:
+          - generic [ref=e337] [cursor=pointer]: Dashboard
+          - generic [ref=e338] [cursor=pointer]: Goals & OKRs
+          - generic [ref=e339] [cursor=pointer]: Reviews
+          - generic [ref=e340] [cursor=pointer]: 1:1 Meetings
+          - generic [ref=e342] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e343]: expand_more
+        - generic [ref=e344]:
+          - generic [ref=e345]:
+            - generic [ref=e346]: Performance Management
+            - heading "Goals & OKRs" [level=1] [ref=e347]
+            - generic [ref=e348]: Create and track company, team, individual and project-linked OKRs.
+          - generic [ref=e349]:
+            - button "filter_list Filters" [ref=e350] [cursor=pointer]:
+              - generic [ref=e351]: filter_list
+              - text: Filters
+            - button "link Link project" [ref=e352] [cursor=pointer]:
+              - generic [ref=e353]: link
+              - text: Link project
+            - button "add Create Goal" [ref=e355] [cursor=pointer]:
+              - generic [ref=e356]: add
+              - text: Create Goal
+        - generic [ref=e357]:
+          - generic [ref=e358] [cursor=pointer]:
+            - generic [ref=e359]: lock
+            - text: Company Goals
+            - generic [ref=e360]: "3"
+          - generic [ref=e361] [cursor=pointer]:
+            - generic [ref=e362]: person
+            - text: My Goals
+            - generic [ref=e363]: "6"
+          - generic [ref=e364] [cursor=pointer]:
+            - generic [ref=e365]: groups
+            - text: People OKRs
+            - generic [ref=e366]: "5"
+          - generic [ref=e367] [cursor=pointer]:
+            - generic [ref=e368]: view_module
+            - generic [ref=e369]: "View:"
+            - generic [ref=e370]: Cards
+        - generic [ref=e371]:
+          - generic [ref=e372]: person
+          - generic [ref=e373]:
+            - generic [ref=e374]: My Goals — fully editable
+            - generic [ref=e375]: Goals where you're an owner, contributor or stakeholder. Edit progress, link projects, or align to company OKRs.
+        - generic [ref=e376]:
+          - generic [ref=e377]:
+            - generic [ref=e378]:
+              - generic [ref=e379]:
+                - generic [ref=e380]:
+                  - generic [ref=e381]: Owner
+                  - generic [ref=e382]: ·
+                  - generic [ref=e383]: MG-01 · Q3 2026
+                - generic [ref=e384]: Roll out the Q3 performance review cycle across all teams
+                - generic [ref=e385]: Drive 90% completion of self + manager reviews in Q3 2026.
+                - generic [ref=e386]:
+                  - generic [ref=e387]:
+                    - generic [ref=e388]: link
+                    - generic [ref=e389]: Q3 Review Cycle Ops
+                  - generic [ref=e390]:
+                    - generic [ref=e391]: event
+                    - text: Due
+                    - generic [ref=e392]: Oct 15, 2026
+                  - generic [ref=e393]:
+                    - generic [ref=e394]: flag
+                    - generic [ref=e395]: 2/3
+                    - text: KRs done
+                  - generic [ref=e396]:
+                    - generic [ref=e397]: groups
+                    - generic [ref=e398]:
+                      - generic [ref=e399]: KI
+                      - generic [ref=e400]: LC
+                  - generic [ref=e401]: On track
+              - generic [ref=e403]:
+                - button "edit Edit" [ref=e404] [cursor=pointer]:
+                  - generic [ref=e405]: edit
+                  - text: Edit
+                - button "trending_up Update progress" [ref=e406] [cursor=pointer]:
+                  - generic [ref=e407]: trending_up
+                  - text: Update progress
+            - generic [ref=e408]:
+              - generic [ref=e409]:
+                - text: You drive this goal · linked to
+                - strong [ref=e410]: Q3 Review Cycle Ops
+                - text: .
+              - generic [ref=e414]: 68%
+          - generic [ref=e415]:
+            - generic [ref=e416]:
+              - generic [ref=e417]:
+                - generic [ref=e418]:
+                  - generic [ref=e419]: Owner
+                  - generic [ref=e420]: ·
+                  - generic [ref=e421]: MG-02 · Q3 2026
+                - generic [ref=e422]: Cut average review feedback length under quality bar
+                - generic [ref=e423]: Bring vague/bias flags below 5 per cycle.
+                - generic [ref=e424]:
+                  - generic [ref=e425]:
+                    - generic [ref=e426]: link
+                    - generic [ref=e427]: Review Quality rollout
+                  - generic [ref=e428]:
+                    - generic [ref=e429]: event
+                    - text: Due
+                    - generic [ref=e430]: Sep 30, 2026
+                  - generic [ref=e431]:
+                    - generic [ref=e432]: flag
+                    - generic [ref=e433]: 3/4
+                    - text: KRs done
+                  - generic [ref=e434]:
+                    - generic [ref=e435]: groups
+                    - generic [ref=e437]: MJ
+                  - generic [ref=e438]: On track
+              - generic [ref=e440]:
+                - button "edit Edit" [ref=e441] [cursor=pointer]:
+                  - generic [ref=e442]: edit
+                  - text: Edit
+                - button "trending_up Update progress" [ref=e443] [cursor=pointer]:
+                  - generic [ref=e444]: trending_up
+                  - text: Update progress
+            - generic [ref=e445]:
+              - generic [ref=e446]:
+                - text: You drive this goal · linked to
+                - strong [ref=e447]: Review Quality rollout
+                - text: .
+              - generic [ref=e451]: 78%
+          - generic [ref=e452]:
+            - generic [ref=e453]:
+              - generic [ref=e454]:
+                - generic [ref=e455]:
+                  - generic [ref=e456]: Contributor
+                  - generic [ref=e457]: ·
+                  - generic [ref=e458]: MG-03 · Q3 2026
+                - generic [ref=e459]: Reduce vendor setup time across the supplier network
+                - generic [ref=e460]: Contributing to Omar's individual OKR by sharing payroll best practices.
+                - generic [ref=e461]:
+                  - generic [ref=e462]:
+                    - generic [ref=e463]: link
+                    - generic [ref=e464]: Vendor Setup Automation
+                  - generic [ref=e465]:
+                    - generic [ref=e466]: event
+                    - text: Due
+                    - generic [ref=e467]: Oct 15, 2026
+                  - generic [ref=e468]:
+                    - generic [ref=e469]: flag
+                    - generic [ref=e470]: 0/2
+                    - text: KRs done
+                  - generic [ref=e471]:
+                    - generic [ref=e472]: groups
+                    - generic [ref=e474]: OK
+                  - generic [ref=e475]: At risk
+              - button "trending_up Update my contribution" [ref=e478] [cursor=pointer]:
+                - generic [ref=e479]: trending_up
+                - text: Update my contribution
+            - generic [ref=e480]:
+              - generic [ref=e481]:
+                - text: You're contributing toward this goal — owned by
+                - strong [ref=e482]: Omar Khan
+                - text: .
+              - generic [ref=e486]: 45%
+          - generic [ref=e487]:
+            - generic [ref=e488]:
+              - generic [ref=e489]:
+                - generic [ref=e490]:
+                  - generic [ref=e491]: Owner
+                  - generic [ref=e492]: ·
+                  - generic [ref=e493]: MG-04 · Q4 2026
+                - generic [ref=e494]: Launch the 1:1 meeting tooling for managers
+                - generic [ref=e495]: Move from ad-hoc 1:1 docs to in-platform tooling with goal/project links.
+                - generic [ref=e496]:
+                  - generic [ref=e497]:
+                    - generic [ref=e498]: link
+                    - button "add Link project" [ref=e499] [cursor=pointer]:
+                      - generic [ref=e500]: add
+                      - text: Link project
+                  - generic [ref=e501]:
+                    - generic [ref=e502]: event
+                    - text: Due
+                    - generic [ref=e503]: Nov 30, 2026
+                  - generic [ref=e504]:
+                    - generic [ref=e505]: flag
+                    - generic [ref=e506]: 1/3
+                    - text: KRs done
+                  - generic [ref=e507]:
+                    - generic [ref=e508]: groups
+                    - generic [ref=e509]:
+                      - generic [ref=e510]: AS
+                      - generic [ref=e511]: KI
+                  - generic [ref=e512]: At risk
+              - generic [ref=e514]:
+                - button "edit Edit" [ref=e515] [cursor=pointer]:
+                  - generic [ref=e516]: edit
+                  - text: Edit
+                - button "trending_up Update progress" [ref=e517] [cursor=pointer]:
+                  - generic [ref=e518]: trending_up
+                  - text: Update progress
+            - generic [ref=e519]:
+              - generic [ref=e520]: You drive this goal .
+              - generic [ref=e524]: 33%
+          - generic [ref=e525]:
+            - generic [ref=e526]:
+              - generic [ref=e527]:
+                - generic [ref=e528]:
+                  - generic [ref=e529]: Stakeholder
+                  - generic [ref=e530]: ·
+                  - generic [ref=e531]: MG-05 · Q3 2026
+                - generic [ref=e532]: Hit 99.5% payroll accuracy across all EU runs
+                - generic [ref=e533]: Stakeholder on the payroll quality OKR — share signals and reviews.
+                - generic [ref=e534]:
+                  - generic [ref=e535]:
+                    - generic [ref=e536]: link
+                    - generic [ref=e537]: Payroll Migration EU
+                  - generic [ref=e538]:
+                    - generic [ref=e539]: event
+                    - text: Due
+                    - generic [ref=e540]: Sep 30, 2026
+                  - generic [ref=e541]:
+                    - generic [ref=e542]: flag
+                    - generic [ref=e543]: 5/5
+                    - text: KRs done
+                  - generic [ref=e544]:
+                    - generic [ref=e545]: groups
+                    - generic [ref=e547]: OT
+                  - generic [ref=e548]: On track
+              - button "visibility View" [ref=e551] [cursor=pointer]:
+                - generic [ref=e552]: visibility
+                - text: View
+            - generic [ref=e553]:
+              - generic [ref=e554]: Stakeholder · you receive updates but don't own progress.
+              - generic [ref=e558]: 91%
+          - generic [ref=e559]:
+            - generic [ref=e560]:
+              - generic [ref=e561]:
+                - generic [ref=e562]:
+                  - generic [ref=e563]: Owner
+                  - generic [ref=e564]: ·
+                  - generic [ref=e565]: MG-HICNZ · Q3 2026
+                - generic [ref=e566]: Test manager goal
+                - generic [ref=e567]:
+                  - generic [ref=e568]:
+                    - generic [ref=e569]: link
+                    - button "add Link project" [ref=e570] [cursor=pointer]:
+                      - generic [ref=e571]: add
+                      - text: Link project
+                  - generic [ref=e572]:
+                    - generic [ref=e573]: event
+                    - text: Due
+                    - generic [ref=e574]: 9/30/2026
+                  - generic [ref=e575]:
+                    - generic [ref=e576]: flag
+                    - generic [ref=e577]: 0/2
+                    - text: KRs done
+                  - generic [ref=e578]:
+                    - generic [ref=e579]: groups
+                    - generic [ref=e580]:
+                      - generic [ref=e581]: AS
+                      - generic [ref=e582]: PN
+                  - generic [ref=e583]: On track
+              - generic [ref=e585]:
+                - button "edit Edit" [ref=e586] [cursor=pointer]:
+                  - generic [ref=e587]: edit
+                  - text: Edit
+                - button "trending_up Update progress" [ref=e588] [cursor=pointer]:
+                  - generic [ref=e589]: trending_up
+                  - text: Update progress
+            - generic [ref=e590]:
+              - generic [ref=e591]: You drive this goal .
+              - generic [ref=e594]: 0%

@@ -6,8 +6,11 @@
 const { useState: useStateWR, useEffect: useEffectWR } = React;
 
 function WorkerReviews() {
+  const Store = window.PerformanceStore;
   const [active, setActive] = useStateWR(null);
   const [selfReviewParticipantId, setSelfReviewParticipantId] = useStateWR(null);
+  const [managerReviewParticipantId, setManagerReviewParticipantId] = useStateWR(null);
+  const [, setVersion] = useStateWR(0);
 
   useEffectWR(() => {
     const pid = window.sessionStorage.getItem('payo.workerReviews.openSelf');
@@ -15,7 +18,22 @@ function WorkerReviews() {
       window.sessionStorage.removeItem('payo.workerReviews.openSelf');
       setSelfReviewParticipantId(pid);
     }
+    return Store.subscribe(() => setVersion(v => v + 1));
   }, []);
+
+  // Live: active review cycles this worker is a participant in
+  const workerId = Store.getCurrentWorkerId();
+  const allParticipants = Store.getData().reviewParticipants || [];
+  const myParticipations = allParticipants.filter(p => p.workerId === workerId);
+  const allCycles = Store.getReviewCycles ? Store.getReviewCycles() : [];
+  const activeCycleParticipations = myParticipations.map(p => {
+    const cycle = allCycles.find(c => c.id === p.reviewCycleId);
+    return cycle ? { participant: p, cycle } : null;
+  }).filter(Boolean).filter(({ cycle }) => cycle.status !== 'closed' && cycle.status !== 'draft');
+
+  function openSelfReview(participantId) {
+    setSelfReviewParticipantId(participantId);
+  }
 
   if (selfReviewParticipantId) {
     return (
@@ -26,6 +44,95 @@ function WorkerReviews() {
           participantId={selfReviewParticipantId}
           onBack={() => setSelfReviewParticipantId(null)}
         />
+      </Shell>
+    );
+  }
+
+  if (managerReviewParticipantId) {
+    const mr = Store.getManagerReview(managerReviewParticipantId);
+    const mrParticipant = (Store.getData().reviewParticipants || []).find(p => p.id === managerReviewParticipantId);
+    const mrCycle = mrParticipant ? allCycles.find(c => c.id === mrParticipant.reviewCycleId) : null;
+    return (
+      <Shell persona="worker" active="performance"
+        crumb={['Payo WFM', 'Performance', 'Feedback & Reviews', 'Manager review']}>
+        <PerfTabs variant="worker" active="reviews" />
+        <div className="row items-center mb-4 gap-2">
+          <Btn variant="ghost" icon="arrow_back" onClick={() => setManagerReviewParticipantId(null)}>Back to reviews</Btn>
+        </div>
+        <PageHead
+          eyebrow={mrCycle ? `${mrCycle.name} · Manager review` : 'Manager review'}
+          title="Your manager's review"
+          sub={mrCycle ? `Period ${mrCycle.periodStart} → ${mrCycle.periodEnd}` : ''}
+          actions={<Btn variant="ghost" icon="download">Export PDF</Btn>}
+        />
+        {!mr ? (
+          <div className="card" style={{ padding: 24 }}>
+            <Callout tone="info" icon="info">
+              Your manager's review has been shared but is not available in this session yet. Try refreshing the page.
+            </Callout>
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 2fr) minmax(0, 1fr)', gap: 16 }}>
+            <div className="col gap-4">
+              {(mr.answers || []).length > 0 && (
+                <SectionCard title="Review answers" icon="rate_review">
+                  <div className="col gap-3">
+                    {mr.answers.map((a, i) => (
+                      <div key={i} style={{ padding: '10px 12px', background: 'var(--grey-50)', border: '1px solid var(--grey-100)', borderRadius: 8 }}>
+                        <div style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Q{i + 1}</div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--grey-800)', marginTop: 2 }}>{a.question}</div>
+                        <div style={{ fontSize: 12.5, color: 'var(--grey-700)', marginTop: 6, lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>
+                          {a.answer || <em style={{ color: 'var(--fg-disabled)' }}>No answer provided.</em>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </SectionCard>
+              )}
+              {(mr.strengths || mr.improvementAreas || mr.nextCycleFocus || mr.finalSummary) && (
+                <SectionCard title="Summary" icon="summarize">
+                  <div className="col gap-3">
+                    {mr.strengths && (
+                      <div>
+                        <div style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>Key strengths</div>
+                        <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>{mr.strengths}</div>
+                      </div>
+                    )}
+                    {mr.improvementAreas && (
+                      <div>
+                        <div style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>Development areas</div>
+                        <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>{mr.improvementAreas}</div>
+                      </div>
+                    )}
+                    {mr.nextCycleFocus && (
+                      <div>
+                        <div style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>Next cycle focus</div>
+                        <div style={{ fontSize: 13, color: 'var(--grey-700)', lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>{mr.nextCycleFocus}</div>
+                      </div>
+                    )}
+                    {mr.finalSummary && (
+                      <div style={{ background: 'var(--grey-50)', borderLeft: '3px solid var(--brand-blue-500)', borderRadius: 8, padding: '14px 18px' }}>
+                        <div style={{ fontSize: 11.5, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>Final summary</div>
+                        <div style={{ fontSize: 13.5, color: 'var(--grey-700)', lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>{mr.finalSummary}</div>
+                      </div>
+                    )}
+                  </div>
+                </SectionCard>
+              )}
+            </div>
+            <div className="col gap-3">
+              {mr.rating && (
+                <div className="card" style={{ padding: '20px 22px', textAlign: 'center' }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Overall rating</div>
+                  <div style={{ fontSize: 17, fontWeight: 800, color: 'var(--grey-800)', letterSpacing: '-0.01em', lineHeight: 1.3 }}>{mr.rating}</div>
+                </div>
+              )}
+              <Callout tone="info" icon="lock">
+                Private manager notes are not included in this view.
+              </Callout>
+            </div>
+          </div>
+        )}
       </Shell>
     );
   }
@@ -211,22 +318,78 @@ function WorkerReviews() {
 
       <PageHead
         eyebrow="My performance"
-        title="Reviews I've received"
-        sub="Every review you've received, organized by month. Click any tile to read the full text and rating."
+        title="Feedback &amp; Reviews"
+        sub="Active review cycles and all reviews you've received, organized by month."
         actions={<>
           <Btn variant="ghost" icon="filter_list">Filters</Btn>
           <Btn variant="ghost" icon="download">Export</Btn>
         </>}
       />
 
-      <div className="stats-row c-4 mb-4">
+      <div className="stats-row c-3 mb-4">
         <StatCard tone="green"  icon="task_alt"    label="Total reviews"   value="12" sub="Across all cycles" />
         <StatCard tone="blue"   icon="star"        label="Average rating"  value="4.3" sub="Last 4 cycles · trending up" />
         <StatCard tone="purple" icon="celebration" label="Outstanding"     value="3"  sub="reviews this year" />
-        <StatCard tone="amber"  icon="event"       label="Next review"     value="Q4" sub="Cycle opens Dec 1, 2026" />
       </div>
 
-      <div className="row gap-2 mb-4 items-center" style={{ flexWrap: 'wrap' }}>
+      {/* Active review cycles */}
+      {activeCycleParticipations.length > 0 && (
+        <div className="mb-4">
+          <SectionCard title="Active review cycles" sub="Cycles you're participating in" icon="rate_review">
+            {activeCycleParticipations.map(({ participant: p, cycle }) => {
+              const selfDone = p.selfReviewStatus === 'submitted';
+              const managerDone = p.managerReviewStatus === 'submitted' || p.managerReviewStatus === 'shared';
+              const selfDue = cycle.selfReviewDueDate;
+              const selfDuePast = selfDue && new Date(selfDue) < new Date();
+              return (
+                <div key={p.id} style={{
+                  display: 'flex', alignItems: 'center', gap: 16,
+                  padding: '14px 20px', borderTop: '1px solid var(--grey-50)',
+                }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--grey-800)' }}>{cycle.name}</div>
+                    <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)', marginTop: 2 }}>
+                      {cycle.periodStart} → {cycle.periodEnd}
+                      {selfDue && <span style={{ marginLeft: 8 }}>· Self-review due <strong style={{ color: selfDuePast && !selfDone ? 'var(--error-dark)' : 'var(--grey-700)' }}>{selfDue}</strong></span>}
+                    </div>
+                  </div>
+                  <div className="row items-center gap-3">
+                    <div className="col" style={{ alignItems: 'flex-end', gap: 4 }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Self-review</span>
+                      {selfDone
+                        ? <Pill variant="completed" dot>Submitted</Pill>
+                        : <Pill variant={selfDuePast ? 'overdue' : 'warning'} dot>{selfDuePast ? 'Overdue' : 'Pending'}</Pill>}
+                    </div>
+                    <div className="col" style={{ alignItems: 'flex-end', gap: 4 }}>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Manager review</span>
+                      {managerDone
+                        ? <Pill variant="completed" dot>Complete</Pill>
+                        : <Pill variant="draft">Pending</Pill>}
+                    </div>
+                  </div>
+                  {!selfDone && (
+                    <Btn variant="primary" size="sm" icon="edit_note" onClick={() => openSelfReview(p.id)}>
+                      Fill in self-review
+                    </Btn>
+                  )}
+                  {selfDone && (
+                    <Btn variant="ghost" size="sm" icon="visibility" onClick={() => openSelfReview(p.id)}>
+                      View self-review
+                    </Btn>
+                  )}
+                  {p.managerReviewStatus === 'shared' && (
+                    <Btn variant="ghost" size="sm" icon="badge" onClick={() => setManagerReviewParticipantId(p.id)}>
+                      View manager review
+                    </Btn>
+                  )}
+                </div>
+              );
+            })}
+          </SectionCard>
+        </div>
+      )}
+
+<div className="row gap-2 mb-4 items-center" style={{ flexWrap: 'wrap' }}>
         <span style={{ fontSize: 11, fontWeight: 800, color: 'var(--fg-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: 4 }}>Type:</span>
         <button className="filter" style={{ background: '#fff', borderColor: 'var(--brand-blue-300)', color: 'var(--brand-blue-600)' }}>All</button>
         <button className="filter">Manager</button>

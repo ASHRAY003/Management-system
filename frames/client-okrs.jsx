@@ -11,6 +11,13 @@ function ClientOKRs() {
   const [peopleFilterCG, setPeopleFilterCG] = useStateOKR(null); // {id, title} of a company goal
   const [detailGoal, setDetailGoal] = useStateOKR(null); // when set, show GoalDetail page
   const createBtnRef = useRefOKR(null);
+  const [, setOkrVersion] = useStateOKR(0);
+  useEffectOKR(() => {
+    const unsubs = [];
+    if (window.ProjectStore) unsubs.push(window.ProjectStore.subscribe(() => setOkrVersion(v => v + 1)));
+    if (window.WorkerGoalStore) unsubs.push(window.WorkerGoalStore.subscribe(() => setOkrVersion(v => v + 1)));
+    return () => unsubs.forEach(fn => fn());
+  }, []);
 
   // Close create dropdown on outside click
   useEffectOKR(() => {
@@ -70,7 +77,7 @@ function ClientOKRs() {
   ];
 
   /* ---------------- My Goals (editable, manager-owned) ---------------- */
-  const myOKRs = [
+  const [myOKRs, setMyOKRs] = useStateOKR([
     {
       id: 'MG-01',
       role: 'owner',
@@ -116,66 +123,27 @@ function ClientOKRs() {
       linkedProject: 'Payroll Migration EU', kr: 5, krDone: 5,
       contribs: ['Ops Team'],
     },
-  ];
+  ]);
 
   /* ---------------- People OKRs (workers managed by Priya) ---------------- */
-  const peopleOKRs = [
-    {
-      id: 'PO-01', worker: 'Aditi Sharma', role: 'Senior Ops',
-      title: 'Complete 6 customer payroll migrations to v2 platform',
-      pct: 90, status: 'on-track', due: 'Sep 30, 2026',
-      linkedProject: 'Payroll Migration EU',
-      kr: [
-        { t: 'Migrate 6 anchor customers', pct: 100, target: '6 / 6' },
-        { t: 'Zero P0 incidents during migration', pct: 100, target: '0 / 0' },
-        { t: 'CSAT > 4.5 post-migration', pct: 70, target: '4.4 / 4.5' },
-      ],
-    },
-    {
-      id: 'PO-02', worker: 'Omar Khan', role: 'Vendor Lead',
-      title: 'Reduce vendor setup time by 20% (8d → 6.4d)',
-      pct: 45, status: 'at-risk', due: 'Oct 15, 2026',
-      linkedProject: 'Vendor Setup Automation',
-      kr: [
-        { t: 'Automate KYB checks for 80% of vendors', pct: 62, target: '50 / 80' },
-        { t: 'Average setup time under 7d',            pct: 40, target: '7.5d' },
-        { t: 'Vendor satisfaction > 4.0',              pct: 25, target: '3.2' },
-      ],
-    },
-    {
-      id: 'PO-03', worker: 'Lina Chen', role: 'Onboarding Mgr',
-      title: 'Improve client onboarding quality score to 4.6',
-      pct: 58, status: 'on-track', due: 'Oct 30, 2026',
-      linkedProject: 'Client Onboarding Q3',
-      kr: [
-        { t: 'Onboarding NPS up to 60',         pct: 55, target: '52 / 60' },
-        { t: 'Time-to-first-payroll under 14d', pct: 70, target: '15d / 14d' },
-        { t: 'Knowledge base coverage > 90%',   pct: 50, target: '78%' },
-      ],
-    },
-    {
-      id: 'PO-04', worker: 'Diego Alvarez', role: 'Senior Engineer',
-      title: 'Refactor payments service to v2 API',
-      pct: 82, status: 'on-track', due: 'Nov 15, 2026',
-      linkedProject: 'Comms Unification',
-      kr: [
-        { t: 'Migrate all 14 endpoints', pct: 86, target: '12 / 14' },
-        { t: 'Reduce p95 latency by 30%', pct: 92, target: '−27% / −30%' },
-        { t: 'Zero downtime cutover',    pct: 70, target: 'Pending UAT' },
-      ],
-    },
-    {
-      id: 'PO-05', worker: 'Karim Idris', role: 'Customer Success',
-      title: 'Move 80% of CS escalations to self-serve playbooks',
-      pct: 22, status: 'at-risk', due: 'Dec 15, 2026',
-      linkedProject: null,
-      kr: [
-        { t: 'Publish 25 playbooks',      pct: 36, target: '9 / 25' },
-        { t: 'Self-serve resolution > 60%', pct: 18, target: '38%' },
-        { t: 'Escalations down 30%',      pct: 12, target: '−8%' },
-      ],
-    },
-  ];
+  // Live read from WorkerGoalStore so progress updates from worker view appear here instantly.
+  const peopleOKRs = window.WorkerGoalStore ? window.WorkerGoalStore.getPeopleOKRs() : [];
+
+  function resolveOKR(o) {
+    if (!window.ProjectStore || !Array.isArray(o.kr) || o.kr.length === 0) return o;
+    let changed = false;
+    const resolvedKRs = o.kr.map(k => {
+      if (k.linkedProject && window.ProjectStore.isCompleted(k.linkedProject)) {
+        changed = true;
+        return { ...k, pct: 100 };
+      }
+      return k;
+    });
+    if (!changed) return o;
+    const avgPct = Math.round(resolvedKRs.reduce((sum, k) => sum + k.pct, 0) / resolvedKRs.length);
+    const triggeredProject = resolvedKRs.find(k => k.linkedProject && window.ProjectStore.isCompleted(k.linkedProject))?.linkedProject;
+    return { ...o, kr: resolvedKRs, pct: avgPct, status: avgPct >= 100 ? 'completed' : avgPct >= 70 ? 'on-track' : 'at-risk', _completedViaProject: triggeredProject };
+  }
 
   const tabCounts = { company: companyOKRs.length, my: myOKRs.length, people: peopleOKRs.length };
 
@@ -188,7 +156,24 @@ function ClientOKRs() {
           initial={stepper.initial}
           mode={stepper.mode}
           onCancel={() => setStepper(null)}
-          onCreate={() => setStepper(null)}
+          onCreate={(payload) => {
+            if (stepper.mode !== 'edit' && payload) {
+              const due = payload.dates ? (payload.dates.split('—')[1] || payload.dates).trim() : '';
+              const projLink = (payload.krs || []).find(k => k.linkedProject)?.linkedProject || null;
+              setMyOKRs(prev => [...prev, {
+                id: 'MG-' + Date.now().toString(36).slice(-5).toUpperCase(),
+                role: 'owner',
+                title: payload.name || 'Untitled Goal',
+                desc: '',
+                pct: 0, status: 'on-track', due, period: 'Q3 2026',
+                linkedProject: projLink,
+                kr: (payload.krs || []).length, krDone: 0,
+                contribs: payload.contributors || [],
+              }]);
+              setTab('my');
+            }
+            setStepper(null);
+          }}
         />
       ) : detailGoal ? (
         <GoalDetail goal={detailGoal} role="manager" onBack={() => setDetailGoal(null)} />
@@ -202,7 +187,6 @@ function ClientOKRs() {
         sub="Create and track company, team, individual and project-linked OKRs."
         actions={<>
           <Btn variant="ghost" icon="filter_list">Filters</Btn>
-          <Btn variant="ghost" icon="link">Link project</Btn>
           <div ref={createBtnRef}>
             <Btn variant="primary" icon="add" onClick={() => setStepper({ kind: 'goal', mode: 'create' })}>Create Goal</Btn>
           </div>
@@ -271,7 +255,6 @@ function ClientOKRs() {
                       dates: o.due ? (o.period || '7/1/2026 — ' + o.due) : '7/1/2026 — 9/30/2026',
                       owner: o.owner,
                       contributors: [],
-                      opts: { alignment: false, description: true, tags: true },
                     } })}>Edit Goal</Btn>
                   </div>
                 </div>
@@ -309,7 +292,7 @@ function ClientOKRs() {
           </Callout>
 
           <div className="mt-4">
-            {myOKRs.map(o => (
+            {myOKRs.map(raw => { const o = resolveOKR(raw); return (
               <div className="okr-card" key={o.id}>
                 <div className="o-head">
                   <div className="o-title-block">
@@ -334,6 +317,7 @@ function ClientOKRs() {
                       <span className="item"><span className="ms">groups</span><AvatarStack names={o.contribs} size="xs" /></span>
                       {o.status === 'on-track' && <Pill variant="on-track" dot>On track</Pill>}
                       {o.status === 'at-risk'  && <Pill variant="at-risk"  dot>At risk</Pill>}
+                      {o.status === 'completed' && <Pill variant="completed" dot>Completed</Pill>}
                     </div>
                   </div>
                   <div className="o-actions">
@@ -374,10 +358,10 @@ function ClientOKRs() {
                         ? <>You're contributing toward this goal — owned by <strong>{o.contribs[0]}</strong>.</>
                         : <>Stakeholder · you receive updates but don't own progress.</>}
                   </div>
-                  <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
+                  <ProgressBar pct={o.pct} big color={o.status === 'completed' ? 'green' : o.status === 'at-risk' ? 'amber' : 'green'} />
                 </div>
               </div>
-            ))}
+            ); })}
           </div>
         </>
       )}
@@ -413,50 +397,51 @@ function ClientOKRs() {
           )}
 
           <div className="mt-4">
-            {peopleOKRs.map(o => (
+            {peopleOKRs.map(raw => { const o = resolveOKR(raw); const projLink = o.kr?.find(k => k.linkedProject)?.linkedProject || null; return (
               <div className="okr-card" key={o.id}>
                 <div className="o-head">
                   <div className="o-title-block">
                     <div className="row items-center gap-3 mb-2">
-                      <Avatar name={o.worker} size="md" />
+                      <Avatar name={o.ownerName} size="md" />
                       <div>
-                        <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--grey-700)', lineHeight: 1.2 }}>{o.worker}</div>
-                        <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)', marginTop: 2 }}>{o.role} · {o.id}</div>
+                        <div style={{ fontSize: 14, fontWeight: 800, color: 'var(--grey-700)', lineHeight: 1.2 }}>{o.ownerName}</div>
+                        <div style={{ fontSize: 11.5, color: 'var(--fg-secondary)', marginTop: 2 }}>{o.workerRole} · {o.id}</div>
                       </div>
                     </div>
                     <div className="o-title">{o.title}</div>
                     <div className="o-meta">
                       <span className="item">
                         <span className="ms">link</span>
-                        {o.linkedProject
-                          ? <span className="v" style={{ color: 'var(--brand-blue-600)' }}>{o.linkedProject}</span>
+                        {projLink
+                          ? <span className="v" style={{ color: 'var(--brand-blue-600)' }}>{projLink}</span>
                           : <button className="btn btn-text btn-sm" style={{ padding: '2px 6px', fontSize: 11 }}><span className="ms" style={{ fontSize: 12 }}>add</span>Link a project</button>}
                       </span>
                       <span className="item"><span className="ms">event</span>Due <span className="v">{o.due}</span></span>
                       <span className="item"><span className="ms">flag</span><span className="v">{o.kr.length}</span> key results</span>
                       {o.status === 'on-track' && <Pill variant="on-track" dot>On track</Pill>}
                       {o.status === 'at-risk'  && <Pill variant="at-risk"  dot>At risk</Pill>}
+                      {o.status === 'completed' && <Pill variant="completed" dot>Completed</Pill>}
                     </div>
                   </div>
                   <div className="o-actions">
                     <Btn variant="ghost" size="sm" icon="visibility" onClick={() => setDetailGoal({
                       title: o.title,
-                      description: o.linkedProject ? 'Linked to ' + o.linkedProject + '.' : 'No linked project.',
+                      description: projLink ? 'Linked to ' + projLink + '.' : 'No linked project.',
                       type: 'Performance',
                       typeIcon: 'workspace_premium',
                       privacy: 'Restricted',
                       when: '7/1/2026 — ' + o.due,
                       daysLeft: 188,
                       perfGoal: true,
-                      aligned: o.linkedProject || null,
+                      aligned: projLink,
                       progress: o.pct,
-                      owner: { name: o.worker, role: o.role },
+                      owner: { name: o.ownerName, role: o.workerRole },
                       contributors: [{ name: 'Priya Nair', role: 'Manager' }],
                       krs: o.kr.map((k, i) => ({
-                        id: i+1, owner: o.worker, text: k.t, pct: k.pct,
-                        current: k.target.split('/')[0]?.trim(),
-                        target:  k.target.split('/')[1]?.trim() || k.target,
-                        unit: k.target.includes('%') ? '%' : 'count',
+                        id: i+1, owner: o.ownerName, text: k.t, pct: k.pct,
+                        current: k.current,
+                        target: k.target,
+                        unit: k.unit || 'count',
                       })),
                       attachments: 1,
                     })}>View</Btn>
@@ -469,59 +454,49 @@ function ClientOKRs() {
                   {o.kr.map((k, i) => (
                     <div className="kr" key={i}>
                       <div className="num">KR{i+1}</div>
-                      <div className="text">{k.t}</div>
-                      <div className="target">{k.target}</div>
+                      <div className="text">{k.t}{k.linkedProject && <span style={{ marginLeft: 6, fontSize: 11, fontWeight: 600, color: 'var(--brand-blue-600)', background: 'var(--brand-blue-50)', borderRadius: 4, padding: '1px 5px' }}>{k.linkedProject}</span>}</div>
+                      <div className="target">
+                        {k.unit === 'incomplete'
+                          ? (k.current === k.target ? 'Done' : k.current || 'Pending')
+                          : `${k.current} / ${k.target}`}
+                      </div>
                       <ProgressBar pct={k.pct} color={k.pct >= 70 ? 'green' : k.pct >= 40 ? '' : 'amber'} />
-                      <Btn variant="ghost" size="sm" style={{ padding: '4px 8px' }} icon="edit">Edit</Btn>
                     </div>
                   ))}
                 </div>
 
                 <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--grey-100)',
                   display: 'grid', gridTemplateColumns: '1fr 240px', gap: 20, alignItems: 'center' }}>
-                  {o.linkedProject ? (
-                    <div className="row items-center gap-3" style={{ fontSize: 12, color: 'var(--fg-secondary)' }}>
-                      <span className="ms" style={{ fontSize: 16, color: 'var(--brand-blue-500)' }}>link</span>
-                      <span>Linked to <strong style={{ color: 'var(--grey-700)' }}>{o.linkedProject}</strong></span>
-                    </div>
-                  ) : (
-                    <div className="row items-center gap-2" style={{ fontSize: 12, color: 'var(--warning-dark)' }}>
-                      <span className="ms" style={{ fontSize: 16 }}>warning_amber</span>
-                      <span>No project linked — link a project to track progress.</span>
-                    </div>
-                  )}
-                  <ProgressBar pct={o.pct} big color={o.status === 'at-risk' ? 'amber' : 'green'} />
+                  <div>
+                    {projLink ? (
+                      <div className="row items-center gap-3" style={{ fontSize: 12, color: 'var(--fg-secondary)' }}>
+                        <span className="ms" style={{ fontSize: 16, color: 'var(--brand-blue-500)' }}>link</span>
+                        <span>Linked to <strong style={{ color: 'var(--grey-700)' }}>{projLink}</strong></span>
+                      </div>
+                    ) : (
+                      <div className="row items-center gap-2" style={{ fontSize: 12, color: 'var(--warning-dark)' }}>
+                        <span className="ms" style={{ fontSize: 16 }}>warning_amber</span>
+                        <span>No project linked — link a project to track progress.</span>
+                      </div>
+                    )}
+                    {o._completedViaProject && (
+                      <div style={{ marginTop: 10, padding: '8px 12px', background: 'var(--success-bg)', borderRadius: 8, display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'var(--success-dark)', fontWeight: 600 }}>
+                        <span className="ms" style={{ fontSize: 16 }}>check_circle</span>
+                        Auto-completed · <strong>{o._completedViaProject}</strong> was marked complete
+                      </div>
+                    )}
+                  </div>
+                  <ProgressBar pct={o.pct} big color={o.status === 'completed' ? 'green' : o.status === 'at-risk' ? 'amber' : 'green'} />
                 </div>
               </div>
-            ))}
+            ); })}
           </div>
 
-          {/* Bottom modal: project-completed prompt (demonstrates the interaction state) */}
           <div style={{ marginTop: 28 }}>
-            <div style={{ fontSize: 11, fontWeight: 800, color: 'var(--brand-purple-600)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>↘ Interaction state · "Project just completed"</div>
-            <div className="modal-demo" style={{ height: 250, background: 'var(--grey-50)', borderRadius: 12, border: '1px dashed var(--grey-200)' }}>
-              <div className="modal-overlay" />
-              <div className="modal">
-                <h3>
-                  <div className="glyph"><span className="ms">rocket_launch</span></div>
-                  Project completed
-                </h3>
-                <div className="body">
-                  <strong style={{ color: 'var(--grey-700)' }}>Payroll Migration EU</strong> just completed. It's linked to 2 OKRs.
-                  Update OKR progress?
-                  <div className="pill-row">
-                    <Pill variant="completed" dot>Project complete</Pill>
-                    <Pill variant="contractor" icon="flag">Aditi's OKR · 6 migrations</Pill>
-                    <Pill variant="contractor" icon="flag">Ops Team · Payroll quality</Pill>
-                  </div>
-                </div>
-                <div className="footer">
-                  <Btn variant="ghost" size="sm">Skip for now</Btn>
-                  <Btn variant="outlined" size="sm" icon="trending_up">Update OKR progress</Btn>
-                  <Btn variant="primary" size="sm" icon="rate_review">Trigger reviews</Btn>
-                </div>
-              </div>
-            </div>
+            <Callout tone="info" icon="rocket_launch"
+              action={<Btn variant="primary" size="sm" icon="open_in_new" onClick={() => window.location.hash = '/projects'}>Open Projects</Btn>}>
+              <strong>Project → OKR auto-completion is live.</strong> Mark a project as complete in the Projects module and any linked OKRs will automatically update here and in worker views.
+            </Callout>
           </div>
         </>
       )}

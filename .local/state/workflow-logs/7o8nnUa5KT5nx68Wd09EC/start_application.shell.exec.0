@@ -1,0 +1,23 @@
+Serving HTTP on 0.0.0.0 port 5000 (http://0.0.0.0:5000/) ...
+127.0.0.1 - - [23/May/2026 05:21:12] "GET /assets/material-symbols.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:13] "GET /assets/nunito-sans.woff2 HTTP/1.1" 304 -
+127.0.0.1 - - [23/May/2026 05:21:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:20] "GET /vendor/babel.js HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:20] "GET /vendor/react.js HTTP/1.1" 304 -
+127.0.0.1 - - [23/May/2026 05:21:21] "GET /tokens.css HTTP/1.1" 304 -
+127.0.0.1 - - [23/May/2026 05:21:21] "GET /vendor/react-dom.js HTTP/1.1" 304 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/goal-detail.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /shared.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/meeting-notes.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/goal-stepper.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/client-meetings.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/client-reviews.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/worker-goals.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/worker-meetings.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:23] "GET /frames/worker-dashboard.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:24] "GET /frames/client-okrs.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:24] "GET /frames/client-dashboard.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:24] "GET /frames/admin-dashboard.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:24] "GET /frames/worker-reviews.jsx?v=3 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:25] "GET /assets/material-symbols.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [23/May/2026 05:21:25] "GET /assets/nunito-sans.woff2 HTTP/1.1" 304 -

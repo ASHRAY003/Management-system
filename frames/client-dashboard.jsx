@@ -4,28 +4,59 @@
    Signals, Recent Feedback. */
 
 function ClientDashboard() {
+  const [, setVersion] = React.useState(0);
+  React.useEffect(() => {
+    const unsubs = [];
+    if (window.ProjectStore) unsubs.push(window.ProjectStore.subscribe(() => setVersion(v => v + 1)));
+    if (window.WorkerGoalStore) unsubs.push(window.WorkerGoalStore.subscribe(() => setVersion(v => v + 1)));
+    return () => unsubs.forEach(fn => fn());
+  }, []);
+
+  // Live data from stores
+  const allGoals   = window.WorkerGoalStore ? window.WorkerGoalStore.getGoals()     : [];
+  const projects   = window.ProjectStore    ? window.ProjectStore.getProjects()      : [];
+
+  function resolvedStatus(g) {
+    if (window.ProjectStore && Array.isArray(g.kr)) {
+      if (g.kr.some(k => k.linkedProject && window.ProjectStore.isCompleted(k.linkedProject))) return 'completed';
+    }
+    return g.status;
+  }
+
+  const activeGoals    = allGoals.filter(g => resolvedStatus(g) !== 'completed');
+  const activeProjects = projects.filter(p => p.status === 'active').length;
+  const doneProjects   = projects.filter(p => p.status === 'completed').length;
+  // Manager's own 5 goals + 3 company goals are not in WorkerGoalStore, add them
+  const totalActiveOKRs = activeGoals.length + 5 + 3;
+
   const kpis = [
-    { tone: 'blue',    icon: 'flag',           label: 'Active OKRs',          value: '42', trend: { dir: 'up',   text: '+6' }, sub: '11 company · 14 team · 17 individual' },
-    { tone: 'purple',  icon: 'rocket_launch',  label: 'Linked projects',      value: '31', trend: { dir: 'up',   text: '+8' },  sub: '18 active · 9 done · 4 at-risk' },
-    { tone: 'teal',    icon: 'event_available',label: '1:1s this month',      value: '64', trend: { dir: 'flat', text: '0' },   sub: '8 today · 12 this week' },
+    { tone: 'blue',   icon: 'flag',            label: 'Active OKRs',     value: String(totalActiveOKRs),
+      sub: `3 company · 5 manager · ${activeGoals.length} individual` },
+    { tone: 'purple', icon: 'rocket_launch',   label: 'Linked projects', value: String(projects.length),
+      sub: `${activeProjects} active · ${doneProjects} done` },
+    { tone: 'teal',   icon: 'event_available', label: '1:1s this month', value: '64',
+      sub: '8 today · 12 this week' },
   ];
 
-  const byDue = (a, b) => new Date(a.due) - new Date(b.due);
-
-  const goals = [
-    { name: 'Improve payroll migration quality',     owner: 'Ops Team',      project: 'Payroll Migration EU',     pct: 70, status: 'on-track', due: 'Sep 30, 2026', okrType: 'company' },
-    { name: 'Reduce vendor setup time by 20%',       owner: 'Omar Khan',     project: 'Vendor Setup Automation',  pct: 45, status: 'at-risk',  due: 'Oct 15, 2026', okrType: 'individual' },
-    { name: 'Complete onboarding projects on time',  owner: 'Aditi Sharma',  project: 'Client Onboarding Q3',     pct: 90, status: 'on-track', due: 'Sep 20, 2026', okrType: 'individual' },
-    { name: 'Launch the unified comms platform',     owner: 'Engineering',   project: 'Comms Unification',        pct: 32, status: 'at-risk',  due: 'Dec 15, 2026', okrType: 'team' },
-    { name: 'Cut support backlog under 50',          owner: 'Lina Chen',     project: 'CS Quality Q3',            pct: 58, status: 'on-track', due: 'Oct 30, 2026', okrType: 'individual' },
-  ].sort(byDue);
+  // Goal progress table: live from WorkerGoalStore (People OKRs = direct reports)
+  const peopleOKRs = window.WorkerGoalStore ? window.WorkerGoalStore.getPeopleOKRs() : [];
+  const goals = peopleOKRs
+    .map(g => ({
+      name:    g.title,
+      owner:   g.ownerName,
+      project: g.kr?.find(k => k.linkedProject)?.linkedProject || '—',
+      pct:     resolvedStatus(g) === 'completed' ? 100 : g.pct,
+      status:  resolvedStatus(g),
+      due:     g.due,
+    }))
+    .sort((a, b) => new Date(a.due) - new Date(b.due));
 
   const cycles = [
     { name: 'Q3 Performance Review',     type: 'Quarterly', participants: 120, pct: 68, pending: 'Managers',  due: 'Oct 15, 2026', status: 'active'   },
     { name: 'Payroll Migration Review',  type: 'Project',   participants: 8,   pct: 40, pending: 'Workers',   due: 'May 25, 2026', status: 'overdue'  },
     { name: 'Annual Review 2026',        type: 'Annual',    participants: 250, pct: 0,  pending: 'HR Admin',  due: 'Dec 15, 2026', status: 'draft'    },
     { name: 'Engineering 360°',          type: '360° Feedback', participants: 38, pct: 31, pending: 'Peers', due: 'Apr 07, 2026', status: 'active' },
-  ].sort(byDue);
+  ].sort((a, b) => new Date(a.due) - new Date(b.due));
 
 
   return (
@@ -39,9 +70,7 @@ function ClientDashboard() {
         title="Performance overview"
         sub="Track goals, project outcomes, reviews, feedback, and compensation signals — all in one place."
         actions={<>
-          <Btn variant="ghost" icon="forum" onClick={() => window.location.hash = '/client/feedback'}>Give feedback</Btn>
-          <Btn variant="outlined" icon="play_circle">Start review cycle</Btn>
-          <Btn variant="primary" icon="add">Create goal</Btn>
+          <Btn variant="outlined" icon="play_circle" onClick={() => window.location.hash = '/client/reviews'}>Start review cycle</Btn>
         </>}
       />
 
@@ -74,7 +103,7 @@ function ClientDashboard() {
                 <tr key={i}>
                   <td>
                     <div style={{ fontWeight: 700, color: 'var(--grey-700)', fontSize: 13 }}>{g.name}</div>
-                    <div style={{ fontSize: 11, color: 'var(--fg-secondary)', marginTop: 2, textTransform: 'capitalize' }}>{g.okrType} OKR</div>
+                    <div style={{ fontSize: 11, color: 'var(--fg-secondary)', marginTop: 2 }}>Individual OKR</div>
                   </td>
                   <td>{g.owner.includes('Team') || g.owner === 'Engineering' ? (
                     <span style={{ fontSize: 12.5, fontWeight: 600 }}>{g.owner}</span>
@@ -88,9 +117,11 @@ function ClientDashboard() {
                     <span className="link-cell"><span className="ms">link</span>{g.project}</span>
                   </td>
                   <td><ProgressBar pct={g.pct} color={g.status === 'at-risk' ? 'amber' : 'green'} /></td>
-                  <td>{g.status === 'on-track'
-                    ? <Pill variant="on-track" dot>On track</Pill>
-                    : <Pill variant="at-risk"  dot>At risk</Pill>}</td>
+                  <td>
+                    {g.status === 'on-track'  && <Pill variant="on-track"  dot>On track</Pill>}
+                    {g.status === 'at-risk'   && <Pill variant="at-risk"   dot>At risk</Pill>}
+                    {g.status === 'completed' && <Pill variant="completed" dot>Completed</Pill>}
+                  </td>
                   <td><span style={{ fontSize: 12, fontWeight: 600 }}>{g.due}</span></td>
                 </tr>
               ))}

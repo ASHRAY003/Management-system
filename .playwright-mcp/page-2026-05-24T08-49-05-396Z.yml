@@ -1,0 +1,157 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 07 · My Goals
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e12]:
+    - complementary [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]: P
+        - generic [ref=e16]:
+          - generic [ref=e17]: Payo WFM
+          - generic [ref=e18]: My workspace
+      - generic [ref=e19]:
+        - generic [ref=e20]: verified_user
+        - generic [ref=e21]: Worker · Self-service
+      - generic [ref=e22]:
+        - generic [ref=e23]: My workspace
+        - generic [ref=e24]:
+          - generic [ref=e25] [cursor=pointer]:
+            - generic [ref=e26]: home
+            - generic [ref=e27]: Home
+          - generic [ref=e28] [cursor=pointer]:
+            - generic [ref=e29]: person
+            - generic [ref=e30]: My profile
+          - generic [ref=e31] [cursor=pointer]:
+            - generic [ref=e32]: payments
+            - generic [ref=e33]: Pay
+          - generic [ref=e34] [cursor=pointer]:
+            - generic [ref=e35]: schedule
+            - generic [ref=e36]: Time off
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38]: insights
+            - generic [ref=e39]: Performance
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41]: work
+            - generic [ref=e42]: Projects
+      - generic [ref=e43]:
+        - generic [ref=e44]: Restricted
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: paid
+            - generic [ref=e48]: Compensation insights
+            - generic [ref=e49]: lock
+          - generic [ref=e50]:
+            - generic [ref=e51]: flag
+            - generic [ref=e52]: Other workers’ OKRs
+            - generic [ref=e53]: lock
+          - generic [ref=e54]:
+            - generic [ref=e55]: lock
+            - generic [ref=e56]: Manager private notes
+            - generic [ref=e57]: lock
+      - generic [ref=e59]:
+        - generic [ref=e60]: AS
+        - generic [ref=e61]:
+          - generic [ref=e62]: Aditi Sharma
+          - generic [ref=e63]: aditi@demo.com
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - generic [ref=e67]: Payo WFM
+          - generic [ref=e68]: chevron_right
+          - generic [ref=e69]: Performance
+          - generic [ref=e70]: chevron_right
+          - generic [ref=e71]: My Goals
+        - generic [ref=e72]:
+          - generic [ref=e73]: verified_user
+          - text: Worker self-service
+        - generic [ref=e74]:
+          - generic [ref=e75]: search
+          - textbox "Search my goals, reviews…" [ref=e76]
+          - generic [ref=e77]: ⌘K
+        - generic [ref=e79] [cursor=pointer]: help
+        - generic [ref=e81] [cursor=pointer]:
+          - generic [ref=e82]: notifications
+          - generic [ref=e83]: "3"
+      - generic [ref=e491]:
+        - generic [ref=e493]:
+          - generic [ref=e494]:
+            - generic [ref=e496]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e497]
+          - button "close" [ref=e498] [cursor=pointer]:
+            - generic [ref=e499]: close
+        - generic [ref=e500]:
+          - generic [ref=e501]:
+            - generic [ref=e504]: Name & Type
+            - generic [ref=e508]: Key Results
+            - generic [ref=e512]: Goal Dates
+            - generic [ref=e516]: Users
+            - generic [ref=e520]: Review
+          - generic [ref=e521]:
+            - generic [ref=e523]: gps_fixed
+            - generic [ref=e524]:
+              - generic [ref=e525]:
+                - generic [ref=e526]: Name*
+                - generic [ref=e527]: 31 / 512 Characters
+              - textbox "What is your goal?" [ref=e528]: Reduce vendor setup time by 20%
+              - generic [ref=e529]: What is the overall objective you want to achieve? (Qualitative and aspirational)
+            - generic [ref=e530]:
+              - generic [ref=e531]:
+                - generic [ref=e533]: Type*
+                - generic [ref=e534]:
+                  - generic:
+                    - generic: person
+                  - combobox [ref=e535] [cursor=pointer]:
+                    - option "Individual" [selected]
+                    - option "Team"
+                    - option "Project-linked"
+              - generic [ref=e536]:
+                - generic [ref=e538]: Privacy*
+                - generic [ref=e539]:
+                  - generic:
+                    - generic: lock
+                  - combobox [ref=e540] [cursor=pointer]:
+                    - option "Public — visible to everyone in the workspace"
+                    - option "Restricted" [selected]
+                    - option "Private — only owner & contributors"
+                - generic [ref=e541]: Visible to goal participants, their managers, and admins.
+            - generic [ref=e544]: Is Performance Goal
+            - generic [ref=e545]: Marking this as a Performance Goal will allow it to be included in future performance reviews.
+            - generic [ref=e546]:
+              - generic [ref=e547]: More Options
+              - generic [ref=e548]:
+                - button "account_tree Alignment check" [ref=e549] [cursor=pointer]:
+                  - generic [ref=e550]: account_tree
+                  - text: Alignment
+                  - generic [ref=e551]: check
+                - button "add_circle Description" [ref=e552] [cursor=pointer]:
+                  - generic [ref=e553]: add_circle
+                  - text: Description
+                - button "sell Tags check" [ref=e554] [cursor=pointer]:
+                  - generic [ref=e555]: sell
+                  - text: Tags
+                  - generic [ref=e556]: check
+              - generic [ref=e557]:
+                - generic [ref=e558]: Aligned to company goal
+                - generic [ref=e559]:
+                  - generic [ref=e560]: account_tree
+                  - text: "CG-01 · Make Acme the #1 payroll platform for remote teams"
+              - generic [ref=e561]:
+                - generic [ref=e562]: vendor-ops
+                - generic [ref=e563]: q3-2026
+                - generic [ref=e564]: automation
+                - button "add Add tag" [ref=e565] [cursor=pointer]:
+                  - generic [ref=e566]: add
+                  - text: Add tag
+          - generic [ref=e567]:
+            - button "Cancel" [ref=e568] [cursor=pointer]
+            - generic [ref=e569]:
+              - generic [ref=e570]: check_circle
+              - text: Saved Just Now
+            - button "Next" [ref=e572] [cursor=pointer]

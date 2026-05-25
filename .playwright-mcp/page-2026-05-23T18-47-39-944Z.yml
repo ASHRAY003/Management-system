@@ -1,0 +1,127 @@
+- generic [ref=e2]:
+  - generic [ref=e45]:
+    - link "← All views" [ref=e46] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e47]: /
+    - generic [ref=e48]: 09 · Feedback & Reviews
+    - button "Sign in" [ref=e49] [cursor=pointer]
+  - generic [ref=e51]:
+    - complementary [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: P
+        - generic [ref=e55]:
+          - generic [ref=e56]: Payo WFM
+          - generic [ref=e57]: My workspace
+      - generic [ref=e58]:
+        - generic [ref=e59]: verified_user
+        - generic [ref=e60]: Worker · Self-service
+      - generic [ref=e61]:
+        - generic [ref=e62]: My workspace
+        - generic [ref=e63]:
+          - generic [ref=e64] [cursor=pointer]:
+            - generic [ref=e65]: home
+            - generic [ref=e66]: Home
+          - generic [ref=e67] [cursor=pointer]:
+            - generic [ref=e68]: person
+            - generic [ref=e69]: My profile
+          - generic [ref=e70] [cursor=pointer]:
+            - generic [ref=e71]: payments
+            - generic [ref=e72]: Pay
+          - generic [ref=e73] [cursor=pointer]:
+            - generic [ref=e74]: schedule
+            - generic [ref=e75]: Time off
+          - generic [ref=e76] [cursor=pointer]:
+            - generic [ref=e77]: insights
+            - generic [ref=e78]: Performance
+      - generic [ref=e79]:
+        - generic [ref=e80]: Restricted
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - generic [ref=e83]: paid
+            - generic [ref=e84]: Compensation insights
+            - generic [ref=e85]: lock
+          - generic [ref=e86]:
+            - generic [ref=e87]: flag
+            - generic [ref=e88]: Other workers’ OKRs
+            - generic [ref=e89]: lock
+          - generic [ref=e90]:
+            - generic [ref=e91]: lock
+            - generic [ref=e92]: Manager private notes
+            - generic [ref=e93]: lock
+      - generic [ref=e95]:
+        - generic [ref=e96]: W
+        - generic [ref=e98]: Worker
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]: Payo WFM
+          - generic [ref=e103]: chevron_right
+          - generic [ref=e104]: Performance
+          - generic [ref=e105]: chevron_right
+          - generic [ref=e106]: Reviews
+        - generic [ref=e107]:
+          - generic [ref=e108]: verified_user
+          - text: Worker self-service
+        - generic [ref=e109]:
+          - generic [ref=e110]: search
+          - textbox "Search my goals, reviews…" [ref=e111]
+          - generic [ref=e112]: ⌘K
+        - generic [ref=e114] [cursor=pointer]: help
+        - generic [ref=e117] [cursor=pointer]: notifications
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120] [cursor=pointer]: Dashboard
+          - generic [ref=e121] [cursor=pointer]: My Goals
+          - generic [ref=e122] [cursor=pointer]: My 1:1 sessions
+          - generic [ref=e123] [cursor=pointer]: Feedback & Reviews
+          - generic [ref=e125] [cursor=pointer]:
+            - text: See all
+            - generic [ref=e126]: expand_more
+        - generic [ref=e127]:
+          - generic [ref=e128]:
+            - generic [ref=e129]: My performance
+            - heading "Feedback & Reviews · viewing as Worker" [level=1] [ref=e130]
+            - generic [ref=e131]: All the feedback and reviews you've received, organized by month. Click any tile to read the full text and rating.
+          - generic [ref=e132]:
+            - button "filter_list Filters" [ref=e133] [cursor=pointer]:
+              - generic [ref=e134]: filter_list
+              - text: Filters
+            - button "download Export" [ref=e135] [cursor=pointer]:
+              - generic [ref=e136]: download
+              - text: Export
+        - generic [ref=e137]:
+          - generic [ref=e139]:
+            - generic [ref=e140]:
+              - generic [ref=e141]: event_repeat
+              - text: My review cycles
+            - generic [ref=e142]: No active review cycles right now.
+          - generic [ref=e144]: When your manager launches a cycle that includes you, it will appear here with a Start self-review action.
+        - generic [ref=e145]:
+          - generic [ref=e146]:
+            - generic [ref=e147]: Total reviews
+            - generic [ref=e149]: "0"
+            - generic [ref=e150]: No reviews yet
+            - generic [ref=e152]: task_alt
+          - generic [ref=e153]:
+            - generic [ref=e154]: Average rating
+            - generic [ref=e156]: —
+            - generic [ref=e157]: No ratings yet
+            - generic [ref=e159]: star
+          - generic [ref=e160]:
+            - generic [ref=e161]: Outstanding
+            - generic [ref=e163]: "0"
+            - generic [ref=e164]: None yet
+            - generic [ref=e166]: celebration
+          - generic [ref=e167]:
+            - generic [ref=e168]: Next review
+            - generic [ref=e170]: —
+            - generic [ref=e171]: No active cycle
+            - generic [ref=e173]: event
+        - generic [ref=e174]:
+          - generic [ref=e175]: "Type:"
+          - button "All" [ref=e176] [cursor=pointer]
+          - button "Manager" [ref=e177] [cursor=pointer]
+          - button "Peer" [ref=e178] [cursor=pointer]
+          - button "Client" [ref=e179] [cursor=pointer]
+          - button "Project" [ref=e180] [cursor=pointer]
+          - button "Self" [ref=e181] [cursor=pointer]

@@ -231,18 +231,22 @@ function ManagerReviewForm({ participantId, onBack }) {
           {cycle.includeRating && (
             <SectionCard title="Overall rating" icon="star">
               <div className="col gap-2">
-                {ratingOpts.map(opt => (
-                  <label key={opt} className="row items-center gap-2" style={{
-                    padding: '10px 12px', border: `1.5px solid ${rating === opt ? 'var(--brand-blue-500)' : 'var(--grey-100)'}`,
-                    background: rating === opt ? 'var(--brand-blue-100)' : '#fff',
-                    borderRadius: 8, cursor: shared ? 'default' : 'pointer',
-                  }}>
-                    <input type="radio" name="rating" checked={rating === opt} onChange={() => { setRating(opt); }}
-                      disabled={shared}
-                      onBlur={saveDraft} />
-                    <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--grey-700)' }}>{opt}</span>
-                  </label>
-                ))}
+                {ratingOpts.map((opt, idx) => {
+                  const starValue = ratingOpts.length - idx;
+                  return (
+                    <label key={opt} className="row items-center gap-2" style={{
+                      padding: '10px 12px', border: `1.5px solid ${rating === opt ? 'var(--brand-blue-500)' : 'var(--grey-100)'}`,
+                      background: rating === opt ? 'var(--brand-blue-100)' : '#fff',
+                      borderRadius: 8, cursor: shared ? 'default' : 'pointer',
+                    }}>
+                      <input type="radio" name="rating" checked={rating === opt} onChange={() => { setRating(opt); }}
+                        disabled={shared}
+                        onBlur={saveDraft} />
+                      <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--grey-700)', flex: 1 }}>{opt}</span>
+                      <Stars value={starValue} max={ratingOpts.length} size="sm" />
+                    </label>
+                  );
+                })}
               </div>
             </SectionCard>
           )}

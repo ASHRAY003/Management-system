@@ -1,0 +1,163 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "← All views" [ref=e4] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e5]: /
+    - generic [ref=e6]: 02b · Create Goal (Stepper)
+    - generic [ref=e7]:
+      - text: Signed in as
+      - strong [ref=e8]: Aditi Sharma
+      - generic [ref=e9]: · worker
+    - button "Log out" [ref=e10] [cursor=pointer]
+  - generic [ref=e575]:
+    - complementary [ref=e576]:
+      - generic [ref=e577]:
+        - generic [ref=e578]: P
+        - generic [ref=e579]:
+          - generic [ref=e580]: Payo WFM
+          - generic [ref=e581]: Acme Holdings · HR
+      - generic [ref=e582]:
+        - generic [ref=e583]: badge
+        - generic [ref=e584]: HR Admin · Client manager
+      - generic [ref=e585]:
+        - generic [ref=e586]: Workforce
+        - generic [ref=e587]:
+          - generic [ref=e588] [cursor=pointer]:
+            - generic [ref=e589]: dashboard
+            - generic [ref=e590]: Dashboard
+          - generic [ref=e591] [cursor=pointer]:
+            - generic [ref=e592]: groups
+            - generic [ref=e593]: People
+          - generic [ref=e594] [cursor=pointer]:
+            - generic [ref=e595]: description
+            - generic [ref=e596]: Contracts
+          - generic [ref=e597] [cursor=pointer]:
+            - generic [ref=e598]: work
+            - generic [ref=e599]: Projects
+          - generic [ref=e600] [cursor=pointer]:
+            - generic [ref=e601]: sync
+            - generic [ref=e602]: Payroll
+          - generic [ref=e603] [cursor=pointer]:
+            - generic [ref=e604]: insights
+            - generic [ref=e605]: Performance
+      - generic [ref=e606]:
+        - generic [ref=e607]: Workspace
+        - generic [ref=e608]:
+          - generic [ref=e609] [cursor=pointer]:
+            - generic [ref=e610]: schedule
+            - generic [ref=e611]: Time & leave
+          - generic [ref=e612] [cursor=pointer]:
+            - generic [ref=e613]: receipt_long
+            - generic [ref=e614]: Expenses
+          - generic [ref=e615] [cursor=pointer]:
+            - generic [ref=e616]: folder
+            - generic [ref=e617]: Documents
+          - generic [ref=e618] [cursor=pointer]:
+            - generic [ref=e619]: bar_chart
+            - generic [ref=e620]: Reports
+          - generic [ref=e621] [cursor=pointer]:
+            - generic [ref=e622]: settings
+            - generic [ref=e623]: Settings
+      - generic [ref=e625]:
+        - generic [ref=e626]: AS
+        - generic [ref=e627]:
+          - generic [ref=e628]: Aditi Sharma
+          - generic [ref=e629]: aditi@demo.com
+    - generic [ref=e630]:
+      - generic [ref=e631]:
+        - generic [ref=e632]:
+          - generic [ref=e633]: Acme Holdings
+          - generic [ref=e634]: chevron_right
+          - generic [ref=e635]: Performance
+          - generic [ref=e636]: chevron_right
+          - generic [ref=e637]: Goals & OKRs
+          - generic [ref=e638]: chevron_right
+          - generic [ref=e639]: New Goal
+        - generic [ref=e640]:
+          - generic [ref=e641]: badge
+          - text: Client / Manager view
+        - generic [ref=e642]:
+          - generic [ref=e643]: search
+          - textbox "Search people, goals, reviews…" [ref=e644]
+          - generic [ref=e645]: ⌘K
+        - generic [ref=e647] [cursor=pointer]: help
+        - generic [ref=e649] [cursor=pointer]:
+          - generic [ref=e650]: notifications
+          - generic [ref=e651]: "3"
+      - generic [ref=e653]:
+        - generic [ref=e655]:
+          - generic [ref=e656]:
+            - generic [ref=e658]: gps_fixed
+            - heading "New Goal" [level=2] [ref=e659]
+          - button "close" [ref=e660] [cursor=pointer]:
+            - generic [ref=e661]: close
+        - generic [ref=e662]:
+          - generic [ref=e663]:
+            - generic [ref=e666]: Name & Type
+            - generic [ref=e670]: Key Results
+            - generic [ref=e674]: Goal Dates
+            - generic [ref=e678]: Users
+            - generic [ref=e682]: Review
+          - generic [ref=e683]:
+            - generic [ref=e685]: gps_fixed
+            - generic [ref=e686]:
+              - generic [ref=e687]:
+                - generic [ref=e688]: Name*
+                - generic [ref=e689]: 31 / 512 Characters
+              - textbox "What is your goal?" [ref=e690]: Reduce vendor setup time by 20%
+              - generic [ref=e691]: What is the overall objective you want to achieve? (Qualitative and aspirational)
+            - generic [ref=e692]:
+              - generic [ref=e693]:
+                - generic [ref=e695]: Type*
+                - generic [ref=e696]:
+                  - generic:
+                    - generic: person
+                  - combobox [ref=e697] [cursor=pointer]:
+                    - option "Individual" [selected]
+                    - option "Team"
+                    - option "Project-linked"
+                    - option "Company"
+              - generic [ref=e698]:
+                - generic [ref=e700]: Privacy*
+                - generic [ref=e701]:
+                  - generic:
+                    - generic: lock
+                  - combobox [ref=e702] [cursor=pointer]:
+                    - option "Public — visible to everyone in the workspace"
+                    - option "Restricted" [selected]
+                    - option "Private — only owner & contributors"
+                - generic [ref=e703]: Visible to goal participants, their managers, and admins.
+            - generic [ref=e706]: Is Performance Goal
+            - generic [ref=e707]: Marking this as a Performance Goal will allow it to be included in future performance reviews.
+            - generic [ref=e708]:
+              - generic [ref=e709]: More Options
+              - generic [ref=e710]:
+                - button "account_tree Alignment check" [ref=e711] [cursor=pointer]:
+                  - generic [ref=e712]: account_tree
+                  - text: Alignment
+                  - generic [ref=e713]: check
+                - button "add_circle Description" [ref=e714] [cursor=pointer]:
+                  - generic [ref=e715]: add_circle
+                  - text: Description
+                - button "sell Tags check" [ref=e716] [cursor=pointer]:
+                  - generic [ref=e717]: sell
+                  - text: Tags
+                  - generic [ref=e718]: check
+              - generic [ref=e719]:
+                - generic [ref=e720]: Aligned to company goal
+                - generic [ref=e721]:
+                  - generic [ref=e722]: account_tree
+                  - text: "CG-01 · Make Acme the #1 payroll platform for remote teams"
+              - generic [ref=e723]:
+                - generic [ref=e724]: vendor-ops
+                - generic [ref=e725]: q3-2026
+                - generic [ref=e726]: automation
+                - button "add Add tag" [ref=e727] [cursor=pointer]:
+                  - generic [ref=e728]: add
+                  - text: Add tag
+          - generic [ref=e729]:
+            - button "Cancel" [ref=e730] [cursor=pointer]
+            - generic [ref=e731]:
+              - generic [ref=e732]: check_circle
+              - text: Saved Just Now
+            - button "Next" [ref=e734] [cursor=pointer]
